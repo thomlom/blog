@@ -4,7 +4,7 @@ module.exports = {
     author: 'Thomas Lombart',
     description:
       'Articles, tutorials, tips and tricks on modern web development.',
-    siteUrl: 'https://thomlom.now.sh/',
+    siteUrl: 'https://thomlom.dev/',
   },
   plugins: [
     {
