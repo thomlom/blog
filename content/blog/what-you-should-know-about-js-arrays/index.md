@@ -25,7 +25,7 @@ It takes one parameter: a function that is called on every element of the array.
 const numbers = [1, 2, 3, 4]
 
 const numbersPlusOne = numbers.map(n => n + 1) // Adds one to every element
-console.log(numberPlusOne) // [2, 3, 4, 5]
+console.log(numbersPlusOne) // [2, 3, 4, 5]
 ```
 
 You can also create a new array that keeps only one particular property of an object:
@@ -148,9 +148,7 @@ const numbers = [1, 2, 3]
 const numbersCopy = [...numbers]
 console.log(numbersCopy) // [1, 2, 3]
 
-const numbers = [1, 2, 3, 4, 5]
 const otherNumbers = [4, 5, 6]
-
 const numbersConcatenated = [...numbers, ...otherNumbers]
 console.log(numbersConcatenated) // [1, 2, 3, 4, 5, 6]
 ```
