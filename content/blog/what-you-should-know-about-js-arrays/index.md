@@ -608,12 +608,12 @@ And now you might think, yeah but If I need to remove many elements? Well, use `
 const months = ['January', 'February', 'March', 'April', ' May']
 
 // With splice
-months.splice(1, 3) // remove thirds element starting at index 1
-console.log(months) // ['January', 'February', 'April', 'May']
+months.splice(1, 3) // remove three elements starting at index 1
+console.log(months) // ['January', 'May']
 
 // Without splice
-const monthsFiltered = [...months.slice(0, 1), ...months.slice(4)]
-console.log(monthsFiltered) // ['January', 'February', 'April', 'May']
+const monthsSliced = [...months.slice(0, 1), ...months.slice(4)]
+console.log(monthsSliced) // ['January', 'May']
 ```
 
 ### shift
