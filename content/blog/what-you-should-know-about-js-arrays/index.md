@@ -446,6 +446,19 @@ todoItems.forEach(item => {
 })
 ```
 
+### isArray
+
+While we're at it, let's talk about another static method of `Array` which is `isArray`. Without surprises, it tells you if the passed value is an array or not.
+
+Based on a previous example, this is what we get:
+
+```js
+const nodes = document.querySelectorAll('.todo-item')
+console.log(Array.isArray(nodes)) // false
+const todoItems = Array.from(nodes)
+console.log(Array.isArray(todoItems)) // true
+```
+
 ## Good to know but mutating
 
 You'll find below other common array methods. The difference is that they modify the original array. There's nothing wrong with mutating an array but it's good to have it in mind!
