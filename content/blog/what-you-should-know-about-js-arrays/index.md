@@ -450,7 +450,7 @@ todoItems.forEach(item => {
 
 While we're at it, let's talk about another static method of `Array` which is `isArray`. Without surprises, it tells you if the passed value is an array or not.
 
-Based on a previous example, this is what we get:
+Based on the previous example, this is what we get:
 
 ```js
 const nodes = document.querySelectorAll('.todo-item')
