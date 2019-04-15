@@ -356,6 +356,7 @@ const numbers = [1, 2, [3, 4, [5, [6, 7]], [[[[8]]]]]]
 
 const numbersflattenOnce = numbers.flat()
 console.log(numbersflattenOnce) // [1, 2, 3, 4, Array[2], Array[1]]
+// Note: Array[2] means it's a two-dimensional array
 
 const numbersflattenTwice = numbers.flat(2)
 console.log(numbersflattenTwice) // [1, 2, 3, 4, 5, Array[2], Array[1]]
@@ -430,7 +431,7 @@ console.log(participantsFormatted) // gary, emma
 This is a **static** method that creates a new Array from an array-like or iterable object like a string for example. It can be useful when you're working with the dom.
 
 ```js
-const nodes = document.querySelectorAll('.todo-item') // this is an instance of NodeList
+const nodes = document.querySelectorAll('.todo-item') // this is an instance of NodeList, you can't use array methods with it
 const todoItems = Array.from(nodes) // now, you can use map, filter, etc. as you're workin with an array!
 ```
 
