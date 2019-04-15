@@ -178,7 +178,7 @@ So, if you want to make a "real" copy of an array that contains object or arrays
 
 You'fll find below other methods that are good to know and that can help you with some problems such as searching an element in an array, taking a portion of an array and more.
 
-### includes (ES2015)
+### includes (ES2016)
 
 Have you ever used `indexOf` to know if something is in an array or not? Awful way to do it right? Luckily for us, `includes` does that for us. Give a parameter to `includes` and it will search in the array if the element exists.
 
