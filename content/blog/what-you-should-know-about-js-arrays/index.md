@@ -114,7 +114,7 @@ console.log(map([1, 2, 3, 4], n => n + 1)) // [2, 3, 4, 5]
 
 const filter = (arr, fn) => {
   return arr.reduce((filteredArr, element) => {
-    return fn(element) ? [...filteredArr] : [...filteredArr, element]
+    return fn(element) ? [...filteredArr, element] : [...filteredArr]
   }, [])
 }
 

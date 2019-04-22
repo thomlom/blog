@@ -20,7 +20,7 @@ const Date = styled.small`
 
 const Content = styled.div`
   font-size: 1.6rem;
-  line-height: 2.4rem;
+  line-height: 2.6rem;
 
   h1,
   h2,
@@ -59,7 +59,7 @@ const Content = styled.div`
   p {
     color: hsl(209, 34%, 30%);
     font-size: 1.6rem;
-    line-height: 2.4rem;
+    line-height: 2.6rem;
     margin: 2.4rem 0;
   }
 
