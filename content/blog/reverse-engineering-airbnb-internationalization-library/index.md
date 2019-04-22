@@ -64,9 +64,13 @@ Finally, you can handle pluralization with Polyglot, that is to say, express a s
 
 ```js
 polyglot.locale() // 'en'
-polyglot.extends({
+polyglot.extend({
   thing: 'There is %{smart_count} thing |||| There are %{smart_count} things',
 })
+
+polyglot.t('thing', { smart_count: 1 }) // There is 1 thing
+// Giving a number as a secong argument also works
+polyglot.t('thing', 4) // There are 4 things
 ```
 
 If you need to set the locale, you have two choices, either call the `locale` method or provide the locale during the instanciation.
@@ -202,7 +206,7 @@ That way, you make sure you traverse all your object and map every key to a stri
 }
 ```
 
-Note that `extends` actually extends the `phrases` object and **doesn't replace it.** The only things that will get replaced will be the conflicting keys. For example if you call `extend` with an object which got a `hello` key and that key already exists in `phrases`, it will be replaced.
+Note that `extend` actually extends the `phrases` object and **doesn't replace it.** The only things that will get replaced will be the conflicting keys. For example if you call `extend` with an object which got a `hello` key and that key already exists in `phrases`, it will be replaced.
 
 ## Interpolation
 
@@ -300,18 +304,179 @@ We call `replace` on the phrase `'Hi, your name is %{name}. You are a %{job} and
 2. `expression` = `%{job}`, `argument` = `job`. Is `job` in the options object? No, return the expression: `%{job}`.
 3. `expression` = `%{hobby}`, `argument` = `hobby`. Is `hobby` in the options object? Yes, then return the associated value: `Traveling`.
 
-The result of the translation is: `Hi, your name is Thomas. You are a %{job} and you like Traveling.`
+The result of the translation is: `Hi, your name is Thomas. You are a %{job} and you like Traveling.` That's not rocket science after all! 😉
 
 ### Custom interpolation syntax
 
-\$& -> Inserts the matched substring : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_string_as_a_parameter
+Now that we saw how to implement interpolation, let's see how to make customizing the interpolation syntax possible. Polyglot allows you to customize the prefix and the suffix so that you can use `{{name}}` or `|name|` instead of `%{name}`.
 
-// : explicitely escape \ character !
+_"Easy"_, you might think. _"Just change the regex!_". And you would be right, that's what Polyglot does. It uses a custom regex called `tokenRegex` that is built when you create an instance of Polyglot:
 
-## Locale
+```js
+function Polyglot(options) {
+  var opts = options || {}
+  // ...
+  this.tokenRegex = constructTokenRegex(opts.interpolation)
+}
+```
 
-## Smart count and Plural groups
+This `tokenRegex` is then passed to `transformPhrase` which is assigned to `interpolationRegex` if it holds a value:
 
-## Unset, clear, replace and has
+```js
+function transformPhrase(phrase, substitutions, locale, tokenRegex) {
+  // ...
+  var interpolationRegex = tokenRegex || defaultTokenRegex
+  // ...
+}
+```
+
+`constructTokenRegex` is a fairly simple function. Its purpose is to return a new regex based on the given prefix and suffix.
+
+```js
+var delimiter = '||||'
+
+// ...
+
+function escape(token) {
+  return token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function constructTokenRegex(opts) {
+  var prefix = (opts && opts.prefix) || '%{'
+  var suffix = (opts && opts.suffix) || '}'
+
+  if (prefix === delimiter || suffix === delimiter) {
+    throw new RangeError(
+      '"' + delimiter + '" token is reserved for pluralization'
+    )
+  }
+
+  return new RegExp(escape(prefix) + '(.*?)' + escape(suffix), 'g')
+}
+```
+
+There are two things to consider though:
+
+- We can't choose a prefix or a suffix that is equal to `||||` as it's used for pluralization.
+- We **must escape** the prefix and the suffix. But why is that? Well, you'll probably use special characters such as `{`, or `[` or maybe `*`. However, these symbols mean something for the regex, so we need to escape them with a backslash. That's the responsibility of the `escape` function. It will escape any special regex character. More precisely, it will replace the regex symbol by a backslash followed by the matched symbol (corresponds to `$&`).
+
+As an example, `constructTokenRegex({ prefix: '[[', suffix: ']]' })` returns `/\[\[(.*?)\]\]/g` and not `/[[(.*?)]]/g`.
+
+## Smart count and plural groups
+
+Now the second part of `transformPhrase`: pluralization. That one can be tough to build. Indeed, you have to make it possible for Polyglot to choose a phrase among others both based on a number and a locale. For example, did you know that there are no plural forms in Chinese but there are six in Arabic? Also, did you know that in French, zero is singular while it's plural in English? To make pluralization happen, we need to take account of all these rules.
+
+**Note**: you can find all plural rules [here](http://www.unicode.org/cldr/charts/33/supplemental/language_plural_rules.html)
+
+Roughly speaking, here's what Polyglot does:
+
+1. Reference all possible rules and map them to the corresponding locales.
+2. When you translate a phrase which has multiple forms, split them based on a delimiter. Thus, you get an array of phrases (more precisely, all the plural forms of the phrase).
+3. Retrieve the rule associated to the locale given to Polyglot. This rule takes a number as a parameter and returns another number indicating which plural form to choose.
+4. Returns the correct phrase using the number returned by the rule (which acts as an array index).
+
+We are going to detail this step by step.
+
+First, here is an extract of all the rules and their corresponding locales:
+
+```js
+var pluralTypes = {
+  arabic: function(n) {
+    // http://www.arabeyes.org/Plural_Forms
+    if (n < 3) {
+      return n
+    }
+    var lastTwo = n % 100
+    if (lastTwo >= 3 && lastTwo <= 10) return 3
+    return lastTwo >= 11 ? 4 : 5
+  },
+  bosnian_serbian: russianPluralGroups,
+  chinese: function() {
+    return 0
+  },
+  croatian: russianPluralGroups,
+  french: function(n) {
+    return n > 1 ? 1 : 0
+  },
+  german: function(n) {
+    return n !== 1 ? 1 : 0
+  },
+  // ...
+}
+
+var pluralTypeToLanguages = {
+  arabic: ['ar'],
+  bosnian_serbian: ['bs-Latn-BA', 'bs-Cyrl-BA', 'srl-RS', 'sr-RS'],
+  chinese: [
+    'id',
+    'id-ID',
+    'ja',
+    'ko',
+    'ko-KR',
+    'lo',
+    'ms',
+    'th',
+    'th-TH',
+    'zh',
+  ],
+  croatian: ['hr', 'hr-HR'],
+  german: [
+    'fa',
+    'da',
+    'de',
+    'en',
+    'es',
+    'fi',
+    'el',
+    'he',
+    'hi-IN',
+    'hu',
+    'hu-HU',
+    'it',
+    'nl',
+    'no',
+    'pt',
+    'sv',
+    'tr',
+  ],
+  french: ['fr', 'tl', 'pt-br'],
+}
+```
+
+You can see for example that for a german rule (which includes english), we return the plural form if the number is different than one, otherwise we return the singular form.
+
+Let's come back to `transformPhrase`. Now we can focus on the pluralization part:
+
+```js
+function transformPhrase(phrase, substitutions, locale, tokenRegex) {
+  // ...
+
+  if (substitutions == null) {
+    return phrase
+  }
+
+  var result = phrase
+
+  var options =
+    typeof substitutions === 'number'
+      ? { smart_count: substitutions }
+      : substitutions
+
+  if (options.smart_count != null && result) {
+    var texts = split.call(result, delimiter)
+    result = trim(
+      texts[pluralTypeIndex(locale || 'en', options.smart_count)] || texts[0]
+    )
+  }
+
+  // ...
+
+  return result
+}
+```
+
+## Other features
+
+Unset, clear, replace, has and onMissing
 
 ## What have I learnt
