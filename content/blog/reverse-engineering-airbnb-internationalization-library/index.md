@@ -371,7 +371,7 @@ Now the second part of `transformPhrase`: pluralization. That one can be tough t
 Roughly speaking, here's what Polyglot does:
 
 1. Reference all possible rules and map them to the corresponding locales.
-2. When you translate a phrase which has multiple forms, split them based on a delimiter. Thus, you get an array of phrases (more precisely, all the plural forms of the phrase).
+2. When you translate a phrase which need to be pluralized (`smart_count` option), split it in multiple phrases based on a delimiter. Thus, you get an array of phrases (more precisely, all the plural forms of the phrase).
 3. Retrieve the rule associated to the locale given to Polyglot. This rule takes a number as a parameter and returns another number indicating which plural form to choose.
 4. Returns the correct phrase using the number returned by the rule (which acts as an array index).
 
@@ -440,6 +440,7 @@ var pluralTypeToLanguages = {
     'tr',
   ],
   french: ['fr', 'tl', 'pt-br'],
+  // ...
 }
 ```
 
@@ -448,6 +449,14 @@ You can see for example that for a german rule (which includes english), we retu
 Let's come back to `transformPhrase`. Now we can focus on the pluralization part:
 
 ```js
+var split = String.prototype.split
+
+// ...
+
+var delimiter = '||||'
+
+// ...
+
 function transformPhrase(phrase, substitutions, locale, tokenRegex) {
   // ...
 
@@ -475,8 +484,123 @@ function transformPhrase(phrase, substitutions, locale, tokenRegex) {
 }
 ```
 
+We handle the pluralization thanks to one option: `smart_count` which is a number. Note that you can also pass a number instead of an options object. Polyglot will take account of that shortcut if the type of `substitutions` is a number.
+
+We're at **step two** here. If we do have a `smart_count` option. We'll split the phrase in multiple parts thanks to the delimiter (`||||`). As we are caching `split`, we need to invoke the function on `result` thanks to the `call` method. For example:
+
+```js
+var phrase = 'I have one thing |||| I have many things'
+phrases.split('||||') // ['I have one thing ', ' I have many things']
+```
+
+Then, **step 3**. We need to retrieve the rule associated to our locale. This happens thanks to the `pluralTypeIndex` function.
+
+Basically, `pluralTypeIndex` takes a locale and a count and it invokes one of the functions defined in `pluralTypes` with `count` as a parameter.
+
+```js
+function pluralTypeIndex(locale, count) {
+  return pluralTypes[pluralTypeName(locale)](count)
+}
+```
+
+Nevertheless, we need to know beforehand to which language rule our locale refers to. That's what `pluralTypeName` does.
+
+```js
+function langToTypeMap(mapping) {
+  var ret = {}
+  forEach(mapping, function(langs, type) {
+    forEach(langs, function(lang) {
+      ret[lang] = type
+    })
+  })
+  return ret
+}
+
+function pluralTypeName(locale) {
+  var langToPluralType = langToTypeMap(pluralTypeToLanguages)
+  return (
+    langToPluralType[locale] ||
+    langToPluralType[split.call(locale, /-/, 1)[0]] ||
+    langToPluralType.en
+  )
+}
+```
+
+After building the map that associates a locale to the correct rule, we lookup in this map for the value of a locale. However, the locale can sometimes be composed and missing in the corresponding map. In that case, we first try to return the first part of the locale. Otherwise we return the rule associated to `en`, that is to say `german`.
+
+If you struggle to see what the `langToPluralType` map looks like, here is an extract:
+
+```js
+{
+  ar: 'arabic',
+  'bs-Latn-BA': 'bosnian_serbian',
+  'bs-Cyrl-BA': 'bosnian_serbian',
+  'srl-RS': 'bosnian_serbian',
+  'sr-RS': 'bosnian_serbian',
+  id: 'chinese',
+  'id-ID': 'chinese',
+  ja: 'chinese',
+  ko: 'chinese',
+  'ko-KR': 'chinese',
+  lo: 'chinese',
+  ms: 'chinese',
+  th: 'chinese',
+  'th-TH': 'chinese',
+  zh: 'chinese',
+  hr: 'croatian',
+  'hr-HR': 'croatian',
+  fa: 'german',
+  da: 'german',
+  de: 'german',
+  en: 'german',
+  // ...
+}
+```
+
+Let's say we have `fa` as a locale. Invoking `pluralTypeName` will lookup in the map above if `fa` is mapped to a value. It turns out it is, so it will return `german`.
+
+However, in the case of `en-US`, it doesn't correspond to anything in the map, so it will split this locale based on `-`, and will retrieve the first part of it: `en`. Thus, we have a locale to look for in the map.
+
+Finally, in `pluralTypeIndex`, we can invoke the correct language rule to the function with the count. The result of that function will be trimed as there may be some whitespaces between the end (or beginning) of the phrase and `||||`.
+
+**Note**: As we are thinking in terms of indexes, it implies that your phrases should be delimited in an ascending order and that you should be exhaustive on the possible plural forms your phrase may take. Otherwise Polyglot will just return the first phrase.
+
+Let's recap pluralization on an example:
+
+```js
+polyglot.extend({
+  thing: 'There is %{smart_count} thing |||| There are %{smart_count} things',
+})
+
+polyglot.t('thing', { smart_count: 1 })
+```
+
+1. Is there a `smart_count` on the `options` or is it a number? Yes, let's know which phrase to return.
+2. Split the phrase in multiple phrases: `['There is %{smart_count} thing ', ' There are %{smart_count} things']`
+3. Turns out that `en` is mapped to the `german` rule.
+4. Let's invoke the `german` rule knowing `count` is equal to `1` (`german(1)`)
+5. `1` is not different from `1`, then return `0`.
+6. Select the first phrase (index `0`) from the multiple phrases and trim it: `There is %{smart_count} thing`.
+7. Interpolation: replace `smart_count` in the phrase: `There is 1 thing`.
+
+If it would have been `polyglot.t('thing', { smart_count: 4 })`, the steps 5 to 7 would have been different:
+
+5. `4` is different from `1`, then return `1`.
+6. Select the second phrase (index `1`) from the multiple phrases and trim it: `There are %{smart_count} things`.
+7. Interpolation: replace `smart_count` in the phrase: `There are 4 things`.
+
 ## Other features
 
-Unset, clear, replace, has and onMissing
+Are you still with me? Great. The next features are pretty easy to understand.
+
+### Unset
+
+### Clear
+
+### Replace
+
+### Has
+
+### onMissingKey
 
 ## What have I learnt
