@@ -288,7 +288,7 @@ function transformPhrase(phrase, substitutions, locale, tokenRegex) {
     if (!has(options, argument) || options[argument] == null) {
       return expression
     }
-    return options[argument]
+    return replace.call(options[argument], dollarRegex, dollarBillsYall)
   })
 
   return result
@@ -316,7 +316,7 @@ result = result.replace(interpolationRegex, function(expression, argument) {
   if (!has(options, argument) || options[argument] == null) {
     return expression
   }
-  return options[argument]
+  return replace.call(options[argument], dollarRegex, dollarBillsYall)
 })
 ```
 
