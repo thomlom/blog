@@ -73,7 +73,7 @@ polyglot.extend({
 polyglot.t('thing', { smart_count: 1 }) // There is 1 thing
 ```
 
-Giving a number as a second argument also works
+Giving a number as a second argument also works:
 
 ```js
 polyglot.t('thing', 4) // There are 4 things
@@ -124,7 +124,7 @@ Don't worry, we'll figure it out right away.
 
 ## Translate a simple phrase
 
-Let's start with the simplest feature: translate a simple phrase. It's as easy as getting a key from an object. Internally, when you create an instance of Polyglot, an empty `phrases` object is created. You can then extend it by providing some phrases in the `options` object.
+Let's start with the simplest feature: translate a simple phrase. It's as easy as getting a key from an object. Internally, when you create an instance of Polyglot, an empty `phrases` object is created. You can then extend it by providing some phrases in the `options` object:
 
 ```js
 function Polyglot(options) {
@@ -132,6 +132,7 @@ function Polyglot(options) {
   this.phrases = {}
   this.extend(opts.phrases || {})
   // ...
+}
 ```
 
 We instanciate Polyglot like this:
@@ -159,7 +160,7 @@ function Polyglot(options) {
 
 The `currentLocale` is set to a given locale or `en` and a mysterious `tokenRegex` is created. These properties are important for the interpolation and pluralization.
 
-Then, when we'll call `t` with a given key, Polyglot will search its associated value in the internal `phrases` object. Once found, it will apply to the phrase some transformations (interpolation and pluralization) and return it.
+Then, when we'll call `t` with a given key, Polyglot will search its associated value in the internal `phrases` object. Once found, it will apply to the phrase some transformations (interpolation and pluralization) and return it:
 
 ```js
 Polyglot.prototype.t = function(key, options) {
@@ -190,7 +191,7 @@ By the way, classes in JavaScript are also **constructor functions.** Go ahead a
 
 The most attentives of you will think _"But what if our `phrases` object has inner objects? I don't see how `t` handles the nested objects? It only transforms the phrase if the type of the phrase is a string, right?"_
 
-That's a legit question. As said in the recap, Polyglot handles nested `phrases` objects. Under the hood, It uses the `extend` method to add new phrases to the instance. This method processes recursively all the keys in the object passed as an argument and put them at the root level of the internal `phrases` object. Each nested key is concatenated with the one that's one level above it using the dot notation.
+That's a legit question. As said in the recap, Polyglot handles nested phrases objects. Under the hood, It uses the `extend` method to add new phrases to the instance. This method processes recursively all the keys in the object passed as an argument and put them at the root level of the internal `phrases` object. Each nested key is concatenated with the one that's one level above it using the dot notation:
 
 ```js
 var forEach = require('for-each')
@@ -227,13 +228,15 @@ polyglot.extend({
 })
 ```
 
-For the `hello` key, `prefix` will be `undefined` so `prefixedKey = hello`. The corresponding `phrase` (`Hello`) is a string, so we map `Hello` to `hello` in the internal `phrases`.
+- For the `hello` key, `prefix` will be `undefined` so `prefixedKey = hello`. The corresponding `phrase` (`Hello`) is a string, so we map `Hello` to `hello` in the internal `phrases`.
 
-For `auth`, there is still no prefix, so `prefixedKey = auth`. However, `phrase` is an object, so we'll recursively call `extend` with `phrase` and `prefixedKey`: `this.extend({ login: 'Login' register: 'Register' }, 'auth')`.
+- For `auth`, there is still no prefix, so `prefixedKey = auth`. However, `phrase` is an object, so we'll recursively call `extend` with `phrase` and `prefixedKey`: `this.extend({ login: 'Login', register: 'Register' }, 'auth')`.
 
-For `login`, there is a prefix which is `auth`, so `prefixedKey = auth.login`. Here `phrase` is a string so we map `Login` to `auth.login` in the internal phrases. It's exactly the same behavior for `register`.
+- For `login`, there is a prefix which is `auth`, so `prefixedKey = auth.login`. Here `phrase` is a string so we map `Login` to `auth.login` in the internal `phrases`.
 
-That way, you make sure you traverse all your object and map every key to a string value in the **flattened** `phrases` object. After calling `extend`, your phrases look like this:
+- It's exactly the same behavior for `register`.
+
+That way, you make sure you traverse all your object and map every key to a string value in the **flattened** `phrases` object. After calling `extend`, your `phrases` look like this:
 
 ```js
 {
@@ -305,7 +308,7 @@ Three essential things are done before calling `transformPhrase`:
 
 That being said, we can learn how `transformPhrase` behaves.
 
-It takes four parameters: `phrase`, `substitutions`, `locale` and `tokenRegex`. We're mostly interested in `phrase`, `substitutions`, `tokenRegex` for now as `locale` is needed for pluralization. Then, we assign to `interpolationRegex` the regex that will be used for the replacements. It can be a custom regex (remember the custom interpolation option in the recap or the mysterious `tokenRegex` in the constructor?) or the `defaultTokenRegex` explained above.
+It takes four parameters: `phrase`, `substitutions`, `locale` and `tokenRegex`. We won't need `locale` for now as it's needed for pluralization. Then, we assign to `interpolationRegex` the regex that will be used for the replacements. It can be a custom regex (remember the mysterious `tokenRegex` in the constructor?) or the `defaultTokenRegex` explained above.
 
 Beforehand, we assign to `options` the value of `substitutions`. The `typeof` check is done for pluralization. You don't have to care about it for now.
 
@@ -424,6 +427,18 @@ We are going to detail this step by step.
 First, here is an extract of all the rules and their corresponding locales:
 
 ```js
+var russianPluralGroups = function (n) {
+  var lastTwo = n % 100;
+  var end = lastTwo % 10;
+  if (lastTwo !== 11 && end === 1) {
+    return 0;
+  }
+  if (2 <= end && end <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) {
+    return 1;
+  }
+  return 2;
+};
+
 var pluralTypes = {
   arabic: function(n) {
     // http://www.arabeyes.org/Plural_Forms
@@ -501,6 +516,10 @@ if (typeof phrase === 'string') {
 To make pluralization happen, you need to add a `smart_count` in your options (`substitutions` object). Note that you can also pass a number instead of an options object. Polyglot will take account of that shortcut and transform it back to an options object with a `smart_count` property.
 
 ```js
+var trim = require('string.prototype.trim');
+
+// ... 
+
 var split = String.prototype.split
 
 // ...
@@ -530,7 +549,7 @@ function transformPhrase(phrase, substitutions, locale, tokenRegex) {
     )
   }
 
-  // ...
+  // Interpolation code...
 
   return result
 }
@@ -591,12 +610,7 @@ If you struggle to see what the `langToPluralType` map looks like, here is an ex
   'sr-RS': 'bosnian_serbian',
   id: 'chinese',
   'id-ID': 'chinese',
-  ja: 'chinese',
-  ko: 'chinese',
-  'ko-KR': 'chinese',
-  lo: 'chinese',
-  ms: 'chinese',
-  th: 'chinese',
+  // ...
   'th-TH': 'chinese',
   zh: 'chinese',
   hr: 'croatian',
@@ -689,7 +703,7 @@ Polyglot.prototype.unset = function(morePhrases, prefix) {
 
 ### Clear
 
-As you have an internal `phrases` object that contains all your keys and phrases, `clear` is fairly simple: just empty the object:
+As you have an internal `phrases` object that contains all your keys and phrases, `clear` is fairly simple. Just empty the object:
 
 ```js
 Polyglot.prototype.clear = function() {
@@ -710,7 +724,7 @@ Polyglot.prototype.replace = function(newPhrases) {
 
 ### Has
 
-As we already required an `has` package that checks for a key in an object, we just have to apply the `has` function on the internal `phrases` with a given key:
+As we already require an `has` package that checks for a key in an object, we just have to apply the `has` function on the internal `phrases` with a given key:
 
 ```js
 Polyglot.prototype.has = function(key) {
