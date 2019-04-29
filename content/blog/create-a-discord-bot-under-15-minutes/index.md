@@ -5,7 +5,7 @@ date: '2018-12-26'
 
 ![Discord logo](discord_logo.png)
 
-As of today, Discord is one of the most popular chat apps, especially for gamers and devs. People love it because it's free, it's efficient, it's cross-platform, it's... well, you guessed it, it's awesome. One of the great things you can do on Discord is to integrate bots on servers in order to make it more interactive. As an example, you may have encountered one of them that congratulates you and upgrades your level after you've sent many messages in the server. Or another one that allows you to listen to music using commands, to kick or ban members, etc. 
+As of today, Discord is one of the most popular chat apps, especially for gamers and devs. People love it because it's free, it's efficient, it's cross-platform, it's... well, you guessed it, it's awesome. One of the great things you can do on Discord is to integrate bots on servers in order to make it more interactive. As an example, you may have encountered one of them that congratulates you and upgrades your level after you've sent many messages in the server. Or another one that allows you to listen to music using commands, to kick or ban members, etc.
 
 As I'm a developer, I wondered how to build a bot. How do I create commands? Listen to messages? Deploy a bot? Turns out it's easier than what I've thought. So, without further ado, let's get started on how to create a Discord bot.
 
@@ -429,53 +429,35 @@ Much more readable, isn't it?
 
 ## Deploying the bot
 
-Last part: deploying the bot. You're not going to let your computer always on just to keep the bot running, don't you?
+Last part: deploying the bot. You're not going to let your computer always on just to keep the bot running, don't you? So we'll make sure our bot will be always-on thanks to [Heroku](https://www.heroku.com/):
 
-You have multiple solutions available to deploy it. Perhaps you know [Heroku](https://www.heroku.com/). They make it really easy to deploy your apps. But we are going to use a tool that is even more easy: [Now](https://zeit.co/now). Follow these steps to deploy the bot:
+1. Create an account or login on [Heroku](https://heroku.com)
+2. Click on **New**, then on **Create new app**:
 
-1. Install Now CLI:
+![Create new app on heroku - part 1](heroku_1.png)
 
-```sh
-npm install -g now
-```
+3. Give your app a name and click on **Create app**:
 
-You may need to run that command as `sudo` if you work on a Mac or a Linux distro.
+![Create new app on heroku - part 2](heroku_2.png)
 
-2. Run `now login`. It should ask your email. Once you’ve entered it, you should receive a mail with a code. As an example, I received _Handsome Crocodile_.
-
-3. In the mail, click on **VERIFY**. You should see a screen telling you the email address is confirmed. If you go back to your terminal, you should also see:
-
-![Login on Now successful](now-confirmation.png)
-
-From now on, deploying your app will be dead simple. Now has two versions to deploy apps. They recommend to use the latest one. But because we can't deploy easily a constant running app/script on Now, we'll use the version 1 instead of the version 2. You can find out why [here](https://zeit.co/docs/v2/platform/upgrade-to-2-0#no-daemons).
-
-4. Create at the root folder a file called `now.json` and paste the following content:
-
-```json
-{
-  "version": 1,
-  "env": {
-    "BOT_TOKEN": "YOUR_TOKEN"
-  }
-}
-```
-
-_Note: because of the environmental variable, don't push that file to a public repository! If you really need to push it, you can consider using [Now Secrets](https://zeit.co/docs/v1/getting-started/secrets)_
-
-5. Now needs to listen to a port or the application code will exit or time out. In `index.js`, add this line to the very bottom of the file:
+4. In your project, create a file named `Procfile` at the root folder and insert the following content:
 
 ```js
-require('http')
-  .createServer()
-  .listen()
+worker: node index.js
 ```
 
-6. Run `now`. You should see a lot of things happening on the screen (`npm install`, `▲ Snapshotting deployment` ). After a few seconds, it should be done.
+5. Follow the instructions provided by Heroku on the deployment tab:
 
-Now, go back to your server and make sure you stopped running your bot locally. Is your bot online? Yes? **Congratulations**, you just built your first Discord bot.
+![Create new app on heroku - part 3](heroku_3.png)
+
+6. Finally, switch off the `web` process and switch on the `worker` process:
+
+![Create new app on heroku - part 4](heroku_4.png)
+
+**Note**: We do so because we're running a **background task**.
+
+Now, go back to your server and make sure you stopped running your bot locally. Is your bot online? Yes? **Congratulations**, you just built and deployed your first Discord bot.
 
 If you miss something or if you want to browse the full code, head over this GitHub repository: [discord-bot-example](https://github.com/thomlom/discord-bot-example)
 
-You can do endless things with that bot from there: ban users, play music, rank users, find GIFS, integrate it with many services (Google APIs, Unsplash for images, ...). **Have fun with your bot!**
-
-I worked hard to bring you quality content. As a way to thank me, you can share this article with whoever you want. 😀
+You can do endless things with that bot from there: ban users, play music, rank users, find GIFS, integrate it with many services (Google APIs, Unsplash for images, ...). **Have fun with your bot!** 😃
