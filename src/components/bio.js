@@ -48,16 +48,23 @@ function Bio() {
 
         return (
           <BioContainer>
-            <Picture fixed={data.avatar.childImageSharp.fixed} alt={author} />
+            <Picture
+              fixed={data.avatar.childImageSharp.fixed}
+              alt={author}
+            />
             <Description>
-              Passionate and highly motivated front-end developer. I build
-              user-focused apps in my everyday life. I love sharing my knowledge
-              as well as learning from others. Follow me on{' '}
+              Passionate JavaScript developer. I build
+              user-focused apps in my everyday life. I’m an enthusiastic
+              team player who loves sharing his knowledge as well as
+              learning from others. Follow me on{' '}
               <Link href={`https://twitter.com/${twitterUsername}`}>
                 Twitter
               </Link>{' '}
               &amp;{' '}
-              <Link href={`https://github.com/${githubUsername}`}>GitHub</Link>.
+              <Link href={`https://github.com/${githubUsername}`}>
+                GitHub
+              </Link>
+              .
             </Description>
           </BioContainer>
         )
