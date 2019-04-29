@@ -50,6 +50,16 @@ polyglot.extend({
 polyglot.t('welcome', { name: 'Thomas' }) // Welcome Thomas
 ```
 
+If you don't provide one of the interpolation value, Polyglot will return your placeholder as-is. It can be useful if you want to do partial interpolation:
+
+```js
+polyglot.extend({
+  user: 'My name is %{name}. I love %{hobby}!',
+})
+
+polyglot.t('user', { name: 'Thomas' }) // My name is Thomas. I love %{hobby}
+```
+
 You can also provide your own interpolation syntax:
 
 ```js
@@ -427,17 +437,17 @@ We are going to detail this step by step.
 First, here is an extract of all the rules and their corresponding locales:
 
 ```js
-var russianPluralGroups = function (n) {
-  var lastTwo = n % 100;
-  var end = lastTwo % 10;
+var russianPluralGroups = function(n) {
+  var lastTwo = n % 100
+  var end = lastTwo % 10
   if (lastTwo !== 11 && end === 1) {
-    return 0;
+    return 0
   }
   if (2 <= end && end <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) {
-    return 1;
+    return 1
   }
-  return 2;
-};
+  return 2
+}
 
 var pluralTypes = {
   arabic: function(n) {
@@ -516,9 +526,9 @@ if (typeof phrase === 'string') {
 To make pluralization happen, you need to add a `smart_count` in your options (`substitutions` object). Note that you can also pass a number instead of an options object. Polyglot will take account of that shortcut and transform it back to an options object with a `smart_count` property.
 
 ```js
-var trim = require('string.prototype.trim');
+var trim = require('string.prototype.trim')
 
-// ... 
+// ...
 
 var split = String.prototype.split
 
