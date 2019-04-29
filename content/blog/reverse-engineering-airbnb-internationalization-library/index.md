@@ -756,7 +756,7 @@ Polyglot.prototype.locale = function(newLocale) {
 }
 ```
 
-## What have I learnt
+## What I've learnt
 
 We're done for the code! Reverse-engineering a library is a great way to upgrade your skills. By diving into the code source of Polyglot, I had the opportunity to enhance my knowledge of:
 
