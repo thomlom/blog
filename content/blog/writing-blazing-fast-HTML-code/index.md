@@ -29,17 +29,13 @@ Luckily for us, some guys have thought about this problem and a great tool has c
 
 Emmet is a plugin for text editors that will allow you to be way more productive when writing HTML code. Basically, you write a snippet, you press your tab key and Voilà. You just gained some time for the same result.
 
-What if I said that the example above can be written in a single line?
-
-> Really?
-
-Absolutely. Here’s how:
+What if I said that the example above can be written in a single line? You don't believe me? Here's how:
 
 ```sh
 ul.list>h2.title{My items}+li.item.item--${Item $}*4
 ```
 
-If you wonder what did I just write, just give me 5 minutes and this thought will vanish instantly.
+If you wonder what this ugly code snippet means, just give me 5 minutes and this thought will vanish instantly.
 
 ## Installing Emmet
 
