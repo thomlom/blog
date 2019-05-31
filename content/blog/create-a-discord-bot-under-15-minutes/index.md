@@ -3,8 +3,6 @@ title: Create a Discord bot under 15 minutes
 date: '2018-12-26'
 ---
 
-![Discord logo](discord_logo.png)
-
 As of today, Discord is one of the most popular chat apps, especially for gamers and devs. People love it because it's free, it's efficient, it's cross-platform, it's... well, you guessed it, it's awesome. One of the great things you can do on Discord is to integrate bots on servers in order to make it more interactive. As an example, you may have encountered one of them that congratulates you and upgrades your level after you've sent many messages in the server. Or another one that allows you to listen to music using commands, to kick or ban members, etc.
 
 As I'm a developer, I wondered how to build a bot. How do I create commands? Listen to messages? Deploy a bot? Turns out it's easier than what I've thought. So, without further ado, let's get started on how to create a Discord bot.
