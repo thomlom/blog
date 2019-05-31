@@ -8,12 +8,12 @@ When it comes to write HTML code, it can get pretty tedious.
 Let’s assume you want to write an items list. Well, this piece of code:
 
 ```html
+<h2 class="title">My items</h2>
 <ul class="list">
-  <h2 class="title">My items</h2>
-  <li class="item item-1">Item 1</li>
-  <li class="item item-2">Item 2</li>
-  <li class="item item-3">Item 3</li>
-  <li class="item item-4">Item 4</li>
+  <li class="item item--1">Item 1</li>
+  <li class="item item--2">Item 2</li>
+  <li class="item item--3">Item 3</li>
+  <li class="item item--4">Item 4</li>
 </ul>
 ```
 
@@ -32,7 +32,7 @@ Emmet is a plugin for text editors that will allow you to be way more productive
 What if I said that the example above can be written in a single line? You don't believe me? Here's how:
 
 ```sh
-ul.list>h2.title{My items}+li.item.item--${Item $}*4
+h2.title{My items}+ul.list>li.item.item--${Item $}*4
 ```
 
 If you wonder what this ugly code snippet means, just give me 5 minutes and this thought will vanish instantly.
