@@ -79,6 +79,10 @@ const Content = styled.div`
     padding-left: 1rem;
     font-style: italic;
   }
+
+  hr {
+    border: 1px solid hsl(210, 22%, 49%);
+  }
 `
 
 const Separator = styled.hr`
