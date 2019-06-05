@@ -23,7 +23,7 @@ This answer surprised him. And it may surprise some of you. But I insist: **soft
 
 ## 📚 Curiosity and continuous learning
 
-Let's start with curiosity. That one is important since it will open new gates for you. Being curious means being willing to **learn continuously** and **discovering new things**. Never stop asking **why** things behaves they do or what's going on under the hood. And when you learn, be sure to do it [publicly](https://twitter.com/swyx/status/1009174159690264579), even if you can be wrong. It'll bring many opportunities to you.
+Let's start with curiosity. That one is important since it will open new gates for you. Being curious means being willing to **learn continuously** and **discovering new things**. Never stop asking **why** things behaves the way they do or what's going on under the hood. And when you learn, be sure to do it [publicly](https://twitter.com/swyx/status/1009174159690264579), even if you can be wrong. It'll bring many opportunities to you.
 
 ## 💪 Patience and perseverance
 
