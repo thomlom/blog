@@ -41,7 +41,7 @@ As an example, you could suggest to create an open-source library as part of you
 
 ## 🧠 Egoless
 
-Raise your hand if you ever met that person who is too much pride of its code, makes fun of others and doesn't accept any critics of his code. ✋
+Raise your hand if you ever met that person who is too much pride of his code, makes fun of others and doesn't accept any critics. ✋
 
 It's not because you don't know something that it means you're incompetent. It's not because you have a question that it means you know nothing. It's not because someone else know less things than you that it means you're superior to him. Take a look at this [list of things](https://overreacted.io/things-i-dont-know-as-of-2018/) Dan Abramov didn't know in last December. Does it make him a bad developer? I don't think so. You can be a successful developer and not know many topics as long as you have a **domain of expertise and the right attitude**.
 
