@@ -9,11 +9,11 @@ const PostTitle = styled.h1`
   margin: 0.2rem 0;
   font-weight: 900;
   font-size: 4rem;
-  line-height: 4rem;
+  line-height: 4.5rem;
   color: hsl(211, 39%, 23%);
 `
 
-const Date = styled.small`
+const Date = styled.p`
   font-size: 1.2rem;
   font-weight: 600;
   color: hsl(210, 22%, 49%);
