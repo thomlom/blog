@@ -141,10 +141,10 @@ function BlogPostTemplate({
           {post.frontmatter.date} | {post.timeToRead} minutes
         </Date>
         <CustomLink
-          class="twitter-share-button"
+          className="twitter-share-button"
           href={`https://twitter.com/intent/tweet?text="${
             post.frontmatter.title
-          }"%20by%20@thomas_lombart: ${window.location}`}
+          }"%20by%20@thomas_lombart: ${location.href}`}
           target="_blank"
           data-size="large"
         >
