@@ -9,6 +9,7 @@ const PostTitle = styled.h1`
   margin: 0.2rem 0;
   font-weight: 900;
   font-size: 4rem;
+  line-height: 4rem;
   color: hsl(211, 39%, 23%);
 `
 
@@ -19,9 +20,6 @@ const Date = styled.small`
 `
 
 const Content = styled.div`
-  font-size: 1.6rem;
-  line-height: 2.6rem;
-
   h1,
   h2,
   h3,
@@ -36,22 +34,22 @@ const Content = styled.div`
 
   h1 {
     font-size: 3.6rem;
-    line-height: 4rem;
+    line-height: 3.6rem;
   }
 
   h2 {
     font-size: 3rem;
-    line-height: 3.5rem;
+    line-height: 3rem;
   }
 
   h3 {
     font-size: 2.4rem;
-    line-height: 3rem;
+    line-height: 2.4rem;
   }
 
   h4 {
     font-size: 2rem;
-    line-height: 2.5rem;
+    line-height: 2rem;
   }
 
   ol,
@@ -59,7 +57,7 @@ const Content = styled.div`
   p {
     color: hsl(209, 34%, 30%);
     font-size: 1.6rem;
-    line-height: 2.6rem;
+    line-height: 2.4rem;
     margin: 2.4rem 0;
   }
 
@@ -74,10 +72,10 @@ const Content = styled.div`
 
   blockquote {
     margin: 0;
-    margin-left: 2rem;
     border-left: 3px solid hsl(209, 34%, 30%);
     padding-left: 1rem;
     font-style: italic;
+    word-wrap: break-word;
   }
 
   hr {
