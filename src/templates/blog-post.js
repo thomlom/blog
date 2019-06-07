@@ -20,6 +20,8 @@ const Date = styled.p`
 `
 
 const Content = styled.div`
+  font-size: 1.6rem;
+
   h1,
   h2,
   h3,
