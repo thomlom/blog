@@ -144,7 +144,7 @@ function BlogPostTemplate({
           className="twitter-share-button"
           href={`https://twitter.com/intent/tweet?text="${
             post.frontmatter.title
-          }"%20by%20@thomas_lombart: ${location.href}`}
+          }"%20by%20@thomas_lombart ${location.href}`}
           target="_blank"
           data-size="large"
         >
