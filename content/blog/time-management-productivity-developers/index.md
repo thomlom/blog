@@ -3,12 +3,12 @@ title: Time management and productivity tips for developers
 date: '2019-06-28'
 ---
 
-A few weeks ago, I published a post about [Soft skills every developer should have](https://thomlom.dev/soft-skills-developers/). I’d like to focus on one of them today: _organisation_ and to some extent _productivity_. It’s an important skill to have for many reasons:
+A few weeks ago, I published a post about [Soft skills every developer should have](https://thomlom.dev/soft-skills-developers/). I’d like to focus on one of them today: **organisation** and to some extent **productivity**. It’s an important skill to have for many reasons:
 
-- You are _in time_. Being late is annoying, especially for these who are in time because you’re wasting their time.
-- You know _what to do_ and you gain time. If you don’t you may forget tasks such as replying to someone or working on your side-project’s bug.
-- You are _less stressed_. Do you know that person who promises everyone they will get back to them but always forget it? Who’s constantly busy? Who has a million side projects? That seems on the edge of a burn-out? Chances are there’s a lack of organisation there. Organisation means you know how to manage your time. That includes saying no to others, delegating tasks and dedicating time to some tasks
-- You are _trustworthy_. You are organised so we know that if we give you this particular task, you’ll do it in time. And if that’s not the case, we know you’ll warn us way before the due date.
+- You are **in time**. Being late is annoying, especially for these who are in time because you’re wasting their time.
+- You know **what to do** and you gain time. If you don’t you may forget tasks such as replying to someone or working on your side-project’s bug.
+- You are **less stressed**. Do you know that person who promises everyone they will get back to them but always forget it? Who’s constantly busy? Who has a million side projects? That seems on the edge of a burn-out? Chances are there’s a lack of organisation there. Organisation means you know how to manage your time. That includes saying no to others, delegating tasks and dedicating time to some tasks
+- You are **trustworthy**. You are organised so we know that if we give you this particular task, you’ll do it in time. And if that’s not the case, we know you’ll warn us way before the due date.
 
 Just before giving you the tips, here are some notes:
 
