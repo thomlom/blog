@@ -39,6 +39,45 @@ const Title = css`
 const MainTitle = styled.h1`
   ${Title}
   font-size: 3.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`
+
+const MailLink = styled.a`
+  display: flex;
+  align-items: center;
+  background-color: hsl(210, 36%, 96%);
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+
+  @media (max-width: 600px) {
+    margin-top: 0.5rem;
+  }
+
+  span {
+    font-size: 1.8rem;
+    margin-left: 0.5rem;
+    color: hsl(209, 34%, 30%);
+  }
+
+  svg {
+    height: 24px;
+    width: 24px;
+
+    .primary {
+      fill: hsl(209, 34%, 30%);
+    }
+
+    .secondary {
+      fill: hsl(210, 22%, 49%);
+    }
+  }
 `
 
 const SecondaryTitle = styled.h3`
@@ -54,6 +93,19 @@ function Layout({ location, title, children }) {
     header = (
       <MainTitle>
         <Link to={'/'}>{title}</Link>
+        <MailLink href="mailto:t.lombart97@gmail.com">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              className="primary"
+              d="M22 8.62V18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.62l9.55 4.77a1 1 0 0 0 .9 0L22 8.62z"
+            />
+            <path
+              className="secondary"
+              d="M12 11.38l-10-5V6c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v.38l-10 5z"
+            />
+          </svg>
+          <span>Contact me</span>
+        </MailLink>
       </MainTitle>
     )
   } else {
