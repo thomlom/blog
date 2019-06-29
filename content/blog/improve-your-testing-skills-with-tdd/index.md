@@ -1,7 +1,10 @@
 ---
 title: Improve your testing skills with test-driven development
 date: '2018-10-25'
+cover: 'cover.jpeg'
 ---
+
+![Flasks in a lab](cover.jpeg)
 
 Testing is an important skill every developer should have. Still, some developers are reluctant to test.
 

@@ -132,9 +132,14 @@ function BlogPostTemplate({
   pageContext: { previous, next },
   location,
 }) {
+  console.log(post)
   return (
     <Layout location={location} title={title}>
-      <SEO title={post.frontmatter.title} description={post.excerpt} />
+      <SEO
+        title={post.frontmatter.title}
+        description={post.excerpt}
+        cover={post.frontmatter.cover.publicURL}
+      />
       <PostTitle>{post.frontmatter.title}</PostTitle>
       <Subtitle>
         <Date>
@@ -204,6 +209,9 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        cover {
+          publicURL
+        }
       }
     }
   }

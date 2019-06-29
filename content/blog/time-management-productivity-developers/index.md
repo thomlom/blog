@@ -1,7 +1,10 @@
 ---
 title: Time management and productivity tips for developers
 date: '2019-06-28'
+cover: 'cover.jpg'
 ---
+
+![Hourglass](cover.jpg)
 
 A few weeks ago, I published a post about [Soft skills every developer should have](https://thomlom.dev/soft-skills-developers/). I’d like to focus on one of them today: **organisation** and to some extent **productivity**. It’s an important skill to have for many reasons:
 

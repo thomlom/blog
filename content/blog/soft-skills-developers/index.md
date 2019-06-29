@@ -1,7 +1,10 @@
 ---
 title: Soft skills every developer should have
 date: '2019-06-03'
+cover: 'cover.jpg'
 ---
+
+![Laptops around a table](cover.jpg)
 
 A few weeks ago, I interviewed someone who wants to become a developer. He was concerned about the fact that he wasn't good enough technically and that he will never be. _"What makes a great developer in your opinion?"_ he asked me. I answered briefly: _"A great developer must have technical skills, it's undeniable. But what really makes you great are your soft skills"_.
 

@@ -1,7 +1,10 @@
 ---
 title: Writing blazing fast HTML code
 date: '2018-06-21'
+cover: 'cover.jpeg'
 ---
+
+![Speedometer](cover.jpeg)
 
 When it comes to write HTML code, it can get pretty tedious.
 

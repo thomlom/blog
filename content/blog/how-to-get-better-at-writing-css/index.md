@@ -1,7 +1,10 @@
 ---
 title: How to get better at writing CSS
 date: '2018-07-17'
+cover: 'cover.png'
 ---
+
+![CSS logo](cover.png)
 
 Let’s not beat around the bush: writing great CSS code can be painful.
 A lot of developers don’t want to do CSS development. I can do everything you want, but nah! No CSS.
