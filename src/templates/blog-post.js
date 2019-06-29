@@ -132,7 +132,6 @@ function BlogPostTemplate({
   pageContext: { previous, next },
   location,
 }) {
-  console.log(post)
   return (
     <Layout location={location} title={title}>
       <SEO

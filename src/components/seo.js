@@ -10,6 +10,7 @@ function SEO({ description, lang, meta, keywords, title, cover }) {
       render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description
+        const coverImage = `https://thomlom.dev${cover}`
         return (
           <Helmet
             htmlAttributes={{
@@ -36,7 +37,7 @@ function SEO({ description, lang, meta, keywords, title, cover }) {
               },
               {
                 property: 'og:image',
-                content: cover,
+                content: coverImage,
               },
               {
                 name: 'twitter:card',
@@ -56,7 +57,7 @@ function SEO({ description, lang, meta, keywords, title, cover }) {
               },
               {
                 name: 'twitter:image',
-                content: cover,
+                content: coverImage,
               },
             ]
               .concat(
