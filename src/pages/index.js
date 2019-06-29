@@ -8,6 +8,31 @@ import SEO from '../components/seo'
 
 const Post = styled.div`
   margin: 4rem 0;
+  display: flex;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`
+
+const PostImage = styled.img`
+  border-radius: 5px;
+  display: block;
+  object-fit: cover;
+  width: 150px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`
+
+const PostContent = styled.div`
+  margin-left: 1.6rem;
+
+  @media (max-width: 600px) {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
 `
 
 const PostTitle = styled.h3`
@@ -64,13 +89,16 @@ function BlogIndex({ data, location }) {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <Post key={node.fields.slug}>
-            <PostTitle>
-              <Link to={node.fields.slug}>{title}</Link>
-            </PostTitle>
-            <Date>
-              {node.frontmatter.date} | {node.timeToRead} minutes read
-            </Date>
-            <Description dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+            <PostImage src={node.frontmatter.cover.publicURL} />
+            <PostContent>
+              <PostTitle>
+                <Link to={node.fields.slug}>{title}</Link>
+              </PostTitle>
+              <Date>
+                {node.frontmatter.date} | {node.timeToRead} minutes read
+              </Date>
+              <Description dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+            </PostContent>
           </Post>
         )
       })}
@@ -110,6 +138,9 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            cover {
+              publicURL
+            }
           }
         }
       }
