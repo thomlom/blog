@@ -11,6 +11,11 @@ const PostTitle = styled.h1`
   font-size: 4rem;
   line-height: 4.5rem;
   color: hsl(211, 39%, 23%);
+
+  @media (max-width: 900px) {
+    font-size: 3.3rem;
+    line-height: 3.8rem;
+  }
 `
 
 const Subtitle = styled.div`
