@@ -8,8 +8,8 @@ const BioContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: hsl(210, 36%, 96%);
-  border-radius: 15px;
-  padding: 3rem;
+  border-radius: 10px;
+  padding: 2.75rem;
 
   @media screen and (max-width: 600px) {
     padding: 1rem;
