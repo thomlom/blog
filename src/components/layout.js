@@ -42,15 +42,10 @@ const MainTitle = styled.h1`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
 `
 
 const MailLink = styled.a`
   display: flex;
-  align-items: center;
   background-color: hsl(210, 36%, 96%);
   padding: 1rem;
   border-radius: 5px;
@@ -58,12 +53,6 @@ const MailLink = styled.a`
 
   @media (max-width: 600px) {
     margin-top: 0.5rem;
-  }
-
-  span {
-    font-size: 1.8rem;
-    margin-left: 0.5rem;
-    color: hsl(209, 34%, 30%);
   }
 
   svg {
@@ -104,7 +93,6 @@ function Layout({ location, title, children }) {
               d="M12 11.38l-10-5V6c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v.38l-10 5z"
             />
           </svg>
-          <span>Contact me</span>
         </MailLink>
       </MainTitle>
     )
