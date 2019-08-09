@@ -13,16 +13,17 @@ const Post = styled.div`
   @media (max-width: 600px) {
     flex-direction: column;
   }
-`
 
-const PostImage = styled.img`
-  border-radius: 5px;
-  display: block;
-  object-fit: cover;
-  width: 150px;
+  img {
+    border-radius: 5px;
+    display: block;
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
 
-  @media (max-width: 600px) {
-    width: 100%;
+    @media (max-width: 600px) {
+      width: 100%;
+    }
   }
 `
 
@@ -33,31 +34,31 @@ const PostContent = styled.div`
     margin-left: 0;
     margin-top: 1rem;
   }
-`
 
-const PostTitle = styled.h3`
-  margin: 0.2rem 0;
-  font-weight: 900;
-  font-size: 2.4rem;
-  color: hsl(211, 39%, 23%);
+  h3 {
+    margin: 0.2rem 0;
+    font-weight: 900;
+    font-size: 2.4rem;
+    color: hsl(211, 39%, 23%);
 
-  a {
-    text-decoration: none;
-    box-shadow: none;
-    color: inherit;
+    a {
+      text-decoration: none;
+      box-shadow: none;
+      color: inherit;
+    }
   }
-`
 
-const Date = styled.small`
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: hsl(210, 22%, 49%);
-`
+  small {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: hsl(210, 22%, 49%);
+  }
 
-const Description = styled.p`
-  font-size: 1.4rem;
-  color: hsl(209, 34%, 30%);
-  line-height: 2rem;
+  p {
+    font-size: 1.4rem;
+    color: hsl(209, 34%, 30%);
+    line-height: 2rem;
+  }
 `
 
 const Footer = styled.footer`
@@ -89,15 +90,15 @@ function BlogIndex({ data, location }) {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <Post key={node.fields.slug}>
-            <PostImage src={node.frontmatter.cover.publicURL} />
+            <img src={node.frontmatter.cover.publicURL} />
             <PostContent>
-              <PostTitle>
+              <h3>
                 <Link to={node.fields.slug}>{title}</Link>
-              </PostTitle>
-              <Date>
+              </h3>
+              <small>
                 {node.frontmatter.date} | {node.timeToRead} minutes read
-              </Date>
-              <Description dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+              </small>
+              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </PostContent>
           </Post>
         )
