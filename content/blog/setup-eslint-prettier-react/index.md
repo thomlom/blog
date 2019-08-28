@@ -8,7 +8,7 @@ Building high-quality apps is hard for many reasons:
 
 - The more your codebase grow, the more it becomes hard to maintain.
 - Developers have different way to code, which can confuse you and slow you down.
-- JavaScript is a language that seems easy to learn at first, but it's not that easy. You can fall into common pitfalls. The same goes with React.
+- JavaScript is a language that seems easy to learn at first, but it's not that easy. You can fall into common pitfalls. The same goes with React (or any other front-end library/framework).
 - Etc.
 
 That's why nowadays, there are many tools that allow us to write quality code and make sure our apps don't break. You may think of testing tools like [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) or [Cypress](https://circleci.com/) at first, but before even writing tests, you can add a first layer of safety in your app with **a linter**.
