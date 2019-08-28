@@ -10,27 +10,27 @@ const Post = styled.div`
   margin: 4rem 0;
   display: flex;
 
-  @media (max-width: 600px) {
+  @media (max-width: 480px) {
     flex-direction: column;
   }
 
-  img {
+`
+
+const Image = styled.img`
     border-radius: 5px;
     display: block;
     object-fit: cover;
     width: 150px;
-    height: 150px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
       width: 100%;
     }
-  }
 `
 
 const PostContent = styled.div`
   margin-left: 1.6rem;
 
-  @media (max-width: 600px) {
+  @media (max-width: 480px) {
     margin-left: 0;
     margin-top: 1rem;
   }
@@ -90,7 +90,7 @@ function BlogIndex({ data, location }) {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <Post key={node.fields.slug}>
-            <img src={node.frontmatter.cover.publicURL} />
+            <Image src={node.frontmatter.cover.publicURL}/>
             <PostContent>
               <h3>
                 <Link to={node.fields.slug}>{title}</Link>

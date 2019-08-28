@@ -51,7 +51,7 @@ const MailLink = styled.a`
   border-radius: 5px;
   cursor: pointer;
 
-  @media (max-width: 600px) {
+  @media (max-width: 480px) {
     margin-top: 0.5rem;
   }
 

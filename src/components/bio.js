@@ -11,7 +11,7 @@ const BioContainer = styled.div`
   border-radius: 10px;
   padding: 2.75rem;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 480px) {
     padding: 1rem;
     flex-direction: column;
   }
