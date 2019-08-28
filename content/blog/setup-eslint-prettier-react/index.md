@@ -1,5 +1,5 @@
 ---
-title: The guide to using ESLint and Prettier in a React app
+title: How to setup ESLint and Prettier for your React apps
 date: '2019-08-28'
 cover: 'cover.jpg'
 ---
