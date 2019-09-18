@@ -202,7 +202,7 @@ describe('calculator', () => {
   })
 
   it('computes something', () => {
-    expect(2 * 2).tobe(4)
+    expect(2 * 2).toBe(4)
   })
 })
 
