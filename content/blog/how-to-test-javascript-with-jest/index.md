@@ -290,12 +290,18 @@ expect(foo.mock.calls[0][0]).toBe('bar')
 Writing such an assertion is a little bit tedious. Luckily for us, Jest provides useful matchers when it comes to make mock assertions such as `toHaveBeenCalled`, `toHaveBeenCalledWith`, `toHaveBeenCalledTimes` and [much more](https://jestjs.io/docs/en/expect#tohavebeencalled):
 
 ```js
-const foo = jest.fn()
-foo('bar')
-foo('hello')
+  const hello = jest.fn()
+  hello("world")
+  expect(hello).toHaveBeenCalledWith("world")
 
-expect(foo).toHaveBeenCalledTimes(2)
-expect(foo).toHaveBeenCalledWith('bar', 'hello')
+  const foo = jest.fn()
+  foo("bar")
+  foo("hello")
+  expect(foo).toHaveBeenCalledTimes(2)
+  expect(foo).toHaveBeenNthCalledWith(1, "bar")
+  expect(foo).toHaveBeenNthCalledWith(2, "hello")
+  // OR
+  expect(foo).toHaveBeenLastCalledWith("hello")
 ```
 
 Let's take a real world example: a multi-step form. On each step, you have form inputs and also two buttons: _previous_ and _next_. Clicking on previous or next triggers a `saveStepData(nextOrPreviousFn)` function that, well, saves your data and executes the `nextOrPreviousFn` callback function which redirects you to the previous or next step.
