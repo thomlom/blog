@@ -368,7 +368,8 @@ import axiosMock from "axios"
 
 async function getUsers() {
   try {
-    const response = await axios.get("/users")
+    // this would typically be axios instead of axiosMock in your app
+    const response = await axiosMock.get("/users")
     return response.data.users
   } catch (e) {
     throw new Error("Oops. Something wrong happened")
@@ -377,14 +378,13 @@ async function getUsers() {
 
 jest.mock("axios")
 
+const fakeUsers = ["John", "Emma", "Tom"]
+axiosMock.get.mockResolvedValue({data: { users: fakeUsers } })
+
 test("gets the users", async () => {
-  const fakeUsers = ["John", "Emma", "Tom"]
-  axios.get.mockResolvedValue({data: { users: fakeUsers } })
-
   const users = await getUsers()
-
-  expect(users.toEqual(fakeUsers))
-}
+  expect(users).toEqual(fakeUsers)
+})
 ```
 
 Another great feature of Jest is shared mocks. Indeed, if you were to reuse the axios mock implementation above, you could just create a `__mocks__` folder alongside the `node_modules` folder with a `axios.js` file in it:
