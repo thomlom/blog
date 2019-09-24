@@ -72,6 +72,7 @@ const MailLink = styled.a`
 const SecondaryTitle = styled.h3`
   ${Title}
   font-size: 2.4rem;
+  text-decoration: underline;
 `
 
 function Layout({ location, title, children }) {
