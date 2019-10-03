@@ -13,18 +13,17 @@ const Post = styled.div`
   @media (max-width: 480px) {
     flex-direction: column;
   }
-
 `
 
 const Image = styled.img`
-    border-radius: 5px;
-    display: block;
-    object-fit: cover;
-    width: 150px;
+  border-radius: 5px;
+  display: block;
+  object-fit: cover;
+  width: 150px;
 
-    @media (max-width: 480px) {
-      width: 100%;
-    }
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `
 
 const PostContent = styled.div`
@@ -90,7 +89,7 @@ function BlogIndex({ data, location }) {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <Post key={node.fields.slug}>
-            <Image src={node.frontmatter.cover.publicURL}/>
+            <Image src={node.frontmatter.cover.publicURL} />
             <PostContent>
               <h3>
                 <Link to={node.fields.slug}>{title}</Link>

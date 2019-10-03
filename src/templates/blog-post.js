@@ -151,9 +151,7 @@ function BlogPostTemplate({
         </Date>
         <CustomLink
           className="twitter-share-button"
-          href={`https://twitter.com/intent/tweet?text="${
-            post.frontmatter.title
-          }"%20by%20@thomas_lombart https://thomlom.dev${location.pathname}`}
+          href={`https://twitter.com/intent/tweet?text="${post.frontmatter.title}"%20by%20@thomas_lombart https://thomlom.dev${location.pathname}`}
           target="_blank"
           data-size="large"
         >
