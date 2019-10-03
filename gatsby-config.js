@@ -47,13 +47,6 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: 'gatsby-plugin-fathom',
-      options: {
-        trackingUrl: 'stats.guillaumebogard.dev',
-        siteId: 'YIOLV',
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-feed`,
@@ -70,7 +63,7 @@ module.exports = {
         icon: `content/assets/code.png`,
       },
     },
-    `gatsby-plugin-remove-serviceworker`,
+    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
   ],
 }
