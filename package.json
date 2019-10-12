@@ -3,6 +3,12 @@
   "description": "Thomlom's blog",
   "version": "1.0.0",
   "author": "Thomas Lombart <t.lombart97@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "gatsby develop",
+    "start": "npm run dev",
+    "build": "gatsby build"
+  },
   "dependencies": {
     "gatsby": "^2.0.19",
     "gatsby-image": "^2.0.22",
@@ -30,16 +36,23 @@
     "babel-plugin-styled-components": "^1.10.0",
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.11.1",
+    "husky": "^3.0.8",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.14.2"
   },
-  "license": "MIT",
-  "scripts": {
-    "dev": "gatsby develop",
-    "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
-    "start": "npm run dev",
-    "build": "gatsby build",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(js|jsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.(json|css|md)": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
