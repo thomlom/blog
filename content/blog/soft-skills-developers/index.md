@@ -10,8 +10,6 @@ A few weeks ago, I interviewed someone who wants to become a developer. He was c
 
 This answer surprised him. And it may surprise some of you. But I insist: **soft skills are important, more important than technical skills**. Because once you get the right soft skills, technical skills come naturally. Let's see which skills and why.
 
----
-
 ## TL;DR
 
 - Be curious. Always learn new things. Learning publicly is even better.
@@ -21,8 +19,6 @@ This answer surprised him. And it may surprise some of you. But I insist: **soft
 - Know how to communicate. Listen to others and learn how to be understood.
 - Help others. You'll be more trustworthy.
 - Be organized. Don't be late. Know what to do and when to do it.
-
----
 
 ## 📚 Curiosity and continuous learning
 
@@ -80,7 +76,7 @@ Would you give a task to someone unreliable? Constantly late? Overwhelmed? I bet
 
 However, you should know when to **say no to something.** And that's where communication is important. If you think you'll lose your time in that meeting where you won't even talk anyway, say it and make sure you are being understood. As an example, don't say _"That meeting is useless. I've got other things to do."_. You'll be seen as agressive and overwhelmed. Instead, explain yourself and be opened to discussion: _"I have the feeling my presence isn't necessary to that meeting and I would like to fix that bug by the end of the morning. What do you think?"_.
 
----
+## Summary
 
 Getting all these soft skills deeply change the way you work. Once you get curious on a topic and get the mindset of a continuous learner, you get better at understanding how things work and you get more experience because you actually care about learning. Be creative and proactive, don't just wait for work, take the lead. Sure, tasks can be daunting and the amount of work can demotivate you, but you need to be perseverant to succeed.
 

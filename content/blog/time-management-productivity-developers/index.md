@@ -19,8 +19,6 @@ Just before giving you the tips, here are some notes:
 - The tips I’m going to give you below work for me, it might not be the case for you! Try some of them, see what works and apply them if that’s the case. Don’t blindly follow the tips if you don’t find them efficient.
 - In any case I’m saying you should be over-organised. It’s even worse if you spend your time organising your life! I’m just giving you some techniques that take nearly no time but yet boosts your productivity.
 
----
-
 ## TL;DR
 
 - Unleash your focus mode by using the Pomodoro technique.
@@ -31,8 +29,6 @@ Just before giving you the tips, here are some notes:
 - Keep mindless tasks to do in case you don’t feel productive.
 - Work on what you love and allocate some time to it.
 - Take breaks. There are important for both your work and health.
-
----
 
 ## 🍅 Use the Pomodoro technique
 
