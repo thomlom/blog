@@ -1,7 +1,7 @@
 ---
 title: How to setup ESLint and Prettier for your React apps
-date: '2019-08-28'
-cover: 'cover.jpg'
+date: "2019-08-28"
+cover: "cover.jpg"
 ---
 
 Building high-quality apps is hard for many reasons:
@@ -21,7 +21,7 @@ The best part of a linter is that it can find potential errors in your code that
 
 ```js
 for (var i = 0; i < 5; i++) {
-  setTimeout(() => console.log(i), 1000)
+  setTimeout(() => console.log(i), 1000);
 }
 ```
 
@@ -31,7 +31,7 @@ You can fix this behavior by using the `let` keyword, which is **block-scoped**:
 
 ```js
 for (let i = 0; i < 5; i++) {
-  setTimeout(() => console.log(i), 1000)
+  setTimeout(() => console.log(i), 1000);
 }
 ```
 
@@ -47,7 +47,7 @@ Basically, ESLint parses your code, analyses it and run linting rules that may t
 
 ```js
 // ❌ Oops, what is add?
-const result = add(1, 2)
+const result = add(1, 2);
 ```
 
 Indeed. ESLint wouldn't know what `add` refers to and would throw an error at you. You need to explicitly declare `add` to correct it:
@@ -55,7 +55,7 @@ Indeed. ESLint wouldn't know what `add` refers to and would throw an error at yo
 ```js
 // ✅ Correct
 function add() {}
-const result = add(1, 2)
+const result = add(1, 2);
 ```
 
 ### Install ESLint
@@ -109,7 +109,7 @@ You can modify ESLint's configuration inline with special comments. As an exampl
 
 ```js
 // eslint-disable-next-line
-const result = add(1, 2)
+const result = add(1, 2);
 ```
 
 With that, ESLint will stop complaining.
@@ -299,45 +299,16 @@ Basically, it means that Prettier:
 Let's take an example of a simple yet messy React component. With this configuration, Prettier will allow you to go from that:
 
 ```jsx
-import React,{useState} from "react";
-import {login} from './services/auth'
+import React, { useState } from "react";
+import { login } from "./services/auth";
 
 const Login = () => {
-const [email,setEmail]=useState('')
-const [password,setPassword]=useState('')
-async function signin(){ await login(email, password);setEmail("");setPassword("")}
-return(
-                <form method="post"
-      onSubmit={signin}
-    >
-<label htmlFor="email">Email
-  <input type="email" name="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)}
-          />
-        </label>
-   <label htmlFor="password">Password
-          <input type="password" name="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
-        </label>
-  <button type="submit">Login</button>
-    </form>
-)
-}
-
-export default Login;
-```
-
-To that:
-
-```jsx
-import React, { useState } from 'react'
-import { login } from './services/auth'
-
-const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   async function signin() {
-    await login(email, password)
-    setEmail('')
-    setPassword('')
+    await login(email, password);
+    setEmail("");
+    setPassword("");
   }
   return (
     <form method="post" onSubmit={signin}>
@@ -363,10 +334,54 @@ const Login = () => {
       </label>
       <button type="submit">Login</button>
     </form>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
+```
+
+To that:
+
+```jsx
+import React, { useState } from "react";
+import { login } from "./services/auth";
+
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  async function signin() {
+    await login(email, password);
+    setEmail("");
+    setPassword("");
+  }
+  return (
+    <form method="post" onSubmit={signin}>
+      <label htmlFor="email">
+        Email
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+      </label>
+      <label htmlFor="password">
+        Password
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+      </label>
+      <button type="submit">Login</button>
+    </form>
+  );
+};
+
+export default Login;
 ```
 
 That's instantly more readable and trust me, you would have wasted your time formatting this by hand. So **using a formatter is essential.**
@@ -389,7 +404,7 @@ We're not talking about the dog here. We're talking about the [tool](https://git
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
   }
 }
 ```
@@ -475,10 +490,7 @@ Then, let's tell ESLint we'll use Prettier's recommended configuration:
 ```json
 {
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "plugin:prettier/recommended"
-    ]
+    "extends": ["react-app", "plugin:prettier/recommended"]
   }
 }
 ```
@@ -518,14 +530,8 @@ If we leave this as-is, it will fail because we haven't specified the configurat
 ```json
 {
   "lint-staged": {
-    "*.+(js|jsx)": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.+(json|css|md)": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.+(js|jsx)": ["eslint --fix", "git add"],
+    "*.+(json|css|md)": ["prettier --write", "git add"]
   }
 }
 ```
@@ -556,10 +562,7 @@ Here we use ESLint to lint and format JS and JSX files. We also use Prettier to 
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "plugin:prettier/recommended"
-    ]
+    "extends": ["react-app", "plugin:prettier/recommended"]
   },
   "prettier": {
     "printWidth": 90,
@@ -572,21 +575,11 @@ Here we use ESLint to lint and format JS and JSX files. We also use Prettier to 
     }
   },
   "lint-staged": {
-    "*.+(js|jsx)": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.+(json|css|md)": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.+(js|jsx)": ["eslint --fix", "git add"],
+    "*.+(json|css|md)": ["prettier --write", "git add"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -596,4 +589,6 @@ Here we use ESLint to lint and format JS and JSX files. We also use Prettier to 
 }
 ```
 
-If all goes well, you should have a `pre-commit` hook that both lints and format your code. You can find [here](https://www.youtube.com/watch?v=rhKa5ICkrGk) a video of what running a pre-commit hook with the congfiguration above looks like.
+If all goes well, you should have a `pre-commit` hook that both lints and format your code. You can find below a video of what running a pre-commit hook with the configuration above looks like:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rhKa5ICkrGk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
