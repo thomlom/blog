@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import styled from "styled-components";
+import Image from "gatsby-image";
 
 import Bio from "../components/bio";
 import Layout from "../components/layout";
@@ -15,13 +16,13 @@ const Post = styled.div`
   }
 `;
 
-const Image = styled.img`
+const StyledImage = styled(Image)`
   border: 1px solid var(--grey-white);
   border-radius: var(--small-radius);
   display: block;
   object-fit: cover;
-  width: 135px;
-  max-height: 135px;
+  width: 200px;
+  max-height: 150px;
 
   @media (max-width: 480px) {
     width: 100%;
@@ -82,7 +83,7 @@ function BlogIndex({ data, location }) {
         const title = node.frontmatter.title || node.fields.slug;
         return (
           <Post key={node.fields.slug}>
-            <Image src={node.frontmatter.cover.publicURL} />
+            <StyledImage fluid={node.frontmatter.cover.image.fluid} />
             <PostContent>
               <h3>
                 <Link to={node.fields.slug}>{title}</Link>
@@ -129,7 +130,11 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             cover {
-              publicURL
+              image: childImageSharp {
+                fluid(maxWidth: 200, maxHeight: 200) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
             }
           }
         }

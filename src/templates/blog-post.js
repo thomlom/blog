@@ -210,7 +210,11 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         cover {
-          publicURL
+          image: childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
         }
       }
     }
