@@ -1,4 +1,3 @@
-
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
@@ -20,6 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                next
               }
             }
           }
@@ -36,16 +36,23 @@ exports.createPages = async ({ graphql, actions }) => {
   const posts = result.data.allMarkdownRemark.edges
 
   posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node
-    const next = index === 0 ? null : posts[index - 1].node
+    const next =
+      posts.find(
+        currentPost => {
+          return currentPost.node.fields.slug === post.node.frontmatter.next
+        }
+      ) || (index === 0 ? null : posts[index - 1])
+
+    if (!next) {
+      throw new Error('No next article')
+    }
 
     createPage({
       path: post.node.fields.slug,
       component: blogPost,
       context: {
         slug: post.node.fields.slug,
-        previous,
-        next,
+        next: next.node,
       },
     })
   })

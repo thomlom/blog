@@ -16,7 +16,7 @@ const BioContainer = styled.div`
     padding: 1rem;
     flex-direction: column;
   }
-  
+
   a {
     color: var(--grey-900);
   }
@@ -38,27 +38,29 @@ const Picture = styled(Image)`
   border: 3px solid white;
 `
 
-
 function Bio() {
-  const { site: { siteMetadata }, avatar } = useStaticQuery(graphql`
+  const {
+    site: { siteMetadata },
+    avatar,
+  } = useStaticQuery(graphql`
     query BioQuery {
-    avatar: file(absolutePath: { regex: "/pic.jpg/" }) {
-      childImageSharp {
-        fixed(width: 100, height: 100) {
-          ...GatsbyImageSharpFixed
+      avatar: file(absolutePath: { regex: "/pic.jpg/" }) {
+        childImageSharp {
+          fixed(width: 100, height: 100) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+      site {
+        siteMetadata {
+          author
+          social {
+            twitter
+            github
+          }
         }
       }
     }
-    site {
-      siteMetadata {
-        author
-        social {
-          twitter
-          github
-        }
-      }
-    }
-  }
   `)
 
   const {
@@ -70,17 +72,13 @@ function Bio() {
     <BioContainer>
       <Picture fixed={avatar.childImageSharp.fixed} alt={author} />
       <p>
-        Front-end developer with industry experience specializing in
-        JavaScript technologies such as React and Vue. I build
-        user-focused apps with UX, testing and performance constraints in
-        mind. I write articles, give workshops and contribute to open
-              source on my spare time. Follow me on{' '}
-        <a href={`https://twitter.com/${twitterUsername}`}>
-          Twitter
-              </a>{' '}
-        &amp;{' '}
+        Front-end developer with industry experience specializing in JavaScript
+        technologies such as React and Vue. I build user-focused apps with UX,
+        testing and performance constraints in mind. I write articles, give
+        workshops and contribute to open source on my spare time. Follow me on{' '}
+        <a href={`https://twitter.com/${twitterUsername}`}>Twitter</a> &amp;{' '}
         <a href={`https://github.com/${githubUsername}`}>GitHub</a>.
-            </p>
+      </p>
     </BioContainer>
   )
 }
