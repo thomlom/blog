@@ -1,44 +1,46 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import styled from 'styled-components'
+import React from "react";
+import { Link, graphql } from "gatsby";
+import styled from "styled-components";
 
-import Bio from '../components/bio'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 const Post = styled.div`
-  margin: 4rem 0;
+  margin: var(--m-6) 0;
   display: flex;
 
   @media (max-width: 480px) {
     flex-direction: column;
   }
-`
+`;
 
 const Image = styled.img`
-  border-radius: 5px;
+  border: 1px solid var(--grey-white);
+  border-radius: var(--small-radius);
   display: block;
   object-fit: cover;
-  width: 150px;
+  width: 135px;
+  max-height: 135px;
 
   @media (max-width: 480px) {
     width: 100%;
   }
-`
+`;
 
 const PostContent = styled.div`
-  margin-left: 1.6rem;
+  margin-left: var(--m-5);
 
   @media (max-width: 480px) {
     margin-left: 0;
-    margin-top: 1rem;
+    margin-top: var(--m-2);
   }
 
   h3 {
-    margin: 0.2rem 0;
+    margin: var(--m-1) 0;
     font-weight: 900;
-    font-size: 2.4rem;
-    color: hsl(211, 39%, 23%);
+    font-size: var(--text-2xl);
+    color: var(--grey-800);
 
     a {
       text-decoration: none;
@@ -48,45 +50,36 @@ const PostContent = styled.div`
   }
 
   small {
-    font-size: 1.2rem;
+    font-size: var(--text-xs);
     font-weight: 600;
-    color: hsl(210, 22%, 49%);
+    color: var(--grey-500);
   }
 
   p {
-    font-size: 1.4rem;
-    color: hsl(209, 34%, 30%);
-    line-height: 2rem;
+    font-size: var(--text-sm);
+    color: var(--grey-700);
+    line-height: 1.5;
   }
-`
+`;
 
 const Footer = styled.footer`
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 0;
   text-align: center;
-  font-size: 1rem;
-  font-weight: 600;
-  color: hsl(210, 22%, 49%);
-
-  a {
-    color: hsl(209, 61%, 16%);
-  }
-`
+  margin: var(--m-3) 0;
+`;
 
 function BlogIndex({ data, location }) {
-  const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
+  const siteTitle = data.site.siteMetadata.title;
+  const posts = data.allMarkdownRemark.edges;
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO
         title="All posts"
-        keywords={['blog', 'javascript', 'front-end', 'react', 'vue']}
+        keywords={["blog", "javascript", "front-end", "react", "vue"]}
       />
       <Bio />
       {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
+        const title = node.frontmatter.title || node.fields.slug;
         return (
           <Post key={node.fields.slug}>
             <Image src={node.frontmatter.cover.publicURL} />
@@ -100,25 +93,22 @@ function BlogIndex({ data, location }) {
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </PostContent>
           </Post>
-        )
+        );
       })}
       <Footer>
         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
           <img
             alt="Licence Creative Commons"
-            style={{ borderWidth: '0' }}
+            style={{ borderWidth: "0" }}
             src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
           />
         </a>
-        <p>
-          Made with <a href="https://www.gatsbyjs.org/">Gatsby</a>
-        </p>
       </Footer>
     </Layout>
-  )
+  );
 }
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
@@ -146,4 +136,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

@@ -1,50 +1,49 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import styled from 'styled-components'
+import React from "react";
+import { Link, graphql } from "gatsby";
+import styled from "styled-components";
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 const PostTitle = styled.h1`
   margin: 0.2rem 0;
   font-weight: 900;
-  font-size: 4rem;
-  line-height: 4.5rem;
-  color: hsl(211, 39%, 23%);
+  font-size: var(--text-4xl);
+  line-height: 1.25;
+  color: var(--grey-800);
 
-  @media (max-width: 900px) {
-    font-size: 3.3rem;
-    line-height: 3.8rem;
+  @media (max-width: 768px) {
+    font-size: var(--text-3xl);
   }
-`
+`;
 
 const Subtitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
-`
+  margin-top: var(--m-1);
+`;
 
 const Date = styled.small`
-  font-size: 1.2rem;
+  font-size: var(--text-sm);
   font-weight: 600;
-  color: hsl(210, 22%, 49%);
-`
+  color: var(--grey-500);
+`;
 
 const CustomLink = styled.a`
-  font-size: 1.6rem;
+  font-size: var(--text-base);
   font-weight: 700;
   color: #38a1f3;
 
   svg {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 30px;
+    height: 30px;
     fill: currentColor;
   }
-`
+`;
 
 const Content = styled.div`
-  font-size: 1.6rem;
+  font-size: var(--text-base);
 
   h1,
   h2,
@@ -52,80 +51,90 @@ const Content = styled.div`
   h4,
   h5,
   h6 {
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-    color: hsl(211, 39%, 23%);
+    margin-top: var(--m-6);
+    margin-bottom: var(--m-2);
+    color: var(--grey-800);
     font-weight: 900;
   }
 
   h1 {
-    font-size: 3.6rem;
-    line-height: 3.6rem;
+    font-size: var(--text-4xl);
+    line-height: 1.25;
   }
 
   h2 {
-    font-size: 3rem;
-    line-height: 3rem;
+    font-size: var(--text-3xl);
+    line-height: 1.25;
   }
 
   h3 {
-    font-size: 2.4rem;
-    line-height: 2.4rem;
+    font-size: var(--text-2xl);
+    line-height: 1.25;
   }
 
   h4 {
-    font-size: 2rem;
-    line-height: 2rem;
+    font-size: var(--text-xl);
+    line-height: 1.25;
   }
 
   ol,
   ul,
   p {
-    color: hsl(209, 34%, 30%);
-    font-size: 1.6rem;
-    line-height: 2.4rem;
-    margin: 2.4rem 0;
+    color: var(--grey-700);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    margin: var(--m-4) 0;
   }
 
   li {
-    margin: 1.2rem 0;
+    margin: var(--m-2) 0;
   }
 
   a {
-    color: hsl(209, 61%, 16%);
+    color: var(--grey-900);
     font-weight: 600;
   }
 
   blockquote {
     margin: 0;
-    border-left: 3px solid hsl(209, 34%, 30%);
+    border-left: 3px solid var(--grey-700);
     padding-left: 1rem;
     font-style: italic;
     word-wrap: break-word;
   }
 
   hr {
-    border: 1px solid hsl(210, 22%, 49%);
+    border: 1px solid var(--grey-500);
   }
-`
+`;
 
-const Separator = styled.hr`
-  border: 0.5px solid hsl(210, 31%, 80%);
-`
+const ArticlesLink = styled.div`
+  margin: var(--m-6) 0;
+  background-color: var(--grey-800);
+  border-radius: var(--small-radius);
+  box-shadow: var(--shadow-medium);
 
-const ArticlesLink = styled.ul`
-  padding: 0;
-  margin: 1.6rem 0;
-  font-size: 1.4rem;
-  font-weight: 500;
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
+  padding: var(--m-2) var(--m-4);
 
-  li a {
-    color: hsl(209, 61%, 16%);
+  a {
+    text-decoration: none;
+
+    p:first-of-type {
+      color: var(--grey-100);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      font-size: var(--text-xl);
+    }
+
+    p:last-of-type {
+      margin-top: var(--m-2);
+      font-weight: 700;
+      font-size: var(--text-3xl);
+      color: var(--grey-white);
+    }
   }
-`
+`;
 
 function BlogPostTemplate({
   data: {
@@ -134,7 +143,7 @@ function BlogPostTemplate({
       siteMetadata: { title },
     },
   },
-  pageContext: { previous, next },
+  pageContext: { next },
   location,
 }) {
   return (
@@ -172,28 +181,17 @@ function BlogPostTemplate({
         </CustomLink>
       </Subtitle>
       <Content dangerouslySetInnerHTML={{ __html: post.html }} />
-      <Separator />
       <ArticlesLink>
-        {previous && (
-          <li>
-            <Link to={previous.fields.slug} rel="prev">
-              ← {previous.frontmatter.title}
-            </Link>
-          </li>
-        )}
-        {next && (
-          <li>
-            <Link to={next.fields.slug} rel="next">
-              {next.frontmatter.title} →
-            </Link>
-          </li>
-        )}
+        <Link to={next.fields.slug} rel="next">
+          <p>Your next article</p>
+          <p>{next.frontmatter.title}</p>
+        </Link>
       </ArticlesLink>
     </Layout>
-  )
+  );
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -217,4 +215,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

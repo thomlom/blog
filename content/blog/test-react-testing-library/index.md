@@ -1,7 +1,8 @@
 ---
 title: Test React apps with React Testing Library
-date: '2019-10-09'
-cover: 'cover.jpg'
+date: "2019-10-09"
+cover: "cover.jpg"
+next: /soft-skills-developers/
 ---
 
 ![Red ball light](cover.jpg)
@@ -20,12 +21,12 @@ In fact, developers tend to test what we call **implementation details**. Let's 
 
 ```jsx
 // counter.js
-import React from 'react'
+import React from "react";
 
 class Counter extends React.Component {
-  state = { count: 0 }
-  increment = () => this.setState(({ count }) => ({ count: count + 1 }))
-  decrement = () => this.setState(({ count }) => ({ count: count - 1 }))
+  state = { count: 0 };
+  increment = () => this.setState(({ count }) => ({ count: count + 1 }));
+  decrement = () => this.setState(({ count }) => ({ count: count - 1 }));
   render() {
     return (
       <div>
@@ -33,55 +34,55 @@ class Counter extends React.Component {
         <p>{this.state.count}</p>
         <button onClick={this.increment}>+</button>
       </div>
-    )
+    );
   }
 }
 
-export default Counter
+export default Counter;
 ```
 
 ```jsx
 // counter-enzyme.test.js
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import Counter from './counter'
+import Counter from "./counter";
 
-describe('<Counter />', () => {
-  it('properly increments and decrements the counter', () => {
-    const wrapper = shallow(<Counter />)
-    expect(wrapper.state('count')).toBe(0)
+describe("<Counter />", () => {
+  it("properly increments and decrements the counter", () => {
+    const wrapper = shallow(<Counter />);
+    expect(wrapper.state("count")).toBe(0);
 
-    wrapper.instance().increment()
-    expect(wrapper.state('count')).toBe(1)
+    wrapper.instance().increment();
+    expect(wrapper.state("count")).toBe(1);
 
-    wrapper.instance().decrement()
-    expect(wrapper.state('count')).toBe(0)
-  })
-})
+    wrapper.instance().decrement();
+    expect(wrapper.state("count")).toBe(0);
+  });
+});
 ```
 
 ```jsx
 // counter-rtl.test.js
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
 
-import Counter from './counter'
+import Counter from "./counter";
 
-describe('<Counter />', () => {
-  it('properly increments and decrements the counter', () => {
-    const { getByText } = render(<Counter />)
-    const counter = getByText('0')
-    const incrementButton = getByText('+')
-    const decrementButton = getByText('-')
+describe("<Counter />", () => {
+  it("properly increments and decrements the counter", () => {
+    const { getByText } = render(<Counter />);
+    const counter = getByText("0");
+    const incrementButton = getByText("+");
+    const decrementButton = getByText("-");
 
-    fireEvent.click(incrementButton)
-    expect(counter.textContent).toEqual('1')
+    fireEvent.click(incrementButton);
+    expect(counter.textContent).toEqual("1");
 
-    fireEvent.click(decrementButton)
-    expect(counter.textContent).toEqual('0')
-  })
-})
+    fireEvent.click(decrementButton);
+    expect(counter.textContent).toEqual("0");
+  });
+});
 ```
 
 **Note**: Don't worry if you don't fully understand the test files, we'll see all of this afterwards 😉
@@ -96,8 +97,8 @@ Let's illustrate these two points. Let's say you want to refactor your component
 ```jsx
 // counter.js
 export default class Counter extends React.Component {
-  state = { count: 0 }
-  setCount = count => this.setState({ count })
+  state = { count: 0 };
+  setCount = count => this.setState({ count });
   render() {
     return (
       <div>
@@ -105,7 +106,7 @@ export default class Counter extends React.Component {
         <p>{this.state.count}</p>
         <button onClick={this.increment}>+</button>
       </div>
-    )
+    );
   }
 }
 ```
@@ -116,19 +117,19 @@ Now, let's say it's November 2018, you hear about hooks everywhere and you decid
 
 ```jsx
 // counter.js
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 export default function Counter() {
-  const [count, setCount] = useState(0)
-  const increment = () => setCount(count => count + 1)
-  const decrement = () => setCount(count => count - 1)
+  const [count, setCount] = useState(0);
+  const increment = () => setCount(count => count + 1);
+  const decrement = () => setCount(count => count - 1);
   return (
     <div>
       <button onClick={decrement}>-</button>
       <p>{count}</p>
       <button onClick={increment}>+</button>
     </div>
-  )
+  );
 }
 ```
 
@@ -141,35 +142,35 @@ ShallowWrapper::state() can only be called on class components
 Then you have to change the test:
 
 ```jsx
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import Counter from './counter'
+import Counter from "./counter";
 
-describe('<Counter />', () => {
-  it('properly increments and decrements the counter', () => {
-    const setValue = jest.fn()
-    const useStateSpy = jest.spyOn(React, 'useState')
-    useStateSpy.mockImplementation(initialValue => [initialValue, setValue])
-    const wrapper = shallow(<Counter />)
+describe("<Counter />", () => {
+  it("properly increments and decrements the counter", () => {
+    const setValue = jest.fn();
+    const useStateSpy = jest.spyOn(React, "useState");
+    useStateSpy.mockImplementation(initialValue => [initialValue, setValue]);
+    const wrapper = shallow(<Counter />);
 
     wrapper
-      .find('button')
+      .find("button")
       .last()
       .props()
-      .onClick()
-    expect(setValue).toHaveBeenCalledWith(1)
+      .onClick();
+    expect(setValue).toHaveBeenCalledWith(1);
     // We can't make any assumptions here on the real count displayed
     // In fact, the setCount setter is mocked!
 
     wrapper
-      .find('button')
+      .find("button")
       .first()
       .props()
-      .onClick()
-    expect(setValue).toHaveBeenCalledWith(-1)
-  })
-})
+      .onClick();
+    expect(setValue).toHaveBeenCalledWith(-1);
+  });
+});
 ```
 
 To be honest, I'm not even sure if this is the right way to test it with Enzyme when it comes to hooks. In fact, we can't even make assumptions on the displayed count because of the mocked setter.
@@ -183,54 +184,54 @@ However, the test without implementation details work as expected in all cases! 
 Maybe there is still an air of mistery around the test written with React Testing Library. As a reminder, here it is:
 
 ```jsx
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
 
-import Counter from './app'
+import Counter from "./app";
 
-describe('<Counter />', () => {
-  it('properly increments and decrements the counter', () => {
-    const { getByText } = render(<Counter />)
-    const counter = getByText('0')
-    const incrementButton = getByText('+')
-    const decrementButton = getByText('-')
+describe("<Counter />", () => {
+  it("properly increments and decrements the counter", () => {
+    const { getByText } = render(<Counter />);
+    const counter = getByText("0");
+    const incrementButton = getByText("+");
+    const decrementButton = getByText("-");
 
-    fireEvent.click(incrementButton)
-    expect(counter.textContent).toEqual('1')
+    fireEvent.click(incrementButton);
+    expect(counter.textContent).toEqual("1");
 
-    fireEvent.click(decrementButton)
-    expect(counter.textContent).toEqual('0')
-  })
-})
+    fireEvent.click(decrementButton);
+    expect(counter.textContent).toEqual("0");
+  });
+});
 ```
 
 Let's decompose it to understand how they're made of. Introducing the **AAA** pattern: **Arrange, Act, Assert**.
 
 ```jsx
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
 
-import Counter from './app'
+import Counter from "./app";
 
-describe('<Counter />', () => {
-  it('properly increments the counter', () => {
+describe("<Counter />", () => {
+  it("properly increments the counter", () => {
     // Arrange
-    const { getByText } = render(<Counter />)
-    const counter = getByText('0')
-    const incrementButton = getByText('+')
-    const decrementButton = getByText('-')
+    const { getByText } = render(<Counter />);
+    const counter = getByText("0");
+    const incrementButton = getByText("+");
+    const decrementButton = getByText("-");
 
     // Act
-    fireEvent.click(incrementButton)
+    fireEvent.click(incrementButton);
     // Assert
-    expect(counter.textContent).toEqual('1')
+    expect(counter.textContent).toEqual("1");
 
     // Act
-    fireEvent.click(decrementButton)
+    fireEvent.click(decrementButton);
     // Assert
-    expect(counter.textContent).toEqual('0')
-  })
-})
+    expect(counter.textContent).toEqual("0");
+  });
+});
 ```
 
 Almost of your tests will be written that way. First, you **arrange** (= setup) your code so that everything is ready for the next steps. Then, you **act**, you perform the steps a user is supposed to do (such as a click). Finally, you make **assertions** on what is supposed to happen.
@@ -276,10 +277,10 @@ For more informations, one more time, [check the docs](https://testing-library.c
 Let's come back to our example:
 
 ```jsx
-const { getByText } = render(<Counter />)
-const counter = getByText('0')
-const incrementButton = getByText('+')
-const decrementButton = getByText('-')
+const { getByText } = render(<Counter />);
+const counter = getByText("0");
+const incrementButton = getByText("+");
+const decrementButton = getByText("-");
 ```
 
 In this example, you can see that we first render the `<Counter/>`. The base element of this component will look like the following:
@@ -307,9 +308,9 @@ Simply put, this function takes a DOM node (that you can query with the queries 
 Our example is fairly simple as we just want to click a button, so we simply do:
 
 ```jsx
-fireEvent.click(incrementButton)
+fireEvent.click(incrementButton);
 // OR
-fireEvent.click(decrementButton)
+fireEvent.click(decrementButton);
 ```
 
 ## Assert
@@ -317,8 +318,8 @@ fireEvent.click(decrementButton)
 Here comes the last part. Firing an event usually trigger some changes in your app. So we must do some assertions to make sure these changes happened. In our test, a good way to do so is to make sure the count rendered to the user has changed. Thus, we just have to assert the `textContent` property of `counter` is incremented or decrement:
 
 ```jsx
-expect(counter.textContent).toEqual('1')
-expect(counter.textContent).toEqual('0')
+expect(counter.textContent).toEqual("1");
+expect(counter.textContent).toEqual("0");
 ```
 
 And tadaaa! You successfully wrote a test that doesn't test implementation details 🥳
@@ -339,51 +340,51 @@ Yes I know, you may be sick of to-do apps in every tutorial, but hey, they're gr
 Here is the code:
 
 ```jsx
-import React from 'react'
+import React from "react";
 
 function Todos({ todos: originalTodos }) {
-  const filters = ['all', 'active', 'done']
-  const [input, setInput] = React.useState('')
-  const [todos, setTodos] = React.useState(originalTodos || [])
-  const [activeFilter, setActiveFilter] = React.useState(filters[0])
+  const filters = ["all", "active", "done"];
+  const [input, setInput] = React.useState("");
+  const [todos, setTodos] = React.useState(originalTodos || []);
+  const [activeFilter, setActiveFilter] = React.useState(filters[0]);
 
   const addTodo = e => {
-    if (e.key === 'Enter' && input.length > 0) {
-      setTodos(todos => [{ name: input, done: false }, ...todos])
-      setInput('')
+    if (e.key === "Enter" && input.length > 0) {
+      setTodos(todos => [{ name: input, done: false }, ...todos]);
+      setInput("");
     }
-  }
+  };
 
   // Make use of useMemo to avoid filtering the todos on every re-render
   const filteredTodos = React.useMemo(
     () =>
       todos.filter((todo, i) => {
-        if (activeFilter === 'all') {
-          return todo
+        if (activeFilter === "all") {
+          return todo;
         }
 
-        if (activeFilter === 'active') {
-          return !todo.done
+        if (activeFilter === "active") {
+          return !todo.done;
         }
 
-        if (activeFilter === 'done') {
-          return todo.done
+        if (activeFilter === "done") {
+          return todo.done;
         }
       }),
     [todos, activeFilter]
-  )
+  );
 
   const toggle = index => {
     setTodos(todos =>
       todos.map((todo, i) =>
         index === i ? { ...todo, done: !todo.done } : todo
       )
-    )
-  }
+    );
+  };
 
   const remove = index => {
-    setTodos(todos => todos.filter((todo, i) => i !== index))
-  }
+    setTodos(todos => todos.filter((todo, i) => i !== index));
+  };
 
   return (
     <div>
@@ -410,7 +411,7 @@ function Todos({ todos: originalTodos }) {
                 onChange={() => toggle(i)}
               />
               <div className="todo-infos">
-                <span className={`todo-name ${done ? 'todo-name-done' : ''}`}>
+                <span className={`todo-name ${done ? "todo-name-done" : ""}`}>
                   {name}
                 </span>
                 <button className="todo-delete" onClick={() => remove(i)}>
@@ -428,7 +429,7 @@ function Todos({ todos: originalTodos }) {
           <li
             key={filter}
             className={`filter ${
-              activeFilter === filter ? 'filter-active' : ''
+              activeFilter === filter ? "filter-active" : ""
             }`}
             onClick={() => setActiveFilter(filter)}
           >
@@ -437,10 +438,10 @@ function Todos({ todos: originalTodos }) {
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
-export default Todos
+export default Todos;
 ```
 
 ## Add a new to-do
@@ -450,14 +451,14 @@ You saw previously how `fireEvent` allows you to click on a button queried with 
 ```jsx
 // Using getByPlaceholderText here is convenient
 // since it's visible to a real user and specific to an input
-const { getByPlaceholderText, getByText } = render(<App />)
-const input = getByPlaceholderText('Add something...')
-const todo = 'Read Master React Testing'
+const { getByPlaceholderText, getByText } = render(<App />);
+const input = getByPlaceholderText("Add something...");
+const todo = "Read Master React Testing";
 
-getByText('No to-dos!')
+getByText("No to-dos!");
 
-fireEvent.change(input, { target: { value: todo } })
-fireEvent.keyDown(input, { key: 'Enter' })
+fireEvent.change(input, { target: { value: todo } });
+fireEvent.keyDown(input, { key: "Enter" });
 ```
 
 In this code, we:
@@ -478,26 +479,26 @@ What should happen if we add a new to-do?
 Hence, we need to query somehow the new item in the DOM and make sure the `value` property of the input is empty:
 
 ```jsx
-getByText(todo)
-expect(input.value).toBe('')
+getByText(todo);
+expect(input.value).toBe("");
 ```
 
 The full test becomes:
 
 ```jsx
-test('adds a new to-do', () => {
-  const { getByPlaceholderText, getByText } = render(<Todos />)
-  const input = getByPlaceholderText(/add something/i)
-  const todo = 'Read Master React Testing'
+test("adds a new to-do", () => {
+  const { getByPlaceholderText, getByText } = render(<Todos />);
+  const input = getByPlaceholderText(/add something/i);
+  const todo = "Read Master React Testing";
 
-  getByText('No to-dos!')
+  getByText("No to-dos!");
 
-  fireEvent.change(input, { target: { value: todo } })
-  fireEvent.keyDown(input, { key: 'Enter' })
+  fireEvent.change(input, { target: { value: todo } });
+  fireEvent.keyDown(input, { key: "Enter" });
 
-  getByText(todo)
-  expect(input.value).toBe('')
-})
+  getByText(todo);
+  expect(input.value).toBe("");
+});
 ```
 
 ## jest-dom
@@ -521,7 +522,7 @@ npm install --save-dev @testing-library/jest-dom
 Then, you have to import the package **once** to extend the Jest matchers:
 
 ```jsx
-import '@testing-library/jest-dom/extend-expect'
+import "@testing-library/jest-dom/extend-expect";
 ```
 
 **Note**: I recommend that you do that in `src/setupTests` if you use [Create React App](https://create-react-app.dev/docs/running-tests#src-setuptestsjs-1). If you don't use CRA, import it in one of the files defined in the [`setupFilesAfterEnv`](https://jestjs.io/docs/en/configuration#setupfilesafterenv-array) key of your Jest config.
@@ -548,25 +549,25 @@ It's not much, but it's more readable, especially when you write a lot of assert
 If we were to rewrite the counter test, we could use `toHaveTextContent` for example:
 
 ```jsx
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
 
-import Counter from './counter'
+import Counter from "./counter";
 
-describe('<Counter />', () => {
-  it('properly increments and decrements the counter', () => {
-    const { getByText } = render(<Counter />)
-    const counter = getByText('0')
-    const incrementButton = getByText('+')
-    const decrementButton = getByText('-')
+describe("<Counter />", () => {
+  it("properly increments and decrements the counter", () => {
+    const { getByText } = render(<Counter />);
+    const counter = getByText("0");
+    const incrementButton = getByText("+");
+    const decrementButton = getByText("-");
 
-    fireEvent.click(incrementButton)
-    expect(counter).toHaveTextContent('1')
+    fireEvent.click(incrementButton);
+    expect(counter).toHaveTextContent("1");
 
-    fireEvent.click(decrementButton)
-    expect(counter).toHaveTextContent('0')
-  })
-})
+    fireEvent.click(decrementButton);
+    expect(counter).toHaveTextContent("0");
+  });
+});
 ```
 
 **💡 If you would like to see more test examples on this to-do app, I created a repo that contains all the examples of this article [right here](https://github.com/thomlom/react-testing-library-examples)!**
@@ -585,43 +586,43 @@ Here is the code and the associated app. Try it out.
 
 ```jsx
 // app.js
-import React from 'react'
+import React from "react";
 
-import { addPost } from './api'
+import { addPost } from "./api";
 
 function App() {
-  const [posts, addLocalPost] = React.useReducer((s, a) => [...s, a], [])
+  const [posts, addLocalPost] = React.useReducer((s, a) => [...s, a], []);
   const [formData, setFormData] = React.useReducer((s, a) => ({ ...s, ...a }), {
-    title: '',
-    content: '',
-  })
-  const [isPosting, setIsPosting] = React.useState(false)
-  const [error, setError] = React.useState('')
+    title: "",
+    content: "",
+  });
+  const [isPosting, setIsPosting] = React.useState(false);
+  const [error, setError] = React.useState("");
 
   const post = async e => {
-    e.preventDefault()
+    e.preventDefault();
 
-    setError('')
+    setError("");
 
     if (!formData.title || !formData.content) {
-      return setError('Title and content are required.')
+      return setError("Title and content are required.");
     }
 
     try {
-      setIsPosting(true)
+      setIsPosting(true);
       const {
         status,
         data: { id, ...rest },
-      } = await addPost(formData)
+      } = await addPost(formData);
       if (status === 200) {
-        addLocalPost({ id, ...rest })
+        addLocalPost({ id, ...rest });
       }
-      setIsPosting(false)
+      setIsPosting(false);
     } catch (error) {
-      setError(error.data)
-      setIsPosting(false)
+      setError(error.data);
+      setIsPosting(false);
     }
-  }
+  };
 
   return (
     <div>
@@ -640,7 +641,7 @@ function App() {
           rows={5}
         />
         <button className="btn" type="submit" disabled={isPosting}>
-          Post{isPosting ? 'ing...' : ''}
+          Post{isPosting ? "ing..." : ""}
         </button>
       </form>
       <div>
@@ -652,30 +653,30 @@ function App() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
 ```
 
 ```js
 // api.js
-let nextId = 0
+let nextId = 0;
 
 export const addPost = post => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.1) {
-        resolve({ status: 200, data: { ...post, id: nextId++ } })
+        resolve({ status: 200, data: { ...post, id: nextId++ } });
       } else {
         reject({
           status: 500,
-          data: 'Something wrong happened. Please, retry.',
-        })
+          data: "Something wrong happened. Please, retry.",
+        });
       }
-    }, 500)
-  })
-}
+    }, 500);
+  });
+};
 ```
 
 Let's test the post creation feature. To do so, we need to:
@@ -688,27 +689,27 @@ Let's test the post creation feature. To do so, we need to:
 Let's first query the corresponding elements.
 
 ```jsx
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
 
-import { addPost as addPostMock } from './api'
-import Posts from './Posts'
+import { addPost as addPostMock } from "./api";
+import Posts from "./Posts";
 
-jest.mock('./api')
+jest.mock("./api");
 
-describe('Posts', () => {
-  test('adds a post', async () => {
+describe("Posts", () => {
+  test("adds a post", async () => {
     addPostMock.mockImplementation(post => {
-      return Promise.resolve({ status: 200, data: { ...post, id: 1 } })
-    })
-    const { getByPlaceholderText, getByText, debug } = render(<Posts />)
-    const title = getByPlaceholderText(/title/i)
-    const content = getByPlaceholderText(/post/i)
-    const button = getByText(/post/i)
-    const postTitle = 'This is a post'
-    const postContent = 'This is the content of my post'
-  })
-})
+      return Promise.resolve({ status: 200, data: { ...post, id: 1 } });
+    });
+    const { getByPlaceholderText, getByText, debug } = render(<Posts />);
+    const title = getByPlaceholderText(/title/i);
+    const content = getByPlaceholderText(/post/i);
+    const button = getByText(/post/i);
+    const postTitle = "This is a post";
+    const postContent = "This is the content of my post";
+  });
+});
 ```
 
 You can see I've queried them differently this time. Indeed, the queries also accept a **regular expression as an argument.** It can be handy if you want to quickly query a long text or if you want to query a substring of your sentence in case you're still not sure of the wording.
@@ -716,7 +717,7 @@ You can see I've queried them differently this time. Indeed, the queries also ac
 For example, I know the placeholder of my content should include the word _"post"_ but I know the placeholder is going to change and I don't want my tests to break because of a simple change. So I use:
 
 ```jsx
-const content = getByPlaceholderText(/post/i)
+const content = getByPlaceholderText(/post/i);
 ```
 
 **Note**: for the same reason, I use `i` to make the search case-insensitive.
@@ -724,25 +725,25 @@ const content = getByPlaceholderText(/post/i)
 Then, we have to fire the corresponding events and make sure the post have been added. Let's try it out:
 
 ```jsx
-test('adds a post', () => {
+test("adds a post", () => {
   addPostMock.mockImplementation(post => {
-    return Promise.resolve({ status: 200, data: { ...post, id: 1 } })
-  })
-  const { getByPlaceholderText, getByText, queryByText } = render(<Posts />)
-  const title = getByPlaceholderText(/title/i)
-  const content = getByPlaceholderText(/post/i)
-  const button = getByText(/post/i)
-  const postTitle = 'This is a post'
-  const postContent = 'This is the content of my post'
+    return Promise.resolve({ status: 200, data: { ...post, id: 1 } });
+  });
+  const { getByPlaceholderText, getByText, queryByText } = render(<Posts />);
+  const title = getByPlaceholderText(/title/i);
+  const content = getByPlaceholderText(/post/i);
+  const button = getByText(/post/i);
+  const postTitle = "This is a post";
+  const postContent = "This is the content of my post";
 
-  fireEvent.change(title, { target: { value: postTitle } })
-  fireEvent.change(content, { target: { value: postContent } })
-  fireEvent.click(button)
+  fireEvent.change(title, { target: { value: postTitle } });
+  fireEvent.change(content, { target: { value: postContent } });
+  fireEvent.click(button);
 
   // Oops, this will fail ❌
-  expect(queryByText(postTitle)).toBeInTheDocument()
-  expect(queryByText(postContent)).toBeInTheDocument()
-})
+  expect(queryByText(postTitle)).toBeInTheDocument();
+  expect(queryByText(postContent)).toBeInTheDocument();
+});
 ```
 
 If you would run this test, it wouldn't work! In fact, RTL can't query your post title! But why? To answer that question, I'll have to introduce you to one of your next best friends: `debug`.
@@ -752,28 +753,28 @@ If you would run this test, it wouldn't work! In fact, RTL can't query your post
 Simply put, `debug` is a utility function returned by `render` that prints out a representation of your component's associated DOM. Let's use it:
 
 ```jsx
-test('adds a post', () => {
+test("adds a post", () => {
   addPostMock.mockImplementation(post => {
-    return Promise.resolve({ status: 200, data: { ...post, id: 1 } })
-  })
+    return Promise.resolve({ status: 200, data: { ...post, id: 1 } });
+  });
   const { getByPlaceholderText, getByText, queryByText, debug } = render(
     <Posts />
-  )
-  const title = getByPlaceholderText(/title/i)
-  const content = getByPlaceholderText(/post/i)
-  const button = getByText(/post/i)
-  const postTitle = 'This is a post'
-  const postContent = 'This is the content of my post'
+  );
+  const title = getByPlaceholderText(/title/i);
+  const content = getByPlaceholderText(/post/i);
+  const button = getByText(/post/i);
+  const postTitle = "This is a post";
+  const postContent = "This is the content of my post";
 
-  fireEvent.change(title, { target: { value: postTitle } })
-  fireEvent.change(content, { target: { value: postContent } })
-  fireEvent.click(button)
+  fireEvent.change(title, { target: { value: postTitle } });
+  fireEvent.change(content, { target: { value: postContent } });
+  fireEvent.click(button);
 
-  debug()
+  debug();
 
-  expect(queryByText(postTitle)).toBeInTheDocument()
-  expect(queryByText(postContent)).toBeInTheDocument()
-})
+  expect(queryByText(postTitle)).toBeInTheDocument();
+  expect(queryByText(postContent)).toBeInTheDocument();
+});
 ```
 
 In our case, `debug` outputs something similar to this:
@@ -803,24 +804,24 @@ Now that you know what your DOM looks like, we can guess what's happening. The p
 Do you know why? Because posting a post is **asynchronous** and we're trying to execute the tests without waiting for the asynchronous actions. We're just in the **Loading** phase. What we can only do for now is to make sure we indicate the user that stuff is going on:
 
 ```jsx
-test('adds a post', () => {
+test("adds a post", () => {
   addPostMock.mockImplementation(post => {
-    return Promise.resolve({ status: 200, data: { ...post, id: 1 } })
-  })
-  const { getByPlaceholderText, getByText } = render(<Posts />)
-  const title = getByPlaceholderText(/title/i)
-  const content = getByPlaceholderText(/post/i)
-  const button = getByText(/post/i)
-  const postTitle = 'This is a post'
-  const postContent = 'This is the content of my post'
+    return Promise.resolve({ status: 200, data: { ...post, id: 1 } });
+  });
+  const { getByPlaceholderText, getByText } = render(<Posts />);
+  const title = getByPlaceholderText(/title/i);
+  const content = getByPlaceholderText(/post/i);
+  const button = getByText(/post/i);
+  const postTitle = "This is a post";
+  const postContent = "This is the content of my post";
 
-  fireEvent.change(title, { target: { value: postTitle } })
-  fireEvent.change(content, { target: { value: postContent } })
-  fireEvent.click(button)
+  fireEvent.change(title, { target: { value: postTitle } });
+  fireEvent.change(content, { target: { value: postContent } });
+  fireEvent.click(button);
 
-  expect(button).toHaveTextContent('Posting')
-  expect(button).toBeDisabled()
-})
+  expect(button).toHaveTextContent("Posting");
+  expect(button).toBeDisabled();
+});
 ```
 
 ## wait and waitForElement
@@ -831,10 +832,10 @@ Luckily for us, we can do something about that. More precisely, RTL can do somet
 function wait(
   callback?: () => void,
   options?: {
-    timeout?: number
-    interval?: number
+    timeout?: number;
+    interval?: number;
   }
-): Promise<void>
+): Promise<void>;
 ```
 
 Simply put, `wait` takes a callback which contains expectations and wait for a certain time until these expectation passes.
@@ -842,25 +843,25 @@ Simply put, `wait` takes a callback which contains expectations and wait for a c
 By default this certain time is at most `4500ms` at an interval of `50ms` (the first function call is fired immediately). So, we're going to make use of that function and put our initial assertions in it. The full test now becomes:
 
 ```jsx
-import React from 'react'
-import { render, fireEvent, wait } from '@testing-library/react'
+import React from "react";
+import { render, fireEvent, wait } from "@testing-library/react";
 
 // ...
 
-describe('Posts', () => {
-  test('adds a post', async () => {
+describe("Posts", () => {
+  test("adds a post", async () => {
     // ...
-    fireEvent.click(button)
+    fireEvent.click(button);
 
-    expect(button).toHaveTextContent('Posting')
-    expect(button).toBeDisabled()
+    expect(button).toHaveTextContent("Posting");
+    expect(button).toBeDisabled();
 
     await wait(() => {
-      getByText(postTitle)
-      getByText(postContent)
-    })
-  })
-})
+      getByText(postTitle);
+      getByText(postContent);
+    });
+  });
+});
 ```
 
 It passes! 🎉
@@ -868,46 +869,46 @@ It passes! 🎉
 There are also different ways to do what we just did above. Indeed, we mocked our API call so it's supposed to resolve **immediately**. In that case, we would just have to wait for one tick of the [event loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ). That's possible with `wait` too. Just give it no callback and run your assertions after it:
 
 ```jsx
-import React from 'react'
-import { render, fireEvent, wait } from '@testing-library/react'
+import React from "react";
+import { render, fireEvent, wait } from "@testing-library/react";
 
 // ...
 
-describe('Posts', () => {
-  test('adds a post', async () => {
+describe("Posts", () => {
+  test("adds a post", async () => {
     // ...
-    fireEvent.click(button)
+    fireEvent.click(button);
 
-    expect(button).toHaveTextContent('Posting')
-    expect(button).toBeDisabled()
+    expect(button).toHaveTextContent("Posting");
+    expect(button).toBeDisabled();
 
-    await wait()
-    getByText(postTitle)
-    getByText(postContent)
-  })
-})
+    await wait();
+    getByText(postTitle);
+    getByText(postContent);
+  });
+});
 ```
 
 But now what if instead trying every `50ms`, you could have a way to observe the DOM of your component and somehow be notified of its change? It would be convenient for us, isn't it? That's what `waitForElement` is made for:
 
 ```jsx
-import React from 'react'
-import { render, fireEvent, wait } from '@testing-library/react'
+import React from "react";
+import { render, fireEvent, wait } from "@testing-library/react";
 
 // ...
 
-describe('Posts', () => {
-  test('adds a post', async () => {
+describe("Posts", () => {
+  test("adds a post", async () => {
     // ...
-    fireEvent.click(button)
+    fireEvent.click(button);
 
-    expect(button).toHaveTextContent('Posting')
-    expect(button).toBeDisabled()
+    expect(button).toHaveTextContent("Posting");
+    expect(button).toBeDisabled();
 
-    await waitForElement(() => getByText(postTitle))
-    getByText(postContent)
-  })
-})
+    await waitForElement(() => getByText(postTitle));
+    getByText(postContent);
+  });
+});
 ```
 
 **Note**: In our example we can safely run the assertions for the rest of our content (just after the `await` statement) as if there is a title, it means our API returned us the full post.
@@ -917,24 +918,24 @@ describe('Posts', () => {
 Last but not least, you can also verify a post have been added with `findBy*` [queries](https://github.com/testing-library/dom-testing-library/blob/master/src/query-helpers.js#L70) which is just a combination of `getBy*` queries and `waitForElement`:
 
 ```jsx
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
 
 // ...
 
-describe('Posts', () => {
-  test('adds a post', async () => {
-    const { getByPlaceholderText, getByText, findByText } = render(<Posts />)
+describe("Posts", () => {
+  test("adds a post", async () => {
+    const { getByPlaceholderText, getByText, findByText } = render(<Posts />);
 
     // ...
 
-    expect(button).toHaveTextContent('Posting')
-    expect(button).toBeDisabled()
+    expect(button).toHaveTextContent("Posting");
+    expect(button).toBeDisabled();
 
-    await findByText(postTitle)
-    getByText(postContent)
-  })
-})
+    await findByText(postTitle);
+    getByText(postContent);
+  });
+});
 ```
 
 **Note**: remember, `findByText` is asynchronous! If you find yourself forgetting the `await` statement a little bit too much, I encourage you to install the following plugin: [eslint-plugin-testing-library](https://github.com/Belco90/eslint-plugin-testing-library), it contains a rule that prevent you to do so! 😉

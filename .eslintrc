@@ -3,11 +3,14 @@
     "browser": true,
     "es6": true
   },
-  "plugins": ["react"],
+  "plugins": [
+    "react"
+  ],
   "globals": {
     "graphql": false
   },
   "parserOptions": {
+    "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,

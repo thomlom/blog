@@ -1,2 +1,1 @@
-// custom typefaces
-import './src/code.css'
+import "./src/styles/code.css";
