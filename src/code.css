@@ -55,8 +55,8 @@ pre[class*='language-'] {
 
 /* Inline code */
 :not(pre) > code[class*='language-'] {
-  background-color: hsl(212, 33%, 89%);
-  color: hsl(211, 39%, 23%);
+  background-color: var(--grey-100);
+  color: var(--grey-800);
   padding: 1.5px 3px;
   border-radius: 0.3em;
   white-space: normal;

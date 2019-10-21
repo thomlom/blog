@@ -38,7 +38,7 @@ const PostContent = styled.div`
     margin: 0.2rem 0;
     font-weight: 900;
     font-size: 2.4rem;
-    color: hsl(211, 39%, 23%);
+    color: var(--grey-800);
 
     a {
       text-decoration: none;
@@ -50,12 +50,12 @@ const PostContent = styled.div`
   small {
     font-size: 1.2rem;
     font-weight: 600;
-    color: hsl(210, 22%, 49%);
+    color: var(--grey-500);
   }
 
   p {
     font-size: 1.4rem;
-    color: hsl(209, 34%, 30%);
+    color: var(--grey-700);
     line-height: 2rem;
   }
 `
@@ -67,10 +67,10 @@ const Footer = styled.footer`
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
-  color: hsl(210, 22%, 49%);
+  color: var(--grey-500);
 
   a {
-    color: hsl(209, 61%, 16%);
+    color: var(--grey-900);
   }
 `
 

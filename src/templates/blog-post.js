@@ -10,7 +10,7 @@ const PostTitle = styled.h1`
   font-weight: 900;
   font-size: 4rem;
   line-height: 4.5rem;
-  color: hsl(211, 39%, 23%);
+  color: var(--grey-800);
 
   @media (max-width: 900px) {
     font-size: 3.3rem;
@@ -28,7 +28,7 @@ const Subtitle = styled.div`
 const Date = styled.small`
   font-size: 1.2rem;
   font-weight: 600;
-  color: hsl(210, 22%, 49%);
+  color: var(--grey-500);
 `
 
 const CustomLink = styled.a`
@@ -54,7 +54,7 @@ const Content = styled.div`
   h6 {
     margin-top: 4rem;
     margin-bottom: 2rem;
-    color: hsl(211, 39%, 23%);
+    color: var(--grey-800);
     font-weight: 900;
   }
 
@@ -81,7 +81,7 @@ const Content = styled.div`
   ol,
   ul,
   p {
-    color: hsl(209, 34%, 30%);
+    color: var(--grey-700);
     font-size: 1.6rem;
     line-height: 2.4rem;
     margin: 2.4rem 0;
@@ -92,25 +92,25 @@ const Content = styled.div`
   }
 
   a {
-    color: hsl(209, 61%, 16%);
+    color: var(--grey-900);
     font-weight: 600;
   }
 
   blockquote {
     margin: 0;
-    border-left: 3px solid hsl(209, 34%, 30%);
+    border-left: 3px solid var(--grey-700);
     padding-left: 1rem;
     font-style: italic;
     word-wrap: break-word;
   }
 
   hr {
-    border: 1px solid hsl(210, 22%, 49%);
+    border: 1px solid var(--grey-500);
   }
 `
 
 const Separator = styled.hr`
-  border: 0.5px solid hsl(210, 31%, 80%);
+  border: 0.5px solid var(--grey-100);
 `
 
 const ArticlesLink = styled.ul`
@@ -123,7 +123,7 @@ const ArticlesLink = styled.ul`
   list-style: none;
 
   li a {
-    color: hsl(209, 61%, 16%);
+    color: var(--grey-900);
   }
 `
 
