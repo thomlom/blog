@@ -1,13 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: 'Thomlom',
-    author: 'Thomas Lombart',
+    title: "Thomlom",
+    author: "Thomas Lombart",
     description:
-      'Articles, tutorials, tips and tricks on modern web development.',
-    siteUrl: 'https://thomlom.dev/',
+      "Articles, tutorials, tips and tricks on modern web development.",
+    siteUrl: "https://thomlom.dev/",
     social: {
-      twitter: 'thomas_lombart',
-      github: 'thomlom',
+      twitter: "thomas_lombart",
+      github: "thomlom",
     },
   },
   plugins: [
@@ -15,14 +15,14 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
-        name: 'blog',
+        name: "blog",
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/assets`,
-        name: 'assets',
+        name: "assets",
       },
     },
     {
@@ -41,9 +41,9 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
+          "gatsby-remark-prismjs",
+          "gatsby-remark-copy-linked-files",
+          "gatsby-remark-smartypants",
         ],
       },
     },
@@ -65,5 +65,14 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-plugin-webpack-bundle-analyzer",
+      options: {
+        production: true,
+        disable: !process.env.ANALYZE_BUNDLE_SIZE,
+        generateStatsFile: true,
+        analyzerMode: "static",
+      },
+    },
   ],
-}
+};
