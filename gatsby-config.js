@@ -5,10 +5,6 @@ module.exports = {
     description:
       "Articles, tutorials, tips and tricks on modern web development.",
     siteUrl: "https://thomlom.dev/",
-    social: {
-      twitter: "thomas_lombart",
-      github: "thomlom",
-    },
   },
   plugins: [
     {

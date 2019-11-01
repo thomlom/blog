@@ -3,13 +3,14 @@ import { graphql, useStaticQuery } from "gatsby";
 import Image from "gatsby-image";
 import styled from "styled-components";
 
+import SocialIcons from "./social";
+
 const BioContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
   @media screen and (max-width: 480px) {
-    padding: 1rem;
     flex-direction: column;
   }
 
@@ -81,33 +82,27 @@ function Bio() {
       site {
         siteMetadata {
           author
-          social {
-            twitter
-            github
-          }
         }
       }
     }
   `);
 
-  const {
-    author,
-    social: { twitter: twitterUsername, github: githubUsername },
-  } = siteMetadata;
+  const { author } = siteMetadata;
 
   return (
-    <BioContainer>
-      <p>
-        <span className="greetings">Hey there! I'm Thomas.</span>
-        <span className="text">
-          I'm a front-end developer. I love building apps and writing useful
-          posts. Follow me on{" "}
-          <a href={`https://twitter.com/${twitterUsername}`}>Twitter</a> &amp;{" "}
-          <a href={`https://github.com/${githubUsername}`}>GitHub</a>.
-        </span>
-      </p>
-      <Picture fixed={avatar.childImageSharp.fixed} alt={author} />
-    </BioContainer>
+    <React.Fragment>
+      <BioContainer>
+        <p>
+          <span className="greetings">Hey there! I'm Thomas.</span>
+          <span className="text">
+            I'm a front-end developer. I love building apps and writing useful
+            posts.
+          </span>
+        </p>
+        <Picture fixed={avatar.childImageSharp.fixed} alt={author} />
+      </BioContainer>
+      <SocialIcons />
+    </React.Fragment>
   );
 }
 
