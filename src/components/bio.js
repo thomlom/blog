@@ -7,35 +7,62 @@ const BioContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--grey-white);
-  border-radius: var(--medium-radius);
-  box-shadow: var(--shadow-small);
-  padding: var(--p-3) var(--p-4);
 
   @media screen and (max-width: 480px) {
     padding: 1rem;
     flex-direction: column;
   }
 
-  a {
-    color: var(--grey-900);
-  }
-
   p {
-    margin-left: var(--m-5);
-    font-size: var(--text-base);
-    font-weight: 500;
-    color: var(--grey-600);
+    color: #dceefb;
     line-height: 1.625;
+
+    @media screen and (max-width: 480px) {
+      order: 2;
+    }
+
+    a {
+      color: var(--grey-white);
+    }
+
+    .greetings {
+      font-size: var(--text-4xl);
+      line-height: 1.25;
+      font-weight: 700;
+
+      @media screen and (max-width: 480px) {
+        font-size: var(--text-2xl);
+      }
+    }
+
+    .text {
+      display: block;
+      font-size: var(--text-3xl);
+      margin-top: var(--m-3);
+
+      @media screen and (max-width: 480px) {
+        font-size: var(--text-xl);
+      }
+    }
   }
 `;
 
 const Picture = styled(Image)`
+  margin-left: var(--m-8);
   margin-bottom: 0;
-  min-width: 100px;
+  min-width: 200px;
   object-fit: cover;
   border-radius: 100%;
-  border: 3px solid white;
+  border: 4px solid var(--grey-white);
+  box-shadow: var(--shadow-large);
+
+  @media screen and (max-width: 768px) {
+    margin-left: var(--m-5);
+  }
+
+  @media screen and (max-width: 480px) {
+    order: 1;
+  }
 `;
 
 function Bio() {
@@ -46,7 +73,7 @@ function Bio() {
     query BioQuery {
       avatar: file(absolutePath: { regex: "/pic.jpg/" }) {
         childImageSharp {
-          fixed(width: 100, height: 100) {
+          fixed(width: 200, height: 200) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -70,15 +97,16 @@ function Bio() {
 
   return (
     <BioContainer>
-      <Picture fixed={avatar.childImageSharp.fixed} alt={author} />
       <p>
-        Front-end developer with industry experience specializing in JavaScript
-        technologies such as React and Vue. I build user-focused apps with UX,
-        testing and performance constraints in mind. I write articles, give
-        workshops and contribute to open source on my spare time. Follow me on{" "}
-        <a href={`https://twitter.com/${twitterUsername}`}>Twitter</a> &amp;{" "}
-        <a href={`https://github.com/${githubUsername}`}>GitHub</a>.
+        <span className="greetings">Hey there! I'm Thomas.</span>
+        <span className="text">
+          I'm a front-end developer who loves to build apps and write useful
+          posts. Follow me on{" "}
+          <a href={`https://twitter.com/${twitterUsername}`}>Twitter</a> &amp;{" "}
+          <a href={`https://github.com/${githubUsername}`}>GitHub</a>.
+        </span>
       </p>
+      <Picture fixed={avatar.childImageSharp.fixed} alt={author} />
     </BioContainer>
   );
 }

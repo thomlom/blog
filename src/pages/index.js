@@ -3,7 +3,6 @@ import { Link, graphql } from "gatsby";
 import styled from "styled-components";
 import Image from "gatsby-image";
 
-import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
@@ -78,7 +77,6 @@ function BlogIndex({ data, location }) {
         title="All posts"
         keywords={["blog", "javascript", "front-end", "react", "vue"]}
       />
-      <Bio />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
         return (

@@ -110,7 +110,7 @@ const Content = styled.div`
 
 const ArticlesLink = styled.div`
   margin: var(--m-6) 0;
-  background-color: var(--grey-800);
+  background-color: var(--blue-900);
   border-radius: var(--small-radius);
   box-shadow: var(--shadow-medium);
 
@@ -120,7 +120,7 @@ const ArticlesLink = styled.div`
     text-decoration: none;
 
     p:first-of-type {
-      color: var(--grey-100);
+      color: var(--blue-white);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       font-weight: 700;
@@ -131,7 +131,7 @@ const ArticlesLink = styled.div`
       margin-top: var(--m-2);
       font-weight: 700;
       font-size: var(--text-3xl);
-      color: var(--grey-white);
+      color: var(--blue-white);
     }
   }
 `;

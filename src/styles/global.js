@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     --grey-100: hsl(212, 33%, 89%);
     --grey-white: hsl(210, 36%, 96%);
 
+    --blue-900: hsl(205, 100%, 21%);
+    --blue-600: hsl(205, 76%, 39%);
+    --blue-white: hsl(205, 79%, 92%);
+
     --small-radius: 5px;
     --medium-radius: 10px;
 
