@@ -16,7 +16,8 @@ const Post = styled.div`
 `;
 
 const StyledImage = styled(Image)`
-  border: 1px solid var(--grey-white);
+  border: 1px solid var(--grey-100);
+  background-color: white;
   border-radius: var(--small-radius);
   display: block;
   object-fit: cover;

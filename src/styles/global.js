@@ -65,6 +65,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-family: 'Inter', sans-serif;
+    background-color: var(--grey-white);
   }
 `;
 

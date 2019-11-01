@@ -48,7 +48,7 @@ const BioContainer = styled.div`
 `;
 
 const Picture = styled(Image)`
-  margin-left: var(--m-8);
+  margin-left: var(--m-7);
   margin-bottom: 0;
   min-width: 200px;
   object-fit: cover;
@@ -100,7 +100,7 @@ function Bio() {
       <p>
         <span className="greetings">Hey there! I'm Thomas.</span>
         <span className="text">
-          I'm a front-end developer who loves to build apps and write useful
+          I'm a front-end developer. I love building apps and writing useful
           posts. Follow me on{" "}
           <a href={`https://twitter.com/${twitterUsername}`}>Twitter</a> &amp;{" "}
           <a href={`https://github.com/${githubUsername}`}>GitHub</a>.

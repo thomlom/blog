@@ -16,7 +16,7 @@ const Title = css`
 `;
 
 const Wrapper = styled.div`
-  max-width: 800px;
+  max-width: ${props => (props.width ? props.width + "px" : "700px")};
   margin: auto;
 
   @media screen and (max-width: 768px) {
@@ -65,33 +65,37 @@ const SecondaryTitle = styled.h3`
   text-decoration: underline;
 
   @media screen and (max-width: 480px) {
-    margin: var(--m-2) 0 0 0;
+    margin: var(--m-4) 0;
   }
 `;
 
 function Layout({ location, title, children }) {
   const rootPath = `${__PATH_PREFIX__}/`;
 
-  let header;
+  let content;
   if (location.pathname === rootPath) {
-    header = (
-      <MainHeader>
-        <Wrapper>
-          <h1>
-            <Link to={"/"}>{title}</Link>
-          </h1>
-          <section>
-            <Bio />
-          </section>
-        </Wrapper>
-      </MainHeader>
+    content = (
+      <React.Fragment>
+        <MainHeader>
+          <Wrapper width={800}>
+            <h1>
+              <Link to={"/"}>{title}</Link>
+            </h1>
+            <section>
+              <Bio />
+            </section>
+          </Wrapper>
+        </MainHeader>
+        <Wrapper width={800}>{children}</Wrapper>
+      </React.Fragment>
     );
   } else {
-    header = (
+    content = (
       <Wrapper>
         <SecondaryTitle>
           <Link to={"/"}>{title}</Link>
         </SecondaryTitle>
+        {children}
       </Wrapper>
     );
   }
@@ -99,8 +103,7 @@ function Layout({ location, title, children }) {
   return (
     <div>
       <GlobalStyle />
-      {header}
-      <Wrapper>{children}</Wrapper>
+      {content}
     </div>
   );
 }
