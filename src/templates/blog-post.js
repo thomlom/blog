@@ -151,7 +151,7 @@ function BlogPostTemplate({
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
-        cover={post.frontmatter.cover.publicURL}
+        cover={post.frontmatter.cover.image.fluid.src}
       />
       <PostTitle>{post.frontmatter.title}</PostTitle>
       <Subtitle>
