@@ -4,6 +4,8 @@ date: "2019-08-28"
 cover: "cover.jpg"
 ---
 
+![Tools on a table](cover.jpg)
+
 Building high-quality apps is hard for many reasons:
 
 - The more your codebase grow, the more it becomes hard to maintain.

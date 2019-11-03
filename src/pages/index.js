@@ -53,7 +53,7 @@ const PostContent = styled.div`
   small {
     font-size: var(--text-xs);
     font-weight: 600;
-    color: var(--grey-500);
+    color: var(--grey-600);
   }
 
   p {
@@ -63,17 +63,31 @@ const PostContent = styled.div`
   }
 `;
 
-const Footer = styled.footer`
-  text-align: center;
-  margin: var(--m-3) 0;
+const Greetings = styled.p`
+  display: flex;
+  flex-direction: column;
+  background-color: var(--grey-100);
+  padding: var(--p-4);
+  border-radius: var(--small-radius);
+  color: var(--grey-800);
+
+  .wave {
+    font-weight: 900;
+    font-size: var(--text-3xl);
+  }
+
+  .text {
+    margin-top: var(--m-3);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+  }
 `;
 
 function BlogIndex({ data, location }) {
-  const siteTitle = data.site.siteMetadata.title;
   const posts = data.allMarkdownRemark.edges;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <SEO
         title="All posts"
         keywords={["blog", "javascript", "front-end", "react", "vue"]}
@@ -95,15 +109,6 @@ function BlogIndex({ data, location }) {
           </Post>
         );
       })}
-      <Footer>
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-          <img
-            alt="Licence Creative Commons"
-            style={{ borderWidth: "0" }}
-            src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
-          />
-        </a>
-      </Footer>
     </Layout>
   );
 }
@@ -112,11 +117,6 @@ export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
