@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -37,8 +36,22 @@ function NotFoundPage({ location }) {
       <Question>Where can I follow you?</Question>
       <Answer>
         You can follow me on{" "}
-        <Link href={`https://twitter.com/thomas_lombart`}>Twitter</Link> &amp;{" "}
-        <Link href={`https://github.com/thomlom`}>GitHub</Link>.
+        <a
+          href="https://twitter.com/thomas_lombart"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Twitter
+        </a>{" "}
+        &amp;{" "}
+        <a
+          href="https://github.com/thomlom"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+        .
       </Answer>
     </Layout>
   );
