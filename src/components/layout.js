@@ -169,6 +169,7 @@ function Layout({ location, children }) {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <span className="visually-hidden">Twitter profile</span>
             <svg
               role="img"
               viewBox="0 0 24 24"
@@ -183,6 +184,7 @@ function Layout({ location, children }) {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <span className="visually-hidden">GitHub profile</span>
             <svg
               role="img"
               viewBox="0 0 24 24"
@@ -197,6 +199,7 @@ function Layout({ location, children }) {
             target="_blank"
             rel="noopener noreferrer"
           >
+            <span className="visually-hidden">LinkedIn profile</span>
             <svg
               role="img"
               viewBox="0 0 24 24"
