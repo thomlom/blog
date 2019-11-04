@@ -32,7 +32,7 @@ const Header = styled.header`
       margin-left: var(--m-4);
 
       @media screen and (max-width: 480px) {
-        font-size: var(--text-xl);
+        font-size: var(--text-2xl);
       }
 
       a {
