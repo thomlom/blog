@@ -78,7 +78,7 @@ const Content = styled.div`
   p {
     color: var(--grey-700);
     font-size: var(--text-base);
-    line-height: 1.5;
+    line-height: 1.625;
     margin: var(--m-4) 0;
   }
 
