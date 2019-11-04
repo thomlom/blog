@@ -8,6 +8,10 @@ const Question = styled.p`
   font-weight: 900;
   font-size: var(--text-3xl);
   color: var(--grey-900);
+
+  @media (max-width: 480px) {
+    font-size: var(--text-2xl);
+  }
 `;
 
 const Answer = styled.p`
@@ -18,6 +22,10 @@ const Answer = styled.p`
   a {
     font-weight: 700;
     color: var(--grey-800);
+  }
+
+  @media (max-width: 480px) {
+    font-size: var(--text-lg);
   }
 `;
 
