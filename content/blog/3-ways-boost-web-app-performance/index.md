@@ -1,6 +1,6 @@
 ---
 title: 3 easy ways to boost your web application performance
-date: "2019-11-01"
+date: "2019-11-06"
 cover: "cover.jpg"
 next: /reverse-engineering-airbnb-internationalization-library/
 ---
