@@ -2,7 +2,6 @@
 title: Test React apps with React Testing Library
 date: "2019-10-09"
 cover: "cover.jpg"
-next: /soft-skills-developers/
 ---
 
 ![Red ball light](cover.jpg)
