@@ -59,7 +59,7 @@ module.exports = {
         icon: `content/assets/code.png`,
       },
     },
-    `gatsby-plugin-offline`,
+    `gatsby-plugin-remove-serviceworker`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-plugin-webpack-bundle-analyzer",
