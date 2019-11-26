@@ -93,6 +93,7 @@ const Footer = styled.footer`
 
 const SocialIcons = styled.div`
   a {
+    display: inline-block;
     &:not(:first-of-type) {
       margin-left: var(--m-4);
     }
