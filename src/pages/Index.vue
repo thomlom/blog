@@ -55,17 +55,22 @@ import DateAndTime from "../components/DateAndTime";
 
 export default {
   components: {
-    DateAndTime
+    DateAndTime,
   },
   metaInfo: {
     title: "All posts",
     meta: [
       {
         key: "description",
+        name: "description",
+        content:
+          "Boost your skills by reading high-quality posts and tutorials on modern web development and design.",
+      },
+      {
         name: "keywords",
-        content: "code, javascript, react, vue, design"
-      }
-    ]
-  }
+        content: "code, javascript, react, vue, design",
+      },
+    ],
+  },
 };
 </script>

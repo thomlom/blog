@@ -49,14 +49,14 @@ import DateAndTime from "../components/DateAndTime";
 
 export default {
   components: {
-    DateAndTime
+    DateAndTime,
   },
   metaInfo() {
     const { title, description, cover } = this.$page.post;
     return {
       title,
       meta: [
-        { key: "deescription", name: "description", content: description },
+        { key: "description", name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
@@ -65,15 +65,15 @@ export default {
         { property: "twitter:title", content: title },
         { property: "twitter:creator", content: "@thomas_lombart" },
         { property: "twitter:description", content: description },
-        { property: "twitter:image", content: cover.src }
-      ]
+        { property: "twitter:image", content: cover.src },
+      ],
     };
   },
   computed: {
     tweetLink() {
       return `https://twitter.com/intent/tweet?text="${this.$page.post.title}"%20by%20@thomas_lombart https://thomlom.dev${this.$page.post.path}`;
-    }
-  }
+    },
+  },
 };
 </script>
 
