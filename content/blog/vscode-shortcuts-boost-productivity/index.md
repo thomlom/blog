@@ -1,17 +1,16 @@
 ---
 title: VS Code shortcuts to boost your productivity
 date: "2020-01-02"
-cover: "cover.jpg"
+cover: "./cover.jpg"
 next: /test-react-testing-library/
+description: "Did you ever wanted to write code like a pro? To move chunks of code back and forth easily? Access whatever you want in the blink of an eye? Well, I did."
 ---
-
-![Picture of a bookshelf with a shortcut](cover.jpg)
 
 **Did you ever wanted to write code like a pro?** To move chunks of code back and forth easily? Access whatever you want in the blink of an eye? Well, I did.
 
 All the coding courses I took were recorded by instructors who seemed to know their code editor by heart. Seeing them slamming their keyboard and manipulating their code like pros made me think it was just _ridiculous_. That's when I decided to learn all the essential shortcuts of my favorite code editor: [VS Code](https://code.visualstudio.com/). So, if you're looking to be more productive as a developer, don't wait any further and play the video!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zaL3cMovFqs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+`youtube:https://youtu.be/zaL3cMovFqs`
 
 You'll find below the different shortcuts used in the video:
 
@@ -52,20 +51,20 @@ You'll find below the different shortcuts used in the video:
 - Go to symbol: `⇧ + ⌘ + O` or `Ctrl + Shift + O`
 - Go to symbol in the workspace: `⌘ + T` or `Ctrl + T`
 
-### Files
+## Files
 
 - Save file: `⌘ + S` or `Ctrl + S`
 - Close file: `⌘ + W` or `Ctrl + W`
 - Close all files: `⌘ + K ⌘ + W` or `Ctrl + K Ctrl + W`
 - Open previously closed: `⇧ + ⌘ + T` or `Ctrl + Shift + T`
 
-### Search
+## Search
 
 - Find: `⌘ + F` or `Ctrl + F`
 - Replace: `⌘ + ⌥ + F` or `Ctrl + H`
 - Find next/previous: `⌘ + G / ⇧ + ⌘ + G` or `Ctrl + F3 / Shift + Ctrl +F3`
 
-### Cursors
+## Cursors
 
 - Insert cursor: `⌥ + Click` or `Alt + Click`
 - Insert cursor above: `⌥ + ⌘ + ↑/↓` or `Ctrl + Alt + ↑`
@@ -74,7 +73,7 @@ You'll find below the different shortcuts used in the video:
 - Select all occurrences of current word: `⇧ + ⌘ + L` or `Ctrl + Shift + L`
 - Remove cursors: `Escape`
 
-### Display
+## Display
 
 - Show Explorer: `⇧ + ⌘ + E` or `Ctrl + Shift + E`
 - Show Search: `⇧ + ⌘ + F` or `Ctrl + Shift + F`

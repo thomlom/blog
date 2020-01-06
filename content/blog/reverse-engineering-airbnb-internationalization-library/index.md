@@ -1,10 +1,9 @@
 ---
 title: Reverse-engineering Airbnb's internationalization library
 date: '2019-04-29'
-cover: 'cover.jpeg'
+cover: './cover.jpeg'
+description: "Curiosity is one of the most important developer's assets. By being curious and experimenting things, you make sure you're constantly learning and upgrading your skills. Few weeks ago, I had to implement internationalization for an app I was working on."
 ---
-
-![Globe in a hand](cover.jpeg)
 
 Curiosity is one of the most important developer's assets. By being curious and experimenting things, you make sure you're constantly learning and upgrading your skills. Few weeks ago, I had to implement internationalization for an app I was working on. I chose to use [Polyglot](http://airbnb.io/polyglot.js/) because of its simplicity. It's also created by Airbnb, a company that has many great [open sources libraries](https://airbnb.io/projects/).
 

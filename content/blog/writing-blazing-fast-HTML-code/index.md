@@ -1,10 +1,9 @@
 ---
 title: Writing blazing fast HTML code
 date: '2018-06-21'
-cover: 'cover.jpeg'
+cover: './cover.jpeg'
+description: "Emmet is a plugin for text editors that will allow you to be way more productive when writing HTML code. Basically, you write a snippet, you press your tab key and Voilà. You just gained some time for the same result."
 ---
-
-![Speedometer](cover.jpeg)
 
 When it comes to write HTML code, it can get pretty tedious.
 
@@ -22,7 +21,7 @@ Let’s assume you want to write an items list. Well, this piece of code:
 
 will turn to that:
 
-![A simple items list](simple-list.png)
+![A simple items list](./simple-list.png)
 
 That’s a lot of HTML code and trust me, you don’t want to waste your time writing every single character by hand. You might think:
 

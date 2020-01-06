@@ -1,10 +1,9 @@
 ---
 title: Create a Discord bot under 15 minutes
 date: '2018-12-26'
-cover: 'cover.png'
+cover: './cover.png'
+description: "As of today, Discord is one of the most popular chat apps, especially for gamers and devs. People love it because it's free, it's efficient, it's cross-platform, it's... well, you guessed it, it's awesome."
 ---
-
-![Discord logo](cover.png)
 
 As of today, Discord is one of the most popular chat apps, especially for gamers and devs. People love it because it's free, it's efficient, it's cross-platform, it's... well, you guessed it, it's awesome. One of the great things you can do on Discord is to integrate bots on servers in order to make it more interactive. As an example, you may have encountered one of them that congratulates you and upgrades your level after you've sent many messages in the server. Or another one that allows you to listen to music using commands, to kick or ban members, etc.
 
@@ -43,7 +42,7 @@ npm install discord.js
 
 If we take a look at their website, we can see they already provide us some code to get started, how nice is this. We'll shamelessly copy-paste their example.
 
-![Screenshot of Discord.js's website](discordjs_website.png)
+![Screenshot of Discord.js's website](./discordjs_website.png)
 
 In your folder, create a new file called `index.js` and paste the following:
 
@@ -74,23 +73,23 @@ What does the code above do? Not so many things.
 
 1. Head over to [Discord's developer page](https://discordapp.com/developers/applications/) and click on **Create an application**.
 
-![Grabbing our token - step 1](grab-token-1.png)
+![Grabbing our token - step 1](./grab-token-1.png)
 
 2. Fill the **NAME** field and choose an avatar if you want. In my case, I chose to name it _Tommy the Bot_ and to make it look like Wall-E. Then click on **Save changes**. You should see a feedback message telling _"All your edits have been carefully recorded."_
 
-![Grabbing our token - step 2](grab-token-2.png)
+![Grabbing our token - step 2](./grab-token-2.png)
 
 3. On the left panel, click on **Bot**, then click on **ADD BOT**.
 
-![Grabbing our token - step 3](grab-token-3.png)
+![Grabbing our token - step 3](./grab-token-3.png)
 
 4. A popup should appear, click on **Yes, do it!**. Depending on the name of your app, you can see an error message telling you _"Too many users have this username, please try another."_. In that case, choose another name for your app. (I'm sorry for you if one of your fancy names was taken 😏)
 
-![Grabbing our token - step 4](grab-token-4.png)
+![Grabbing our token - step 4](./grab-token-4.png)
 
 5. After that, you should see a success message telling you _"A wild bot has appeared!"_.
 
-![Grabbing our token - step 5](grab-token-5.png)
+![Grabbing our token - step 5](./grab-token-5.png)
 
 6. Below **TOKEN**, click on **COPY** and paste it in `index.js` as a parameter of the `login` method. Voilà! You are now the happy owner of a Discord bot token.
 
@@ -106,29 +105,29 @@ Now, we are going to add the bot to a server, but for that, we need at least one
 
 1. After you logged in in [Discord](https://discordapp.com/), click on the **+** icon on your servers list:
 
-![Create a server - step 1](create-server-1.png)
+![Create a server - step 1](./create-server-1.png)
 
 2. A popup should appear. Click on **Create a server**.
 
-![Create a server - step 2](create-server-2.png)
+![Create a server - step 2](./create-server-2.png)
 
 3. Fill in the **SERVER NAME** field and choose the **SERVER REGION** depending on your location (the closest, the better).
 
-![Create a server - step 3](create-server-3.png)
+![Create a server - step 3](./create-server-3.png)
 
 Great. Now we're ready to add our bot to our server:
 
 4. Go back to the developer portal and click on **OAuth2** in the left panel. Under **SCOPES**, select **bot**. Finally, click on **Copy**.
 
-![Add a bot to a server - step 1](add-bot-server-1.png)
+![Add a bot to a server - step 1](./add-bot-server-1.png)
 
 5. Open a new tab and paste in the URL the one you've just copied. Select your server and click on **Authorize**.
 
-![Add a bot to a server - step 2](add-bot-server-2.png)
+![Add a bot to a server - step 2](./add-bot-server-2.png)
 
 6. Your bot is added! Go in the Discord app and check for your bot in the list of users.
 
-![Add a bot to a server - step 3](add-bot-server-3.png)
+![Add a bot to a server - step 3](./add-bot-server-3.png)
 
 ### Give life to your bot
 
@@ -166,11 +165,11 @@ npm run dev
 
 If all went well, you should see this in your terminal:
 
-![Testing our bot - step 1](test-bot-1.png)
+![Testing our bot - step 1](./test-bot-1.png)
 
 Go back to your Discord test server, you should see your bot online. Send _ping_ in the **general** channel, your bot will reply **Pong!**. Amazing!
 
-![Testing our bot - step 2](test-bot-2.png)
+![Testing our bot - step 2](./test-bot-2.png)
 
 ## Hide that token
 
@@ -264,15 +263,15 @@ That's normal. The bot doesn't have yet the permission to kick someone. Therefor
 
 1. Go to your Discord app and click on your server's name then on **Server Settings**
 
-![Attributing a role to the bot - step 1](role-1.png)
+![Attributing a role to the bot - step 1](./role-1.png)
 
 2. Click on **Roles**, then on the + icon. Add a name to the role. Then, in the list of permissions, scroll until you find **Kick Members** and toggle the switch.
 
-![Attributing a role to the bot - step 2](role-2.png)
+![Attributing a role to the bot - step 2](./role-2.png)
 
 3. Click on **Members** on the left side panel, Then click on the rounded + icon next to your bot and add the **bot** role.
 
-![Attributing a role to the bot - step 3](role-3.png)
+![Attributing a role to the bot - step 3](./role-3.png)
 
 Now, you're good to go. Go back to your Discord app and make sure you can kick users. Try to kick yourself and admire how the bot tells you you can't kick yourself.
 
@@ -435,11 +434,11 @@ Last part: deploying the bot. You're not going to let your computer always on ju
 1. Create an account or login on [Heroku](https://heroku.com)
 2. Click on **New**, then on **Create new app**:
 
-![Create new app on heroku - part 1](heroku_1.png)
+![Create new app on heroku - part 1](./heroku_1.png)
 
 3. Give your app a name and click on **Create app**:
 
-![Create new app on heroku - part 2](heroku_2.png)
+![Create new app on heroku - part 2](./heroku_2.png)
 
 4. In your project, create a file named `Procfile` at the root folder and insert the following content:
 
@@ -449,11 +448,11 @@ worker: node index.js
 
 5. Follow the instructions provided by Heroku on the deployment tab:
 
-![Create new app on heroku - part 3](heroku_3.png)
+![Create new app on heroku - part 3](./heroku_3.png)
 
 6. Finally, switch off the `web` process and switch on the `worker` process:
 
-![Create new app on heroku - part 4](heroku_4.png)
+![Create new app on heroku - part 4](./heroku_4.png)
 
 **Note**: We do so because we're running a **background task**.
 

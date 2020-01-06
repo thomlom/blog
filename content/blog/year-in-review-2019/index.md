@@ -1,11 +1,10 @@
 ---
 title: My year in review 2019
 date: "2019-12-11"
-cover: "cover.jpg"
+cover: "./cover.jpg"
 next: /time-management-productivity-developers/
+description: "In 2019, I decided to keep a journal and a list of accomplishments throughout the year so that I'm able to know how the year went for me. Honestly, it was a great idea. It's both surprising and instructive to know what you thought at different times of the year and what you did."
 ---
-
-![Person holding sparkler](cover.jpg)
 
 In 2019, I decided to keep a journal and a list of accomplishments throughout the year so that I'm able to know how the year went for me. Honestly, it was a great idea. It's both surprising and instructive to know what you thought at different times of the year and what you did.
 
@@ -37,7 +36,7 @@ All of this resources allowed me to become a better tester, to deeply understand
 
 I also created my own technical blog with Gatsby: [thomlom.dev](https://thomlom.dev). I've started from scratch and as of today, **I have 600+ unique visitors who read my blog everyday**, so thank you to all the readers of my blog! It takes time to write articles and it's a pleasure to know your content is actually read by persons:
 
-![Analytics from Nov. to Dec. of thomlom.dev](analytics.png)
+![Analytics from Nov. to Dec. of thomlom.dev](./analytics.png)
 
 I wrote different types of posts: tutorial (Discord bot), crash course (React Testing Library), reverse-engineering (Polyglot), collection of tips (Time management and productivity tips). However, I think some of my posts were too long. In 2020, I would like to keep writing posts but shorter ones.
 
@@ -64,7 +63,7 @@ But my biggest contribution to open source was mostly helping [another developer
 
 I also got hooked on UI and UX Design. I started to learn how to craft beautiful apps and experiences. This is something I started a few months ago so I'm still learning. However, I think I can already draw **good mockups** like this one:
 
-![Music player design](design.png)
+![Music player design](./design.png)
 
 ## Some failures
 
@@ -82,7 +81,7 @@ All of this made me realise I was too demanding with myself and that I should re
 
 That was 2019, now let's focus on 2020. These are the things I would like to do the upcoming year:
 
-- Learn even more about design. I want to be able to craft professional, good-looking and usable apps. I'm currently doing a challenge to improve myself that's called [Daily UI](https://www.dailyui.co/). I hope I'll finish it!
+- Learn even more about design. I want to be able to craft professional, good-looking and usable apps. I'm currently doing a challenge to improve myself that's called [Daily UI](https://www.dailyui.co/).
 - Upgrade infrastructure and back-end skills. I'm considering following the AWS Developer path on [A Cloud guru](https://acloud.guru/) to learn more about AWS, Docker, serverless, etc.
 - Animations: I want to learn how to create good animations. I just know how to do basic animations and I want to be able to build great-looking and fun animations like [this one](https://codepen.io/davidkpiano/pen/xLKBpM) or [this one](https://codepen.io/sdras/pen/gWWQgb).
 - Contribute even more into open source.

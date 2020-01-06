@@ -1,10 +1,9 @@
 ---
 title: How to get better at writing CSS
 date: '2018-07-17'
-cover: 'cover.png'
+cover: './cover.png'
+description: "Let’s not beat around the bush: writing great CSS code can be painful. A lot of developers don’t want to do CSS development. I can do everything you want, but nah! No CSS."
 ---
-
-![CSS logo](cover.png)
 
 Let’s not beat around the bush: writing great CSS code can be painful.
 A lot of developers don’t want to do CSS development. I can do everything you want, but nah! No CSS.
@@ -167,7 +166,7 @@ Here is an exercice for you. Go around to your favorite or most used websites an
 
 For example, this is what I imagine on the Google store:
 
-![BEM on Google Store](google-store.png)
+![BEM on Google Store](./google-store.png)
 
 It’s your turn. Be curious and think about what people could have done better. As always, you have to search by yourself, experiment, and create to get better at what you want.
 

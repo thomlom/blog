@@ -1,10 +1,9 @@
 ---
 title: 3 easy ways to boost your web application performance
 date: "2019-11-06"
-cover: "cover.jpg"
+cover: "./cover.jpg"
+description: "When building a web application, there's something you absolutely need to take account: performance. Your app may be greatly designed or have some killer features, nobody will use it if it's not performant."
 ---
-
-![Rocket launch](cover.jpg)
 
 When building a web application, there's something you absolutely need to take account: **performance.** Your app may be greatly designed or have some killer features, nobody will use it if it's not performant. Users are not patient. But how can one make an app more performant? Well, the less your browser has stuff to do, the faster it will be, right? Then, a great strategy to boost your app performance is to give the browser less work, that is to say, reduce the amount of stuff to load. There are easy ways to do so and we'll take a look at three of them today.
 
@@ -16,7 +15,7 @@ It's like watching a 10GB 4K movie on an old tiny computer. 4K or not, you won't
 
 There are plenty of apps that allows you to do so like [squoosh.app](https://squoosh.app/). For example, you can find below an example of an image whose size was reduced on squoosh:
 
-![Resize and reduce the quality of a nature image](image-resize.png)
+![Resize and reduce the quality of a nature image](./image-resize.png)
 
 Sure the image on the right is a little bit blurry and less detailed than the one of the left but at this zoom level, it's still looking good to me and it's also **96%** smaller which means your browser loads **5.2MB** less.
 
@@ -98,7 +97,7 @@ npm run analyze
 
 By running the script on one of your projects, you should get something similar to that:
 
-![Result of source-map-explorer on a project](analyze.png)
+![Result of source-map-explorer on a project](./analyze.png)
 
 You can see in the results that the bigger a dependency is, the more it takes up place visually. That's a great way to spot the heaviest dependencies.
 
@@ -110,13 +109,13 @@ Once you have the results, it's up to you to see which dependencies are the heav
 
 For example, I used to use [moment.js](https://momentjs.com/) for date manipulation. But it has a pretty big cost on your package:
 
-![Cost of moment in your package](moment.png)
+![Cost of moment in your package](./moment.png)
 
 In fact, `moment` is not modular. If you need to manipulate dates, then you need to create a `Moment` instance that gives you access to a lot of methods even if you use just one or two of them.
 
 Now, I use [date-fns](https://date-fns.org/) which is way more modular and lighter too:
 
-![Cost of date-fns in your package](date-fns.png)
+![Cost of date-fns in your package](./date-fns.png)
 
 You can follow the same logic for a lot of dependencies. However, **be pragmatic** when making these choices:
 

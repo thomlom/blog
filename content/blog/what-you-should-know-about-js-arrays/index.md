@@ -1,10 +1,9 @@
 ---
 title: What you should know about JavaScript arrays
 date: '2019-03-10'
-cover: 'cover.jpeg'
+cover: './cover.jpeg'
+description: "Let me make a bold statement: for loops are often useless and make the code hard to read. When it comes to iterating over an array, finding elements, sorting it or whatever you want, there's probably an array method out there that you can use."
 ---
-
-![Picture of a laptop](cover.jpeg)
 
 Let me make a bold statement: **for loops are often useless and make the code hard to read**. When it comes to iterating over an array, finding elements, sorting it or whatever you want, there's probably an array method out there that you can use.
 

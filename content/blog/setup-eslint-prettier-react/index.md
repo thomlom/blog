@@ -1,10 +1,9 @@
 ---
 title: How to setup ESLint and Prettier for your React apps
 date: "2019-08-28"
-cover: "cover.jpg"
+cover: "./cover.jpg"
+description: Nowadays, there are many tools that allow us to write quality code and make sure our apps don't break. You may think of testing tools like Jest, React Testing Library or Cypress at first, but before even writing tests, you can add a first layer of safety in your app with a linter.
 ---
-
-![Tools on a table](cover.jpg)
 
 Building high-quality apps is hard for many reasons:
 
@@ -593,4 +592,4 @@ Here we use ESLint to lint and format JS and JSX files. We also use Prettier to 
 
 If all goes well, you should have a `pre-commit` hook that both lints and format your code. You can find below a video of what running a pre-commit hook with the configuration above looks like:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rhKa5ICkrGk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+`youtube:https://youtu.be/rhKa5ICkrGk`
