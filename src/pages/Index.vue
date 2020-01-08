@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div class="max-w-3xl p-4 md:p-0 mx-auto mb-10">
+    <div class="max-w-3xl p-4 md:p-0 mx-auto">
       <div
         v-for="post in $page.posts.edges"
         :key="post.node.title"

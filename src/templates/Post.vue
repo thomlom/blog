@@ -1,5 +1,5 @@
 <template>
-  <Layout :has-small-header="true">
+  <Layout :in-post-layout="true">
     <article class="max-w-full md:max-w-2xl mx-auto py-6 px-4 md:px-0">
       <h1
         class="font-extrabold text-3xl md:text-4xl leading-tight text-gray-800"
@@ -18,14 +18,29 @@
         class="rounded mt-4 mx-auto block"
       />
       <div class="post mt-4" v-html="$page.post.content" />
-      <a
-        :href="tweetLink"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="block border text-center mt-10 bg-primary-700 text-primary-100 p-3 text-xl font-bold rounded cursor-pointer"
-      >
-        Share on Twitter
-      </a>
+      <hr />
+      <p class="mt-6 italic">
+        If you liked this article, why not
+        <a
+          :href="tweetLink"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline text-primary-800 font-semibold"
+        >
+          sharing it on Twitter then </a
+        >? It takes you veeeeery little time and you'll make me happy!
+        <span class="not-italic">😀</span>
+      </p>
+      <p class="italic">
+        If you didn't like it, have questions or suggestions, please
+        <a
+          href="mailto:t.lombart97@gmail.com"
+          class="underline text-primary-800 font-semibold"
+        >
+          reach out to me!</a
+        >
+        I'm nice, I promise.
+      </p>
     </article>
   </Layout>
 </template>

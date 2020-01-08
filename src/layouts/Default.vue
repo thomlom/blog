@@ -1,19 +1,22 @@
 <template>
-  <div class="font-display font-body min-h-screen flex flex-col">
+  <div class="font-display font-body min-h-screen flex flex-col bg-gray-100">
     <header class="gradient">
-      <small-header v-if="hasSmallHeader" />
+      <small-header v-if="inPostLayout" />
       <large-header v-else />
     </header>
     <transition name="fade" appear>
-      <main class="bg-gray-100">
+      <main>
         <slot />
       </main>
     </transition>
-    <!-- <newsletter class="max-w-3xl mx-auto" /> -->
     <footer
-      class="bg-gray-200 border border-gray-300 flex justify-center py-6 pt-4 md:pt-8"
+      class="p-4 md:p-0 mb-2 md:mb-6 w-full mx-auto"
+      :class="inPostLayout ? 'max-w-2xl md:mt-2' : 'max-w-3xl md:mt-8'"
     >
-      <p class="font-semibold text-gray-700">© 2020 Thomas Lombart</p>
+      <newsletter />
+      <p class="mt-4 text-sm text-gray-700 font-medium text-center">
+        © 2020 Thomas Lombart
+      </p>
     </footer>
   </div>
 </template>
@@ -32,23 +35,25 @@ import Twitter from "~/assets/icons/twitter.png";
 import YouTube from "~/assets/icons/youtube.png";
 
 import LargeHeader from "../components/LargeHeader";
+import Newsletter from "../components/Newsletter";
 import SmallHeader from "../components/SmallHeader";
 
 export default {
   components: {
     LargeHeader,
-    SmallHeader
+    Newsletter,
+    SmallHeader,
   },
   props: {
-    hasSmallHeader: Boolean
+    inPostLayout: Boolean,
   },
   data() {
     return {
       GitHub,
       Twitter,
-      YouTube
+      YouTube,
     };
-  }
+  },
 };
 </script>
 
