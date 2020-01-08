@@ -1,7 +1,7 @@
 ---
 title: Soft skills every developer should have
-date: '2019-06-03'
-cover: './cover.jpg'
+date: "2019-06-03"
+cover: "./cover.jpg"
 description: "Soft skills are important, more important than technical skills. Because once you get the right soft skills, technical skills come naturally. Let's see which skills and why."
 ---
 

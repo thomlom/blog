@@ -3,7 +3,7 @@ title: VS Code shortcuts to boost your productivity
 date: "2020-01-02"
 cover: "./cover.jpg"
 next: /test-react-testing-library/
-description: "Did you ever wanted to write code like a pro? To move chunks of code back and forth easily? Access whatever you want in the blink of an eye? Well, I did."
+description: "Mastering the shortcuts of your code editor is a great way to increase your productivity. Let's see how you can leverage the power of VS Code shortcuts to make you write code like a pro."
 ---
 
 **Did you ever wanted to write code like a pro?** To move chunks of code back and forth easily? Access whatever you want in the blink of an eye? Well, I did.

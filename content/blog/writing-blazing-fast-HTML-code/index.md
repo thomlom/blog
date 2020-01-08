@@ -2,7 +2,7 @@
 title: Writing blazing fast HTML code
 date: '2018-06-21'
 cover: './cover.jpeg'
-description: "Emmet is a plugin for text editors that will allow you to be way more productive when writing HTML code. Basically, you write a snippet, you press your tab key and Voilà. You just gained some time for the same result."
+description: "Emmet is a plugin for text editors that will allow you to be way more productive when writing HTML code. Basically, you write a snippet, you press your tab key and Voilà. You just gained some time for the same result. Learn how to write fast HTML Code in this article!"
 ---
 
 When it comes to write HTML code, it can get pretty tedious.

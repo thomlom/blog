@@ -2,7 +2,7 @@
 title: How to setup ESLint and Prettier for your React apps
 date: "2019-08-28"
 cover: "./cover.jpg"
-description: Nowadays, there are many tools that allow us to write quality code and make sure our apps don't break. You may think of testing tools like Jest, React Testing Library or Cypress at first, but before even writing tests, you can add a first layer of safety in your app with a linter.
+description: A lot of tools exist nowadays to help you build high-quality apps. Two of them are ESLint and Prettier. They provide a good layer of safety in your app but setting them up can sometimes be confusing. Learn how to setup them properly in your React apps.
 ---
 
 Building high-quality apps is hard for many reasons:

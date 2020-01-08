@@ -2,7 +2,7 @@
 title: 3 easy ways to boost your web application performance
 date: "2019-11-06"
 cover: "./cover.jpg"
-description: "When building a web application, there's something you absolutely need to take account: performance. Your app may be greatly designed or have some killer features, nobody will use it if it's not performant."
+description: "When building a web application, there's something you absolutely need to take account: performance. Lucky for you, there are easy ways to boost your web application performance. Come and learn how to do so!"
 ---
 
 When building a web application, there's something you absolutely need to take account: **performance.** Your app may be greatly designed or have some killer features, nobody will use it if it's not performant. Users are not patient. But how can one make an app more performant? Well, the less your browser has stuff to do, the faster it will be, right? Then, a great strategy to boost your app performance is to give the browser less work, that is to say, reduce the amount of stuff to load. There are easy ways to do so and we'll take a look at three of them today.

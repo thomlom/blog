@@ -2,7 +2,7 @@
 title: Create a Discord bot under 15 minutes
 date: '2018-12-26'
 cover: './cover.png'
-description: "As of today, Discord is one of the most popular chat apps, especially for gamers and devs. People love it because it's free, it's efficient, it's cross-platform, it's... well, you guessed it, it's awesome."
+description: "Discord is one of the most popular chat apps, especially for gamers and devs. It's cross-platform, free, efficient and you can do many things including building bots. Let's learn how to create such a bot."
 ---
 
 As of today, Discord is one of the most popular chat apps, especially for gamers and devs. People love it because it's free, it's efficient, it's cross-platform, it's... well, you guessed it, it's awesome. One of the great things you can do on Discord is to integrate bots on servers in order to make it more interactive. As an example, you may have encountered one of them that congratulates you and upgrades your level after you've sent many messages in the server. Or another one that allows you to listen to music using commands, to kick or ban members, etc.

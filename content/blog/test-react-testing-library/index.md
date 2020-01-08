@@ -2,7 +2,7 @@
 title: Test React apps with React Testing Library
 date: "2019-10-09"
 cover: "./cover.jpg"
-description: "Building web applications is not an easy task as of today. To do so, you're probably using something like React, Vue or Angular. Your app is faster, the code is both more maintainable and readable. But that's not enough. The more your codebase grows, the more complex and buggy it is."
+description: "React Testing Library is an awesome library that helps you strengthen your React applications. Learn how you can make use of it in your React apps and start to write maintainable tests!"
 ---
 
 Building web applications is not an easy task as of today. To do so, you're probably using something like React, Vue or Angular. Your app is faster, the code is both more maintainable and readable. But that's not enough. The more your codebase grows, the more complex and buggy it is. So if you care about that, **learn to write tests**. That's what we'll do today for React apps.

@@ -2,7 +2,7 @@
 title: How to test JavaScript with Jest
 date: '2019-09-18'
 cover: './cover.jpeg'
-description: "Testing is an important skill every developer should have. Still, some developers are reluctant to test. We’ve all met at some point someone who thinks tests are useless or that it takes too much effort to write them."
+description: "Testing is an important skill every developer should have. Still, some developers are reluctant to test: it takes too much time and effort. It doesn't have to be that way though. Let's see how to get started on testing JavaScript."
 ---
 
 Testing is an important skill every developer should have. Still, some developers are reluctant to test. We’ve all met at some point someone who thinks tests are useless or that it takes too much effort to write them. While it's possible to have that feeling when starting to write tests, once you learn to properly test your apps, you'll never look back again. Why? Because when well-written, **tests allow you to ship robust apps with confidence.**

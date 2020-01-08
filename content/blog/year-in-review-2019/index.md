@@ -3,7 +3,7 @@ title: My year in review 2019
 date: "2019-12-11"
 cover: "./cover.jpg"
 next: /time-management-productivity-developers/
-description: "In 2019, I decided to keep a journal and a list of accomplishments throughout the year so that I'm able to know how the year went for me. Honestly, it was a great idea. It's both surprising and instructive to know what you thought at different times of the year and what you did."
+description: "In 2019, I decided to keep a journal and a list of accomplishments throughout the year so that I'm able to know how the year went for me. Let's review 2019 then!"
 ---
 
 In 2019, I decided to keep a journal and a list of accomplishments throughout the year so that I'm able to know how the year went for me. Honestly, it was a great idea. It's both surprising and instructive to know what you thought at different times of the year and what you did.
