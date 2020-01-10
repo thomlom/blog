@@ -1,0 +1,65 @@
+---
+title: How to find your next awesome ideas
+date: "2020-01-10"
+cover: "./cover.jpg"
+description: "Finding ideas is a hard task. And when you finally think you got a great idea, you realise it already exists or that you're incompetent. Then, how can you make your ideas come true?"
+---
+
+Humans love creating and inventing. It’s our ideas that shape the world. Ideas are fascinating: anyone can have them and yet they are sometimes hard to find.
+
+This is especially true for designers and developers. Creation is our core business. We think everyday of new things, new concepts, new apps. Our world moves fast and we need to adapt to it.
+
+In the past, I used to say something like:
+
+> "Yeah I have the skills but… I just don’t know what to do with it"
+
+> "It already exists. Why should I spend time on it?"
+
+> "I'll fail. I shouldn’t do it."
+
+Well, I think I was wrong, for all three sentences. At the end of the day, there are so many solutions and ideas out there that thinking of new ideas seem impossible to us. We also are dazzled by these successful start-ups that changed the world. So how would I be able to do the same? It seems impossible, right?
+
+## The magic sentence
+
+Yet, I'm sure that you can come up with something. And it’s not that hard! You might not realize it but you think of new ideas everyday, you just don’t pay attention to it. Indeed, every time you encounter a problem and you find yourself thinking “it should exists”, chances are you just got your new idea.
+
+Want to find your ideas now? Well, here is a great exercise for you:
+
+1. Take a piece of paper and a pen.
+2. Think of what frustrates you during your day or in the world. It can be anything, from daily hassles to big problems.
+3. Once you found them, write them down.
+4. Find the ones you are able to solve and think of the solutions
+
+That’s it. Here are some examples:
+
+**Problem**: _“I like to run and train but I feel like I'm never motivated enough to practice consistently.”_
+
+Solution: Create a workout or running app focusing on motivation. Add a lot of gamification or rewards.
+
+**Problem**: _"I don't find good questions/resources for my next programming interview. I always stumble upon many different websites and I'm not sure if they're reliable."_
+
+Solution: Create a database of questions browsable by categories and focus on keeping only the best ones.
+
+**Problem**: _“People need to have an ecological way of life but they don't know how to get started and usually want to change progressively.”_
+
+Solution: Build something that would make people change a little bit more each day. Maybe a newsletter that sends a challenge a day for 30 days. Or a chatbot to whom you can ask anything about climate change and your next ecological steps.
+
+You can even do better: each time you find yourself complaining about something, **ask yourself why and note it somewhere.** When you have time, think of what could have stopped you from complaining. Aside of that, spend some time observing others and see if they struggle with something. If they do, try to guess why and think of the solutions. These tips may sound silly but they work!
+
+## But... it already exists
+
+I’m sure some of you will tell me that the solutions I described above already exists. Yes, maybe. Who cares? Unless, it's **exactly identical** to what you've thought, you can always do better. You can add new concepts to the original idea or come up with a more intuitive design. For instance, there are a lot of chat applications nowadays. However, some of them are more into privacy while others are into being available to everybody on the planet.
+
+Be careful though, creating something that already exists isn't about copying someone’s app or stealing the idea from someone else and doing the exact same thing. Not at all. It’s about being inspired by other ideas, figuring out what you love about them and making them your own, recreating them. You all love some applications or some concepts and I’m sure you also dislike or even hate something about them. Why not improving this idea then? Why wouldn’t you take it and create something new about it? For example, maybe you love this to-do app but you think it’s messy. Then design a better experience!
+
+Yes, technically, “it has already been made”. But to me, it's more "someone already created his vision of the idea". You can make it your own and that, probably, doesn't exist.
+
+## If you feel it, then go for it
+
+Now, let's say you have an idea, you know what to do but you’re pretty sure you will fail. It's hard to gain trust in ourselves. We can feel quickly overwhelmed, incompetent or outdated. We tend to think that we know nothing because of the abundance of resources. And it doesn’t get better when we look at others. Indeed, we're interested in successful and famous persons. The persons whose projects are popular, who always has brilliant ideas and seem to do awesome things in their everyday life. The same goes for start-ups who rock everything.
+
+So yeah, you can quickly feel demotivated because you think there's too much work and that in the end, you’re not as good as the others, so why bother. Well, here is an obvious advice for you: just go for it. Really. Do it.
+
+**You'll never lose.** Indeed, if you fail, you'll have gained experience and you have to fail before you can succeed. Obviously, we love reading successful stories, not the ones who fail, so we think failing is terrible, but it's a common thing. You’ll likely never feel ready to create what you are dreaming of. You have a project? just create it, spend some time on it and stick to it even if it’s hard. Starting yet another side-project can be tempting, but you’ll end up with a lot of projects that will lead you to nowhere. And if you're creating a project to gain experience and show off your skills, I can assure you that **one big project is far better than a hundred small projects**.
+
+To sum up, find your ideas by looking at what bothers you and the others. Don’t worry if you find something similar: re-create the experience and add it your own touch. Be bold and don't worry if you fail, it's totally OK. One day, you'll make your ideas come true.
