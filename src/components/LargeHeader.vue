@@ -32,7 +32,7 @@
           >Twitter</a
         >,
         <a
-          href="https://gihub.com/thomlom"
+          href="https://github.com/thomlom"
           target="_blank"
           rel="noopener noreferrer"
           class="link"
