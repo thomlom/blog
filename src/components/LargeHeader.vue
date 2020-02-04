@@ -13,12 +13,12 @@
     </div>
     <div class="mt-4 sm:ml-8 sm:mt-0">
       <p class="text-2xl sm:text-3xl text-primary-100 font-bold leading-tight">
-        Hi. I'm Thomas, a front-end developer.
+        Hi! I'm Thomas, a front-end engineer.
       </p>
       <p
         class="text-xl sm:text-2xl text-primary-100 mt-2 leading-snug font-semibold"
       >
-        I write and make videos about code, design and everything in between.
+        I write and speak about code, design and everything in between.
       </p>
       <p
         class="mt-2 sm:mt-3 text-xl sm:text-2xl text-primary-100 leading-snug font-semibold"
@@ -30,23 +30,16 @@
           rel="noopener noreferrer"
           class="link"
           >Twitter</a
-        >,
+        >
+        and
         <a
           href="https://github.com/thomlom"
           target="_blank"
           rel="noopener noreferrer"
           class="link"
         >
-          GitHub
+          GitHub.
         </a>
-        and
-        <a
-          href="https://youtube.com/channel/UCSXKZ1EDQIsSs5ArKT1Vaaw"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="link"
-          >YouTube</a
-        >.
       </p>
     </div>
   </div>
