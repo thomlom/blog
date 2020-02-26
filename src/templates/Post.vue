@@ -18,29 +18,6 @@
         class="rounded mt-4 mx-auto block"
       />
       <div class="post mt-4" v-html="$page.post.content" />
-      <hr />
-      <p class="mt-6 italic">
-        If you liked this article, why not
-        <a
-          :href="tweetLink"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline text-primary-800 font-semibold"
-        >
-          sharing it on Twitter then </a
-        >? It takes you veeeeery little time and you'll make me happy!
-        <span class="not-italic">😀</span>
-      </p>
-      <p class="italic">
-        If you didn't like it, have questions or suggestions, please
-        <a
-          href="mailto:t.lombart97@gmail.com"
-          class="underline text-primary-800 font-semibold"
-        >
-          reach out to me!</a
-        >
-        I'm nice, I promise.
-      </p>
     </article>
   </Layout>
 </template>
@@ -83,11 +60,6 @@ export default {
         { property: "twitter:image", content: cover.src },
       ],
     };
-  },
-  computed: {
-    tweetLink() {
-      return `https://twitter.com/intent/tweet?text="${this.$page.post.title}"%20by%20@thomas_lombart https://thomlom.dev${this.$page.post.path}`;
-    },
   },
 };
 </script>
