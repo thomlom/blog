@@ -35,8 +35,8 @@ const Layout = ({ location, children }) => {
             )}
           </div>
         </header>
-        <main className="max-w-2xl my-5 mx-auto flex-1">{children}</main>
-        <footer className="mb-4 md:mb-6 w-full">
+        <main className="max-w-2xl my-5 mx-auto w-full flex-1">{children}</main>
+        <footer className="mb-4 md:mb-6">
           <p className="mt-2 md:mt-4 text-sm text-gray-700 font-medium text-center">
             © {new Date().getFullYear()} Thomas Lombart
           </p>
