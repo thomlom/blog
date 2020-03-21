@@ -1,0 +1,59 @@
+---
+title: How to make a responsive grid with only three lines of CSS
+date: "2020-03-18"
+cover: "./cover.jpg"
+description: "Making a user interface responsive is hard. It often means struggling with media queries for many hours to get a result that is barely okay. However, new CSS technologies like CSS Grid have made this task far less tedious, especially for grids."
+tags: [css]
+quick: true
+---
+
+Making a user interface responsive is hard. It often means struggling with media queries for many hours to get a result that is barely okay. However, new CSS technologies like CSS Grid have made this task far less tedious, especially for grids.
+
+For example, imagine you have to display a list of products for a commerce app. Your task is to make it responsive, so you decide to display three products per row for desktops, two products per row for tablets and only one product per row for mobiles.
+
+Let's use an example, here is a simplified HTML code:
+
+```html
+<div class="grid">
+  <div class="item">Product 1</div>
+  <div class="item">Product 2</div>
+  <div class="item">Product 3</div>
+  <div class="item">Product 4</div>
+  <div class="item">Product 5</div>
+  <div class="item">Product 6</div>
+</div>
+```
+
+How would you transform that code into a fully responsive list? There are some things to think about this:
+
+- What do you have to do to make this list responsive? Should you use flexbox? Do you handle it via different media queries?
+- How do you manage the width of the items? Do you give them a fixed width (`width: 200px`) or a relative width (`width: 25%`)? If you give them a fixed width, what happens if there are remaining spaces (the container is `800px` and the three items `250px` for example)?
+- How do you manage the gutter of your grid? Do you set a `margin` for all elements? If yes, how do you handle the last and first elements margins?
+
+As always in CSS, you could do this task in different ways. But one solution stands out. This solution is called CSS Grid and it solves all these problems very easily:
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+```
+
+Three lines of CSS and BOOM! You have a responsive grid 🤯
+
+Let's explain what these lines do. First, you give the container a `display: grid` property. It defines the `div` as a grid container and allows you to use the different CSS Grid properties (just like you would do with `display: flex`).
+
+Then, you have `grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))` which is not really understandable at first.
+
+`grid-template-columns` allows you to define the number and the width of columns in the grid. As an example: `grid-template-columns: 100px 100px 100px` defines 3 columns of `100px`.
+
+Let's break down `repeat(auto-fit, minmax(200px, 1fr))` in three parts:
+
+- `repeat()`: this function takes two arguments, the number of columns you want to defines and the width. For example, `repeat(5, 200px)` defines 5 columns of 200px.
+- `auto-fit`: this tells your grid container to create as many columns as possible without overflowing the container. Note that you can also use `auto-fill` instead of `auto-fit`. You can learn the differences between them [by reading this excellent article](https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/).
+- `minmax(200px, 1fr)`: this function takes two arguments, a minimum and a maximum (what a surprise!). Here it means, the function will create columns with a minimum of `200px` and a maximum of `1fr`. A `fr` is a fractional unit that takes one part of the available space.
+
+Finally, you have `grid-gap: 10px`. It allows you to specify the spacing between the columns and the rows. Here, there will be `10px` between each grid cell.
+
+To sum up, these three magic lines makes a list fully responsive by activating CSS Grid. It tells the grid to make sure the items will have a minimum of `200px` each. But if the grid can’t fit them all on one column, it should create as many columns and rows as needed without overflowing the grid container. On top of that, the items should always fill equally all the available space and have `10px` of space between them.

@@ -1,71 +1,48 @@
 import React from "react"
 import { Link } from "gatsby"
+import { MDXProvider } from "@mdx-js/react"
 
-import { rhythm, scale } from "../utils/typography"
+import postComponents from "./postComponents"
+import Newsletter from "./newsletter"
 
-const Layout = ({ location, title, children }) => {
+const shortcodes = { Newsletter }
+
+const Layout = ({ location, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
-  let header
 
-  if (location.pathname === rootPath) {
-    header = (
-      <h1
-        style={{
-          ...scale(1.5),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <h3
-        style={{
-          fontFamily: `Montserrat, sans-serif`,
-          marginTop: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h3>
-    )
-  }
   return (
-    <div
-      style={{
-        marginLeft: `auto`,
-        marginRight: `auto`,
-        maxWidth: rhythm(24),
-        padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-      }}
-    >
-      <header>{header}</header>
-      <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
-    </div>
+    <MDXProvider components={{ ...shortcodes, ...postComponents }}>
+      <div className="p-3 md:px-0 bg-gray-100 min-h-screen flex flex-col">
+        <header>
+          <div className="max-w-2xl mx-auto flex items-center justify-between">
+            <Link to={"/"}>
+              <h1 className="text-primary-700 text-4xl m-0 font-black">
+                Thomlom
+              </h1>
+            </Link>
+            {location.pathname !== rootPath ? (
+              <Link to={"/"}>
+                <p className="gradient px-3 py-1 rounded text-primary-100 font-bold shadow">
+                  See all posts
+                </p>
+              </Link>
+            ) : (
+              <Link to={"/about"}>
+                <p className="gradient px-3 py-1 rounded text-primary-100 font-bold shadow">
+                  About me
+                </p>
+              </Link>
+            )}
+          </div>
+        </header>
+        <main className="max-w-2xl my-5 mx-auto flex-1">{children}</main>
+        <footer className="mb-4 md:mb-6 w-full">
+          <p className="mt-2 md:mt-4 text-sm text-gray-700 font-medium text-center">
+            © {new Date().getFullYear()} Thomas Lombart
+          </p>
+        </footer>
+      </div>
+    </MDXProvider>
   )
 }
 

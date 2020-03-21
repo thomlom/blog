@@ -1,67 +1,17 @@
-/**
- * Bio component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
-
-import { rhythm } from "../utils/typography"
 
 const Bio = () => {
-  const data = useStaticQuery(graphql`
-    query BioQuery {
-      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-        childImageSharp {
-          fixed(width: 50, height: 50) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          author {
-            name
-            summary
-          }
-          social {
-            twitter
-          }
-        }
-      }
-    }
-  `)
-
-  const { author, social } = data.site.siteMetadata
   return (
-    <div
-      style={{
-        display: `flex`,
-        marginBottom: rhythm(2.5),
-      }}
-    >
-      <Image
-        fixed={data.avatar.childImageSharp.fixed}
-        alt={author.name}
-        style={{
-          marginRight: rhythm(1 / 2),
-          marginBottom: 0,
-          minWidth: 50,
-          borderRadius: `100%`,
-        }}
-        imgStyle={{
-          borderRadius: `50%`,
-        }}
-      />
-      <p>
-        Written by <strong>{author.name}</strong> {author.summary}
-        {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
-        </a>
+    <div className="max-w-2xl mx-auto p-6 md:py-8 md:px-0 flex flex-col">
+      <p className="text-2xl sm:text-3xl text-primary-100 font-bold leading-tight">
+        Hi! I'm Thomas Lombart, a front-end engineer.
+      </p>
+      <p className="text-lg sm:text-xl text-primary-100 mt-2 leading-snug">
+        I'm Thomas, a french front-end engineer at Back Market. I write and
+        speak about code, design and everything in between. I also contribute to
+        open source when I'm not busy doing other things. On a personal side, I
+        love travelling, training, watching good movies (and listening to their
+        soundtracks). Feel free to reach out to me!
       </p>
     </div>
   )

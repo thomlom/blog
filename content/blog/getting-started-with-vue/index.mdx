@@ -1,0 +1,365 @@
+---
+title: Getting started with Vue
+date: "2020-03-16"
+cover: "./cover.png"
+description: "Vue is a great framework for building user interfaces. It's component-based, lightweight, fast and reactive which makes it a solid alternative to React. Learn in this post how to get started with Vue!"
+tags: [vue]
+---
+
+Vue.js is a progressive framework created in 2014 by Evan You that allows you to build user interfaces. If you come from a React background, learning Vue will be easy, the concepts stay the same. But if you're used to pure JavaScript or jQuery, well, things are going to be way different here!
+
+Indeed, it's a pain to manage state in your applications. Vue solves this problem by bringing **reactivity** to your apps. What does that mean? Well, whenever something changes, your UI updates automatically. On top of that, you can split your app into pieces of code that are called **components.** The point of components is that it's easy to create, compose and reuse them.
+
+## Declarative rendering and first directive: v-bind
+
+One of the great things you can do with Vue is to render data to the DOM (Document Object Model) in a simple way. You'll find below a first example of how to use reactive data with Vue:
+
+```html
+<div id="app">
+  <p>My name is {{ name }}</p>
+</div>
+```
+
+```js
+new Vue({
+  el: "#app",
+  data: {
+    name: "James Bond",
+  },
+})
+```
+
+Wow. What happened here? What's `data`? `{{ name }}`? `el`? These are legit questions and I'll answer them right away.
+
+If you look at the JavaScript code, you can see we created a new Vue instance (`new Vue`). We specified where to mount this instance with the `el` property, that is to say in the `div` whose `id` is `#app`. Finally, we provided a `data` object to that instance. We set a `name` property whose value is `James Bond`.
+
+Go back to the HTML file. You can see there is a `p` tag containing `My name is {{ name }}`. By using these double brackets, you told Vue:
+
+_"Do you see this name property that you have in your data? I want you to put its value in these brackets!"_
+
+And the magic happened. Vue, behind the scenes did a lot of stuff and made your data reactive. It means, that whenever you modify the `name` property, the changes are reflected immediately into the DOM. How cool is this?
+
+## Bind attributes
+
+Vue can bind the attributes of your elements to your data properties. Binding means keeping your attributes up-to-date with your properties. You can do so using the directive `v-bind:ATTRIBUTE` or with the shorthand `:ATTRIBUTE`. Let's see an example of that:
+
+```html
+<div id="app">
+  <input v-bind:placeholder="placeholder" />
+</div>
+```
+
+```js
+new Vue({
+  el: "#app",
+  data: {
+    placeholder: "James Bond",
+  },
+})
+```
+
+## Conditional rendering: v-if
+
+I bet you can guess what is the purpose of `v-if` just with the name. It’s about conditional rendering: render elements based on a condition. As an example, you may want to render elements only if the user is an admin:
+
+```html
+<div id="app">
+  <p>Hello World</p>
+  <p v-if="admin">
+    You can see this sentence because you're an admin
+  </p>
+</div>
+```
+
+```js
+new Vue({
+  el: "#app",
+  data: {
+    admin: false,
+  },
+})
+```
+
+On the example above, you have: `You can see this sentence because you’re an admin`. If you were to use the app, you would see this sentence only because the condition passed to `v-if` is `true` (`admin`).
+
+Vue provides another conditional directive: `v-else`. For instance, have you noticed how the navigation bar of certain websites change when you’ve just logged? You could imagine a login button and a register button replaced by a profile or account button. Well, that behavior is the perfect use case for `v-if` and `v-else`.
+
+## Events with v-on
+
+That's a directive you will often use. Indeed, it allows you to attach event listeners to elements. These events when triggered will invoke methods of your Vue instance. You can use them by writing `v-on:event="method"` or the shorthand `@event="method"`.
+
+If you come from a React background, this is similar to `onClick`, `onChange`, etc. There are similar events for Vue: `@click`, `@keyup`, `@input`, etc.
+
+Now you might think _"Wait. what methods is he talking about?"_. In Vue, you can attach methods to your component by providing a `methods` object to the Vue instance just like you do with `data`. The advantage of using methods over regular JS functions is that methods have access to the data declared in your Vue instance. As you have access to the data, you have the ability to change your `data` properties from your methods:
+
+```html
+<div id="app">
+  <button @click="changeMessage">
+    Click on me to change the sentence below
+  </button>
+  <p>{{ message }}</p>
+</div>
+```
+
+```js
+new Vue({
+  el: "#app",
+  data: {
+    message: "Hello world!",
+  },
+  methods: {
+    changeMessage() {
+      this.message = "Hey everyone!"
+    },
+  },
+})
+```
+
+The new thing you discover here is the use of `this`. Here, `this` refers directly to the Vue instance. Thus, you can easily access your data properties from your methods using `this.PROPERTY_NAME`. Here, we accessed and changed the message by assigning a new value to `this.message` in `changeMessage` method.
+
+## User input with v-model
+
+You often need to get user input in an app. Lucky you! Vue's got your back on that one with `v-model`. Indeed, you can use two-way binding with that directive. Two-way binding means:
+
+- Whenever a model’s property change, change the bound element.
+- Whenever the bound element change, change the model’s property.
+
+```html
+<div id="app">
+  <input v-model="message" />
+  <p>{{ message }}</p>
+</div>
+```
+
+```js
+new Vue({
+  el: "#app",
+  data: {
+    message: "Hello World",
+  },
+})
+```
+
+Here's what happens behind the scenes when you use `v-model`:
+
+1. The `input` is bound to the property using `v-model` (which makes two-way binding happen)
+2. The input takes the initial value of `message` which is `Hello World`.
+3. You input something, let’s say `Hey everyone!`
+4. Whenever the input changes, an `input` event is sent back to the Vue instance.
+5. Vue changes the `message` property.
+6. As `message` changed and it's a reactive property, the view updates and the changes have been reflected to your elements. In other words, the `p` tag contains the new value of `message`
+
+Did you know? `v-model` is just syntactic sugar for `:value` and `@input`. The code below does the same as `v-model`:
+
+```html
+<input :value="message" @input="message = $event.target.value" />
+```
+
+What really happens is that whenever you change the `input`, an event is dispatched to the Vue instance. This event contains a `target` object which refers to your input element. Therefore, you can access its value and modify the `data` property. As `:value` is bound to that data property, the changes are reflected. That’s not rocket science, is it? 🚀
+
+## Loops with v-for
+
+When you're building an app, there's always a time when you want to render lists:
+
+- Chat messages
+- Search results
+- Settings
+- Cart items
+- Etc.
+
+Once again, Vue provides you another directive in order to deal with lists: `v-for`.
+
+You can use it with the following syntax: `v-for="item in list"`. Here, `list` refers to the array that you iterate over and `item` is an alias for the array's element:
+
+```html
+<div id="app">
+  <p>Things I want to buy:</p>
+  <ul>
+    <li v-for="thing in things">
+      {{ thing }}
+    </li>
+  </ul>
+</div>
+```
+
+```js
+new Vue({
+  el: "#app",
+  data: {
+    things: ["Piano", "Car", "House"],
+  },
+})
+```
+
+You can also provide a second argument to `v-for`:
+
+- For an array, the second argument will be the index of the array’s current element
+- For an object, the second argument will be the key of the object’s current element
+
+```html
+<li v-for="(thing, index) in things">
+  {{ thing }}
+</li>
+```
+
+<Newsletter inPost />
+
+## Components
+
+So far, you saw Vue directives and reactivity only. But as mentioned previously, Vue also allows you to create components:
+
+```js
+Vue.component("my-component", {
+  template: "<div>My component</div>",
+})
+```
+
+You can create a new component with `Vue.component`. The first parameter of that method is the component name (`my-component` in our case) while the second is an object that defines your component. One property of this object is `template` which corresponds to your component’s HTML code. But there's also `data` and `methods`, in fact, nearly every property of a Vue instance since these components are Vue instances too!
+
+## Props
+
+That’s where components are really interesting. When you compose components across your app, you will have parent components and child components. Therefore, it’s essential to have communication between both of them components. One way of doing it is via `props`. They are used to communicate from the parent to the child.
+
+Here is how to use props:
+
+- On the child, set a `props` property. The value of `props` is an array containing all the props the parent gave to the child.
+- On the parent’s template, give all the props needed into your component element
+
+Note: you can also bind props if you need to pass data that comes from your Vue instance.
+
+```html
+<div id="app">
+  <person name="Jack" age="19" country="Australia"></person>
+  <person name="Emily" age="28" country="France"></person>
+</div>
+```
+
+```js
+Vue.component("person", {
+  template: `
+  <div>
+    <p>{{ name }}</p>
+    <p>Hello my name is {{ name }} and I'm {{ age }}! I live in {{ country }}.</p>
+  </div>
+  `,
+  props: ["name", "age", "country"],
+})
+
+new Vue({
+  el: "#app",
+})
+```
+
+By passing a `props` property to our component, we passed data from the parent component to the child component.
+
+Notes:
+
+- You have to be exhaustive when you build your `props` array. If you forget just one prop, it won’t work.
+- As your template can grow, you have to use template strings in order to define a multi-line template.
+- Always have a single root element when you define your templates, otherwise, it won’t work too.
+
+## Custom events
+
+We know how to communicate from parent to child components. Let's see the other way round. We can do it by using custom events. Just like props, we have to define one thing on the parent and one thing on the child:
+
+- On the child, you have to use the `$emit` function. This function takes two parameters: the event name and the data you want to send to the parent (it can be an object, a string, an array, etc.)
+- On the parent's template, use `v-on` (or `@`) to listen to the event your child will emit.
+
+```html
+<div id="app">
+  <p>I'm the parent</p>
+  <child @send="alertMessage"></child>
+</div>
+```
+
+```js
+Vue.component("child", {
+  template: `
+  <div>
+    <p>I'm the child</p>
+    <button @click="send">Send a message</button>
+  </div>
+  `,
+  methods: {
+    send() {
+      this.$emit("send", "Hello!")
+    },
+  },
+})
+
+new Vue({
+  el: "#app",
+  methods: {
+    alertMessage(message) {
+      alert("My child sent me a message, it says: " + message)
+    },
+  },
+})
+```
+
+Here is what happens when you click on the button whose value is `Send a message`:
+
+1. As the child has a `click` listener, the `send` method is triggered
+2. In `send`, the child emits a `send` event to the parent and transmits the string `Hello!`
+3. The parent receives the `send` event from the child. The `alertMessage` method is triggered.
+4. in `alertMessage`, we call the `alert` function and display the message sent by the child which is `Hello!`
+
+## Recap by building a to-do app
+
+Believe it or not, you are now ready to build a small app with what you saw above. You'll find below how you can build a to-do app with Vue:
+
+```html
+<div id="app">
+  <p>What should I do today?</p>
+  <ul>
+    <todo-item v-for="todo in todos" :todo="todo" @toggle="toggle"></todo-item>
+  </ul>
+  <input
+    v-model="nextTodo"
+    @keyup.enter="addTodo"
+    placeholder="What's your next task?"
+  />
+</div>
+```
+
+```js
+Vue.component("todo-item", {
+  template: `
+  <li class="todo-item">
+    <input type="checkbox" @change="$emit('toggle', todo)" :checked="todo.done" />
+    <span class="todo-item-text" :class="{'todo-item-checked': todo.done}">{{ todo.name }}</span>
+  </li>
+  `,
+  props: ["todo"],
+})
+
+new Vue({
+  el: "#app",
+  data: {
+    todos: [
+      { name: "Learn Vue.js", done: true },
+      { name: "Build an app", done: false },
+    ],
+    nextTodo: "",
+  },
+  methods: {
+    addTodo(event) {
+      this.todos.push({ name: this.nextTodo, done: false })
+      this.nextTodo = ""
+    },
+    toggle(todo) {
+      todo.done = !todo.done
+    },
+  },
+})
+```
+
+Here it is! You know have a basic app built with Vue. It's just the beginning but trust me, Vue and its ecosystem has much more to offer: [computed properties and watchers](https://vuejs.org/v2/guide/computed.html), [lifecycle hooks](https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks), [slots](https://vuejs.org/v2/guide/components-slots.html), [generating a project with Vue CLI](https://cli.vuejs.org/), [Routing with Vue Router](https://router.vuejs.org/) or [centralized store with Vuex](https://vuex.vuejs.org/).
+
+## What about Vue 3
+
+What you learned above corresponds to Vue 2's API. Maybe you heard about Vue 3 and you're wondering whether what you're learning is worth it or not. Don't worry, Vue 3's API is going to be **backward compatible** with Vue 2!
+
+So far, Vue 3 is expected to be released on Q2 2020. Its biggest feature will be the [Composition API](https://vue-composition-api-rfc.netlify.com/#summary) which will help you to make your code more composable and your components more modular (by allowing to organize them by features). If you heard about React hooks, the motivation is the same here!
+
+I hope this article gave you the will to delve further into Vue! Stay tuned for more Vue articles 😎

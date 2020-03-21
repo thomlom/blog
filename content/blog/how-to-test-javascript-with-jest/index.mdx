@@ -1,0 +1,515 @@
+---
+title: How to test JavaScript with Jest
+date: "2019-09-18"
+cover: "./cover.jpeg"
+description: "Testing is an important skill every developer should have. Still, some developers are reluctant to test: it takes too much time and effort. It doesn't have to be that way though. Let's see how to get started on testing JavaScript."
+tags: [javascript, test]
+---
+
+Testing is an important skill every developer should have. Still, some developers are reluctant to test. We’ve all met at some point someone who thinks tests are useless or that it takes too much effort to write them. While it's possible to have that feeling when starting to write tests, once you learn to properly test your apps, you'll never look back again. Why? Because when well-written, **tests allow you to ship robust apps with confidence.**
+
+## Testing is essential
+
+Let's assume you're working on a brand new app. You've been coding for weeks or months, so you master your code. You know every part of it. So why should you write tests on things you already know?
+
+Well, the more your codebase grow, the harder it is to maintain it. There's always a point when you **break** your code as you add new features. Then you have to start debugging, modify your existing code and hope your fix doesn't break any other features. If it does, you’ll might think: _"I'm sick of this app! I can't even ship one tiny feature without breaking something!"_.
+
+Let's take another example. You land on an existing codebase without tests. Same thing here: good luck adding new features without regressing!
+
+But what if you're working with other developers? What if you don't have any other choices than just fixing the app? You'll be entering the **reboot** phase: the moment when you decide to rebuild all your existing features because you're not sure anymore of what you've done or what others have done.
+
+The solution to both of these examples is to **write tests.** It may seem like a waste of time now, but it'll actually be a time-saver later. Here are some main benefits that come along writing tests:
+
+- You can **refactor** your code without breaking anything because tests are here to tell you if something wrong happened.
+- You can **ship new features** confidently without any regression.
+- Your code becomes more **documented** because we can see what the tests do.
+- You spend **less time on testing manually your app** and more time on **working on what's essential.**
+
+So, yes, writing tests takes time. Yes, it’s hard at first. Yes, building the app sounds more fun. But I'll say it again: writing tests is essential and do save time when they are correctly implemented.
+
+In this article, we'll learn a powerful tool to write tests for JavaScript apps: [Jest](https://jestjs.io/).
+
+## Discover Jest
+
+In a nutshell, Jest is an all-in-one JavaScript testing tool built by Facebook. Why all-in-one? Well, because with Jest only, you can do all of these things:
+
+- Run your tests safely and fast
+- Make assertions on your code
+- Mock functions and modules
+- Add code coverage
+- Snapshot testing
+- And more!
+
+While it's true you can use other testing tools like [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/) or [Sinon](https://sinonjs.org/), I prefer to use Jest for its simplicity of use.
+
+### Installation
+
+To add Jest, nothing more simple than adding a package in your project:
+
+```sh
+npm install --save-dev jest
+```
+
+Then you can add a `test` script in your `package.json` file:
+
+```json
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+Running `jest` by default will find and run files located in a `__tests__` folder or ending with `.spec.js` or `.test.js`.
+
+### Structure of a test file
+
+Jest provides functions to structure your tests:
+
+- `describe`: used for **grouping your tests and describing the behavior of your function/module/class.** It takes two parameters. The first one is a string describing your group. The second one is a callback function in which you have your test cases or hook functions (more on that just below 😉).
+- `it` or `test`: it's your test case, that is to say your unit test. It must be **descriptive**. The parameters are exactly the same as `describe`.
+- `beforeAll (afterAll)`: hook function that runs **before (after) all tests.** It takes one parameter which is the function you will run before (after) all tests.
+- `beforeEach (afterEach)`: hook function that runs **before (after) each test.** It takes one parameter which is the function you will run before (after) each tests.
+
+**Notes**:
+
+- `beforeAll`, `beforeEach` and other hook functions are called so because they allow you to **call your own code** and modify the **behavior** of your tests.
+- It's possible to skip (ignore) tests by using `.skip` on `describe` and `it`: `it.skip(...)` or `describe.skip(...)`.
+- You can select exactly which tests you want to run by using `.only` on `describe` and `it`: `it.only(...)` or `describe.only(...)`. It is useful if you have a lot of tests and want to focus on only one test.
+
+### A first test
+
+```js
+describe("My first test suite", () => {
+  it("adds two numbers", () => {
+    expect(add(2, 2)).toBe(4)
+  })
+
+  it("substracts two numbers", () => {
+    expect(substract(2, 2)).toBe(0)
+  })
+})
+```
+
+## Matchers
+
+When you write a test, you usually need to make assertions on your code. For example you would expect an error to appear on the screen if a user gives the wrong password on a login screen. More generally, to make an assertion, you need an **input** and an **expected output**. Jest allows us to do that easily by providing **matchers** to test our values:
+
+```js
+expect(input).matcher(output)
+```
+
+Here are the most common one:
+
+- `toBe`: compares [primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) values (boolean, number, string) or the references of objects and arrays (aka **referential equality**)
+
+```js
+expect(1 + 1).toBe(2)
+
+const firstName = "Thomas"
+const lastName = "Lombart"
+expect(`${firstName} ${lastName}`).toBe("Thomas Lombart")
+
+const testsAreEssential = true
+expect(testsAreEssential).toBe(true)
+```
+
+- `toEqual`: compares recursively all properties of arrays or objects (aka **deep equality**).
+
+```js
+const fruits = ["banana", "kiwi", "strawberry"]
+const sameFruits = ["banana", "kiwi", "strawberry"]
+expect(fruits).toEqual(sameFruits)
+// Oops error! They don't have the same reference
+expect(fruits).toBe(sameFruits)
+
+const event = {
+  title: "My super event",
+  description: "Join me in this event!",
+}
+
+expect({ ...event, city: "London" }).toEqual({
+  title: "My super event",
+  description: "Join me in this event!",
+  city: "London",
+})
+```
+
+- `toBeTruthy` (`toBeFalsy`): tells if the value is `true` (`false`).
+
+```js
+expect(null).toBeFalsy()
+expect(undefined).toBeFalsy()
+expect(false).toBeFalsy()
+
+expect("Hello world").toBeTruthy()
+expect({ foo: "bar" }).toBeTruthy()
+```
+
+- `not`: has to be placed in front of a matcher and returns the opposite of the matcher's result.
+
+```js
+expect(null).not.toBeTruthy()
+// same as expect(null).toBeFalsy()
+
+expect([1]).not.toEqual([2])
+```
+
+- `toContain`: checks if the array contains the element in parameter
+
+```js
+expect(["Apple", "Banana", "Strawberry"]).toContain("Apple")
+```
+
+- `toThrow`: checks if a function throws an error
+
+```js
+function connect() {
+  throw new ConnectionError()
+}
+
+expect(connect).toThrow(ConnectionError)
+```
+
+They are not the only matchers, far from there. You can also discover in the [Jest docs](https://jestjs.io/docs/en/expect#methods) `toMatch`, `toBeGreaterThan`, `toBeUndefined`, `toHaveProperty` and much more!
+
+## Jest CLI
+
+Now that we covered the structure of a test file and the matchers provided by Jest, let's see how we can use its CLI to run our tests.
+
+### Run tests
+
+Let's recall what we saw in Discover Jest's lesson: running only `jest`. By default `jest` will lookup at the directory's root and run all files located in a `__tests__` folder or ending with `.spec.js` or `.test.js`.
+
+You can also specify the filename of the test file you want to run or a pattern:
+
+```sh
+jest Event # run all test files containing Event
+jest src/EventDetail.test.js # run a specific file
+```
+
+Now let's say you want to run a specific test, Jest allows you to do so with the `-t` option. For example, consider the two following test suites:
+
+```js
+// calculator.test.js
+describe("calculator", () => {
+  it("adds two numbers", () => {
+    expect(2 + 2).toBe(4)
+  })
+
+  it("substracts two numbers", () => {
+    expect(2 - 2).toBe(0)
+  })
+
+  it("computes something", () => {
+    expect(2 * 2).toBe(4)
+  })
+})
+
+// example.test.js
+describe("example", () => {
+  it("does something", () => {
+    expect(foo()).toEqual("bar")
+  })
+
+  it("does another thing", () => {
+    const firstName = "John"
+    const lastName = "Doe"
+    expect(`${firstName} ${lastName}`).toBe("John Doe")
+  })
+})
+```
+
+By running the following command:
+
+```sh
+jest -t numbers
+```
+
+Jest will run the first two tests of `calculator.test.js` but will skip the rest.
+
+### Watch mode
+
+Then there's, what I think is, the most handy option of Jest: `watch mode`. This mode watches files for changes and rerun the tests related to them. To run it, you just have to use the `--watch` option:
+
+```sh
+jest --watch
+```
+
+**Note**: Jest knows what files are changed thanks to Git. So you must enable git in your project to make use of that feature.
+
+### Coverage
+
+Let's see a last option to show you how powerful Jest is: collecting test coverage, that is to say, the **measurement of the amount of code covered by a test suite when run.** This metric can be useful to make sure your code is properly covered by your tests. To make use of that, run the following command:
+
+```sh
+jest --coverage
+```
+
+**Note**: striving for 100% coverage everywhere doesn't make sense, especially for UI testing (because things move fast). Reach 100% coverage for things that matter most, like a module or component related to payments.
+
+If I would give you every possible option provided by Jest CLI, this article would take you forever, so if you want to learn more about them, take a look at their [docs](https://jestjs.io/docs/en/cli).
+
+<Newsletter inPost />
+
+## Mocks
+
+A mock is a fake module that simulates the behavior of a real object. Put it another way, **mocks allow us to fake our code in order to isolate what we are testing.**
+
+But why would you need mocks in your tests? Because in real-world apps, you **depend** on many things such as databases, third-party APIs, libraries, other components, etc. However, you usually don't want to test what your code depends on, right? You can safely assume that what your code uses works well. Let's take two examples to illustrate the importance of mocks:
+
+1. You want to test a `TodoList` component that fetches your todos from a server and displays them. Problem: you need to run the server in order to fetch them. If you do so, your tests would get both slow and complicated.
+2. You have a button that, when clicked, selects a random image among ten other images. Problem: you don't know in advance which image is going to be chosen. The best you can do is to make sure the selected image is one of the ten images. Thus, you need your test to be **deterministic**, that is to say, you need to know in advance what will happen. And you guessed it, mocks can do that.
+
+### Mock functions
+
+You can easily create mocks with the following function:
+
+```js
+jest.fn()
+```
+
+It doesn't look like so but this function is really powerful. It holds a `mock` property which makes it possible for us to keep track of how many times the functions have been called, with which arguments, what were the returned values, etc.
+
+```js
+const foo = jest.fn()
+foo()
+foo("bar")
+console.log("foo", foo) // foo ƒ (){return e.apply(this,arguments)}
+console.log("foo mock property", foo.mock) // Object {calls: Array[2], instances: Array[2], invocationCallOrder: Array[2], results: Array[2]}
+console.log("foo calls", foo.mock.calls) // [Array[0], Array[1]]
+```
+
+In this example, you can see that because `foo` have been called twice, `calls` has two items which represent the arguments passed in both function calls. Thus, we can make assertions on what were passed to the function:
+
+```js
+const foo = jest.fn()
+foo("bar")
+
+expect(foo.mock.calls[0][0]).toBe("bar")
+```
+
+Writing such an assertion is a little bit tedious. Luckily for us, Jest provides useful matchers when it comes to make mock assertions such as `toHaveBeenCalled`, `toHaveBeenCalledWith`, `toHaveBeenCalledTimes` and [much more](https://jestjs.io/docs/en/expect#tohavebeencalled):
+
+```js
+const hello = jest.fn()
+hello("world")
+expect(hello).toHaveBeenCalledWith("world")
+
+const foo = jest.fn()
+foo("bar")
+foo("hello")
+expect(foo).toHaveBeenCalledTimes(2)
+expect(foo).toHaveBeenNthCalledWith(1, "bar")
+expect(foo).toHaveBeenNthCalledWith(2, "hello")
+// OR
+expect(foo).toHaveBeenLastCalledWith("hello")
+```
+
+Let's take a real world example: a multi-step form. On each step, you have form inputs and also two buttons: _previous_ and _next_. Clicking on previous or next triggers a `saveStepData(nextOrPreviousFn)` function that, well, saves your data and executes the `nextOrPreviousFn` callback function which redirects you to the previous or next step.
+
+Let'say you want to test the `saveStepData` function. As said above, you don't need to care about `nextOrPreviousFn` and its implementation, you just want to know it has correctly been called after saving. Then you can use a mock function to do so. This useful technique is called [**dependency injection**](https://en.wikipedia.org/wiki/Dependency_injection):
+
+```js
+function saveStepData(nextOrPreviousFn) {
+  // Saving data...
+  nextOrPreviousFn()
+}
+
+const nextOrPreviousMock = jest.fn()
+saveStepData(nextOrPreviousMock)
+expect(nextOrPreviousMock).toHaveBeenCalled()
+```
+
+So far, we know how to create mocks and if they have been called. But what if we need to change the implementation of a function or modify the returned value to make one of our test deterministic? We can do so with the following function:
+
+```js
+jest.fn().mockImplementation(implementation)
+// Or with the shorthand
+jest.fn(implementation)
+```
+
+Let's try it right away:
+
+```js
+const foo = jest.fn().mockImplementation(() => "bar")
+const bar = foo()
+
+expect(foo.mock.results[0].value).toBe("bar")
+// or
+expect(foo).toHaveReturnedWith("bar")
+// or
+expect(bar).toBe("bar")
+```
+
+In this example, you can see we were able to mock the returned value of the `foo` function. Thus, the variable `bar` holds the `"bar"` string.
+
+**Note**: It's also possible to mock asynchronous functions using `mockResolvedValue` or `mockRejectedValue` to respectively resolve or reject a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+### Mock modules
+
+Sure, we can mock functions. But what about modules, you might think? They're important as well since we import them in mostly every components! Don't worry, Jest got you covered with `jest.mock`.
+
+Using it is quite simple. Just give it the path of the module you want to mock and then every is _automatically_ mocked.
+
+For instance, let's take the case of [axios](https://github.com/axios/axios), one of the most popular HTTP clients. Indeed, you don't want to perform actual network requests in your tests because they could get very slow. Let's mock `axios` then:
+
+```js
+import axiosMock from "axios"
+
+jest.mock("axios")
+console.log(axiosMock)
+```
+
+**Note**: I named the module `axiosMock` and not `axios` for readability reasons. I want to make it clear it's a mock and not the real module. The more readable, the better!
+
+With `jest.mock` the different `axios` functions such as `get`, `post`, etc are mocked now. Thus, we have full control over what `axios` sends us back:
+
+```js
+import axiosMock from "axios"
+
+async function getUsers() {
+  try {
+    // this would typically be axios instead of axiosMock in your app
+    const response = await axiosMock.get("/users")
+    return response.data.users
+  } catch (e) {
+    throw new Error("Oops. Something wrong happened")
+  }
+}
+
+jest.mock("axios")
+
+const fakeUsers = ["John", "Emma", "Tom"]
+axiosMock.get.mockResolvedValue({ data: { users: fakeUsers } })
+
+test("gets the users", async () => {
+  const users = await getUsers()
+  expect(users).toEqual(fakeUsers)
+})
+```
+
+Another great feature of Jest is shared mocks. Indeed, if you were to reuse the axios mock implementation above, you could just create a `__mocks__` folder alongside the `node_modules` folder with a `axios.js` file in it:
+
+```js
+module.exports = {
+  get: () => {
+    return Promise.resolve({ data: { users: ["John", "Emma", "Tom"] } })
+  },
+}
+```
+
+And then in the test:
+
+```js
+import axiosMock from "axios"
+
+// Note that we still have to call jest.mock!
+jest.mock("axios")
+
+async function getUsers() {
+  try {
+    const response = await axios.get("/users")
+    return response.data.users
+  } catch (e) {
+    throw new Error("Oops. Something wrong happened")
+  }
+}
+
+test("gets the users", async () => {
+  const users = await getUsers()
+  expect(users.toEqual(["John", "Emma", "Tom"]))
+}
+```
+
+## Configure Jest
+
+It's not because Jest works out of the box that it can't be configured, far from it! There are a lot of [configuration options for Jest](https://jestjs.io/docs/en/configuration). You can configure Jest in three different ways:
+
+1. Via the `jest` key in `package.json` (same as `eslintConfig` or `prettier` keys if you [read my last article](https://thomlom.dev/setup-eslint-prettier-react/))
+2. Via `jest.config.js`
+3. Via any `json` or `js` file using `jest --config`.
+
+Most of the time, you'll use the first and second one.
+
+Let's see how to configure Jest for a React app, especially with [Create React App](https://github.com/facebook/create-react-app) (CRA)
+
+Indeed if you're not using CRA, you'll have to write your own configuration. Because it partly has to do with setting up a React app ([Babel](https://babeljs.io/), [Webpack](https://webpack.js.org/), etc), I won't cover it here. Here is a [link](https://jestjs.io/docs/en/tutorial-react#setup-without-create-react-app) from Jest docs directly that explains the setup without CRA.
+
+If you're using CRA, you have nothing to do, Jest is already setup (though it's possible to override the configuration for [specific keys](https://github.com/facebook/create-react-app/blob/6560858398ddc8d1c5b8d7f51929fcb3d9c3055c/packages/react-scripts/scripts/utils/createJestConfig.js#L72)).
+
+However, it's not because CRA setups Jest for you that you shouldn't know how to setup it. Thus, you'll find below common Jest configuration keys that you'll likely use or see in the future. You'll also see how CRA are using them.
+
+### Match test files
+
+You can specify a global pattern to tell Jest which tests to run thanks to the `testMatch` key. By default CRA uses the following:
+
+```json
+{
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ]
+}
+```
+
+This pattern means that Jest will run tests on `.js`, `jsx`, `ts` and `tsx` files located in `src` that are either in a `__tests__` folder or if the extension is prefixed by `spec`or `test`.
+
+For example, these tests files would be matched:
+
+- ✅ `src/example.spec.js`
+- ✅ `src/__tests__/Login.jsx`
+- ✅ `src/__tests__/calculator.ts`
+- ✅ `src/another-example.test.js`
+
+But these wouldn't be matched:
+
+- ❌ `src/Register.jsx`
+- ❌ `src/__tests__/style.css`
+
+### Set up before each test
+
+Jest has a key called `setupFilesAfterEnv` which is nothing less than a list of files to run before each test runs. That's where you want to configure your testing frameworks (such as [React Testing Library](https://testing-library.com/docs/react-testing-library/setup#skipping-auto-cleanup) or [Enzyme](https://airbnb.io/enzyme/docs/installation/react-16.html) or create [global mocks](https://create-react-app.dev/docs/running-tests#src-setuptestsjs-1).
+
+CRA, by default, named this file `src/setupTests.js`.
+
+### Configure test coverage
+
+As said in the Jest CLI lesson, you can easily see your code coverage with the `--coverage` option. It's also possible to configure it.
+
+Let's say you want (or don't want) specific files to be covered. You can use the `collectCoverageFrom` key for that. As an example, CRA wants code coverage on JavaScript or TypeScript files located in the `src` folder and don't want `.d.ts` (typings) files to be covered:
+
+```json
+{
+  "collectCoverageFrom": ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts"]
+}
+```
+
+If you want, you can also specify a coverage threshold thanks to the `coverageThreshold` key. In the following example, running `jest --coverage` will fail if there is less than 75% branch, line, function and statement coverage:
+
+```json
+{
+  "coverageThreshold": {
+    "global": {
+      "branches": 75,
+      "functions": 75,
+      "lines": 75,
+      "statements": 75
+    }
+  }
+}
+```
+
+### Transform
+
+If you use the very latest features of JavaScript or TypeScript, Jest may not be able to properly run your files. In this case, you need to transform them before they are actually run. For that, you can use the `transform` key which maps regular expressions to transformers paths. As an illustration, CRA makes use of [babel-jest](https://github.com/facebook/jest/tree/master/packages/babel-jest) for JS/TS files:
+
+```json
+{
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+  }
+}
+```
+
+As said in the beginning, there are a lot more of configuration options for Jest. Be curious and take a look at [their docs](https://jestjs.io/docs/en/configuration#options)!

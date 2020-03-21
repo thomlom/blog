@@ -1,0 +1,7 @@
+[build]
+  publish = "build"
+  command = "yarn build"
+
+[context.next]
+  publish = "public"
+  command = "yarn build"

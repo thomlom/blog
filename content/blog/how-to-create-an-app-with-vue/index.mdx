@@ -1,0 +1,167 @@
+---
+title: How to create an app with Vue CLI
+date: "2020-03-20"
+cover: "./cover.png"
+description: "Vue has great tools to work with starting with Vue CLI. It allows you to create a feature rich app nearly instantly. Learn how to do so and what it looks like."
+tags: [vue]
+---
+
+Vue has great tools to work with starting with Vue CLI. It allows you to create a feature rich app nearly instantly. Indeed, it helps us setting our Vue project that provides support for a lot of popular JS tools such as Webpack, Babel, etc.
+
+As a prerequisite, we will need [Node.js](https://nodejs.org/en/) to be installed on our machines.
+
+**Note** : if you're a macOS user, you can install Node faster using [Homebrew](https://brew.sh/), just run `brew install node`.
+
+Before creating a project, you'll need to install Vue CLI first:
+
+```sh
+npm install -g @vue/cli
+```
+
+1. Run `vue create example`
+2. You have two choices: the default (which enables `babel` and `eslint`) or select `Manually select features`. For educational purposes, we will choose `Manually select features`.
+3. You have different options here: Babel, TypeScript, PWA, Router, etc. You can see how easy it is to add a tool to the codebase. Here, let's select `Babel, Linter/Formatter`
+4. Select `ESLint with error prevention only`
+5. Select `Lint on save`
+6. Select `In dedicated config files` for Babel, PostCSS, ESLint, etc.
+7. Answer yes or no, depends on if you like this preset!
+8. Select your favorite package manager. Here I'll pick `Use Yarn`.
+9. Vue CLI will do the setup now. You should see a progress bar that is gradually filling...
+10. You see `🎉 Successfully created project example`.
+11. Follow the instructions provided by Vue CLI (`cd example && yarn serve`)
+12. Open your browser and visit `http://localhost:8080/`
+
+Congratulations! You have built your first Vue app using Vue CLI.
+
+Open your newly created project with your favorite code editor (I recommend [VS Code](https://code.visualstudio.com/), it's kinda the default tool for front-end devs as of today).
+
+## The commands
+
+As seen before, creating a default project with Vue CLI comes with Babel and ESLint enabled by default. One important thing to note is that Vue CLI projects make use of [Webpack](https://webpack.js.org/): a module bundler.
+
+Basically, Webpack analyzes all your modules and JS files, may preprocess them and bundle them into one single minified file. To preprocess files, Webpack uses loaders that transform your source code. For example, Vue has their own loader because of the `.vue` files. We'll see that in a bit.
+
+Your Vue CLI project comes with three `package.json` scripts:
+
+- `serve`: this command starts a dev server that comes with [Hot-Module-Replacement](https://webpack.js.org/concepts/hot-module-replacement/). It roughly means that when you change your code, your app reloads instantly (and that's what you call a great developer experience 😄)
+- `build`: this command produces a production-ready bundle in a `dist/` directory, with minification for JS/CSS/HTML and auto vendor chunk splitting for better caching. The chunk manifest is inlined into the HTML. These complex words mean your app will be smaller and faster when deploying to production.
+- `lint`: lint your files using ESLint. If ESLint doesn't mean anything to you, it's a tool for identifying and reporting on patterns found in JS code, with the goal of making code more consistent and avoiding bugs. It's considered a best practice to have it in a project and that's why Vue provides it as a default.
+
+If you're curious, there is another command called `inspect` which allows you to inspect the webpack config inside a Vue CLI project. You can run `npx vue-cli-service inspect > config.js` to see what's your config.
+
+## The generated files
+
+Do you feel overwhelmed by the number of files? Don't worry. I'm going to give you a quick overview of the files Vue CLI generated.
+
+`public` folder :
+
+- `favicon.ico`: do you see the little icon on the left on your current tab? That's called a favicon. It's an icon that represents your app or your website.
+- `index.html`: this is your main html file. It will contain all your Vue code. You can see at the bottom of the file this line: `<div id="app"></div>`. That's important since it's where **Vue will mount your app.**
+
+`src` folder :
+
+- `assets` folder: this is where you will put your assets, that is to say your images, your icons, etc.
+- `components` folder: well, this is self-explanatory here, it contains your Vue components.
+- `App.vue`: this is the main component mounted to the DOM.
+- `main.js`: this is your app **entry point**. This file is responsible for mounting your `App` component into the DOM, specifically in the `#app` div you saw in `index.html`.
+
+`.browserslistrc`: this file allows us to define which browsers we want to target to **generate the optimal output files**. Here, the file targets all browsers versions that has more than 1% of market shares (`> 1%`) and the last two versions of each browser (`last 2 versions`). You can visualize them on [browserl.ist](https://browserl.ist/?q=%3E+1%25%2C+last+2+versions).
+
+`.eslintrc.js`: it configures which linting/formatting style guide we will follow. Linting and formatting is great to use in any projects as it allows to have a **common style guide with other developers.**
+
+`.gitignore`: your project already includes Git if you cloned the repository. To make sure you don't put any sensitive files, build folders, or anything like this onto GitHub (or GitLab, BitBucket, etc), you just need to put in this file what you don't want to push to your repository.
+
+`babel.config.js`: If you never heard of [Babel](https://babeljs.io/) before, this one might be hard to understand. JavaScript is constantly evolving, each year you see **new features** coming. But these features are not available for all browsers or old browsers versions. Simply put, Babel enables us to **transpile the new JavaScript code into the old one** so that our code works on most browsers. Therefore, we can use the very last features of JavaScript without worries. Note that here, Babel will produce a JavaScript code compatible with the browsers defined in `browserlistrc`.
+
+`package.json`: this file contains various **metadata** about your project : name, version but mostly dependencies and scripts. For example, when you ran `yarn install`, yarn fetched the dependencies using your `package.json` file, installed them in the `node_modules` folder and generated `yarn.lock`.
+
+`README.md`: that's what holds the instructions to install the app.
+
+`yarn.lock`: It's a [file](https://classic.yarnpkg.com/en/docs/yarn-lock/) generated by yarn that **stores the dependencies version** of the packages you use.
+
+## Single File Components
+
+Look at the `App.vue` file. If you already [played around with Vue.js](https://thomlom.dev/getting-started-with-vue/) you may have defined your Vue instance like this:
+
+```js
+new Vue({
+  el: "#app",
+})
+```
+
+And components like this:
+
+```js
+Vue.component("my-component", {
+  // ...
+  template: `<div>...</div>`,
+})
+```
+
+That worked fine. So why `App.vue` is structured differently?
+
+There are many reasons:
+
+- Styling: how would you style your components? By defining a `css` file out of the scope of the component and importing it in your `html` file? That makes the CSS global.
+- Templating: what about these template strings you use in your components? Don't they look a bit ugly?
+- Building: we can't use latest JS features because we can't really add builds steps.
+
+That's why Vue use **single-file components**. They're structured very clearly:
+
+- `template`: Your HTML elements, Vue directives, etc.
+- `script`: All that is linked to the Vue instance: `data`, `methods`, etc.
+- `style`: Your CSS code.
+
+For example, here is the `App.vue` file:
+
+```html
+<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <HelloWorld msg="Welcome to Your Vue.js App" />
+  </div>
+</template>
+
+<script>
+  import HelloWorld from "./components/HelloWorld.vue"
+
+  export default {
+    name: "App",
+    components: {
+      HelloWorld,
+    },
+  }
+</script>
+
+<style>
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
+</style>
+```
+
+- In the `<template>`, there is an image and a component you imported.
+- In the `<script>`, you define your Vue component and specify which components you use in your `<template>`
+- In the `<style>`, you define the CSS code you use. Caution, here the CSS is global as `App.vue` is the main file. But if you go to `HelloWorld.vue`, you'll see `<style scoped>`: it means your CSS defined in `HelloWorld.vue` will be limited to it.
+
+**Note**: if you're coding with [VS Code](https://code.visualstudio.com/), I recommend that you install the [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) extension. It's going to make our life easier when building a Vue project (Syntax highlighting, snippets, etc).
+
+Single-file components has many advantages over what we used to do:
+
+- **CSS:** we bring CSS directly into the component. And you know what's even more awesome? You can **restrict the CSS scope to the component only.** No more CSS rules conflicts!
+- **Modularity:** components have their own file and all is scoped to the component only. Therefore, composing components is easier to do.
+- **Building:** as we can include build steps to the project, we can use latest JS features, linting, etc.
+
+## Vue DevTools
+
+When coding, it's very useful to have tools to improve your developer experience. Good news for you, Vue has dev tools that you can use! Theyl allow you to explore your project structure (your components) and filter them, to visualize your tree structure, inspect your components' data, see the emitted events in real-time, inspect performances, etc. You can install them from here:
+
+- [Firefox addon](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+- [Chrome extension](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+
+Once you installed it, you should see a "V" icon in your toolbar. Then, you can open your developers tools (inspect) and search for the Vue tab.
