@@ -37,7 +37,7 @@ const BlogPostTemplate = ({ data: { mdx: post }, location }) => {
           <MDXRenderer>{post.body}</MDXRenderer>
         </section>
       </article>
-      <Newsletter inPost likeThisPost />
+      <Newsletter likeThisPost />
     </Layout>
   )
 }
