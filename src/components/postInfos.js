@@ -53,46 +53,46 @@ const tagsColor = {
 }
 
 const PostInfos = ({ date, tags, quick }) => (
-  <div className="flex justify-between items-start md:items-center">
-    <div className="flex flex-col-reverse justify-end md:flex md:flex-row md:items-end md:justify-start mt-2">
-      <div className="flex">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          className="icon-calendar w-5 h-5"
-        >
-          <path
-            className="fill-current text-gray-500"
-            d="M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm0 5v10h14V9H5z"
-          />
-          <path
-            className="fill-current text-gray-800"
-            d="M7 2a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm10 0a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1z"
-          />
-        </svg>
-        <span className="ml-2 uppercase text-gray-700 text-sm">
-          {format(new Date(date), "dd MMM yyyy")}
-        </span>
-      </div>
+  <div className="flex flex-col-reverse  md:flex md:flex-row md:items-center mt-2">
+    <div className="flex">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        className="icon-calendar w-5 h-5"
+      >
+        <path
+          className="fill-current text-gray-500"
+          d="M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm0 5v10h14V9H5z"
+        />
+        <path
+          className="fill-current text-gray-800"
+          d="M7 2a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm10 0a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1z"
+        />
+      </svg>
+      <span className="ml-2 uppercase text-gray-700 text-sm">
+        {format(new Date(date), "dd MMM yyyy")}
+      </span>
+    </div>
 
-      <div className="mb-2 md:ml-4 md:my-0">
+    <div className="flex flex-1">
+      <div className="flex-1 mb-2 md:mb-0 md:ml-2">
         {tags.map(tag => (
           <span
             key={tag}
-            className="first:ml-0 ml-2 py-1 px-2 text-sm rounded font-semibold"
+            className="first:ml-0 inline-block ml-2 py-1 px-2 text-sm rounded font-semibold"
             style={tagsColor[tag]}
           >
             {tag}
           </span>
         ))}
       </div>
-    </div>
 
-    {quick && (
-      <span className="bg-yellow-400 text-sm text-yellow-900 font-semibold px-3 py-1 rounded-full">
-        Quick read
-      </span>
-    )}
+      {quick && (
+        <span className="bg-yellow-400 text-yellow-900 text-sm font-semibold py-1 px-2 rounded-full self-start">
+          Quick read
+        </span>
+      )}
+    </div>
   </div>
 )
 

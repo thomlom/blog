@@ -5,7 +5,9 @@ const Newsletter = ({ inPost, likeThisPost }) => (
     action="https://buttondown.email/api/emails/embed-subscribe/thomlom"
     method="post"
     target="popupwindow"
-    onsubmit="window.open('https://buttondown.email/thomlom', 'popupwindow')"
+    onSubmit={() =>
+      window.open("https://buttondown.email/thomlom", "popupwindow")
+    }
     className="gradient flex w-full flex flex-col shadow-lg rounded mt-8 p-2 px-4 md:px-24"
   >
     <p
@@ -27,7 +29,7 @@ const Newsletter = ({ inPost, likeThisPost }) => (
         😍
       </span>
     </p>
-    <label for="bd-email" className="flex flex-col mt-2">
+    <label htmlFor="bd-email" className="flex flex-col mt-2">
       <span className="sr-only">Email</span>
       <input
         type="email"
@@ -43,7 +45,7 @@ const Newsletter = ({ inPost, likeThisPost }) => (
       value="Subscribe"
       className="bg-primary-200 text-primary-900 rounded shadow w-full mt-3 font-bold px-3 py-2 cursor-pointer"
     />
-    <div class="flex flex-col sm:flex-row justify-between mt-2">
+    <div className="flex flex-col sm:flex-row justify-between mt-2">
       <p className="text-primary-300 text-xs my-1">
         No spams. Unsubscribe at any time.
       </p>
