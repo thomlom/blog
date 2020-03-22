@@ -1,9 +1,10 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Newsletter from "../components/newsletter"
 import PostInfos from "../components/postInfos"
+import TransitionLink from "../components/transitionLink"
 import SEO from "../components/seo"
 
 const BlogIndex = ({
@@ -26,7 +27,7 @@ const BlogIndex = ({
           <article key={node.fields.slug} className="first:mt-0 mt-8">
             <header>
               <h3 className="inline-block text-2xl md:text-3xl text-gray-800 font-bold hover:underline leading-tight">
-                <Link to={node.fields.slug}>{title}</Link>
+                <TransitionLink to={node.fields.slug}>{title}</TransitionLink>
               </h3>
               <PostInfos
                 date={node.frontmatter.date}
@@ -42,11 +43,11 @@ const BlogIndex = ({
                 className="mt-4 text-base text-gray-700 leading-relaxed"
               />
             </section>
-            <Link to={node.fields.slug}>
+            <TransitionLink to={node.fields.slug}>
               <p className="inline-block mt-3 text-primary-600 font-bold text-lg hover:underline hover:text-primary-700">
                 Read →
               </p>
-            </Link>
+            </TransitionLink>
           </article>
         )
       })}

@@ -1,8 +1,9 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Image from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
+import TransitionLink from "../components/transitionLink"
 import Layout from "../components/layout"
 import Newsletter from "../components/newsletter"
 import PostInfos from "../components/postInfos"
@@ -39,7 +40,7 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
       </article>
       {pageContext.next && (
         <>
-          <Link to={pageContext.next.fields.slug}>
+          <TransitionLink paintDrip to={pageContext.next.fields.slug}>
             <div className="p-4 border border-gray-400 rounded bg-gray-200">
               <span className="uppercase text-sm text-gray-700 tracking-wide flex items-center">
                 <span role="img" aria-label="Eyes" className="mr-1 text-xl">
@@ -51,7 +52,7 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
                 {pageContext.next.frontmatter.title}
               </p>
             </div>
-          </Link>
+          </TransitionLink>
           <hr className="mt-8" />
         </>
       )}
