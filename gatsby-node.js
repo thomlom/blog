@@ -17,6 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                next
               }
             }
           }
@@ -31,15 +32,38 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const posts = result.data.allMdx.edges
 
-  posts.forEach(post => {
-    createPage({
-      path: post.node.fields.slug,
-      component: path.resolve(`./src/templates/blog-post.js`),
-      context: {
-        slug: post.node.fields.slug,
+  posts.forEach(
+    ({
+      node: {
+        fields: { slug },
+        frontmatter: { next: nextSlug },
       },
-    })
-  })
+    }) => {
+      let next
+      if (nextSlug) {
+        const correspondingPost = posts.find(
+          postToFind => postToFind.node.fields.slug === nextSlug
+        )
+
+        if (!correspondingPost) {
+          throw new Error(
+            "A next post slug was specified but no posts were found."
+          )
+        } else {
+          next = correspondingPost.node
+        }
+      }
+
+      createPage({
+        path: slug,
+        component: path.resolve(`./src/templates/blog-post.js`),
+        context: {
+          slug,
+          ...(next && { next }),
+        },
+      })
+    }
+  )
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

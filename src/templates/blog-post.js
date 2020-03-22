@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Image from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
@@ -8,7 +8,7 @@ import Newsletter from "../components/newsletter"
 import PostInfos from "../components/postInfos"
 import SEO from "../components/seo"
 
-const BlogPostTemplate = ({ data: { mdx: post }, location }) => {
+const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
   return (
     <Layout location={location}>
       <SEO
@@ -37,6 +37,24 @@ const BlogPostTemplate = ({ data: { mdx: post }, location }) => {
           <MDXRenderer>{post.body}</MDXRenderer>
         </section>
       </article>
+      {pageContext.next && (
+        <>
+          <Link to={pageContext.next.fields.slug}>
+            <div className="p-4 border border-gray-400 rounded bg-gray-200">
+              <span className="uppercase text-sm text-gray-700 tracking-wide flex items-center">
+                <span role="img" aria-label="Eyes" className="mr-1 text-xl">
+                  👀
+                </span>
+                This post may also interest you
+              </span>
+              <p className="text-gray-800 text-2xl font-bold mt-1 leading-tight">
+                {pageContext.next.frontmatter.title}
+              </p>
+            </div>
+          </Link>
+          <hr className="mt-8" />
+        </>
+      )}
       <Newsletter likeThisPost />
     </Layout>
   )
@@ -56,6 +74,7 @@ export const pageQuery = graphql`
         description
         tags
         quick
+        next
         cover {
           publicURL
           childImageSharp {
