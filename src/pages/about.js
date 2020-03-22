@@ -28,7 +28,7 @@ const NotFoundPage = ({ data, location }) => {
       </p>
       <p className={textClassNames}>
         On a personal side, I love travelling, training, watching good movies
-        (and listening to their soundtracks). I also care about ecology.
+        (and listening to their soundtracks). I care about privacy and ecology.
       </p>
       <a
         className={`${textClassNames} block underline text-primary-700 hover:text-primary-800`}
