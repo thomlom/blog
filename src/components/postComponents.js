@@ -123,7 +123,7 @@ const CodeBlock = ({
 
         return (
           <pre
-            className={`rounded py-4 my-2 overflow-scroll ${className}`}
+            className={`rounded py-4 my-2 overflow-x-auto ${className}`}
             style={style}
           >
             {augmentedTokens.map(({ isHighlight, line }, i) => {
