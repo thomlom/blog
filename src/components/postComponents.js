@@ -1,6 +1,8 @@
 import React from "react"
 import Highlight, { defaultProps } from "prism-react-renderer"
 
+import { getAumgentedTokens } from "./utils"
+
 /**
  * Night Owl theme by Sarah Drasner
  * @see https://github.com/sdras/night-owl-vscode-theme
@@ -100,10 +102,10 @@ const theme = {
 
 const CodeBlock = ({
   children: {
-    props: { className = "", children },
+    props: { children, className },
   },
 }) => {
-  const matches = className.match(/language-(?<lang>.*)/)
+  const matches = className && className.match(/language-(?<lang>.*)/)
 
   return (
     <Highlight
@@ -116,20 +118,39 @@ const CodeBlock = ({
       }
       theme={theme}
     >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre
-          className={`rounded p-4 my-1 overflow-scroll ${className}`}
-          style={style}
-        >
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
+      {({ className, style, tokens, getLineProps, getTokenProps }) => {
+        const augmentedTokens = getAumgentedTokens(tokens)
+
+        return (
+          <pre
+            className={`rounded py-4 my-2 overflow-scroll ${className}`}
+            style={style}
+          >
+            {augmentedTokens.map(({ isHighlight, line }, i) => {
+              const lineProps = getLineProps({
+                line,
+                key: i,
+                className: "px-4",
+              })
+
+              const getTokens = () =>
+                line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))
+
+              return isHighlight ? (
+                <div key={i} style={{ backgroundColor: "#7497a633" }}>
+                  <div {...lineProps}>{getTokens()}</div>
+                </div>
+              ) : (
+                <div {...lineProps} className="px-4">
+                  {getTokens()}
+                </div>
+              )
+            })}
+          </pre>
+        )
+      }}
     </Highlight>
   )
 }
@@ -162,7 +183,7 @@ export default {
       {...props}
     />
   ),
-  hr: props => <hr className="border border-2 border-primary-600" {...props} />,
+  hr: props => <hr className="border border-primary-500" {...props} />,
   blockquote: props => (
     <blockquote
       className="pl-4 border-l-4 border-secondary-500 italic break-word"

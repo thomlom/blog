@@ -16,7 +16,7 @@ You'll find many code snippets below. Most of them come from the [source code of
 
 But first, let's do a recap about the library. Basically, Polyglot handles the internationalization of your app including **interpolation** and **pluralization**. You give it a set of translated phrases and you retrieve the ones you want using a special function called `t`:
 
-```js
+```javascript
 const polyglot = new Polyglot({
   phrases: {
     hello: "Hello",
@@ -37,7 +37,7 @@ Notice how Polyglot handles **nested objects.**
 
 If you want to add more phrases to the Polyglot instance, you can use the `extend` method:
 
-```js
+```javascript
 polyglot.extend({
   bye: "Bye!",
 })
@@ -45,7 +45,7 @@ polyglot.extend({
 
 Polyglot supports **interpolation**. Roughly speaking, it consists in replacing some placeholders in your phrase by a real value:
 
-```js
+```javascript
 polyglot.extend({
   welcome: "Welcome %{name}",
 })
@@ -55,7 +55,7 @@ polyglot.t("welcome", { name: "Thomas" }) // Welcome Thomas
 
 If you don't provide one of the interpolation value, Polyglot will return your placeholder as-is. It can be useful if you want to do partial interpolation:
 
-```js
+```javascript
 polyglot.extend({
   user: "My name is %{name}. I love %{hobby}!",
 })
@@ -65,7 +65,7 @@ polyglot.t("user", { name: "Thomas" }) // My name is Thomas. I love %{hobby}
 
 You can also provide your own interpolation syntax:
 
-```js
+```javascript
 const polyglot = new Polyglot({ interpolation: { prefix: "{{", suffix: "}}" } })
 
 polyglot.extend({
@@ -77,7 +77,7 @@ polyglot.t("city", { city: "London" }) // You live in London
 
 Finally, Polyglot handles pluralization, that is to say, express a sentence in the plural form. To make it work properly, Polyglot needs a locale (which is `en` by default):
 
-```js
+```javascript
 polyglot.locale() // 'en'
 polyglot.extend({
   thing: "There is %{smart_count} thing |||| There are %{smart_count} things",
@@ -88,7 +88,7 @@ polyglot.t("thing", { smart_count: 1 }) // There is 1 thing
 
 Giving a number as a second argument also works:
 
-```js
+```javascript
 polyglot.t("thing", 4) // There are 4 things
 ```
 
@@ -97,7 +97,7 @@ If you need to set the locale, you have two choices:
 - Call the `locale` method with its corresponding code
 - Provide the locale during the instanciation
 
-```js
+```javascript
 polyglot.locale("fr")
 // OR
 const polyglot = new Polyglot({ locale: "fr" })
@@ -112,7 +112,7 @@ And then the less-used features:
 - `replace` to replace the current phrases with others
 - `has` to check if a translation exists for a given key
 
-```js
+```javascript
 polyglot.unset("hello")
 polyglot.unset({
   hello: "Hello",
@@ -139,7 +139,7 @@ Don't worry, we'll figure it out right away.
 
 Let's start with the simplest feature: translate a simple phrase. It's as easy as getting a key from an object. Internally, when you create an instance of Polyglot, an empty `phrases` object is created. You can then extend it by providing some phrases in the `options` object:
 
-```js
+```javascript
 function Polyglot(options) {
   var opts = options || {}
   this.phrases = {}
@@ -150,7 +150,7 @@ function Polyglot(options) {
 
 We instanciate Polyglot like this:
 
-```js
+```javascript
 const polyglot = new Polyglot() // phrases -> {}
 const polyglot = new Polyglot({ phrases: { hello: "Hello" } }) // extend({hello: 'Hello'}) is called
 ```
@@ -161,7 +161,7 @@ Polyglot uses `extend` to map a given key to a given phrase in its internal `phr
 
 Other things happen when you instanciate Polyglot including this:
 
-```js
+```javascript
 function Polyglot(options) {
   var opts = options || {}
   // ...
@@ -175,7 +175,7 @@ The `currentLocale` is set to a given locale or `en` and a mysterious `tokenRege
 
 Then, when we'll call `t` with a given key, Polyglot will search its associated value in the internal `phrases` object. Once found, it will apply to the phrase some transformations (interpolation and pluralization) and return it:
 
-```js
+```javascript
 Polyglot.prototype.t = function(key, options) {
   var phrase, result
   var opts = options == null ? {} : options
@@ -206,7 +206,7 @@ The most attentives of you will think _"But what if our `phrases` object has inn
 
 That's a legit question. As said in the recap, Polyglot handles nested phrases objects. Under the hood, It uses the `extend` method to add new phrases to the instance. This method processes recursively all the keys in the object passed as an argument and put them at the root level of the internal `phrases` object. Each nested key is concatenated with the one that's one level above it using the dot notation:
 
-```js
+```javascript
 var forEach = require("for-each")
 
 // ...
@@ -231,7 +231,7 @@ Polyglot.prototype.extend = function(morePhrases, prefix) {
 
 Let's see what happens if you call `extend` like this:
 
-```js
+```javascript
 polyglot.extend({
   hello: "Hello",
   auth: {
@@ -251,7 +251,7 @@ polyglot.extend({
 
 That way, you make sure you traverse all your object and map every key to a string value in the **flattened** `phrases` object. After calling `extend`, your `phrases` look like this:
 
-```js
+```javascript
 {
   hello: 'Hello',
   auth.login: 'Login',
@@ -267,7 +267,7 @@ Note that `extend` actually extends the `phrases` object and **doesn't replace i
 
 Let's come back to `transformPhrase`, shall we? You may remember that we use it in the `t` function to transform the phrase we get via our key:
 
-```js
+```javascript
 if (typeof phrase === "string") {
   result = transformPhrase(phrase, opts, this.currentLocale, this.tokenRegex)
 }
@@ -277,7 +277,7 @@ We'll dive into its code to understand how one can build the interpolation featu
 
 Here, the interpolation feature consists in replacing a generic word by another one in an object. What's great is that [`String.prototype.replace`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace) does most of the work for us. Indeed, according to MDN, The `replace` method returns a new string with some or all matches of a pattern replaced by a replacement. Then, you just need to define a regular expression to capture what you need to replace and fetch the corresponding word in the `options` object.
 
-```js
+```javascript
 var has = require("has")
 
 // ...
@@ -329,7 +329,7 @@ Beforehand, we assign to `options` the value of `substitutions`. The `typeof` ch
 
 Then, we actually replace the phrase using the regular expression. As the `replace` function is cached, we need to use the `call` method to specify on which string we want to invoke the `replace` function, that is to say, `result`. If using `call` confuses you, it's the same as:
 
-```js
+```javascript
 result = result.replace(interpolationRegex, function(expression, argument) {
   if (!has(options, argument) || options[argument] == null) {
     return expression
@@ -347,7 +347,7 @@ If the captured string is a property of the `options` object passed to `t` and i
 
 Let's apply it on an example to fully understand it:
 
-```js
+```javascript
 polyglot.extend({
   user: "Hi, your name is %{name}. You are a %{job} and you like %{hobby}.",
 })
@@ -374,7 +374,7 @@ Now that we saw how to implement interpolation, let's see how to customize the i
 
 _"Easy"_, you might think. _"Just change the regex!_". And you would be right, that's what Polyglot does. It uses a custom regex called `tokenRegex` that is built when you create an instance of Polyglot:
 
-```js
+```javascript
 function Polyglot(options) {
   var opts = options || {}
   // ...
@@ -384,7 +384,7 @@ function Polyglot(options) {
 
 This `tokenRegex` is then passed to `transformPhrase` when you call `t` on a key. It is assigned to `interpolationRegex` if it holds a value:
 
-```js
+```javascript
 function transformPhrase(phrase, substitutions, locale, tokenRegex) {
   // ...
   var interpolationRegex = tokenRegex || defaultTokenRegex
@@ -394,7 +394,7 @@ function transformPhrase(phrase, substitutions, locale, tokenRegex) {
 
 `constructTokenRegex` is a fairly simple function. Its purpose is to return a new regex based on the given prefix and suffix:
 
-```js
+```javascript
 var delimiter = "||||"
 
 // ...
@@ -441,7 +441,7 @@ We are going to detail this step by step.
 
 First, here is an extract of all the rules and their corresponding locales:
 
-```js
+```javascript
 var russianPluralGroups = function(n) {
   var lastTwo = n % 100
   var end = lastTwo % 10
@@ -522,7 +522,7 @@ You can see for example that for a german rule (which includes english), we retu
 
 Now we can focus on the pluralization part of `transformPhrase`. Here we will take account of the `locale` parameter. The `currentLocale` value of Polyglot is passed to `transformPhrase` when calling `t`:
 
-```js
+```javascript
 if (typeof phrase === "string") {
   result = transformPhrase(phrase, opts, this.currentLocale, this.tokenRegex)
 }
@@ -530,7 +530,7 @@ if (typeof phrase === "string") {
 
 To make pluralization happen, you need to add a `smart_count` in your options (`substitutions` object). Note that you can also pass a number instead of an options object. Polyglot will take account of that shortcut and transform it back to an options object with a `smart_count` property.
 
-```js
+```javascript
 var trim = require("string.prototype.trim")
 
 // ...
@@ -572,7 +572,7 @@ function transformPhrase(phrase, substitutions, locale, tokenRegex) {
 
 **Step two**. If we do have a `smart_count` option, we split the phrase in multiple parts thanks to the delimiter (`||||`). As we are caching `split`, we need to invoke the function on `result` thanks to the `call` method. For example:
 
-```js
+```javascript
 var phrase = "I have one thing |||| I have many things"
 phrases.split("||||") // ['I have one thing ', ' I have many things']
 ```
@@ -581,7 +581,7 @@ Then, **step 3**. We need to retrieve the rule associated to our locale. This ha
 
 Basically, `pluralTypeIndex` takes a locale and a count and it invokes one of the functions defined in `pluralTypes` with `count` as a parameter. It can be `arabic(3)` for example.
 
-```js
+```javascript
 function pluralTypeIndex(locale, count) {
   return pluralTypes[pluralTypeName(locale)](count)
 }
@@ -589,7 +589,7 @@ function pluralTypeIndex(locale, count) {
 
 Nevertheless, we need to know beforehand to which language rule our locale refers to. That's what `pluralTypeName` does.
 
-```js
+```javascript
 function langToTypeMap(mapping) {
   var ret = {}
   forEach(mapping, function(langs, type) {
@@ -616,7 +616,7 @@ You have to deal with one edge case here. Indeed, the locale can sometimes be co
 
 If you struggle to see what the `langToPluralType` map looks like, here is an extract:
 
-```js
+```javascript
 {
   ar: 'arabic',
   'bs-Latn-BA': 'bosnian_serbian',
@@ -648,7 +648,7 @@ Finally, in `pluralTypeIndex`, we can invoke the correct language rule to the fu
 
 Let's recap pluralization on an example:
 
-```js
+```javascript
 const polyglot = new Polyglot()
 polyglot.extend({
   thing: "There is %{smart_count} thing |||| There are %{smart_count} things",
@@ -669,7 +669,7 @@ We haven't provided a `locale` to polyglot, so it's `en` by default.
 
 Another example:
 
-```js
+```javascript
 const polyglot = new Polyglot({ locale: "fr" })
 polyglot.extend({
   thing: "Il n'y a rien |||| Il y a plein de choses",
@@ -695,7 +695,7 @@ Are you still with me? Great. The next methods are pretty easy to understand, th
 
 `unset` is quite similar to `extend` code-wise. It takes a parameter that can either be a string or an object. If it's a string, delete the key from the internal `phrases` object. If it's an object, iterate over the keys of the object passed and remove them if the associated value if it's not an object. Otherwise, apply the unset function on the associated object value:
 
-```js
+```javascript
 Polyglot.prototype.unset = function(morePhrases, prefix) {
   if (typeof morePhrases === "string") {
     delete this.phrases[morePhrases]
@@ -720,7 +720,7 @@ Polyglot.prototype.unset = function(morePhrases, prefix) {
 
 As you have an internal `phrases` object that contains all your keys and phrases, `clear` is fairly simple. Just empty the object:
 
-```js
+```javascript
 Polyglot.prototype.clear = function() {
   this.phrases = {}
 }
@@ -730,7 +730,7 @@ Polyglot.prototype.clear = function() {
 
 `replace` allows you to replace your current set of phrases by another one. So you just need to **clear** the current `phrases` and **extend** it with the other set:
 
-```js
+```javascript
 Polyglot.prototype.replace = function(newPhrases) {
   this.clear()
   this.extend(newPhrases)
@@ -741,7 +741,7 @@ Polyglot.prototype.replace = function(newPhrases) {
 
 As we already require an `has` package that checks for a key in an object, we just have to apply the `has` function on the internal `phrases` with a given key:
 
-```js
+```javascript
 Polyglot.prototype.has = function(key) {
   return has(this.phrases, key)
 }
@@ -754,7 +754,7 @@ The `locale` method has two behaviors:
 - If a new locale is provided, set the internal `currentLocale` to it.
 - Otherwise return the current locale.
 
-```js
+```javascript
 Polyglot.prototype.locale = function(newLocale) {
   if (newLocale) this.currentLocale = newLocale
   return this.currentLocale

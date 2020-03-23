@@ -30,7 +30,7 @@ Easy peasy!
 
 All right, no more talking. First, you will need to create a folder and initialize it:
 
-```sh
+```shell:title=package.json
 mkdir my-bot
 cd my-bot
 npm init -y # generates you a minimal package.json file
@@ -38,7 +38,7 @@ npm init -y # generates you a minimal package.json file
 
 Then, we will need to import a library that allows us to interact with [Discord's API](https://discordapp.com/developers/docs). And luckily for us, there is one great JS wrapper called [discord.js](https://discord.js.org/#/). Let's add it to our project:
 
-```sh
+```shell
 npm install discord.js
 ```
 
@@ -48,7 +48,7 @@ If we take a look at their website, we can see they already provide us some code
 
 In your folder, create a new file called `index.js` and paste the following:
 
-```js
+```javascript:title=index.js
 const Discord = require("discord.js")
 const client = new Discord.Client()
 
@@ -95,7 +95,21 @@ What does the code above do? Not so many things.
 
 6. Below **TOKEN**, click on **COPY** and paste it in `index.js` as a parameter of the `login` method. Voilà! You are now the happy owner of a Discord bot token.
 
-```js
+```javascript:title=index.js
+const Discord = require("discord.js")
+const client = new Discord.Client()
+
+client.on("ready", () => {
+  console.log(`Logged in as ${client.user.tag}!`)
+})
+
+client.on("message", msg => {
+  if (msg.content === "ping") {
+    msg.reply("Pong!")
+  }
+})
+
+// highlight-next-line
 client.login("YOUR_TOKEN")
 ```
 
@@ -133,22 +147,24 @@ Great. Now we're ready to add our bot to our server:
 
 ### Give life to your bot
 
-Our bot is on our server but it's offline. So let's make it alive. For development purposes, we will add [`nodemon`](https://nodemon.io/). It will allow us to reload our code as soon as it changes:
+Our bot is on our server but it's offline. So let's make it alive. For development purposes, we will add [nodemon](https://nodemon.io/). It will allow us to reload our code as soon as it changes:
 
-```sh
+```shell
 npm install nodemon --save-dev
 ```
 
-Then, we will add some scripts to our `package.json` to make our life easier. One will be called `start` and the other one `dev`. Paste the following in your `package.json` file:
+Then, we will add some scripts to our `package.json` to make our life easier. One will be called `start` and the other one `dev`:
 
-```json
+```json:title=package.json
 {
   "name": "my-bot",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    // highlight-start
     "start": "node index.js",
     "dev": "nodemon index.js"
+    // highlight-end
   },
   "dependencies": {
     "discord.js": "^11.4.2"
@@ -161,7 +177,7 @@ Then, we will add some scripts to our `package.json` to make our life easier. On
 
 Ladies and gentlemen, this is the moment you've been waiting for. Your bot is going to be brought online! Run this command:
 
-```sh
+```shell
 npm run dev
 ```
 
@@ -181,7 +197,7 @@ When you grabbed your token, you may have noticed that Discord hid it by default
 
 To hide data, we use what we call environmental variables. Basically, we put what we want to hide or configuration variables into a file whose name is `.env`. This file should **never** be pushed on a public repository if it contains sensitive data. Create a new file called `.env` and paste the following:
 
-```env
+```shell:title=.env
 BOT_TOKEN=YOUR_TOKEN_HERE
 ```
 
@@ -190,15 +206,25 @@ Of course, don't _literally_ paste `YOUR_TOKEN_HERE`. Paste your own token.
 The next step is to load this variable into our app. Indeed, you may have added a `.env` file, it will mean nothing to Node when it will run your `index.js` file. For that, we will add a package called [`dotenv`](https://www.npmjs.com/package/dotenv). As their docs say, dotenv is a module that loads environment variables from a `.env` file into `process.env.`:
 
 1. Run `npm install dotenv`
-2. At the very top of your `index.js` file, add this line:
+2. Require the `dotenv` package and replace your token with `process.env.BOT_TOKEN`:
 
-```js
+```javascript:title=index.js
+// highlight-next-line
 require("dotenv").config()
-```
+const Discord = require("discord.js")
+const client = new Discord.Client()
 
-3. Replace your token with `process.env.BOT_TOKEN`:
+client.on("ready", () => {
+  console.log(`Logged in as ${client.user.tag}!`)
+})
 
-```js
+client.on("message", msg => {
+  if (msg.content === "ping") {
+    msg.reply("Pong!")
+  }
+})
+
+// highlight-next-line
 client.login(process.env.BOT_TOKEN)
 ```
 
@@ -208,14 +234,28 @@ Go back to your server and make sure your bot is still online. Alternatively, yo
 
 So far, our bot replies **Pong!** whenever someone says ping. Let's face it, it's totally useless. One of the common features of bots is to welcome members and give them instructions as soon as they join the server. Therefore we will code our bot so that whenever someone joins the server, it will send a welcome message!
 
-There is a special event emitted when a user joins the server whose name is `guildMemberAdd`. The [member](https://discord.js.org/#/docs/main/stable/class/GuildMember) that just joined the server is passed as an argument and it has a loooot of methods including an interesting one called `send`. It will allow us to create a direct message between the bot and the new member. Beneath the last listener (`message`), add the following:
+There is a special event emitted when a user joins the server whose name is `guildMemberAdd`. The [member](https://discord.js.org/#/docs/main/stable/class/GuildMember) that just joined the server is passed as an argument and it has a loooot of methods including an interesting one called `send`. It will allow us to create a direct message between the bot and the new member:
 
-```js
+```javascript:title=index.js
+require("dotenv").config()
+
+// ...
+
+client.on("message", msg => {
+  if (msg.content === "ping") {
+    msg.reply("Pong!")
+  }
+})
+
+// highlight-start
 client.on("guildMemberAdd", member => {
   member.send(
     `Welcome on the server! Please be aware that we won't tolerate troll, spam or harassment. Have fun 😀`
   )
 })
+// highlight-end
+
+client.login(process.env.BOT_TOKEN)
 ```
 
 To verify that everything works properly, invite a friend (or create another Discord account) and verify that they get the welcome message:
@@ -236,8 +276,13 @@ Our bot starts to become interesting. Let's add a moderation feature: the abilit
 
 Here is the full code (I got rid of the ping-pong feature):
 
-```js
+```javascript:title=index.js
+require("dotenv").config()
+
+// ...
+
 client.on("message", message => {
+  // highlight-start
   if (message.content.startsWith("!kick")) {
     const member = message.mentions.members.first()
 
@@ -255,8 +300,13 @@ client.on("message", message => {
       .kick()
       .then(() => message.reply(`${member.user.tag} was kicked.`))
       .catch(error => message.reply(`Sorry, an error occured.`))
+    // highlight-end
   }
 })
+
+// ...
+
+client.login(process.env.BOT_TOKEN)
 ```
 
 ### Giving the permission to the bot
@@ -296,53 +346,73 @@ Get ready for the following, it's harder than what you've seen until here.
 
 For each `.js` file in the `events` folder, we will export a function which will be our **event handler**, that is to say, the function that runs each time the corresponding event is emitted. To do that, we will need to pass arguments to these event handlers such as `message`, `member`, etc.
 
-1. We need to work with files. Then in `index.js`, you have to import the [`fs`](https://nodejs.org/api/fs.html) module at the top of your file
+1. We need to work with files. Then in `index.js`, you have to import the [fs](https://nodejs.org/api/fs.html) module at the top of your file
 
-```js
+```javascript:title=index.js
+require("dotenv").config()
+const Discord = require("discord.js")
+// highlight-next-line
 const fs = require("fs")
+const client = new Discord.Client()
 ```
 
-2. Just below the initialization of the Discord client (`const client = new Discord.Client()`), read all the files of the events folder using [`fs.readdir`](https://nodejs.org/api/fs.html#fs_fs_readdir_path_options_callback). The callback has two arguments: `err` and `files` where `files` is an array of the filenames in the directory.
+2. Just below the initialization of the Discord client (`const client = new Discord.Client()`), read all the files of the events folder using [`fs.readdir`](https://nodejs.org/api/fs.html#fs_fs_readdir_path_options_callback). The callback has two arguments: `err` and `files` where `files` is an array of the filenames in the directory:
 
-```js
+```javascript:title=index.js
+require("dotenv").config()
+const Discord = require("discord.js")
+const fs = require("fs")
+const client = new Discord.Client()
+
+// highlight-next-line
 fs.readdir("./events/", (err, files) => {})
 ```
 
 3. Inside the callback function, we are going to require each event handler using the filename:
 
-```js
+```javascript:title=index.js
+require("dotenv").config()
+const Discord = require("discord.js")
+const fs = require("fs")
+const client = new Discord.Client()
+
 fs.readdir("./events/", (err, files) => {
+  // highlight-start
   files.forEach(file => {
     const eventHandler = require(`./events/${file}`)
   })
+  // highlight-end
 })
 ```
 
-4. Now, listen to these events and add the associated event handler. We will need to pass the argument and the client to that event handler. Be careful though, the filename includes the extension! You'll get something like `ready.js` instead of just `ready`. So we must get rid of that extension.
+4. Now, listen to these events and add the associated event handler. We will need to pass the argument and the client to that event handler. Be careful though, the filename includes the extension! You'll get something like `ready.js` instead of just `ready`. So we must get rid of that extension:
 
-```js
+```javascript:title=index.js
+require("dotenv").config()
+const Discord = require("discord.js")
+const fs = require("fs")
+const client = new Discord.Client()
+
 fs.readdir("./events/", (err, files) => {
   files.forEach(file => {
     const eventHandler = require(`./events/${file}`)
+    // highlight-start
     const eventName = file.split(".")[0]
     client.on(eventName, arg => eventHandler(client, arg))
+    // highlight-end
   })
 })
 ```
 
 5. Update each event handler file with the associated function and of course don't forget to export the function.
 
-**ready.js**
-
-```js
+```javascript:title=ready.js
 module.exports = client => {
   console.log(`Logged in as ${client.user.tag}!`)
 }
 ```
 
-**message.js**
-
-```js
+```javascript:title=message.js
 module.exports = (client, message) => {
   if (message.content.startsWith("!kick")) {
     const member = message.mentions.members.first()
@@ -365,9 +435,7 @@ module.exports = (client, message) => {
 }
 ```
 
-**guildMemberAdd.js**
-
-```js
+```javascript:title=guildMemberAdd.js
 module.exports = (client, member) => {
   member.send(
     `Welcome on the server! Please be aware that we won't tolerate troll, spam or harassment. Have fun 😀`
@@ -377,11 +445,16 @@ module.exports = (client, member) => {
 
 6. One last thing to do. The refactorization above works well because for each event handler, we have only one argument. But look at this [channelUpdate event](https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-channelUpdate). Two arguments are passed! That won't work since we're just passing one argument. To tackle that issue, we will use [rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters). It allows us to represent an indefinite number of arguments as an array. Then we'll use the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) to pass all these arguments to the event handler.
 
-```js
+```javascript:title=index.js
+require("dotenv").config()
+
+// ...
+
 fs.readdir("./events/", (err, files) => {
   files.forEach(file => {
     const eventHandler = require(`./events/${file}`)
     const eventName = file.split(".")[0]
+    // highlight-next-line
     client.on(eventName, (...args) => eventHandler(client, ...args))
   })
 })
@@ -396,9 +469,7 @@ Bare with me, we're nearly finished with the bot. Look at `message.js`, only one
 1. Create a `commands` folder at the root folder.
 2. Create a `kick.js` file and move all the code of `message.js` that is inside the if statement:
 
-**kick.js**
-
-```js
+```javascript:title=kick.js
 module.exports = message => {
   const member = message.mentions.members.first()
 
@@ -419,11 +490,13 @@ module.exports = message => {
 
 3. Import the command in `message.js` and replace the code you've just pasted in `kick.js`:
 
-```js
+```javascript:title=message.js
+// highlight-next-line
 const kick = require("../commands/kick")
 
 module.exports = (client, message) => {
   if (message.content.startsWith("!kick")) {
+    // highlight-next-line
     return kick(message)
   }
 }
@@ -446,7 +519,7 @@ Last part: deploying the bot. You're not going to let your computer always on ju
 
 4. In your project, create a file named `Procfile` at the root folder and insert the following content:
 
-```js
+```
 worker: node index.js
 ```
 

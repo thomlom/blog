@@ -14,7 +14,7 @@ As a prerequisite, we will need [Node.js](https://nodejs.org/en/) to be installe
 
 Before creating a project, you'll need to install Vue CLI first:
 
-```sh
+```shell
 npm install -g @vue/cli
 ```
 
@@ -83,7 +83,7 @@ Do you feel overwhelmed by the number of files? Don't worry. I'm going to give y
 
 Look at the `App.vue` file. If you already [played around with Vue.js](https://thomlom.dev/getting-started-with-vue/) you may have defined your Vue instance like this:
 
-```js
+```javascript
 new Vue({
   el: "#app",
 })
@@ -91,7 +91,7 @@ new Vue({
 
 And components like this:
 
-```js
+```javascript
 Vue.component("my-component", {
   // ...
   template: `<div>...</div>`,
@@ -114,7 +114,7 @@ That's why Vue use **single-file components**. They're structured very clearly:
 
 For example, here is the `App.vue` file:
 
-```html
+```html:title=App.vue
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />

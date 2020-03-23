@@ -18,8 +18,7 @@ Basically, React Testing Library (RTL) is made of simple and complete React DOM 
 
 In fact, developers tend to test what we call **implementation details**. Let's take a simple example to explain it. You want to create a counter that you can both increment and decrement. Here is the implementation (with a class component) and its two according tests: the first one is written with [Enzyme](https://github.com/airbnb/enzyme) and the other one with React Testing Library.
 
-```jsx
-// counter.js
+```jsx:title=counter.js
 import React from "react"
 
 class Counter extends React.Component {
@@ -40,8 +39,7 @@ class Counter extends React.Component {
 export default Counter
 ```
 
-```jsx
-// counter-enzyme.test.js
+```jsx:title=counter-enzyme.test.js
 import React from "react"
 import { shallow } from "enzyme"
 
@@ -61,8 +59,7 @@ describe("<Counter />", () => {
 })
 ```
 
-```jsx
-// counter-rtl.test.js
+```jsx:title=counter-rtl.test.js
 import React from "react"
 import { render, fireEvent } from "@testing-library/react"
 
@@ -93,10 +90,12 @@ Can you guess which test file is the best one and why? If you're not used to tes
 
 Let's illustrate these two points. Let's say you want to refactor your components because you want to make it possible to set any count value. So you remove your `increment` and `decrement` methods and then add a new `setCount` method. Let's say you forgot to wire this new method to your different buttons:
 
-```jsx
-// counter.js
-export default class Counter extends React.Component {
+```jsx:title=counter.js
+import React from "react"
+
+class Counter extends React.Component {
   state = { count: 0 }
+  // highlight-next-line
   setCount = count => this.setState({ count })
   render() {
     return (
@@ -108,17 +107,20 @@ export default class Counter extends React.Component {
     )
   }
 }
+
+export default Counter
 ```
 
 The first test (Enzyme) will pass, but the second one (RTL) will fail. Indeed, the first one doesn't care if your buttons are **correctly wired** to the methods. It just looks at the implementation itself, that is to say your `increment` and `decrement` method. This is a **false positive.**
 
 Now, let's say it's November 2018, you hear about hooks everywhere and you decide to try them out on your favorite counter, thus you change its implementation:
 
-```jsx
+```jsx:title=counter.js
 // counter.js
 import React, { useState } from "react"
 
-export default function Counter() {
+// highlight-start
+const Counter = () => {
   const [count, setCount] = useState(0)
   const increment = () => setCount(count => count + 1)
   const decrement = () => setCount(count => count - 1)
@@ -130,11 +132,14 @@ export default function Counter() {
     </div>
   )
 }
+// highlight-end
+
+export default Counter
 ```
 
 This time, the first test is going to be broken even if your counter still works. This is a **false negative**! Enzyme will complain about `state` not being able to work on functional components:
 
-```sh
+```shell
 ShallowWrapper::state() can only be called on class components
 ```
 
@@ -516,7 +521,7 @@ There are many matchers you can use such as:
 
 You can install it with the following command:
 
-```sh
+```shell
 npm install --save-dev @testing-library/jest-dom
 ```
 
@@ -541,7 +546,7 @@ test("adds a new to-do", () => {
   fireEvent.keyDown(input, { key: "Enter" })
 
   getByText(todo)
-  // Only this part changes 👇
+  // highlight-next-line
   expect(input).toHaveValue("")
 ```
 
@@ -563,9 +568,11 @@ describe("<Counter />", () => {
     const decrementButton = getByText("-")
 
     fireEvent.click(incrementButton)
+    // highlight-next-line
     expect(counter).toHaveTextContent("1")
 
     fireEvent.click(decrementButton)
+    // highlight-next-line
     expect(counter).toHaveTextContent("0")
   })
 })
@@ -585,8 +592,7 @@ In this part, we will use a very simple posts app whose features are the followi
 
 Here is the code and the associated app. Try it out.
 
-```jsx
-// app.js
+```jsx:title=app.js
 import React from "react"
 
 import { addPost } from "./api"
@@ -660,8 +666,7 @@ function App() {
 export default App
 ```
 
-```js
-// api.js
+```javascript:title=api.js
 let nextId = 0
 
 export const addPost = post => {
@@ -737,6 +742,7 @@ test("adds a post", () => {
   const postTitle = "This is a post"
   const postContent = "This is the content of my post"
 
+  // highlight-start
   fireEvent.change(title, { target: { value: postTitle } })
   fireEvent.change(content, { target: { value: postContent } })
   fireEvent.click(button)
@@ -744,6 +750,7 @@ test("adds a post", () => {
   // Oops, this will fail ❌
   expect(queryByText(postTitle)).toBeInTheDocument()
   expect(queryByText(postContent)).toBeInTheDocument()
+  // highlight-end
 })
 ```
 
@@ -771,6 +778,7 @@ test("adds a post", () => {
   fireEvent.change(content, { target: { value: postContent } })
   fireEvent.click(button)
 
+  // highlight-next-line
   debug()
 
   expect(queryByText(postTitle)).toBeInTheDocument()
@@ -820,8 +828,10 @@ test("adds a post", () => {
   fireEvent.change(content, { target: { value: postContent } })
   fireEvent.click(button)
 
+  // highlight-start
   expect(button).toHaveTextContent("Posting")
   expect(button).toBeDisabled()
+  // highlight-end
 })
 ```
 
@@ -857,10 +867,12 @@ describe("Posts", () => {
     expect(button).toHaveTextContent("Posting")
     expect(button).toBeDisabled()
 
+    // highlight-start
     await wait(() => {
       getByText(postTitle)
       getByText(postContent)
     })
+    // highlight-end
   })
 })
 ```
@@ -883,9 +895,11 @@ describe("Posts", () => {
     expect(button).toHaveTextContent("Posting")
     expect(button).toBeDisabled()
 
+    // highlight-start
     await wait()
     getByText(postTitle)
     getByText(postContent)
+    // highlight-end
   })
 })
 ```
@@ -906,8 +920,10 @@ describe("Posts", () => {
     expect(button).toHaveTextContent("Posting")
     expect(button).toBeDisabled()
 
+    // highlight-start
     await waitForElement(() => getByText(postTitle))
     getByText(postContent)
+    // highlight-end
   })
 })
 ```
@@ -933,8 +949,10 @@ describe("Posts", () => {
     expect(button).toHaveTextContent("Posting")
     expect(button).toBeDisabled()
 
+    // highlight-start
     await findByText(postTitle)
     getByText(postContent)
+    // highlight-end
   })
 })
 ```

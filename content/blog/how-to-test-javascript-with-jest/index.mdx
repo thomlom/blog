@@ -47,7 +47,7 @@ While it's true you can use other testing tools like [Mocha](https://mochajs.org
 
 To add Jest, nothing more simple than adding a package in your project:
 
-```sh
+```shell
 npm install --save-dev jest
 ```
 
@@ -80,7 +80,7 @@ Jest provides functions to structure your tests:
 
 ### A first test
 
-```js
+```javascript
 describe("My first test suite", () => {
   it("adds two numbers", () => {
     expect(add(2, 2)).toBe(4)
@@ -96,7 +96,7 @@ describe("My first test suite", () => {
 
 When you write a test, you usually need to make assertions on your code. For example you would expect an error to appear on the screen if a user gives the wrong password on a login screen. More generally, to make an assertion, you need an **input** and an **expected output**. Jest allows us to do that easily by providing **matchers** to test our values:
 
-```js
+```javascript
 expect(input).matcher(output)
 ```
 
@@ -104,7 +104,7 @@ Here are the most common one:
 
 - `toBe`: compares [primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) values (boolean, number, string) or the references of objects and arrays (aka **referential equality**)
 
-```js
+```javascript
 expect(1 + 1).toBe(2)
 
 const firstName = "Thomas"
@@ -117,7 +117,7 @@ expect(testsAreEssential).toBe(true)
 
 - `toEqual`: compares recursively all properties of arrays or objects (aka **deep equality**).
 
-```js
+```javascript
 const fruits = ["banana", "kiwi", "strawberry"]
 const sameFruits = ["banana", "kiwi", "strawberry"]
 expect(fruits).toEqual(sameFruits)
@@ -138,7 +138,7 @@ expect({ ...event, city: "London" }).toEqual({
 
 - `toBeTruthy` (`toBeFalsy`): tells if the value is `true` (`false`).
 
-```js
+```javascript
 expect(null).toBeFalsy()
 expect(undefined).toBeFalsy()
 expect(false).toBeFalsy()
@@ -149,7 +149,7 @@ expect({ foo: "bar" }).toBeTruthy()
 
 - `not`: has to be placed in front of a matcher and returns the opposite of the matcher's result.
 
-```js
+```javascript
 expect(null).not.toBeTruthy()
 // same as expect(null).toBeFalsy()
 
@@ -158,13 +158,13 @@ expect([1]).not.toEqual([2])
 
 - `toContain`: checks if the array contains the element in parameter
 
-```js
+```javascript
 expect(["Apple", "Banana", "Strawberry"]).toContain("Apple")
 ```
 
 - `toThrow`: checks if a function throws an error
 
-```js
+```javascript
 function connect() {
   throw new ConnectionError()
 }
@@ -184,15 +184,14 @@ Let's recall what we saw in Discover Jest's lesson: running only `jest`. By defa
 
 You can also specify the filename of the test file you want to run or a pattern:
 
-```sh
+```shell
 jest Event # run all test files containing Event
 jest src/EventDetail.test.js # run a specific file
 ```
 
 Now let's say you want to run a specific test, Jest allows you to do so with the `-t` option. For example, consider the two following test suites:
 
-```js
-// calculator.test.js
+```javascript:title=calculator.test.js
 describe("calculator", () => {
   it("adds two numbers", () => {
     expect(2 + 2).toBe(4)
@@ -206,8 +205,9 @@ describe("calculator", () => {
     expect(2 * 2).toBe(4)
   })
 })
+```
 
-// example.test.js
+```javascript:title=example.test.js
 describe("example", () => {
   it("does something", () => {
     expect(foo()).toEqual("bar")
@@ -223,7 +223,7 @@ describe("example", () => {
 
 By running the following command:
 
-```sh
+```shell
 jest -t numbers
 ```
 
@@ -233,7 +233,7 @@ Jest will run the first two tests of `calculator.test.js` but will skip the rest
 
 Then there's, what I think is, the most handy option of Jest: `watch mode`. This mode watches files for changes and rerun the tests related to them. To run it, you just have to use the `--watch` option:
 
-```sh
+```shell
 jest --watch
 ```
 
@@ -243,7 +243,7 @@ jest --watch
 
 Let's see a last option to show you how powerful Jest is: collecting test coverage, that is to say, the **measurement of the amount of code covered by a test suite when run.** This metric can be useful to make sure your code is properly covered by your tests. To make use of that, run the following command:
 
-```sh
+```shell
 jest --coverage
 ```
 
@@ -266,13 +266,13 @@ But why would you need mocks in your tests? Because in real-world apps, you **de
 
 You can easily create mocks with the following function:
 
-```js
+```javascript
 jest.fn()
 ```
 
 It doesn't look like so but this function is really powerful. It holds a `mock` property which makes it possible for us to keep track of how many times the functions have been called, with which arguments, what were the returned values, etc.
 
-```js
+```javascript
 const foo = jest.fn()
 foo()
 foo("bar")
@@ -283,7 +283,7 @@ console.log("foo calls", foo.mock.calls) // [Array[0], Array[1]]
 
 In this example, you can see that because `foo` have been called twice, `calls` has two items which represent the arguments passed in both function calls. Thus, we can make assertions on what were passed to the function:
 
-```js
+```javascript
 const foo = jest.fn()
 foo("bar")
 
@@ -292,7 +292,7 @@ expect(foo.mock.calls[0][0]).toBe("bar")
 
 Writing such an assertion is a little bit tedious. Luckily for us, Jest provides useful matchers when it comes to make mock assertions such as `toHaveBeenCalled`, `toHaveBeenCalledWith`, `toHaveBeenCalledTimes` and [much more](https://jestjs.io/docs/en/expect#tohavebeencalled):
 
-```js
+```javascript
 const hello = jest.fn()
 hello("world")
 expect(hello).toHaveBeenCalledWith("world")
@@ -311,7 +311,7 @@ Let's take a real world example: a multi-step form. On each step, you have form 
 
 Let'say you want to test the `saveStepData` function. As said above, you don't need to care about `nextOrPreviousFn` and its implementation, you just want to know it has correctly been called after saving. Then you can use a mock function to do so. This useful technique is called [**dependency injection**](https://en.wikipedia.org/wiki/Dependency_injection):
 
-```js
+```javascript
 function saveStepData(nextOrPreviousFn) {
   // Saving data...
   nextOrPreviousFn()
@@ -324,7 +324,7 @@ expect(nextOrPreviousMock).toHaveBeenCalled()
 
 So far, we know how to create mocks and if they have been called. But what if we need to change the implementation of a function or modify the returned value to make one of our test deterministic? We can do so with the following function:
 
-```js
+```javascript
 jest.fn().mockImplementation(implementation)
 // Or with the shorthand
 jest.fn(implementation)
@@ -332,7 +332,7 @@ jest.fn(implementation)
 
 Let's try it right away:
 
-```js
+```javascript
 const foo = jest.fn().mockImplementation(() => "bar")
 const bar = foo()
 
@@ -355,7 +355,7 @@ Using it is quite simple. Just give it the path of the module you want to mock a
 
 For instance, let's take the case of [axios](https://github.com/axios/axios), one of the most popular HTTP clients. Indeed, you don't want to perform actual network requests in your tests because they could get very slow. Let's mock `axios` then:
 
-```js
+```javascript
 import axiosMock from "axios"
 
 jest.mock("axios")
@@ -366,7 +366,7 @@ console.log(axiosMock)
 
 With `jest.mock` the different `axios` functions such as `get`, `post`, etc are mocked now. Thus, we have full control over what `axios` sends us back:
 
-```js
+```javascript
 import axiosMock from "axios"
 
 async function getUsers() {
@@ -392,7 +392,7 @@ test("gets the users", async () => {
 
 Another great feature of Jest is shared mocks. Indeed, if you were to reuse the axios mock implementation above, you could just create a `__mocks__` folder alongside the `node_modules` folder with a `axios.js` file in it:
 
-```js
+```javascript
 module.exports = {
   get: () => {
     return Promise.resolve({ data: { users: ["John", "Emma", "Tom"] } })
@@ -402,7 +402,7 @@ module.exports = {
 
 And then in the test:
 
-```js
+```javascript
 import axiosMock from "axios"
 
 // Note that we still have to call jest.mock!

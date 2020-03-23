@@ -22,7 +22,7 @@ A linter **analyses statically your code.** It means it checks out the code with
 
 The best part of a linter is that it can find potential errors in your code that don't look like them. As an example, here is a for-loop that, at first glance, will log numbers from 0 to 4:
 
-```js
+```javascript
 for (var i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000)
 }
@@ -32,7 +32,7 @@ However, it logs five times `5`. Curious, right? The reason behind this is that 
 
 You can fix this behavior by using the `let` keyword, which is **block-scoped**:
 
-```js
+```javascript
 for (let i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000)
 }
@@ -48,14 +48,14 @@ Now that you saw why linting your code is important, let's discover **ESLint**. 
 
 Basically, ESLint parses your code, analyses it and run linting rules that may trigger warning or errors to let you know if your code is right or wrong. For example, one popular rule is [no-undef](https://eslint.org/docs/rules/no-undef): it makes sure your code doesn't have any undeclared variables. With `no-undef`, the following code would be incorrect:
 
-```js
+```javascript
 // ❌ Oops, what is add?
 const result = add(1, 2)
 ```
 
 Indeed. ESLint wouldn't know what `add` refers to and would throw an error at you. You need to explicitly declare `add` to correct it:
 
-```js
+```javascript
 // ✅ Correct
 function add() {}
 const result = add(1, 2)
@@ -110,7 +110,7 @@ Allows you to extend your configuration file from others configurations. A popul
 
 You can modify ESLint's configuration inline with special comments. As an example, you could do the following to the incorrect code related to `no-undef`:
 
-```js
+```javascript
 // eslint-disable-next-line
 const result = add(1, 2)
 ```
@@ -123,7 +123,7 @@ With that, ESLint will stop complaining.
 
 ESLint has a CLI to lint files. You can find all the options [on ESLint's docs](https://eslint.org/docs/user-guide/command-line-interface#options). The one you will use the most is the `--fix` option which fixes the files when ESLint can. For example the following command lints every file present in the codebase:
 
-```sh
+```shell
 eslint .
 ```
 
@@ -144,7 +144,7 @@ You can use these scripts using the `npm run` command. One will just lint the co
 
 Here is an example of a `.eslintrc` file:
 
-```json
+```json:title=.eslintrc
 {
   "env": {
     "commonjs": true,
@@ -170,7 +170,7 @@ In this configuration, we:
 
 Here is another ESLint configuration:
 
-```json
+```json:title=.eslintrc
 {
   "env": {
     "browser": true,
@@ -245,7 +245,7 @@ Click [here if you want to find more option](https://prettier.io/docs/en/options
 
 Prettier, just like ESLint, has a CLI to format files. You can find many options on [Prettier's docs](https://prettier.io/docs/en/cli.html). The one you will use the most is the `--write` option which is similar to the `--fix` option of ESLint. For example the following command formats every `.js` or `.jsx` file located in a `src` folder:
 
-```sh
+```shell
 prettier --write src/*.(js|jsx)
 ```
 
@@ -283,7 +283,7 @@ npm install --save-dev eslint-config-prettier eslint-plugin-prettier
 
 Here is an example of a Prettier configuration:
 
-```json
+```json:title=.prettierrc
 {
   "printWidth": 85,
   "arrowParens": "always",
@@ -299,92 +299,9 @@ Basically, it means that Prettier:
 - Won't print semicolons at the end of every statement.
 - Will use two spaces per indentation-level.
 
-Let's take an example of a simple yet messy React component. With this configuration, Prettier will allow you to go from that:
+Let's take an example of a simple yet messy React component and visualize the effects of Prettier by trying out its [online playground](https://prettier.io/playground/):
 
-```jsx
-import React, { useState } from "react"
-import { login } from "./services/auth"
-
-const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  async function signin() {
-    await login(email, password)
-    setEmail("")
-    setPassword("")
-  }
-  return (
-    <form method="post" onSubmit={signin}>
-      <label htmlFor="email">
-        Email
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-      </label>
-      <label htmlFor="password">
-        Password
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-      </label>
-      <button type="submit">Login</button>
-    </form>
-  )
-}
-export default Login
-```
-
-To that:
-
-```jsx
-import React, { useState } from "react"
-import { login } from "./services/auth"
-
-const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  async function signin() {
-    await login(email, password)
-    setEmail("")
-    setPassword("")
-  }
-  return (
-    <form method="post" onSubmit={signin}>
-      <label htmlFor="email">
-        Email
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-      </label>
-      <label htmlFor="password">
-        Password
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-      </label>
-      <button type="submit">Login</button>
-    </form>
-  )
-}
-
-export default Login
-```
+![Example of Prettier formatting](./example-prettier.png)
 
 That's instantly more readable and trust me, you would have wasted your time formatting this by hand. So **using a formatter is essential.**
 
@@ -417,13 +334,13 @@ Then, you can add Git hooks in two easy steps:
 
 1. Install husky as a dev dependency:
 
-```sh
+```shell
 npm install --save-dev husky
 ```
 
 2. Insert the following in your `package.json`:
 
-```sh
+```shell
 {
   "husky": {
     "hooks": {
@@ -443,7 +360,7 @@ Bear with me, this tool will be the last to setup. The more your codebase will g
 
 To install it, you have to run the following command:
 
-```js
+```javascript
 npm install --save-dev lint-staged
 ```
 
@@ -475,7 +392,7 @@ In this part, we are going to see how to setup Prettier, husky and lint-staged o
 
 Let's create a React app. Go to the folder you usually work in and run:
 
-```sh
+```shell
 npx create-react-app react-eslint-prettier-app
 ```
 
@@ -483,7 +400,7 @@ npx create-react-app react-eslint-prettier-app
 
 First, let's see how to setup Prettier. For that we need to install in our `devDependencies` Prettier and its plugins:
 
-```sh
+```shell
 npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
 ```
 
@@ -513,7 +430,7 @@ Once done, we need to specify the options to Prettier. For that either create a 
 
 Let's add the `pre-commit` hook on staged files. We need to install both `husky` and `lint-staged` in the `devDependencies` for that:
 
-```sh
+```shell
 npm install --save-dev husky lint-staged
 ```
 

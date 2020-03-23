@@ -6,6 +6,10 @@ html {
   font-family: "Inter", "sans-serif";
 }
 
+.gatsby-code-title {
+  @apply font-mono text-gray-800 text-sm;
+}
+
 .gradient {
   background: linear-gradient(to bottom right, #8888fc, #3525e6);
 }

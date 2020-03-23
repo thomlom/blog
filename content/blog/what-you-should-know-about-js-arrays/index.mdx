@@ -24,7 +24,7 @@ You'll use that one a lot. Basically, every time you need to modify the elements
 
 It takes one parameter: a function that is called on every element of the array. And it returns a **new array**, so no side effects here.
 
-```js
+```javascript
 const numbers = [1, 2, 3, 4]
 
 const numbersPlusOne = numbers.map(n => n + 1) // Adds one to every element
@@ -33,7 +33,7 @@ console.log(numbersPlusOne) // [2, 3, 4, 5]
 
 You can also create a new array that keeps only one particular property of an object:
 
-```js
+```javascript
 const allActivities = [
   { title: "My activity", coordinates: [50.123, 3.291] },
   { title: "Another activity", coordinates: [1.238, 4.292] },
@@ -59,7 +59,7 @@ Then you'll have a shiny new array with the elements you wanted to keep.
 
 For example, you can keep just the odd numbers in an array:
 
-```js
+```javascript
 const numbers = [1, 2, 3, 4, 5, 6]
 const oddNumbers = numbers.filter(n => n % 2 !== 0)
 console.log(oddNumbers) // [1, 3, 5]
@@ -67,7 +67,7 @@ console.log(oddNumbers) // [1, 3, 5]
 
 Or you can also use it to remove a particular item in an array:
 
-```js
+```javascript
 const participants = [
   { id: "a3f47", username: "john" },
   { id: "fek28", username: "mary" },
@@ -96,7 +96,7 @@ Most of the time, you'll just use the first two parameters: the accumulator and 
 
 Let's not be too theoretical. Here is the most common example of `reduce`:
 
-```js
+```javascript
 const numbers = [37, 12, 28, 4, 9]
 const total = numbers.reduce((total, n) => total + n)
 console.log(total) // 90
@@ -106,7 +106,7 @@ On the first iteration, the accumulator, which is `total`, takes an initial valu
 
 `reduce` is so powerful that you can actually use it to build a lot of array methods like `map` or `filter`:
 
-```js
+```javascript
 const map = (arr, fn) => {
   return arr.reduce((mappedArr, element) => {
     return [...mappedArr, fn(element)]
@@ -128,7 +128,7 @@ Basically, we gave `reduce` an initial value of `[]`: our accumulator. For `map`
 
 Let's see a more advanced example: deeply flatten an array, that is to say transforming something like `[1, 2, 3, [4, [[[5, [6, 7]]]], 8]]` into `[1, 2, 3, 4, 5, 6, 7, 8]`.
 
-```js
+```javascript
 function flatDeep(arr) {
   return arr.reduce((flattenArray, element) => {
     return Array.isArray(element)
@@ -146,7 +146,7 @@ This example is similar to `map` except that here we make use of recursion. I wo
 
 I agree, this is not a method. However, using the spread operator can help you achieve many things when working with arrays. In fact, you can use it to expand the values of an array in another array. From that point, you can make a copy of an array or concatenate multiple arrays.
 
-```js
+```javascript
 const numbers = [1, 2, 3]
 const numbersCopy = [...numbers]
 console.log(numbersCopy) // [1, 2, 3]
@@ -160,7 +160,7 @@ console.log(numbersConcatenated) // [1, 2, 3, 4, 5, 6]
 
 Well, a shallow copy will duplicate the original elements as little as possible. So when you have an array containing numbers, strings or booleans (**primitive types**), there's no problem, values are really duplicated. However, this is not the same for **objects** or **arrays**. Only the **reference** to the original value will be copied! Therefore, if you make a shallow copy of an array containing an object and that you modify the object in the copied array, it will also modify the object in the original array since they have the **same reference**.
 
-```js
+```javascript
 const arr = ["foo", 42, { name: "Thomas" }]
 let copy = [...arr]
 
@@ -187,7 +187,7 @@ You'fll find below other methods that are good to know and that can help you wit
 
 Have you ever used `indexOf` to know if something is in an array or not? Awful way to do it right? Luckily for us, `includes` does that for us. Give a parameter to `includes` and it will search in the array if the element exists.
 
-```js
+```javascript
 const sports = ["football", "archery", "judo"]
 const hasFootball = sports.includes("football")
 console.log(hasFootball) // true
@@ -197,7 +197,7 @@ console.log(hasFootball) // true
 
 The concat method can be used to merge two or more arrays.
 
-```js
+```javascript
 const numbers = [1, 2, 3]
 const otherNumbers = [4, 5, 6]
 
@@ -216,7 +216,7 @@ console.log(concatAll([1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12])) // [1, 2, 
 
 Whenever you want to execute something for each array element, you'll want to use `forEach`. It takes a function as a parameter that takes itself three parameters: the current value, the index and the array:
 
-```js
+```javascript
 const numbers = [1, 2, 3, 4, 5]
 numbers.forEach(console.log)
 // 1 0 [ 1, 2, 3 ]
@@ -228,7 +228,7 @@ numbers.forEach(console.log)
 
 It is used to return the first index at which a given element can be found in the array. `indexOf` was also widely used to check whether an element is in an `array` or not. To be honest, I don't use it that much as of today.
 
-```js
+```javascript
 const sports = ["football", "archery", "judo"]
 
 const judoIndex = sports.indexOf("judo")
@@ -239,7 +239,7 @@ console.log(judoIndex) // 2
 
 The `find` method is quite similar to the `filter` method. You have to provide it a function that test each array's element. However, `find` stops testing elements as soons as it finds one that passes the test. **Not `filter`**. `filter` will iterate over the whole array no matter what.
 
-```js
+```javascript
 const users = [
   { id: "af35", name: "john" },
   { id: "6gbe", name: "mary" },
@@ -256,7 +256,7 @@ So use `filter` when you want to... well filter your **whole** array. Use `find`
 
 It's exactly the same as the `find` method except that it returns the index of the first element found instead of the element directly.
 
-```js
+```javascript
 const users = [
   { id: "af35", name: "john" },
   { id: "6gbe", name: "mary" },
@@ -275,7 +275,7 @@ So when you need to search the index of an element in an array of primitive valu
 
 Whenever you need to take a portion of an array or copy an array, you can use `slice`. But be careful, just like the spread operator, `slice` returns a **shallow copy** of that portion!
 
-```js
+```javascript
 const numbers = [1, 2, 3, 4, 5]
 const copy = numbers.slice()
 ```
@@ -284,7 +284,7 @@ I said at the beginning of an article that for loops were often useless. Let me 
 
 Let's say you want to retrieve a certain amount of chat messages from an API and you want to display only five of them. You'll find below two approches: one with a for loop the other with `slice`.
 
-```js
+```javascript
 // The "traditional way" to do it:
 // Determine the number of messages to take and use a for loop
 const nbMessages = messages.length < 5 ? messages.length : 5
@@ -304,7 +304,7 @@ If you want to test that **at least one element** of an array passes a test, wel
 
 You can use `some` when you are dealing with permissions for example:
 
-```js
+```javascript
 const users = [
   {
     id: "fe34",
@@ -330,7 +330,7 @@ console.log(hasDeletePermission) // true
 
 Similar to `some` except that `every` tests if **all** elements pass the condition (instead of **at least one**).
 
-```js
+```javascript
 const users = [
   {
     id: "fe34",
@@ -356,7 +356,7 @@ console.log(hasAllReadPermission) // false
 
 These are the brand new methods that are coming in the JavaScript world. Basically, `flat` creates a new array by concatenating all sub-array elements into it. It accepts one parameter, a number, which represents how deep you want to flatten your array:
 
-```js
+```javascript
 const numbers = [1, 2, [3, 4, [5, [6, 7]], [[[[8]]]]]]
 
 const numbersflattenOnce = numbers.flat()
@@ -376,7 +376,7 @@ Can you guess what this method does? I bet you can just with the name.
 
 First it runs a mapping function on each element. Then it flattens the array once. Easy peasy!
 
-```js
+```javascript
 const sentences = [
   "This is a sentence",
   "This is another sentence",
@@ -391,7 +391,7 @@ In this example, you have many sentences in an array and you want to get all the
 
 Nothing to do with `flatMap`, but you can then count the number of words with the `reduce` function (just to show you another use-case of `reduce` 🙂)
 
-```js
+```javascript
 const wordsCount = allWords.reduce((count, word) => {
   count[word] = count[word] ? count[word] + 1 : 1
   return count
@@ -407,7 +407,7 @@ If you need to create a string based on the array's elements, you're looking for
 
 For example, you can display at a glance all the participants of an activity using `join`:
 
-```js
+```javascript
 const participants = ["john", "mary", "gary"]
 const participantsFormatted = participants.join(", ")
 console.log(participantsFormatted) // john, mary, gary
@@ -415,7 +415,7 @@ console.log(participantsFormatted) // john, mary, gary
 
 Here is a more real-word example where you may want to filter the participants before and get their name:
 
-```js
+```javascript
 const potentialParticipants = [
   { id: "k38i", name: "john", age: 17 },
   { id: "baf3", name: "mary", age: 13 },
@@ -435,7 +435,7 @@ console.log(participantsFormatted) // gary, emma
 
 This is a **static** method that creates a new Array from an array-like or iterable object like a string for example. It can be useful when you're working with the dom.
 
-```js
+```javascript
 const nodes = document.querySelectorAll(".todo-item") // this is an instance of NodeList, you can't use array methods with it
 const todoItems = Array.from(nodes) // now, you can use map, filter, etc. as you're workin with an array!
 ```
@@ -444,7 +444,7 @@ Have you seen that we used `Array` instead of an array instance? That's why `fro
 
 Then you can have fun with these nodes and for example registering an event listener on each one of them with `forEach`:
 
-```js
+```javascript
 todoItems.forEach(item => {
   item.addEventListener("click", function() {
     alert(`You clicked on ${item.innerHTML}`)
@@ -458,7 +458,7 @@ While we're at it, let's talk about another static method of `Array` which is `i
 
 Based on the previous example, this is what we get:
 
-```js
+```javascript
 const nodes = document.querySelectorAll(".todo-item")
 console.log(Array.isArray(nodes)) // false
 const todoItems = Array.from(nodes)
@@ -471,7 +471,7 @@ You'll find below other common array methods. The difference is that they modify
 
 For all these methods, if you don't want to mutate the original array, just make a shallow copy or deep copy beforehand:
 
-```js
+```javascript
 const arr = [1, 2, 3, 4, 5]
 const copy = [...arr] // or arr.slice()
 ```
@@ -480,7 +480,7 @@ const copy = [...arr] // or arr.slice()
 
 Yes, `sort` modifies the original array. In fact, it sorts the elements of an array in place. The default sorting method transforms all the elements into strings and sort them alphabetically:
 
-```js
+```javascript
 const names = ["john", "mary", "gary", "anna"]
 names.sort()
 console.log(names) // ['anna', 'gary', 'john', 'mary']
@@ -488,7 +488,7 @@ console.log(names) // ['anna', 'gary', 'john', 'mary']
 
 So be careful if you come from a Python background for example, doing `sort` on a numbers array just won't give you what you expected to:
 
-```js
+```javascript
 const numbers = [23, 12, 17, 187, 3, 90]
 numbers.sort()
 console.log(numbers) // [12, 17, 187, 23, 3, 90] 🤔
@@ -502,7 +502,7 @@ Then, how to sort the array? Well, `sort` accepts one function, a **comparison f
 
 Then you can sort numbers that way:
 
-```js
+```javascript
 const numbers = [23, 12, 17, 187, 3, 90]
 numbers.sort((a, b) => a - b)
 console.log(numbers) // [3, 12, 17, 23, 90, 187]
@@ -510,7 +510,7 @@ console.log(numbers) // [3, 12, 17, 23, 90, 187]
 
 Or you can sort dates by the most recent:
 
-```js
+```javascript
 const posts = [
   {
     title: "Create a Discord bot under 15 minutes",
@@ -534,7 +534,7 @@ console.log(posts)
 `fill` modifies or fills all the elements of an array from a start index to an end index with a static value.
 A great use of `fill` is to fill a new array with static values.
 
-```js
+```javascript
 // Normally I would have called a function that generates ids and random names but let's not bother with that here.
 function fakeUser() {
   return {
@@ -551,7 +551,7 @@ console.log(posts) // [{ id: "fe38", name: "thomas" }, { id: "fe38", name: "thom
 
 I think the method's name is pretty clear here. However, keep in mind that just like `sort` does, `reverse` reverses the array in place!
 
-```js
+```javascript
 const numbers = [1, 2, 3, 4, 5]
 
 numbers.reverse()
@@ -562,7 +562,7 @@ console.log(numbers) // [5, 4, 3, 2, 1]
 
 That one removes the last element from an array and returns it.
 
-```js
+```javascript
 const messages = ["Hello", "Hey", "How are you?", "I'm fine"]
 const lastMessage = messages.pop()
 console.log(messages) // ['Hello', 'Hey', 'How are you?']
@@ -577,7 +577,7 @@ Finally, in this last section, you'll find methods that mutates the original arr
 
 This is a widely used method when working with arrays. In fact `push` allows you to add one or more elements to an array. It is also usually used to build a new array based on an old one.
 
-```js
+```javascript
 const todoItems = [1, 2, 3, 4, 5]
 
 const itemsIncremented = []
@@ -594,13 +594,13 @@ console.log(todos) // ['Write an article', 'Proofreading', 'Publish the article'
 
 If you need to build an array based on another just like `itemsIncremented`, chances are that there is a method made for it like our good friends `map`, `filter` or `reduce`. In fact we can use `map` to do the same:
 
-```js
+```javascript
 const itemsIncremented = todoItems.map(x => x + 1)
 ```
 
 And if you want to use `push` when you need to add a new element, the spread operator got your back:
 
-```js
+```javascript
 const todos = ["Write an article", "Proofreading"]
 console.log([...todos, "Publish the article"]) // ['Write an article', 'Proofreading', 'Publish the article']
 ```
@@ -609,7 +609,7 @@ console.log([...todos, "Publish the article"]) // ['Write an article', 'Proofrea
 
 `splice` is often used as a way to remove an element at a certain index. You can actually do the same with `filter`:
 
-```js
+```javascript
 const months = ["January", "February", "March", "April", " May"]
 
 // With splice
@@ -623,7 +623,7 @@ console.log(monthsFiltered) // ['January', 'February', 'April', 'May']
 
 And now you might think, yeah but If I need to remove many elements? Well, use `slice`:
 
-```js
+```javascript
 const months = ["January", "February", "March", "April", " May"]
 
 // With splice
@@ -639,7 +639,7 @@ console.log(monthsSliced) // ['January', 'May']
 
 `shift` removes the first element of an array and returns it. To do it the functional way, you can use spread/rest:
 
-```js
+```javascript
 const numbers = [1, 2, 3, 4, 5]
 
 // With shift
@@ -657,7 +657,7 @@ console.log(numbersWithoutOne) // [2, 3, 4, 5]
 
 Unshift allows you to add one or more elements to the beginning of an array. Well just like `shift`, you can use the spread operator to do such a thing:
 
-```js
+```javascript
 const numbers = [3, 4, 5]
 
 // With unshift

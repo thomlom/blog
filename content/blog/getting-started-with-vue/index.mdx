@@ -21,7 +21,7 @@ One of the great things you can do with Vue is to render data to the DOM (Docume
 </div>
 ```
 
-```js
+```javascript
 new Vue({
   el: "#app",
   data: {
@@ -50,7 +50,7 @@ Vue can bind the attributes of your elements to your data properties. Binding me
 </div>
 ```
 
-```js
+```javascript
 new Vue({
   el: "#app",
   data: {
@@ -72,7 +72,7 @@ I bet you can guess what is the purpose of `v-if` just with the name. It’s abo
 </div>
 ```
 
-```js
+```javascript
 new Vue({
   el: "#app",
   data: {
@@ -102,7 +102,7 @@ Now you might think _"Wait. what methods is he talking about?"_. In Vue, you can
 </div>
 ```
 
-```js
+```javascript
 new Vue({
   el: "#app",
   data: {
@@ -132,7 +132,7 @@ You often need to get user input in an app. Lucky you! Vue's got your back on th
 </div>
 ```
 
-```js
+```javascript
 new Vue({
   el: "#app",
   data: {
@@ -183,7 +183,7 @@ You can use it with the following syntax: `v-for="item in list"`. Here, `list` r
 </div>
 ```
 
-```js
+```javascript
 new Vue({
   el: "#app",
   data: {
@@ -209,7 +209,7 @@ You can also provide a second argument to `v-for`:
 
 So far, you saw Vue directives and reactivity only. But as mentioned previously, Vue also allows you to create components:
 
-```js
+```javascript
 Vue.component("my-component", {
   template: "<div>My component</div>",
 })
@@ -235,7 +235,7 @@ Note: you can also bind props if you need to pass data that comes from your Vue 
 </div>
 ```
 
-```js
+```javascript
 Vue.component("person", {
   template: `
   <div>
@@ -273,7 +273,7 @@ We know how to communicate from parent to child components. Let's see the other 
 </div>
 ```
 
-```js
+```javascript
 Vue.component("child", {
   template: `
   <div>
@@ -323,7 +323,7 @@ Believe it or not, you are now ready to build a small app with what you saw abov
 </div>
 ```
 
-```js
+```javascript
 Vue.component("todo-item", {
   template: `
   <li class="todo-item">

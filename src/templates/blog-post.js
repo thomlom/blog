@@ -53,7 +53,7 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
               </p>
             </div>
           </TransitionLink>
-          <hr className="mt-8" />
+          <hr className="border border-primary-500 mt-8" />
         </>
       )}
       <Newsletter likeThisPost />

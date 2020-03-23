@@ -98,8 +98,7 @@ You can create partial files by naming the file with a **leading underscore**: `
 
 As for importing, well use the `@import` directive. For example, this is what you can do:
 
-```scss
-// _animations.scss
+```scss:title=_animations.scss
 @keyframes appear {
   0% {
     opacity: 0;
@@ -108,7 +107,9 @@ As for importing, well use the `@import` directive. For example, this is what yo
     opacity: 1;
   }
 }
-// header.scss
+```
+
+```scss:title=header.scss
 @import 'animations';
 h1 {
   animation: appear 0.5s ease-out;
@@ -204,7 +205,7 @@ Trust me, it’s fairly simple. You have to follow 2 rules:
 
 This is where you’ll import all your partials.
 
-```scss
+```scss:title=main.scss
 @import abstracts/variables;
 @import abstracts/functions;
 
@@ -219,7 +220,7 @@ This is where you’ll import all your partials.
 @import layout/header;
 @import layout/footer;
 
-...
+// ...
 ```
 
 Yes. It seems overwhelming. But I knew you would think that. This architecture is adapted to larger projects, but not to small ones. So here is a version adapted to smaller projects.
@@ -231,7 +232,7 @@ Then, you have two choices:
 1. You want your CSS code to be organized and follow the 7–1 pattern, so you keep the `abstracts`, `components`, `layout` and `base` folders.
 2. You prefer having one big folder where you put all your partials files and your `main.scss` file, so you’ll have something similar to this:
 
-```sh
+```
 sass/
   _animations.scss
   _base.scss
@@ -256,7 +257,7 @@ We’ll use a package called `node-sass` that allows us to compile `.scss` files
 
 Its CLI (Command Line Interface) is fairly easy to use:
 
-```sh
+```shell
 node-sass input output [options]
 ```
 
@@ -274,7 +275,7 @@ Now we know what tools we’ll use. The rest is even simpler. Just follow these 
 3. Add the node-sass library: `npm install node-sass --save-dev`
 4. Create your folders, your `index.html` and your `main.scss` files:
 
-```sh
+```shell
 touch index.html
 mkdir -p sass/{abstracts,base,components,layout} css
 cd sass && touch main.scss
@@ -282,7 +283,7 @@ cd sass && touch main.scss
 
 5. Add these scripts in the `package.json` file:
 
-```sh
+```json:title=package.json
 {
   ...
   "scripts": {
@@ -301,6 +302,7 @@ cd sass && touch main.scss
   <head>
     <meta charset=”UTF-8"> <meta name=”viewport” content=”width=device-width,
     initial-scale=1.0"> <meta http-equiv=”X-UA-Compatible” content=”ie=edge”>
+    <!-- highlight-next-line -->
     <link rel=”stylesheet” href=”css/style.css”>
     <title>My app</title>
   </head>
@@ -322,15 +324,18 @@ Once again, follow these simple steps:
 
 1. Install the live-server package: `npm install -g live-server` (it’s a global package!)
 2. Add `npm-run-all` to your project dependencies: `npm install npm-run-all --save-dev`: it will allow us to run many scripts at the same time.
-3. Add these scripts to `package.json`:
+3. Add a `start` script that will both run a live server to see your app and will watch the `scss` code you write in `main.scss`:
 
-```sh
+```json:title=package.json
 {
   ...
   "scripts": {
+    // highlight-start
     "start": "npm-run-all --parallel liveserver watch",
     "liveserver": "live-server",
+    // highlight-end
     "watch": "node-sass sass/main.scss css/style.css -w",
+    "build": "node-sass sass/main.scss css/style.css --output-style compressed"
   },
   ...
 }
@@ -367,17 +372,20 @@ This will be the last steps, so bear with me, you’re nearly done 😃:
 - Add two dependencies, `postcss-cli` and `autoprefixer`: `npm install autoprefixer postcss-cli --save-dev`
 - Modify the `build` script and add these scripts to `package.json`:
 
-```sh
+```json:title=package.json
 {
   ...
   "scripts": {
     "start": "npm-run-all --parallel liveserver watch",
     "liveserver": "live-server",
     "watch": "node-sass sass/main.scss css/style.css -w",
+    // highlight-start
     "compile": "node-sass sass/main.scss css/style.css",
     "prefix": "postcss css/style.css --use autoprefixer -o css/style.css",
     "compress": "node-sass css/style.css css/style.css --output-style compressed",
     "build": "npm-run-all compile prefix compress"
+    // highlight-end
+  }
   ...
 }
 ```
