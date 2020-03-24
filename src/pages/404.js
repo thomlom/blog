@@ -11,7 +11,7 @@ const NotFoundPage = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="404: Not Found" />
-      <h1 className="text-gray-800 font-bold text-3xl">
+      <h1 className="text-gray-800 dark:text-gray-200 font-bold text-3xl">
         Oops... Nothing found here!
       </h1>
       <img src={NotFound} alt="404 illustration" className="my-10" />

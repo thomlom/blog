@@ -7,37 +7,39 @@ import Newsletter from "./newsletter"
 
 const shortcodes = { Newsletter }
 
+const linkClassNames =
+  "font-semibold px-2 py-1 rounded text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100"
+
 const Layout = ({ location, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
 
   return (
     <MDXProvider components={{ ...shortcodes, ...postComponents }}>
-      <div className="p-3 md:px-0 bg-gray-100 min-h-screen flex flex-col">
+      <div className="p-3 md:px-0 bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
         <header>
           <div className="max-w-2xl mx-auto flex items-center justify-between">
             <Link to={"/"}>
-              <h1 className="text-primary-700 text-4xl m-0 font-black">
+              <h1 className="text-primary-700 dark:text-primary-400 text-2xl md:text-3xl m-0 font-black">
                 Thomlom
               </h1>
             </Link>
+
             {location.pathname !== rootPath ? (
               <Link to={"/"}>
-                <p className="gradient px-3 py-1 rounded text-primary-100 font-bold shadow">
-                  See all posts
-                </p>
+                <p className={linkClassNames}>All posts</p>
               </Link>
             ) : (
-              <Link to={"/about"}>
-                <p className="gradient px-3 py-1 rounded text-primary-100 font-bold shadow">
-                  About me
-                </p>
-              </Link>
+              <>
+                <Link to={"/about"}>
+                  <p className={linkClassNames}>About me</p>
+                </Link>
+              </>
             )}
           </div>
         </header>
         <main className="max-w-2xl my-5 mx-auto w-full flex-1">{children}</main>
         <footer className="mb-4 md:mb-6">
-          <p className="mt-2 md:mt-4 text-sm text-gray-700 font-medium text-center">
+          <p className="mt-2 md:mt-4 text-sm text-gray-700 dark:text-gray-300 font-medium text-center">
             © {new Date().getFullYear()} Thomas Lombart
           </p>
         </footer>

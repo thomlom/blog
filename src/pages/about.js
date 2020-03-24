@@ -8,12 +8,12 @@ const NotFoundPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
 
   const textClassNames =
-    "text-xl sm:text-2xl text-gray-600 mt-2 font-semibold leading-snug mt-4 "
+    "text-xl sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4 "
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="About me" />
-      <p className="text-2xl sm:text-4xl text-gray-800 font-extrabold leading-tight">
+      <p className="text-2xl sm:text-4xl text-gray-800 dark:text-gray-200 font-extrabold leading-tight">
         Hey there!{" "}
         <span role="img" aria-label="Waving hand">
           👋
@@ -31,7 +31,7 @@ const NotFoundPage = ({ data, location }) => {
         (and listening to their soundtracks). I care about privacy and ecology.
       </p>
       <a
-        className={`${textClassNames} block underline text-primary-700 hover:text-primary-800`}
+        className={`${textClassNames} block underline text-primary-700 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300`}
         href="mailto:t.lombart97@gmail.com"
       >
         Feel free to reach out!

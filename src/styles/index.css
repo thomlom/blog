@@ -14,4 +14,9 @@ html {
 .gradient {
   background: linear-gradient(to bottom right, #8888fc, #3525e6);
 }
-/* purgecss end ignore */
+
+@media (prefers-color-scheme: dark) {
+  .gradient {
+    background: linear-gradient(to bottom right, #5d55fa, #1d0ebe);
+  }
+}

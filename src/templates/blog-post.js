@@ -19,7 +19,7 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
       />
       <article className="max-w-full md:max-w-2xl mx-auto">
         <header>
-          <h1 className="font-extrabold text-3xl md:text-4xl leading-tight text-gray-800">
+          <h1 className="font-extrabold text-3xl md:text-4xl leading-tight text-gray-800 dark:text-gray-200">
             {post.frontmatter.title}
           </h1>
           <PostInfos
@@ -41,19 +41,19 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
       {pageContext.next && (
         <>
           <TransitionLink paintDrip to={pageContext.next.fields.slug}>
-            <div className="p-4 border border-gray-400 rounded bg-gray-200">
-              <span className="uppercase text-sm text-gray-700 tracking-wide flex items-center">
+            <div className="p-4 border border-gray-400 rounded bg-gray-200 dark:bg-gray-800 dark:border-none">
+              <span className="uppercase text-sm text-gray-700 dark:text-gray-300 tracking-wide flex items-center">
                 <span role="img" aria-label="Eyes" className="mr-1 text-xl">
                   👀
                 </span>
                 This post may also interest you
               </span>
-              <p className="text-gray-800 text-2xl font-bold mt-1 leading-tight">
+              <p className="text-gray-800 dark:text-gray-200 text-2xl font-bold mt-1 leading-tight">
                 {pageContext.next.frontmatter.title}
               </p>
             </div>
           </TransitionLink>
-          <hr className="border border-primary-500 mt-8" />
+          <hr className="border-gray-400 mt-8" />
         </>
       )}
       <Newsletter likeThisPost />

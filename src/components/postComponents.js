@@ -155,8 +155,10 @@ const CodeBlock = ({
   )
 }
 
-const textClassNames = "text-gray-700 text-base leading-relaxed my-6"
-const titleClassNames = "mt-6 text-gray-800 font-extrabold leading-tight"
+const textClassNames =
+  "text-gray-700 dark:text-gray-300 text-base leading-relaxed my-6"
+const titleClassNames =
+  "mt-6 text-gray-800 dark:text-gray-200 font-extrabold leading-tight"
 
 // eslint-disable
 export default {
@@ -179,7 +181,7 @@ export default {
   a: props => (
     // eslint-disable-next-line
     <a
-      className="text-gray-800 font-bold underline hover:text-gray-900"
+      className="text-gray-800 font-bold underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200"
       {...props}
     />
   ),
@@ -193,7 +195,7 @@ export default {
   inlineCode: props => (
     <code
       {...props}
-      className="bg-gray-200 text-gray-800 border rounded border-gray-300"
+      className="bg-gray-200 text-gray-800 border rounded border-gray-300 dark:bg-gray-900 dark:text-gray-400 dark:border-gray-800"
       style={{ padding: "1.75px 3.5px" }}
     />
   ),
