@@ -7,9 +7,6 @@ import Newsletter from "./newsletter"
 
 const shortcodes = { Newsletter }
 
-const linkClassNames =
-  "font-semibold px-2 py-1 rounded text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100"
-
 const Layout = ({ location, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
 
@@ -28,12 +25,16 @@ const Layout = ({ location, children }) => {
 
               {location.pathname !== rootPath ? (
                 <Link to={"/"}>
-                  <p className={linkClassNames}>All posts</p>
+                  <p className="gradient font-semibold px-3 py-1 rounded text-lg text-primary-100 dark:text-secondary-100">
+                    All posts
+                  </p>
                 </Link>
               ) : (
                 <>
                   <Link to={"/about"}>
-                    <p className={linkClassNames}>About me</p>
+                    <p className="font-semibold text-lg text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-100">
+                      About me
+                    </p>
                   </Link>
                 </>
               )}

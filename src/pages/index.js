@@ -26,7 +26,7 @@ const BlogIndex = ({
         return (
           <article key={node.fields.slug} className="first:mt-0 mt-8">
             <header>
-              <h3 className="inline-block text-2xl md:text-3xl text-gray-800 dark:text-gray-300 font-bold dark:font-semibold hover:underline leading-tight">
+              <h3 className="inline-block text-2xl md:text-3xl text-gray-800 dark:text-gray-200 font-bold hover:underline leading-tight">
                 <TransitionLink to={node.fields.slug}>{title}</TransitionLink>
               </h3>
               <PostInfos
