@@ -13,8 +13,8 @@ const Newsletter = ({ inPost, likeThisPost }) => (
     <p
       className={
         inPost
-          ? "mt-2 mb-1 leading-tight text-2xl text-primary-100 font-bold"
-          : "mt-2 text-2xl text-primary-100 font-bold"
+          ? "mt-2 mb-1 leading-tight text-2xl text-primary-100 dark:text-secondary-100 font-bold"
+          : "mt-2 text-2xl text-primary-100 dark:text-secondary-100 font-bold"
       }
     >
       {inPost
@@ -23,7 +23,10 @@ const Newsletter = ({ inPost, likeThisPost }) => (
         ? "Pssst... You can join the newsletter and get my latest posts in your inbox!"
         : "Get my latests posts in your inbox!"}
     </p>
-    <p className="mt-0 mb-1 text-primary-200 font-semibold" v-if="inPost">
+    <p
+      className="mt-0 mb-1 text-primary-200 dark:text-secondary-200 font-semibold"
+      v-if="inPost"
+    >
       Posts on Vue & design coming in the next few weeks{" "}
       <span role="img" aria-label="Face with heart eyes">
         😍
@@ -35,7 +38,7 @@ const Newsletter = ({ inPost, likeThisPost }) => (
         type="email"
         name="email"
         id="bd-email"
-        className="rounded px-4 py-2 placeholder-gray-700 text-gray-800"
+        className="rounded px-4 py-2 placeholder-gray-600 text-gray-800"
         placeholder="john@doe.com"
       />
     </label>
@@ -43,17 +46,17 @@ const Newsletter = ({ inPost, likeThisPost }) => (
     <input
       type="submit"
       value="Subscribe"
-      className="bg-primary-200 text-primary-900 rounded shadow w-full mt-3 font-bold px-3 py-2 cursor-pointer"
+      className="bg-primary-200 dark:bg-secondary-200 text-primary-900 dark:text-secondary-900 rounded shadow w-full mt-3 font-bold px-3 py-2 cursor-pointer"
     />
     <div className="flex flex-col sm:flex-row justify-between mt-2">
-      <p className="text-primary-300 text-xs my-1">
+      <p className="text-primary-300 dark:text-secondary-300 text-xs my-1">
         No spams. Unsubscribe at any time.
       </p>
       <a
         href="https://buttondown.email"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-primary-300 text-xs underline my-1 font-normal"
+        className="text-primary-300 dark:text-secondary-300 text-xs underline my-1 font-normal"
       >
         Powered by Buttondown.
       </a>

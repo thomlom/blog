@@ -16,7 +16,11 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
+  .gatsby-code-title {
+    @apply font-mono text-gray-400 text-sm;
+  }
+
   .gradient {
-    background: linear-gradient(to bottom right, #5d55fa, #1d0ebe);
+    background: linear-gradient(to bottom right, #27ab83, #147d64);
   }
 }

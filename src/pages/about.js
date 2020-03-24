@@ -31,7 +31,7 @@ const NotFoundPage = ({ data, location }) => {
         (and listening to their soundtracks). I care about privacy and ecology.
       </p>
       <a
-        className={`${textClassNames} block underline text-primary-700 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300`}
+        className={`${textClassNames} block underline text-primary-700 hover:text-primary-800 dark:text-secondary-400 dark:hover:text-primary-300`}
         href="mailto:t.lombart97@gmail.com"
       >
         Feel free to reach out!
