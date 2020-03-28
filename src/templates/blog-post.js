@@ -56,7 +56,7 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
           <hr className="border-gray-400 mt-8" />
         </>
       )}
-      <Newsletter likeThisPost />
+      <Newsletter />
     </Layout>
   )
 }

@@ -1,6 +1,6 @@
 import React from "react"
 
-const Newsletter = ({ inPost, likeThisPost }) => (
+const Newsletter = ({ inPost }) => (
   <form
     action="https://buttondown.email/api/emails/embed-subscribe/thomlom"
     method="post"
@@ -10,24 +10,17 @@ const Newsletter = ({ inPost, likeThisPost }) => (
     }
     className="gradient flex w-full flex flex-col shadow-lg rounded mt-8 p-2 px-4 md:px-24"
   >
-    <p
-      className={
-        inPost
-          ? "mt-2 mb-1 leading-tight text-2xl text-primary-100 dark:text-secondary-100 font-bold"
-          : "mt-2 text-2xl text-primary-100 dark:text-secondary-100 font-bold"
-      }
-    >
+    <p className="mt-2 mb-1 leading-tight text-2xl text-primary-100 dark:text-secondary-100 font-bold">
       {inPost
-        ? "Still reading? You may like my future articles then!"
-        : likeThisPost
-        ? "Pssst... You can join the newsletter and get my latest posts in your inbox!"
-        : "Get my latests posts in your inbox!"}
+        ? "Pssst... You can join the newsletter and read an exclusive post!"
+        : "Join the newsletter and read an exclusive post!"}
     </p>
     <p
       className="mt-0 mb-1 text-primary-200 dark:text-secondary-200 font-semibold"
       v-if="inPost"
     >
-      Posts on Vue & design coming in the next few weeks{" "}
+      Learn how to get a job as a front-end developer, and get my latest posts
+      directly in your inbox{" "}
       <span role="img" aria-label="Face with heart eyes">
         😍
       </span>
