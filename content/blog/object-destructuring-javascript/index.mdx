@@ -1,0 +1,165 @@
+---
+title: Object and array destructuring in JavaScript
+date: "2020-03-30"
+cover: "./cover.jpg"
+description: "When ES2015 (also known as ES6) got released, it added great new features like **destructuring**. It allows us to unpack values from arrays or properties from objects, and it's quite powerful. Learn how to make the most of the destructuring assignment in this post."
+tags: [javascript]
+quick: true
+---
+
+When ES2015 (also known as ES6) got released, it added great new features like the **destructuring assignment syntax**. It allows us to unpack values from arrays or properties from objects quickly and straightforwardly.
+
+Consider this post as a quick reference when you want to check out something on destructuring in JavaScript. ☺️
+
+Let's say you have a `user` object with different properties like the `name`, the `age`, the `email` address. You want to assign variables to these different properties, here is how to do it with and without destructuring:
+
+```javascript
+// The old way: a bit verbose
+const name = user.name
+const age = user.age
+const email = user.email
+
+// Using destructuring
+const { name, age, email } = user
+```
+
+Short and clear: that's the power of destructuring.
+
+Now, let's say your user also has an `address` property, itself composed of a `street`, `city`, `country`, and `postal_code` properties. You can also use `destructuring` to handle **nested objects**:
+
+```javascript
+// Assign the name, email, city and country
+const {
+  name,
+  email,
+  address: { city, country },
+} = user
+```
+
+But what if you would like to assign the `city` and `country` variables while keeping the whole `address` object? That's still possible:
+
+```javascript
+// Destructure city, country and keep the address object as-is
+const {
+  address,
+  address: { city, country },
+} = user
+```
+
+Sometimes when you retrieve data from an API, the variable names can be quite different. Let's imagine that the `user` object has an `user_id` property, and you want to rename it just `id`. It's useful in these cases to **rename variables** while destructuring using:
+
+```javascript
+// Destructure user_id and rename it to id
+const { user_id: id } = user
+```
+
+The power of destructuring doesn't stop here. You can assign **default values** to properties in case they're not defined. For example, if your user were to have a favorite `theme` (`light` or `dark`) property, you could default it to light mode:
+
+```javascript
+// If `theme` isn't defined, use the light mode by default
+const { name, theme = "light" } = user
+```
+
+Note that everything said above also works for **function arguments**. For example, you could imagine a `displayAddress` function taking a `user` object argument:
+
+```javascript
+// Destructure the user object and set the country to France by default
+function displayAddress({ name, address: { city, country = "France" } }) {
+  // Note the use of template literals, another ES2015 feature
+  return `${name} lives in ${city}, ${country}`
+}
+```
+
+If you're using React, it can also be useful when creating **functional components**:
+
+```jsx
+const User = ({ name, age, email }) => (
+  <div>
+    <p>
+      {name}, {age} years old
+    </p>
+    <p>{email}</p>
+  </div>
+)
+```
+
+Note that it's also possible to destructure some properties of an object and still save the rest of the properties using the **rest parameter**:
+
+```javascript
+// Assign the name and the email of the user and store the other properties in userInfos
+const { name, email, ...userInfos } = user
+```
+
+It can also be handy in React if you need some props and need to pass down the other props.
+Here's an example applied to routing in React:
+
+```jsx
+const PrivateRoute: React.FC<Props> = ({ component: Component, ...rest }) => {
+  // Get the user's authentication status
+  const { isAuthenticated } = useAuth()
+
+  return (
+    <Route
+      // Pass all the props to Route except `component`
+      {...rest}
+      render={props =>
+        // if the user is authenticated, render the component otherwise redirect him to the signin screen
+        isAuthenticated ? <Component {...props} /> : <Redirect to="/signin" />
+      }
+    />
+  )
+}
+
+// Can be used that way:
+// <PrivateRoute path="/create" component={CreatePost} />
+```
+
+Wait, wait, wait. The next one is even cooler. You can make use of **dynamic** destructuring by using computed property keys. Let's imagine that you have a `users` object and you want to normalize it by user ID (meaning that the key is the user ID). You can do that with destructuring:
+
+```javascript
+const users = [
+  { id: "afb4d", name: "Mike", age: 27 },
+  { id: "fea4i", name: "Emma", age: 38 },
+]
+
+const normalizedUsers = users.reduce((usersById, user) => {
+  return {
+    // Assign the user object to its ID...
+    // highlight-next-line
+    [user.id]: user,
+    // ... and return the whole normalized users object
+    ...usersById,
+  }
+}, {})
+
+/* 
+normalizedUsers is now
+{
+  afb4d: { id: 'afb4d', name: 'Mike', age: 27 },
+  fea4i: { id: 'fea4i', name: 'Emma', age: 38 }
+}
+*/
+```
+
+Destructuring also works for **arrays**. Let's say you retrieve a list of users (let's call it `mostActiveUsers`) sorted by the number of comments a user posted. You only want to display the first three users:
+
+```js
+// Retrieve the first three most active users
+const [first, second, third] = mostActiveUsers
+```
+
+What if you'd like to get only the fourth user from this list? Well, it's also possible to **skip items**:
+
+```js
+// Skip the first three most active users
+const [, , , fourth] = mostActiveUsers
+```
+
+You could also get the first three most active users and still store the other users with the **rest parameter**:
+
+```js
+const [first, second, third, ...otherUsers] = mostActiveUsers
+```
+
+Let's recap. You saw how to destructure objects (with nested objects), rename variables, assign default values, how destructuring applies to function arguments (and thus to components in React), dynamic destructuring, destructuring arrays, skipping array items and also how to use the rest parameter with both objects and arrays.
+You're now ready to unlock the full potential of destructuring in your app! 😎
