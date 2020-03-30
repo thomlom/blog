@@ -2,10 +2,11 @@ import React from "react"
 import { Link } from "gatsby"
 import { MDXProvider } from "@mdx-js/react"
 
+import Recall from "./recall"
 import postComponents from "./postComponents"
 import Newsletter from "./newsletter"
 
-const shortcodes = { Newsletter }
+const shortcodes = { Newsletter, Recall }
 
 const Layout = ({ location, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
