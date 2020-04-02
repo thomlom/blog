@@ -48,7 +48,7 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
           />
         ) : null}
         <div ref={adsRef} />
-        <section className="post mt-4">
+        <section className="post">
           <MDXRenderer>{post.body}</MDXRenderer>
         </section>
       </article>
