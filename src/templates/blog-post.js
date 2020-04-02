@@ -3,8 +3,6 @@ import { graphql } from "gatsby"
 import Image from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
-import "./ads.css"
-
 import TransitionLink from "../components/transitionLink"
 import Layout from "../components/layout"
 import Newsletter from "../components/newsletter"
