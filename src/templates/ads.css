@@ -1,0 +1,61 @@
+#carbonads {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+}
+
+#carbonads {
+  @apply mt-2 block relative overflow-hidden shadow rounded;
+}
+
+#carbonads > span {
+  @apply relative block;
+}
+
+#carbonads a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#carbonads a:hover {
+  color: inherit;
+}
+
+.carbon-wrap {
+  @apply flex items-center;
+}
+
+.carbon-img {
+  @apply block;
+  line-height: 1;
+}
+
+.carbon-img img {
+  @apply block;
+}
+
+.carbon-text {
+  @apply relative flex px-3 py-1 max-w-2xl leading-tight text-sm items-center mb-4;
+  color: #333 !important;
+  position: relative;
+}
+
+.carbon-text:after {
+  @apply bg-gray-800 text-gray-200 ml-4 px-3 py-2 rounded font-bold text-xs whitespace-no-wrap;
+  content: "Learn More";
+}
+
+.carbon-poweredby {
+  @apply uppercase whitespace-no-wrap tracking-wide font-semibold mb-1;
+  position: absolute;
+  bottom: 0;
+  left: 144px;
+  color: #999 !important;
+  font-size: 10px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 759px) {
+  .carbon-text:after {
+    display: none;
+  }
+}
