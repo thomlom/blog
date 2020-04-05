@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import Newsletter from "../components/newsletter"
@@ -12,15 +13,21 @@ const BlogIndex = ({
     site: {
       siteMetadata: { description },
     },
+    illustration,
     allMdx,
   },
   location,
 }) => {
+  console.log(illustration)
   const posts = allMdx.edges
 
   return (
     <Layout location={location}>
       <SEO title="All posts" description={description} />
+      <Img
+        fluid={illustration.childImageSharp.fluid}
+        className="rounded-lg my-0"
+      />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
@@ -44,7 +51,7 @@ const BlogIndex = ({
               />
             </section>
             <TransitionLink to={node.fields.slug}>
-              <p className="inline-block mt-3 text-primary-600 dark:text-secondary-500 font-bold text-lg hover:text-primary-700 dark:hover:text-secondary-400">
+              <p className="inline-block mt-3 text-primary-600 dark:text-primary-500 font-bold text-lg hover:text-primary-700 dark:hover:text-primary-400">
                 Read →
               </p>
             </TransitionLink>
@@ -64,6 +71,13 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         description
+      }
+    }
+    illustration: file(absolutePath: { regex: "/illustration.png/" }) {
+      childImageSharp {
+        fluid(maxHeight: 800) {
+          ...GatsbyImageSharpFluid
+        }
       }
     }
     allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
