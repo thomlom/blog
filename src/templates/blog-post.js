@@ -10,16 +10,16 @@ import PostInfos from "../components/postInfos"
 import SEO from "../components/seo"
 
 const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
-  const adsRef = React.useRef()
-  React.useEffect(() => {
-    const script = document.createElement("script")
-    script.src =
-      "//cdn.carbonads.com/carbon.js?serve=CE7DE27L&placement=thomlomdev"
-    script.async = true
-    script.type = "text/javascript"
-    script.id = "_carbonads_js"
-    adsRef.current.appendChild(script)
-  }, [])
+  // const adsRef = React.useRef()
+  // React.useEffect(() => {
+  //   const script = document.createElement("script")
+  //   script.src =
+  //     "//cdn.carbonads.com/carbon.js?serve=CE7DE27L&placement=thomlomdev"
+  //   script.async = true
+  //   script.type = "text/javascript"
+  //   script.id = "_carbonads_js"
+  //   adsRef.current.appendChild(script)
+  // }, [])
 
   return (
     <Layout location={location}>
@@ -45,7 +45,7 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
             className="rounded mt-4"
           />
         ) : null}
-        <div ref={adsRef} />
+        {/* <div ref={adsRef} /> */}
         <section className="post">
           <MDXRenderer>{post.body}</MDXRenderer>
         </section>
