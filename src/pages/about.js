@@ -8,7 +8,10 @@ const NotFoundPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
 
   const textClassNames =
-    "text-xl sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4 "
+    "text-xl sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4"
+
+  const linkClassNames =
+    "underline text-primary-700 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -22,20 +25,51 @@ const NotFoundPage = ({ data, location }) => {
         I'm Thomas Lombart.
       </p>
       <p className={textClassNames}>
-        I'm a french front-end engineer at Back Market. I write and speak about
-        code, design and everything in between. I also contribute to open source
-        when I'm not busy doing other things.
+        I'm a french front-end engineer at Back Market. I write about code,
+        design and everything in between. I also contribute to open source when
+        I'm not busy doing other things.
       </p>
       <p className={textClassNames}>
-        On a personal side, I love travelling, training, watching good movies
-        (and listening to their soundtracks). I care about privacy and ecology.
+        On a personal side, I love travelling, training, hiking, watching good
+        movies (and listening to their soundtracks). I care about privacy and
+        ecology.
       </p>
-      <a
-        className={`${textClassNames} block underline text-primary-700 hover:text-primary-800 dark:text-secondary-400 dark:hover:text-primary-300`}
-        href="mailto:t.lombart97@gmail.com"
-      >
-        Feel free to reach out!
-      </a>
+      <p className={textClassNames}>
+        You can find me on{" "}
+        <a
+          className={linkClassNames}
+          href="https://github.com/thomlom"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+        ,{" "}
+        <a
+          href="https://fr.linkedin.com/in/thomas-lombart"
+          className={linkClassNames}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>{" "}
+        or{" "}
+        <a
+          href="https://dev.to/thomlom"
+          className={linkClassNames}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          DEV.to.
+        </a>
+      </p>
+      <p className={textClassNames}>
+        If you want to say hi, have questions or for any other demands,{" "}
+        <a className={linkClassNames} href="mailto:t.lombart97@gmail.com">
+          feel free to reach out by mail
+        </a>
+        . I usually answer within one business day 💌
+      </p>
     </Layout>
   )
 }
