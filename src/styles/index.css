@@ -20,10 +20,6 @@ html {
     @apply font-mono text-gray-400 text-sm;
   }
 
-  .gradient {
-    background: linear-gradient(to bottom right, #27ab83, #147d64);
-  }
-
   #carbonads {
     @apply bg-gray-100;
   }
