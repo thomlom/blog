@@ -37,14 +37,23 @@ const NotFoundPage = ({ data, location }) => {
       <p className={textClassNames}>
         You can find me on{" "}
         <a
+          href="https://twitter.com/thomas_lombart"
+          className={linkClassNames}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Twitter
+        </a>
+        ,{" "}
+        <a
           className={linkClassNames}
           href="https://github.com/thomlom"
           target="_blank"
           rel="noopener noreferrer"
         >
           GitHub
-        </a>
-        ,{" "}
+        </a>{" "}
+        or{" "}
         <a
           href="https://fr.linkedin.com/in/thomas-lombart"
           className={linkClassNames}
@@ -52,16 +61,8 @@ const NotFoundPage = ({ data, location }) => {
           rel="noopener noreferrer"
         >
           LinkedIn
-        </a>{" "}
-        or{" "}
-        <a
-          href="https://dev.to/thomlom"
-          className={linkClassNames}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          DEV.to.
         </a>
+        .
       </p>
       <p className={textClassNames}>
         If you want to say hi, have questions or for any other demands,{" "}
