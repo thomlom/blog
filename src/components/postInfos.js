@@ -52,7 +52,7 @@ const tagsColor = {
   },
 }
 
-const PostInfos = ({ date, tags, quick }) => (
+const PostInfos = ({ date, tags, timeToRead }) => (
   <div className="flex flex-col-reverse  md:flex md:flex-row md:items-center mt-2">
     <div className="flex">
       <svg
@@ -87,7 +87,7 @@ const PostInfos = ({ date, tags, quick }) => (
         ))}
       </div>
 
-      {quick && (
+      {timeToRead < 3 && (
         <span className="bg-yellow-400 text-yellow-900 text-sm font-semibold py-1 px-2 rounded-full self-start">
           Quick read
         </span>

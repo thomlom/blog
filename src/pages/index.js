@@ -18,7 +18,6 @@ const BlogIndex = ({
   },
   location,
 }) => {
-  console.log(illustration)
   const posts = allMdx.edges
 
   return (
@@ -39,7 +38,7 @@ const BlogIndex = ({
               <PostInfos
                 date={node.frontmatter.date}
                 tags={node.frontmatter.tags}
-                quick={node.frontmatter.quick}
+                timeToRead={node.timeToRead}
               />
             </header>
             <section>
@@ -83,6 +82,7 @@ export const pageQuery = graphql`
     allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
+          timeToRead
           excerpt
           fields {
             slug
@@ -92,7 +92,6 @@ export const pageQuery = graphql`
             title
             description
             tags
-            quick
           }
         }
       }

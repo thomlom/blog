@@ -36,7 +36,7 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
           <PostInfos
             date={post.frontmatter.date}
             tags={post.frontmatter.tags}
-            quick={post.frontmatter.quick}
+            timeToRead={post.timeToRead}
           />
         </header>
         {post.frontmatter.cover ? (
@@ -78,6 +78,7 @@ export default BlogPostTemplate
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
+      timeToRead
       id
       excerpt(pruneLength: 160)
       body
@@ -86,7 +87,6 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         tags
-        quick
         next
         cover {
           publicURL
