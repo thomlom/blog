@@ -1,0 +1,79 @@
+---
+title: "Task estimation as a front-end developer: do it right!"
+date: "2020-04-13"
+cover: "./cover.jpg"
+description: "Can you estimate how long this task is going to take? That's the dreaded question you always get when planning. Learn in this post how to properly do task estimation as a front-end developer."
+next: "/soft-skills-developers/"
+tags: [career]
+---
+
+🙂 **Tuesday 11AM.** You sit down with your team in a meeting room to plan your next tasks. New features, improvements, and bugs are introduced to you. The product owner (or product manager or engineering manager, whatever!) shows you the mockups and the requirements. You discuss them and then, for one feature, he asks you the dreaded question:
+
+> Can you estimate how long this task is going to take?
+
+Confidently, because you’re a bad-ass rockstar developer, you answer:
+
+> Hum. Let me think. Yeah, this is not really complex. Two days, not more, not less.
+
+Great, your product owner is happy, we’re going to ship the next sprint, this is huuuuge!
+
+Once the meeting’s over, you start your task, everything’s going well. After a few hours, you scratch your head. You didn’t pay attention to the endpoint you called. Some data’s missing! You talk with a back-end developer, and you find a solution. That’s a bummer, you wasted a few hours.
+
+😓 **Wednesday, 10AM**. during the daily meeting, you say:
+
+> Yesterday, I worked on feature X. I had a problem because some data was missing. I’m nearly done, I’ll finish it today.
+
+In reality, you hope you’ll finish it today because you’ve done half the job and you also have two meetings you can’t escape! But hey, things are going to be alright.
+
+During the day, you work on the feature, and then you realize something, the mockups we gave you don’t cover the whole thing. What do we show to the user when there’s no data? And what if an error occurs while I’m calling that endpoint? Thus, you gather with the design team, discuss it, and handle new things.
+
+It’s 6PM. You’re tired, you can’t think. Ok, you’re a little late, but tomorrow you’ll finish the task.
+
+😥 **Thursday, 10AM**. Daily meeting time:
+
+> I’m nearly done on feature X. I had to talk to the design team because, in this edge case, we didn’t know what to show to the user. We figured it out, and I’ll finish it today.
+
+During the day, you work on the feature, and everything’s done! Let’s tackle the tests. You struggle with tests, in particular, mocking a function. The whole team is busy and you’re on your own for this. After a while, you find a solution. `git add` , `git commit`, `git push`. You wait for the review and fix a bug while waiting.
+
+😨 **Friday, 10AM**. Daily meeting. Your product owner asks you if the feature is shipped. He wants to test it as soon as possible because he needs it for a presentation. This feature is critical for the business! You’re embarrassed, but that was not your fault, after all. You answer:
+
+> Yes, sorry. I’m nearly done with it. I wasted a few hours on a test, but it’s in code review, it should be good today. In the meantime, I’ll work on bug Y.
+
+In the morning, one developer reviews your code and finds some quirks. He requires you to change some functions. Furthermore, you didn’t document your feature correctly. And on top of that, you architectured the feature weirdly. He shows you a smart way to do so. This is not going to take long, is it? Let’s get back at work.
+
+It’s 5PM. It’s been a long week, you’re tired and you chat with your colleagues. You have some good laughs. You’re done, you’ll finish the feature once and for all on Monday.
+
+😰 **Monday, 10AM**. As usual, daily meeting:
+
+> Yeaaaah, so Friday… My code was reviewed and I had to revamp the feature because I was not making use of our new functions. Also, I had to do a bit of documentation. I’m going to finish that this morning and let’s ship it this afternoon!
+
+Empowered by the start of a new week, you are productive and you finish that in the morning. You `git push` it, your pull request is reviewed, merged, and deployed. You test your feature in staging and you realize something’s wrong even if everything’s fine locally! You investigate that and you find the bug at the end of the day. You'll fix it tomorrow.
+
+😱 **Tuesday, 10AM**. Daily meeting:
+
+> Yesterday, I thought I was done on feature X. But something was weird on the staging environment. I did some investigations and I discovered that Y was causing the bug. I’ll write the fix this morning!
+
+You write the fix on a new branch. `git add` , `git commit`, `git push`. Open PR. Waiting for your review. Review. Merged. Deployed. Fingers crossed, let’s hope everything’s good. You test it in staging and… it works 🎉
+
+Both relieved and embarrassed, you tell your product owner the feature is shipped. Wow. What should have taken two days actually took one week.
+
+---
+
+Did you recognize yourself in this story? If yes, don’t worry, it happened to lots of developers. Don’t blame yourself for this. Instead, focus on what to do to avoid this situation. When it comes to working for someone else, you mainly have to do two things: _underpromise and overdeliver._
+
+Indeed, by underpromising, you won’t disappoint anyone and by overdelivering, you will even make them happier. If you think about it, if we ask you to estimate your code, it’s because there are some deadlines to meet, a plan to follow. By doing wrong estimations, you force others to reconsider the plan. However, if your estimations are right, even if they seem exaggerated, the plan can go on safely.
+
+Thus, when you’re asked to estimate a task, consider these elements:
+
+- **You need all the details required** to perform the task, and it is clear to you. The endpoints you need to call are ready and functional. The mockups are complete. The acceptance criteria for your tasks are also clear.
+- You usually have to do **extra tasks** such as documentation or testing (even if I think testing shouldn’t be an « extra task » but anyway).
+- **You won’t focus on your task only.** Aside from your task, you’ll maybe have to do code reviews, to fix a bug in production, to assist to some meetings.
+- If you haven’t done the same kind of tasks before, you may have **extra difficulties** doing it. Maybe you’ll need the help of one of your teammates who’s not always available!
+- If there’s **code review** in your team (which I strongly recommend for enforcing quality code), you may be asked to add extra tests, modify your code or other demands.
+- **Technical problems** can happen along the way. They can be blocking. It’s worse if these technical problems don’t depend on you!
+
+You may have heard that when you’re being asked to estimate a task, you need to double it. That’s true. If you think of all these elements above, you can _easily_ double it.
+
+Yes, your boss/manager/product owner will think it’s exaggerated. Still, they usually don’t know in detail how it works under the hood. The sooner you do your task, the better it is for them, so they will always ask if you can deliver fast.
+
+To be honest, I don’t really like estimating tasks. There are too many factors to rely on. I do the best I can and I’ll ship the code when it’s ready. But sometimes (even often) you don’t have the choice, you will need to estimate tasks. Thus, I hope this post will help you to estimate front-end tasks like a pro. 🚀
