@@ -547,6 +547,7 @@ test("adds a new to-do", () => {
   getByText(todo)
   // highlight-next-line
   expect(input).toHaveValue("")
+})
 ```
 
 It's not much, but it's more readable, especially when you write a lot of assertions.
