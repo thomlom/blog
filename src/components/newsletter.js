@@ -8,7 +8,7 @@ const Newsletter = ({ inPost }) => (
     onSubmit={() =>
       window.open("https://buttondown.email/thomlom", "popupwindow")
     }
-    className="gradient flex w-full flex flex-col shadow-lg rounded mt-8 p-2 px-4 md:px-24"
+    className="gradient flex w-full flex flex-col shadow-lg rounded mt-5 p-2 px-4 md:px-24"
   >
     <p className="mt-2 mb-1 leading-tight text-2xl text-primary-100 dark:text-primary-100 font-bold">
       {inPost

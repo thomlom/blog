@@ -9,7 +9,11 @@ import Newsletter from "../components/newsletter"
 import PostInfos from "../components/postInfos"
 import SEO from "../components/seo"
 
-const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
+const BlogPostTemplate = ({
+  pageContext: { slug, next },
+  data: { mdx: post },
+  location,
+}) => {
   // const adsRef = React.useRef()
   // React.useEffect(() => {
   //   const script = document.createElement("script")
@@ -50,9 +54,22 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
           <MDXRenderer>{post.body}</MDXRenderer>
         </section>
       </article>
-      {pageContext.next && (
+
+      <p className="flex justify-end">
+        <a
+          className="mb-5 px-3 py-2 rounded text-white font-semibold"
+          style={{ backgroundColor: "#1DA1F2" }}
+          href={`https://twitter.com/intent/tweet?text="${post.frontmatter.title}" by @thomas_lombart https://thomlom.dev${slug}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Share on Twitter
+        </a>
+      </p>
+
+      {next && (
         <>
-          <TransitionLink paintDrip to={pageContext.next.fields.slug}>
+          <TransitionLink paintDrip to={next.fields.slug}>
             <div className="p-4 border border-gray-400 rounded bg-gray-200 dark:bg-gray-800 dark:border-none">
               <span className="uppercase text-sm text-gray-700 dark:text-gray-300 tracking-wide flex items-center">
                 <span role="img" aria-label="Eyes" className="mr-1 text-xl">
@@ -61,11 +78,11 @@ const BlogPostTemplate = ({ pageContext, data: { mdx: post }, location }) => {
                 This post may also interest you
               </span>
               <p className="text-gray-800 dark:text-gray-200 text-2xl font-bold mt-1 leading-tight">
-                {pageContext.next.frontmatter.title}
+                {next.frontmatter.title}
               </p>
             </div>
           </TransitionLink>
-          <hr className="border-gray-400 mt-8" />
+          <hr className="border-gray-400 mt-5" />
         </>
       )}
       <Newsletter />
