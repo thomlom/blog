@@ -19,7 +19,10 @@ const NotFoundPage = ({ data, location }) => {
           </p>
           <Link to="/">
             <button className="mt-2 bg-primary-700 px-4 py-2 w-full text-primary-100 font-semibold text-xl rounded">
-              No big deal! take me back home 👌
+              No big deal! take me back home{" "}
+              <span role="img" aria-labelledby="OK Hand">
+                👌
+              </span>
             </button>
           </Link>
         </div>

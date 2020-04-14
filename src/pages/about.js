@@ -8,7 +8,7 @@ const NotFoundPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
 
   const textClassNames =
-    "text-xl sm:text-2xl text-gray-600 dark:text-gray-400 mt-2 font-semibold leading-snug mt-4"
+    "text-xl sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4"
 
   const linkClassNames =
     "underline text-primary-700 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
@@ -22,20 +22,39 @@ const NotFoundPage = ({ data, location }) => {
           👋
         </span>
         <br />
-        I'm Thomas Lombart.
+        I'm Thomas Lombart, a front-end engineer.
       </p>
       <p className={textClassNames}>
-        I'm a french front-end engineer at Back Market. I write about code,
-        design and everything in between. I also contribute to open source when
-        I'm not busy doing other things.
+        I currently work for{" "}
+        <a
+          href="https://www.backmarket.com"
+          className={linkClassNames}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Back Market
+        </a>
+        .
+        <br />I write about front-end development to level up your skills
+        whether it's JavaScript stuff, performance, accessibility or design.
       </p>
       <p className={textClassNames}>
-        On a personal side, I love travelling, training, hiking, watching good
-        movies (and listening to their soundtracks). I care about privacy and
-        ecology.
+        I love productivity, minimalism and being organized. I'm the guy who
+        focuses on what matters. I value privacy and ecology.
       </p>
       <p className={textClassNames}>
-        You can find me on{" "}
+        On my spare time, I train, travel, hike, watch good movies and listen to
+        their soundtracks (obviously, I find Hans Zimmer's music awesome).
+      </p>
+      <p className={textClassNames}>
+        If you want to say hi or have questions, feel free to reach out{" "}
+        <a className={linkClassNames} href="mailto:t.lombart97@gmail.com">
+          by mail
+        </a>
+        . I usually answer within one business day 💌
+      </p>
+      <p className={textClassNames}>
+        Find me on{" "}
         <a
           href="https://twitter.com/thomas_lombart"
           className={linkClassNames}
@@ -63,13 +82,6 @@ const NotFoundPage = ({ data, location }) => {
           LinkedIn
         </a>
         .
-      </p>
-      <p className={textClassNames}>
-        If you want to say hi, have questions or for any other demands,{" "}
-        <a className={linkClassNames} href="mailto:t.lombart97@gmail.com">
-          feel free to reach out by mail
-        </a>
-        . I usually answer within one business day 💌
       </p>
     </Layout>
   )
