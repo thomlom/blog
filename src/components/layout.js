@@ -19,7 +19,7 @@ const Layout = ({ location, children }) => {
           <header>
             <div className="max-w-2xl mx-auto flex items-center justify-between">
               <Link to={"/"}>
-                <h1 className="text-primary-700 dark:text-primary-400 text-2xl md:text-3xl m-0 font-black">
+                <h1 className="text-primary-700 dark:text-primary-500 text-2xl md:text-3xl m-0 font-black">
                   Thomlom
                 </h1>
               </Link>

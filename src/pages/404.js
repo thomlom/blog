@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 import NotFound from "./not_found.svg"
 import Layout from "../components/layout"
@@ -11,10 +11,19 @@ const NotFoundPage = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="404: Not Found" />
-      <h1 className="text-gray-800 dark:text-gray-200 font-bold text-3xl">
-        Oops... Nothing found here!
-      </h1>
-      <img src={NotFound} alt="404 illustration" className="my-10" />
+      <div className="max-w-md mx-auto">
+        <img src={NotFound} alt="404 illustration" className="mt-4" />
+        <div className="flex flex-col items-center">
+          <p className="text-center text-gray-800 dark:text-gray-200 font-semibold text-3xl mt-4 sm:mt-6">
+            Oops... Nothing found here!
+          </p>
+          <Link to="/">
+            <button className="mt-2 bg-primary-700 px-4 py-2 w-full text-primary-100 font-semibold text-xl rounded">
+              No big deal! take me back home 👌
+            </button>
+          </Link>
+        </div>
+      </div>
     </Layout>
   )
 }
