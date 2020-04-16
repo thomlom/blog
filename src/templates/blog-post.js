@@ -14,17 +14,6 @@ const BlogPostTemplate = ({
   data: { mdx: post },
   location,
 }) => {
-  // const adsRef = React.useRef()
-  // React.useEffect(() => {
-  //   const script = document.createElement("script")
-  //   script.src =
-  //     "//cdn.carbonads.com/carbon.js?serve=CE7DE27L&placement=thomlomdev"
-  //   script.async = true
-  //   script.type = "text/javascript"
-  //   script.id = "_carbonads_js"
-  //   adsRef.current.appendChild(script)
-  // }, [])
-
   return (
     <Layout location={location}>
       <SEO
@@ -49,23 +38,22 @@ const BlogPostTemplate = ({
             className="rounded mt-4"
           />
         ) : null}
-        {/* <div ref={adsRef} /> */}
         <section className="post">
           <MDXRenderer>{post.body}</MDXRenderer>
+          <p className="mb-5 text-gray-700 dark:text-gray-200">
+            If you found this post useful, feel free to{" "}
+            <a
+              className="shadow-sm text-white px-2 py-1 rounded font-semibold"
+              style={{ backgroundColor: "#1DA1F2" }}
+              href={`https://twitter.com/intent/tweet?text="${post.frontmatter.title}" by @thomas_lombart https://thomlom.dev${slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              share it on Twitter.
+            </a>
+          </p>
         </section>
       </article>
-
-      <p className="flex justify-end">
-        <a
-          className="mb-5 px-3 py-2 rounded text-white font-semibold"
-          style={{ backgroundColor: "#1DA1F2" }}
-          href={`https://twitter.com/intent/tweet?text="${post.frontmatter.title}" by @thomas_lombart https://thomlom.dev${slug}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Share on Twitter
-        </a>
-      </p>
 
       {next && (
         <>
@@ -82,7 +70,7 @@ const BlogPostTemplate = ({
               </p>
             </div>
           </TransitionLink>
-          <hr className="border-gray-400 mt-5" />
+          <hr className="border-gray-400 dark:border-gray-700 mt-5" />
         </>
       )}
       <Newsletter />

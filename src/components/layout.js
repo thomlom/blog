@@ -15,11 +15,11 @@ const Layout = ({ location, children }) => {
     <MDXProvider components={{ ...shortcodes, ...postComponents }}>
       <div className="h-1 w-screen bg-primary-600 dark:bg-primary-600" />
       <>
-        <div className="p-3 md:px-0 bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
+        <div className="p-3 md:px-0 bg-gray-100 dark:bg-dark min-h-screen flex flex-col">
           <header>
             <div className="max-w-2xl mx-auto flex items-center justify-between">
               <Link to={"/"}>
-                <h1 className="text-primary-700 dark:text-primary-500 text-2xl md:text-3xl m-0 font-black">
+                <h1 className="gradient-text text-2xl md:text-3xl m-0 font-black">
                   Thomlom
                 </h1>
               </Link>

@@ -11,7 +11,7 @@ const NotFoundPage = ({ data, location }) => {
     "text-xl sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4"
 
   const linkClassNames =
-    "underline text-primary-700 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
+    "underline text-primary-700 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-400"
 
   return (
     <Layout location={location} title={siteTitle}>

@@ -8,6 +8,7 @@ module.exports = {
         dark: { raw: "(prefers-color-scheme: dark)" },
       },
       colors: {
+        dark: "#11151F",
         primary: {
           "100": "#E6E6FF",
           "200": "#C4C6FF",
