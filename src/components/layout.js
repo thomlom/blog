@@ -15,7 +15,7 @@ const Layout = ({ location, children }) => {
     <MDXProvider components={{ ...shortcodes, ...postComponents }}>
       <div className="h-1 w-screen gradient-right fixed z-10" />
       <>
-        <div className="py-5 md:px-0 bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
+        <div className="p-4 md:px-0 bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
           <header>
             <div className="max-w-2xl mx-auto flex items-center justify-between">
               <Link to={"/"}>

@@ -10,12 +10,15 @@ const Newsletter = ({ inPost }) => (
     }
     className="gradient flex w-full flex flex-col shadow-lg rounded mt-6 p-2 px-4 md:px-24"
   >
-    <p className="mt-2 mb-1 leading-tight text-2xl text-white font-extrabold">
+    <p className="mt-2 mb-1 leading-tight text-xl sm:text-2xl text-white font-extrabold">
       {inPost
         ? "Pssst... You can join the newsletter and read an exclusive post!"
         : "Join the newsletter and read an exclusive post!"}
     </p>
-    <p className="my-1 text-gray-100 font-semibold" v-if="inPost">
+    <p
+      className="my-1 text-gray-100 text-sm sm:text-base font-semibold"
+      v-if="inPost"
+    >
       Get updates when I release new content and more. The next posts will focus
       on advanced JavaScript, tooling and design. Ready to take your front-end
       skills to the next level?{" "}

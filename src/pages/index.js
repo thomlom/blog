@@ -27,7 +27,7 @@ const BlogIndex = ({
         fluid={illustration.childImageSharp.fluid}
         className="rounded-lg my-0"
       />
-      {posts.map(({ node }, i) => {
+      {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
           <article key={node.fields.slug} className="mt-8">
@@ -46,11 +46,11 @@ const BlogIndex = ({
                 dangerouslySetInnerHTML={{
                   __html: node.excerpt,
                 }}
-                className="mt-3 text-base text-gray-700 dark:text-gray-400 leading-relaxed"
+                className="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-400 leading-relaxed"
               />
             </section>
             <TransitionLink to={node.fields.slug}>
-              <p className="inline-block mt-3 text-lg font-bold text-gray-800 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-200">
+              <p className="inline-block mt-3 text-base sm:text-lg font-bold text-gray-800 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-200">
                 Read more
               </p>
             </TransitionLink>
@@ -83,7 +83,7 @@ export const pageQuery = graphql`
       edges {
         node {
           timeToRead
-          excerpt(pruneLength: 200)
+          excerpt(pruneLength: 180)
           fields {
             slug
           }
