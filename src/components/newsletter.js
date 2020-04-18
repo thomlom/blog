@@ -8,7 +8,7 @@ const Newsletter = ({ inPost }) => (
     onSubmit={() =>
       window.open("https://buttondown.email/thomlom", "popupwindow")
     }
-    className="gradient flex w-full flex flex-col shadow-lg rounded mt-6 p-2 px-4 md:px-24"
+    className="gradient flex w-full flex flex-col shadow-lg rounded mt-6 p-2 px-4 md:px-20"
   >
     <p className="mt-2 mb-1 leading-tight text-xl sm:text-2xl text-white font-extrabold">
       {inPost
@@ -19,9 +19,9 @@ const Newsletter = ({ inPost }) => (
       className="my-1 text-gray-100 text-sm sm:text-base font-semibold"
       v-if="inPost"
     >
-      Get updates when I release new content and more. The next posts will focus
-      on advanced JavaScript, tooling and design. Ready to take your front-end
-      skills to the next level?{" "}
+      You'll also get updates when I release new content and more. The next
+      posts will focus on advanced JavaScript, tooling and design. Ready to take
+      your front-end skills to the next level?{" "}
       <span role="img" aria-label="Roeckt">
         🚀
       </span>
