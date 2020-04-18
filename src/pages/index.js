@@ -50,7 +50,7 @@ const BlogIndex = ({
               />
             </section>
             <TransitionLink to={node.fields.slug}>
-              <p className="inline-block mt-3 text-lg font-bold text-gray-700 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-200">
+              <p className="inline-block mt-3 text-lg font-bold text-gray-800 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-200">
                 Read more
               </p>
             </TransitionLink>

@@ -13,7 +13,7 @@ const Layout = ({ location, children }) => {
 
   return (
     <MDXProvider components={{ ...shortcodes, ...postComponents }}>
-      <div className="h-1 w-screen gradient fixed z-10" />
+      <div className="h-1 w-screen gradient-right fixed z-10" />
       <>
         <div className="py-5 md:px-0 bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
           <header>

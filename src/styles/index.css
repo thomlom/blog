@@ -28,7 +28,7 @@ html {
   }
 }
 
-.top-bar {
+.gradient-right {
   background: linear-gradient(
     to right,
     var(--gradient-start),
