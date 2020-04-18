@@ -53,7 +53,7 @@ const tagsColor = {
 }
 
 const PostInfos = ({ date, tags, timeToRead }) => (
-  <div className="flex flex-col-reverse  md:flex md:flex-row md:items-center mt-2">
+  <div className="flex flex-col-reverse  md:flex md:flex-row md:items-center mt-1">
     <div className="flex">
       <svg
         xmlns="http://www.w3.org/2000/svg"

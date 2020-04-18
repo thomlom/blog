@@ -3,27 +3,54 @@
 @tailwind utilities;
 
 /* purgecss start ignore */
+
 html {
   font-family: "Inter", "sans-serif";
+}
+
+:root {
+  --gradient-start: #fd6585;
+  --gradient-end: #0d25b9;
 }
 
 .gatsby-code-title {
   @apply font-mono text-gray-800 text-sm;
 }
 
-.gradient {
-  background: linear-gradient(to bottom right, #8888fc, #3525e6);
-}
-
-.gradient-text {
-  background: -webkit-linear-gradient(#8888fc, #3525e6);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 @media (prefers-color-scheme: dark) {
   .gatsby-code-title {
     @apply font-mono text-gray-400 text-sm;
   }
+
+  :root {
+    --gradient-start: #f27900;
+    --gradient-end: #d91698;
+  }
+}
+
+.top-bar {
+  background: linear-gradient(
+    to right,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+}
+
+.gradient {
+  background: linear-gradient(
+    to bottom right,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+}
+
+.gradient-text {
+  background: -webkit-linear-gradient(
+    bottom,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -13,27 +13,30 @@ const Layout = ({ location, children }) => {
 
   return (
     <MDXProvider components={{ ...shortcodes, ...postComponents }}>
-      <div className="h-1 w-screen bg-primary-600 dark:bg-primary-600" />
+      <div className="h-1 w-screen gradient fixed z-10" />
       <>
-        <div className="p-3 md:px-0 bg-gray-100 dark:bg-dark min-h-screen flex flex-col">
+        <div className="py-5 md:px-0 bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
           <header>
             <div className="max-w-2xl mx-auto flex items-center justify-between">
               <Link to={"/"}>
                 <h1 className="gradient-text text-2xl md:text-3xl m-0 font-black">
+                  <span role="img" aria-label="brain">
+                    🧠
+                  </span>{" "}
                   Thomlom
                 </h1>
               </Link>
 
               {location.pathname !== rootPath ? (
                 <Link to={"/"}>
-                  <p className="gradient font-semibold px-3 py-1 rounded text-lg text-primary-100 dark:text-primary-100">
+                  <p className="gradient font-semibold px-3 py-1 rounded text-lg text-white">
                     All posts
                   </p>
                 </Link>
               ) : (
                 <>
                   <Link to={"/about"}>
-                    <p className="font-semibold text-lg text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-100">
+                    <p className="font-semibold text-lg text-gray-700 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100">
                       About me
                     </p>
                   </Link>
