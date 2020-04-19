@@ -16,7 +16,8 @@ const Newsletter = ({ inPost }) => (
         : "Join the newsletter and read an exclusive post!"}
     </p>
     <p className="my-1 text-gray-100 font-semibold">
-      You'll also get updates when I release new content and more. Ready to take
+      You'll also get updates when I release new content and more. The next
+      posts will focus on advanced JavaScript, tooling and design. Ready to take
       your front-end skills to the next level?{" "}
       <span role="img" aria-label="Roeckt">
         🚀
