@@ -51,11 +51,11 @@ const SEO = ({ description, lang, meta, title, coverURL }) => {
         },
         {
           name: `twitter:card`,
-          content: `summary_large_image`,
+          content: `summary`,
         },
         {
           name: `twitter:creator`,
-          content: `Thomas Lombart`,
+          content: `@thomas_lombart`,
         },
         {
           name: `twitter:title`,

@@ -1,7 +1,7 @@
 ---
 title: How to get better at writing CSS
-date: '2018-07-17'
-cover: './cover.png'
+date: "2018-07-17"
+cover: "./cover.jpg"
 next: "/how-to-make-a-list-responsive/"
 tags: [css]
 ---

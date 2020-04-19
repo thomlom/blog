@@ -7,7 +7,7 @@ module.exports = {
     },
     description: `Level up your skills by reading high-quality posts on front-end development and design.`,
     keywords: [`javascript`, `react`, `vue`, `design`, `thomas lombart`],
-    siteUrl: `https://thomlom.dev/`,
+    siteUrl: `https://thomlom.dev`,
   },
   plugins: [
     {

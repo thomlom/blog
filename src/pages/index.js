@@ -11,7 +11,7 @@ import SEO from "../components/seo"
 const BlogIndex = ({
   data: {
     site: {
-      siteMetadata: { description },
+      siteMetadata: { description, siteUrl },
     },
     illustration,
     allMdx,
@@ -22,7 +22,11 @@ const BlogIndex = ({
 
   return (
     <Layout location={location}>
-      <SEO title="All posts" description={description} />
+      <SEO
+        title="All posts"
+        description={description}
+        coverURL={siteUrl + illustration.publicURL}
+      />
       <Img
         fluid={illustration.childImageSharp.fluid}
         className="rounded-lg my-0"
@@ -68,11 +72,12 @@ export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
-        title
+        siteUrl
         description
       }
     }
     illustration: file(absolutePath: { regex: "/illustration.png/" }) {
+      publicURL
       childImageSharp {
         fluid(maxHeight: 800) {
           ...GatsbyImageSharpFluid

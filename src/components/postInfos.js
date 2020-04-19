@@ -50,10 +50,14 @@ const tagsColor = {
     backgroundColor: "#404040",
     color: "#E6E6E6",
   },
+  design: {
+    backgroundColor: "#F32D60",
+    color: "#FFF2F6",
+  },
 }
 
 const PostInfos = ({ date, tags, timeToRead }) => (
-  <div className="flex flex-col-reverse  md:flex md:flex-row md:items-center mt-1">
+  <div className="flex flex-col-reverse  md:flex md:flex-row md:items-center mt-2">
     <div className="flex">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +73,7 @@ const PostInfos = ({ date, tags, timeToRead }) => (
           d="M7 2a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm10 0a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1z"
         />
       </svg>
-      <span className="ml-2 uppercase text-gray-700 dark:text-gray-400 text-sm">
+      <span className="ml-2 uppercase font-semibold text-sm text-gray-700 dark:text-gray-400">
         {format(new Date(date), "dd MMM yyyy")}
       </span>
     </div>
@@ -87,7 +91,7 @@ const PostInfos = ({ date, tags, timeToRead }) => (
         ))}
       </div>
 
-      {timeToRead < 3 && (
+      {timeToRead < 4 && (
         <span className="bg-yellow-400 text-yellow-900 text-sm font-semibold py-1 px-2 rounded-full self-start">
           Quick read
         </span>

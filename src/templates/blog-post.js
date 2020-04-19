@@ -11,7 +11,12 @@ import SEO from "../components/seo"
 
 const BlogPostTemplate = ({
   pageContext: { slug, next },
-  data: { mdx: post },
+  data: {
+    mdx: post,
+    site: {
+      siteMetadata: { siteUrl },
+    },
+  },
   location,
 }) => {
   return (
@@ -19,7 +24,7 @@ const BlogPostTemplate = ({
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
-        coverURL={post.frontmatter.cover.publicURL}
+        coverURL={siteUrl + post.frontmatter.cover.publicURL}
       />
       <article className="max-w-full md:max-w-2xl mx-auto">
         <header>
@@ -43,9 +48,11 @@ const BlogPostTemplate = ({
           <p className="mb-5 text-gray-700 dark:text-gray-200">
             If you found this post useful, feel free to{" "}
             <a
-              className="inline-block shadow-sm text-white px-2 py-1 rounded font-semibold"
-              style={{ backgroundColor: "#1DA1F2" }}
-              href={`https://twitter.com/intent/tweet?text="${post.frontmatter.title}" by @thomas_lombart https://thomlom.dev${slug}`}
+              className="inline-block underline font-semibold"
+              style={{ color: "#1DA1F2" }}
+              href={`https://twitter.com/intent/tweet?text="${
+                post.frontmatter.title
+              }" by @thomas_lombart ${siteUrl + slug}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -82,6 +89,11 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     mdx(fields: { slug: { eq: $slug } }) {
       timeToRead
       id
@@ -95,7 +107,7 @@ export const pageQuery = graphql`
         cover {
           publicURL
           childImageSharp {
-            sizes(maxWidth: 2000) {
+            sizes {
               ...GatsbyImageSharpSizes
             }
           }
