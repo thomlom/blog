@@ -43,7 +43,7 @@ const BlogPostTemplate = ({
           <p className="mb-5 text-gray-700 dark:text-gray-200">
             If you found this post useful, feel free to{" "}
             <a
-              className="shadow-sm text-white px-2 py-1 rounded font-semibold"
+              className="inline-block shadow-sm text-white px-2 py-1 rounded font-semibold"
               style={{ backgroundColor: "#1DA1F2" }}
               href={`https://twitter.com/intent/tweet?text="${post.frontmatter.title}" by @thomas_lombart https://thomlom.dev${slug}`}
               target="_blank"
@@ -58,7 +58,7 @@ const BlogPostTemplate = ({
       {next && (
         <>
           <TransitionLink paintDrip to={next.fields.slug}>
-            <div className="p-4 border border-gray-400 rounded bg-gray-200 dark:bg-gray-800 dark:border-none">
+            <div className="p-4 border shadow-md rounded bg-gray-200 dark:bg-gray-800 dark:border-none dark:shadow-lg">
               <span className="uppercase text-sm text-gray-700 dark:text-gray-300 tracking-wide flex items-center">
                 <span role="img" aria-label="Eyes" className="mr-1 text-xl">
                   👀

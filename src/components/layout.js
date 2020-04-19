@@ -19,10 +19,7 @@ const Layout = ({ location, children }) => {
           <header>
             <div className="max-w-2xl mx-auto flex items-center justify-between">
               <Link to={"/"}>
-                <h1 className="gradient-text text-2xl md:text-3xl m-0 font-black">
-                  <span role="img" aria-label="brain">
-                    🧠
-                  </span>{" "}
+                <h1 className="text-gray-800 dark:text-gray-200 text-xl md:text-2xl m-0 font-black">
                   Thomlom
                 </h1>
               </Link>
@@ -47,8 +44,8 @@ const Layout = ({ location, children }) => {
           <main className="max-w-2xl my-5 mx-auto w-full flex-1">
             {children}
           </main>
-          <footer className="mb-4 md:mb-6">
-            <p className="mt-2 md:mt-4 text-sm text-gray-700 dark:text-gray-300 font-medium text-center">
+          <footer className="my-2">
+            <p className="font-medium text-center text-sm text-gray-700 dark:text-gray-300 ">
               © {new Date().getFullYear()} Thomas Lombart
             </p>
           </footer>

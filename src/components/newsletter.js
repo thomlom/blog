@@ -8,19 +8,15 @@ const Newsletter = ({ inPost }) => (
     onSubmit={() =>
       window.open("https://buttondown.email/thomlom", "popupwindow")
     }
-    className="gradient flex w-full flex flex-col shadow-lg rounded mt-6 p-2 px-4 md:px-20"
+    className="gradient flex w-full flex flex-col shadow-lg rounded mt-5 p-2 px-4 md:px-24"
   >
     <p className="mt-2 mb-1 leading-tight text-xl sm:text-2xl text-white font-extrabold">
       {inPost
         ? "Pssst... You can join the newsletter and read an exclusive post!"
         : "Join the newsletter and read an exclusive post!"}
     </p>
-    <p
-      className="my-1 text-gray-100 text-sm sm:text-base font-semibold"
-      v-if="inPost"
-    >
-      You'll also get updates when I release new content and more. The next
-      posts will focus on advanced JavaScript, tooling and design. Ready to take
+    <p className="my-1 text-gray-100 font-semibold">
+      You'll also get updates when I release new content and more. Ready to take
       your front-end skills to the next level?{" "}
       <span role="img" aria-label="Roeckt">
         🚀
@@ -43,14 +39,14 @@ const Newsletter = ({ inPost }) => (
       className="bg-gray-200 text-gray-900 rounded w-full mt-3 font-bold px-3 py-2 cursor-pointer shadow dark:bg-gray-200 dark:text-gray-900 "
     />
     <div className="flex flex-col sm:flex-row justify-between mt-2">
-      <p className="text-gray-300 dark:text-gray-300 text-xs my-1">
+      <p className="text-gray-200 text-xs my-1">
         No spams. Unsubscribe at any time.
       </p>
       <a
         href="https://buttondown.email"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-gray-300 dark:text-gray-300 text-xs underline my-1 font-normal"
+        className="text-gray-200 text-xs underline my-1 font-normal"
       >
         Powered by Buttondown.
       </a>

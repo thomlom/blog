@@ -43,14 +43,3 @@ html {
     var(--gradient-end)
   );
 }
-
-.gradient-text {
-  background: -webkit-linear-gradient(
-    bottom,
-    var(--gradient-start),
-    var(--gradient-end)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
