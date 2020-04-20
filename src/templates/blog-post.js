@@ -31,11 +31,13 @@ const BlogPostTemplate = ({
           <h1 className="font-extrabold text-3xl md:text-4xl leading-tight text-gray-800 dark:text-gray-200">
             {post.frontmatter.title}
           </h1>
-          <PostInfos
-            date={post.frontmatter.date}
-            tags={post.frontmatter.tags}
-            timeToRead={post.timeToRead}
-          />
+          <div className="mt-2">
+            <PostInfos
+              date={post.frontmatter.date}
+              tags={post.frontmatter.tags}
+              timeToRead={post.timeToRead}
+            />
+          </div>
         </header>
         {post.frontmatter.cover ? (
           <Image
@@ -80,7 +82,9 @@ const BlogPostTemplate = ({
           <hr className="border-gray-400 dark:border-gray-700 mt-5" />
         </>
       )}
-      <Newsletter />
+      <div className="mt-5">
+        <Newsletter />
+      </div>
     </Layout>
   )
 }

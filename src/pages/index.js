@@ -5,8 +5,39 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Newsletter from "../components/newsletter"
 import PostInfos from "../components/postInfos"
-import TransitionLink from "../components/transitionLink"
 import SEO from "../components/seo"
+import TransitionLink from "../components/transitionLink"
+
+const PostSection = ({ title, posts }) => {
+  return (
+    <>
+      <div className="mt-12">
+        <h4 className="text-lg sm:text-xl text-gray-900 uppercase tracking-wide font-extrabold">
+          {title}
+        </h4>
+      </div>
+      <div className="sm:mt-1 h-1 gradient-right rounded w-full -p-4"></div>
+      {posts.map(({ node }) => {
+        const title = node.frontmatter.title || node.fields.slug
+        return (
+          <article key={node.fields.slug} className="mt-3 mb-6">
+            <header>
+              <h3 className="inline-block font-bold hover:underline leading-tight text-lg sm:text-xl text-gray-900 dark:text-gray-200 ">
+                <TransitionLink to={node.fields.slug}>{title}</TransitionLink>
+              </h3>
+              <div className="mt-1">
+                <PostInfos
+                  date={node.frontmatter.date}
+                  tags={node.frontmatter.tags}
+                />
+              </div>
+            </header>
+          </article>
+        )
+      })}
+    </>
+  )
+}
 
 const BlogIndex = ({
   data: {
@@ -20,6 +51,16 @@ const BlogIndex = ({
 }) => {
   const posts = allMdx.edges
 
+  const latestPosts = posts.slice(0, 5)
+
+  const popularPosts = posts.filter(
+    ({
+      node: {
+        frontmatter: { popular },
+      },
+    }) => popular
+  )
+
   return (
     <Layout location={location}>
       <SEO
@@ -31,37 +72,11 @@ const BlogIndex = ({
         fluid={illustration.childImageSharp.fluid}
         className="rounded-lg my-0"
       />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
-        return (
-          <article key={node.fields.slug} className="mt-8">
-            <header>
-              <h3 className="inline-block text-2xl md:text-3xl text-gray-800 dark:text-gray-200 font-bold hover:underline leading-tight">
-                <TransitionLink to={node.fields.slug}>{title}</TransitionLink>
-              </h3>
-              <PostInfos
-                date={node.frontmatter.date}
-                tags={node.frontmatter.tags}
-                timeToRead={node.timeToRead}
-              />
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.excerpt,
-                }}
-                className="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-400 leading-relaxed"
-              />
-            </section>
-            <TransitionLink to={node.fields.slug}>
-              <p className="inline-block mt-3 text-base sm:text-lg font-bold text-gray-800 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-200">
-                Read more
-              </p>
-            </TransitionLink>
-          </article>
-        )
-      })}
-      <Newsletter />
+      <PostSection title="Latest posts 🚀" posts={latestPosts} />
+      <PostSection title="Popular posts 😍" posts={popularPosts} />
+      <div className="mt-10">
+        <Newsletter />
+      </div>
     </Layout>
   )
 }
@@ -96,6 +111,8 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             tags
+            popular
+            category
           }
         }
       }
