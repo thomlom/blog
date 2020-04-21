@@ -15,7 +15,7 @@ const Newsletter = ({ inPost }) => (
         ? "Pssst... You can join the newsletter and read an exclusive post!"
         : "Join the newsletter and read an exclusive post!"}
     </p>
-    <p className="my-1 text-gray-100 font-semibold">
+    <p className="my-1 text-gray-100 font-semibold text-sm sm:text-base">
       You'll also get updates when I release new content and more. The upcoming
       posts focus on advanced JavaScript, tooling and design. Ready to take your
       front-end skills to the next level?{" "}

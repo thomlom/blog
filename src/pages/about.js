@@ -4,19 +4,19 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const NotFoundPage = ({ data, location }) => {
+const NotFoundPage = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
 
   const textClassNames =
-    "text-xl sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4"
+    "text-lg sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4"
 
   const linkClassNames =
     "underline text-gray-800 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200"
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout title={siteTitle}>
       <SEO title="About me" />
-      <p className="text-2xl sm:text-3xl text-gray-800 dark:text-gray-200 font-extrabold leading-tight">
+      <p className="text-xl sm:text-3xl text-gray-800 dark:text-gray-200 font-extrabold leading-tight">
         Hey there!{" "}
         <span role="img" aria-label="Waving hand">
           👋
@@ -35,12 +35,12 @@ const NotFoundPage = ({ data, location }) => {
           Back Market
         </a>
         .
-        <br />I write about front-end development to level up your skills
-        whether it's JavaScript stuff, performance, accessibility or design.
+        <br />I write about front-end development whether it's JavaScript stuff,
+        performance, accessibility or design.
       </p>
       <p className={textClassNames}>
-        I love productivity, minimalism and being organized. I'm the guy who
-        focuses on what matters. I value privacy and ecology.
+        I love productivity and minimalism. I'm the guy who focuses on what
+        matters. I value privacy and ecology.
       </p>
       <p className={textClassNames}>
         On my spare time, I train, travel, hike, watch good movies and listen to

@@ -49,9 +49,9 @@ exports.createPages = async ({ graphql, actions }) => {
           throw new Error(
             "A next post slug was specified but no posts were found."
           )
-        } else {
-          next = correspondingPost.node
         }
+
+        next = correspondingPost.node
       }
 
       createPage({

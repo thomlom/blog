@@ -8,14 +8,14 @@ import PostInfos from "../components/postInfos"
 import SEO from "../components/seo"
 import TransitionLink from "../components/transitionLink"
 
+const marginBetweenSections = "mt-6 sm:mt-10"
+
 const PostSection = ({ title, posts }) => {
   return (
-    <>
-      <div className="mt-12">
-        <h4 className="text-lg sm:text-xl text-gray-900 uppercase tracking-wide font-extrabold">
-          {title}
-        </h4>
-      </div>
+    <div className={marginBetweenSections}>
+      <h4 className="text-lg sm:text-xl text-gray-900 dark:text-gray-100 uppercase tracking-wide font-extrabold">
+        {title}
+      </h4>
       <div className="sm:mt-1 h-1 gradient-right rounded w-full -p-4"></div>
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
@@ -35,7 +35,7 @@ const PostSection = ({ title, posts }) => {
           </article>
         )
       })}
-    </>
+    </div>
   )
 }
 
@@ -47,7 +47,6 @@ const BlogIndex = ({
     illustration,
     allMdx,
   },
-  location,
 }) => {
   const posts = allMdx.edges
 
@@ -62,7 +61,7 @@ const BlogIndex = ({
   )
 
   return (
-    <Layout location={location}>
+    <Layout>
       <SEO
         title="All posts"
         description={description}
@@ -74,7 +73,7 @@ const BlogIndex = ({
       />
       <PostSection title="Latest posts 🚀" posts={latestPosts} />
       <PostSection title="Popular posts 😍" posts={popularPosts} />
-      <div className="mt-10">
+      <div className={marginBetweenSections}>
         <Newsletter />
       </div>
     </Layout>
@@ -102,7 +101,6 @@ export const pageQuery = graphql`
     allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          timeToRead
           excerpt(pruneLength: 180)
           fields {
             slug
@@ -112,7 +110,6 @@ export const pageQuery = graphql`
             title
             tags
             popular
-            category
           }
         }
       }

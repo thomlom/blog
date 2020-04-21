@@ -53,6 +53,10 @@ const tagsColor = {
     backgroundColor: "#F32D60",
     color: "#FFF2F6",
   },
+  productivity: {
+    backgroundColor: "#00CC88",
+    color: "#F7FFFC",
+  },
 }
 
 const Tags = ({ tags }) => (

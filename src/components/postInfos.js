@@ -24,8 +24,7 @@ const PostInfos = ({ date, tags }) => (
         {format(new Date(date), "dd MMM yyyy")}
       </span>
     </div>
-
-    <div className="flex flex-1">
+    <div className="flex">
       <Tags tags={tags} />
     </div>
   </div>

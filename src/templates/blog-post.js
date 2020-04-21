@@ -26,16 +26,15 @@ const BlogPostTemplate = ({
         description={post.excerpt}
         coverURL={siteUrl + post.frontmatter.cover.publicURL}
       />
-      <article className="max-w-full md:max-w-2xl mx-auto">
+      <article className="max-w-full sm:max-w-2xl mx-auto">
         <header>
-          <h1 className="font-extrabold text-3xl md:text-4xl leading-tight text-gray-800 dark:text-gray-200">
+          <h1 className="font-extrabold text-2xl sm:text-3xl leading-tight text-gray-800 dark:text-gray-200">
             {post.frontmatter.title}
           </h1>
           <div className="mt-2">
             <PostInfos
               date={post.frontmatter.date}
               tags={post.frontmatter.tags}
-              timeToRead={post.timeToRead}
             />
           </div>
         </header>
@@ -99,7 +98,6 @@ export const pageQuery = graphql`
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {
-      timeToRead
       id
       excerpt(pruneLength: 160)
       body
