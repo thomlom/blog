@@ -21,13 +21,16 @@ const SEO = ({ description, lang, meta, title, coverURL }) => {
 
   const metaDescription = description || siteMetadata.description
 
+  const pageTitle = title
+    ? `${title} | ${siteMetadata.title}`
+    : siteMetadata.title
+
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${siteMetadata.title}`}
+      title={pageTitle}
       meta={[
         {
           name: `description`,

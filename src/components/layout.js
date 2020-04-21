@@ -15,9 +15,8 @@ const links = [
 ]
 
 const CustomLink = ({ to, name }) => {
-  const linkClassNames = "mt-4 sm:first:ml-0 sm:ml-5 sm:mt-0"
-  const linkNameClassNames =
-    "font-semibold text-lg text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
+  const linkClassNames =
+    "py-3 sm:py-1 sm:px-3 sm:first:ml-0 sm:mt-0 font-semibold text-lg text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
 
   const isExternal = to.startsWith("http")
 
@@ -29,14 +28,14 @@ const CustomLink = ({ to, name }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <p className={linkNameClassNames}>{name}</p>
+        <p>{name}</p>
       </a>
     )
   }
 
   return (
     <Link to={to} key={name} className={linkClassNames}>
-      <p className={linkNameClassNames}>{name}</p>
+      <p>{name}</p>
     </Link>
   )
 }
@@ -59,6 +58,7 @@ const Layout = ({ children }) => {
               <button
                 type="button"
                 className="px-2 text-gray-800 dark:text-gray-400 focus:outline-none sm:hidden"
+                aria-label={isOpen ? "Close menu" : "Open menu"}
                 onClick={() => setIsOpen(!isOpen)}
               >
                 <svg

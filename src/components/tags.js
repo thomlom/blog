@@ -50,8 +50,8 @@ const tagsColor = {
     color: "#E6E6E6",
   },
   design: {
-    backgroundColor: "#F32D60",
-    color: "#FFF2F6",
+    backgroundColor: "#C71E49",
+    color: "#FFFAFB",
   },
   productivity: {
     backgroundColor: "#00CC88",
