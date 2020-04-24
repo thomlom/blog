@@ -21,6 +21,8 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: "UA-164524126-1",
+        anonymize: true,
+        respectDNT: true,
       },
     },
     {
@@ -126,9 +128,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-purgecss`,
       options: {
-        printRejected: true, // Print removed selectors and processed file names
-        develop: false, // Enable while using `gatsby develop`
-        tailwind: true, // Enable tailwindcss support
+        printRejected: true,
+        tailwind: true,
       },
     },
     `gatsby-plugin-offline`,
