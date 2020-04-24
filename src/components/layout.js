@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
           <header className="max-w-2xl mx-auto w-full flex flex-col sm:flex-row sm:justify-between sm:items-center">
             <div className="flex justify-between items-center">
               <Link to={"/"}>
-                <h1 className="text-gray-800 dark:text-gray-200 text-xl md:text-2xl m-0 font-black">
+                <h1 className="text-gray-800 dark:text-gray-200 text-2xl m-0 font-black">
                   Thomlom
                 </h1>
               </Link>
