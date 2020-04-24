@@ -53,7 +53,7 @@ const Bio = ({ photo }) => {
         />
         <div className="flex space-x-4 mt-2">
           <a
-            href="https://twitter.com/@thomas_lombart"
+            href="https://twitter.com/thomas_lombart"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2"
