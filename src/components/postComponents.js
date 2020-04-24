@@ -170,17 +170,17 @@ export default {
     <ol className={`${textClassNames} list-decimal ml-6`} {...props} />
   ),
   li: (props) => <li className="my-2 pl-1" {...props} />,
-  // eslint-disable-next-line
   h1: (props) => (
+    // eslint-disable-next-line
     <h1 className={`${titleClassNames} text4xl mt-12`} {...props} />
   ),
   h2: (props) => (
     // eslint-disable-next-line
     <h2 className={`${titleClassNames} text-3xl mt-10`} {...props} />
   ),
-  // eslint-disable-next-line
   h3: (props) => (
-    <h1 className={`${titleClassNames} text-2xl mt-8`} {...props} />
+    // eslint-disable-next-line
+    <h3 className={`${titleClassNames} text-2xl mt-8`} {...props} />
   ),
   // eslint-disable-next-line
   h4: (props) => <h1 className={`${titleClassNames} text-xl`} {...props} />,
