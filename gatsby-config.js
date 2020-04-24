@@ -132,6 +132,6 @@ module.exports = {
         tailwind: true,
       },
     },
-    `gatsby-plugin-offline`,
+    `gatsby-plugin-remove-serviceworker`,
   ],
 }
