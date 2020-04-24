@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 /* purgecss start ignore */
-
 html {
   font-family: "Inter", "sans-serif";
 }
@@ -43,3 +42,4 @@ html {
     var(--gradient-end)
   );
 }
+/* purgecss end ignore */
