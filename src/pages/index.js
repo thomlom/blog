@@ -76,14 +76,14 @@ const Bio = ({ photo }) => {
       </div>
       <div className="mt-4 sm:ml-8 sm:mt-0">
         <h2 className="text-xl sm:text-2xl text-gray-800 dark:text-gray-200 font-extrabold leading-tight">
-          Hello, I'm Thomas Lombart, a french front-end engineer.{" "}
+          Hello, I'm Thomas Lombart, a front-end engineer.{" "}
           <span role="img" aria-label="Waving hand">
             👋
           </span>
         </h2>
         <h3 className="text-lg text-gray-700 dark:text-gray-400 font-semibold leading-snug mt-2">
           I help developers level-up their front-end skills through high-quality
-          posts on JavaScript, modern frameworks, design, and more!
+          posts on modern JavaScript, design and more!
         </h3>
       </div>
     </div>
