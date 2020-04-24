@@ -22,14 +22,14 @@ const BlogIndex = ({
   return (
     <Layout location={location}>
       <SEO title="All posts" description={description} />
-      <div className="bg-gray-200 p-4 mb-6 rounded">
-        <label className="block text-lg text-gray-800 font-semibold">
+      <div className="bg-gray-200 p-4 mb-6 rounded dark:bg-gray-800 shadow">
+        <label className="block text-lg text-gray-800 dark:text-gray-200 font-semibold">
           Search a post
           <input
             type="text"
-            className="mt-1 mb-2 text-gray-800 placeholder-gray-600 bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none leading-normal"
+            className="mt-1 mb-2 text-gray-800 placeholder-gray-600 bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:placeholder-gray-500"
             placeholder="react, vue"
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </label>
       </div>
@@ -50,8 +50,8 @@ const BlogIndex = ({
               if (wordsSearched.length > 0) {
                 return (
                   lowercasedTitle.includes(lowercasedSearch) ||
-                  tags.some(tag =>
-                    wordsSearched.some(word => tag.includes(word))
+                  tags.some((tag) =>
+                    wordsSearched.some((word) => tag.includes(word))
                   )
                 )
               }
