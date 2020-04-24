@@ -42,7 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
       let next
       if (nextSlug) {
         const correspondingPost = posts.find(
-          postToFind => postToFind.node.fields.slug === nextSlug
+          (postToFind) => postToFind.node.fields.slug === nextSlug
         )
 
         if (!correspondingPost) {

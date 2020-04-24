@@ -61,7 +61,7 @@ const tagsColor = {
 
 const Tags = ({ tags }) => (
   <div className="ml-2" style={{ marginTop: "-3px" }}>
-    {tags.map(tag => (
+    {tags.map((tag) => (
       <span
         key={tag}
         className="first:ml-0 ml-2 inline-block text-xs rounded font-semibold"

@@ -1,4 +1,4 @@
-const getDifferentComments = content => [
+const getDifferentComments = (content) => [
   `// ${content}`,
   `//${content}`,
   `/* ${content} */`,
@@ -10,18 +10,18 @@ const getDifferentComments = content => [
 ]
 
 const hasHighlightComment = (line, content) =>
-  line.some(token => getDifferentComments(content).includes(token.content))
-const isStart = line => hasHighlightComment(line, "highlight-start")
-const isEnd = line => hasHighlightComment(line, "highlight-end")
-const isLine = line => hasHighlightComment(line, "highlight-next-line")
+  line.some((token) => getDifferentComments(content).includes(token.content))
+const isStart = (line) => hasHighlightComment(line, "highlight-start")
+const isEnd = (line) => hasHighlightComment(line, "highlight-end")
+const isLine = (line) => hasHighlightComment(line, "highlight-next-line")
 
 // Return the tokens and if the line should be highlighted or not
-export const getAumgentedTokens = tokens => {
+export const getAumgentedTokens = (tokens) => {
   let inHighlight = false
   let shouldHighlightNextLine = false
 
   return tokens
-    .map(line => {
+    .map((line) => {
       const start = isStart(line)
       const end = isEnd(line)
       const highlightLine = isLine(line)

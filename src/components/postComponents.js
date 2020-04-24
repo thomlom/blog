@@ -162,37 +162,43 @@ const titleClassNames =
 
 // eslint-disable
 export default {
-  p: props => <p className={textClassNames} {...props} />,
-  ul: props => <ul className={`${textClassNames} list-disc ml-6`} {...props} />,
-  ol: props => (
+  p: (props) => <p className={textClassNames} {...props} />,
+  ul: (props) => (
+    <ul className={`${textClassNames} list-disc ml-6`} {...props} />
+  ),
+  ol: (props) => (
     <ol className={`${textClassNames} list-decimal ml-6`} {...props} />
   ),
-  li: props => <li className="my-2 pl-1" {...props} />,
+  li: (props) => <li className="my-2 pl-1" {...props} />,
   // eslint-disable-next-line
-  h1: props => <h1 className={`${titleClassNames} text4xl mt-12`} {...props} />,
-  h2: props => (
+  h1: (props) => (
+    <h1 className={`${titleClassNames} text4xl mt-12`} {...props} />
+  ),
+  h2: (props) => (
     // eslint-disable-next-line
     <h2 className={`${titleClassNames} text-3xl mt-10`} {...props} />
   ),
   // eslint-disable-next-line
-  h3: props => <h1 className={`${titleClassNames} text-2xl mt-8`} {...props} />,
+  h3: (props) => (
+    <h1 className={`${titleClassNames} text-2xl mt-8`} {...props} />
+  ),
   // eslint-disable-next-line
-  h4: props => <h1 className={`${titleClassNames} text-xl`} {...props} />,
-  a: props => (
+  h4: (props) => <h1 className={`${titleClassNames} text-xl`} {...props} />,
+  a: (props) => (
     // eslint-disable-next-line
     <a
       className="text-gray-800 font-bold underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200"
       {...props}
     />
   ),
-  hr: props => <hr className="border border-blue-500" {...props} />,
-  blockquote: props => (
+  hr: (props) => <hr className="border border-blue-500" {...props} />,
+  blockquote: (props) => (
     <blockquote
       className="pl-4 border-l-4 border-blue-500 italic break-word"
       {...props}
     />
   ),
-  inlineCode: props => (
+  inlineCode: (props) => (
     <code
       {...props}
       className="bg-gray-200 text-gray-800 border rounded border-gray-300 dark:bg-gray-900 dark:text-gray-400 dark:border-gray-800"
