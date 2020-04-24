@@ -63,6 +63,7 @@ const BlogIndex = ({
   return (
     <Layout>
       <SEO
+        title="Blog"
         description={description}
         coverURL={siteUrl + illustration.publicURL}
       />
