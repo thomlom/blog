@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import { useMedia } from "react-use"
+import useDarkMode from "use-dark-mode"
 
 import Layout from "../components/layout"
 import Newsletter from "../components/newsletter"
@@ -43,7 +43,8 @@ const PostSection = ({ title, posts }) => (
 )
 
 const Bio = ({ photo }) => {
-  const isDarkMode = useMedia("(prefers-color-scheme: dark)")
+  const { value: isDarkMode } = useDarkMode()
+
   return (
     <div className="bg-gray-200 rounded p-3 sm:p-5 flex flex-col sm:flex-row items-center justify-between dark:bg-gray-800">
       <div className="flex flex-col justify-center items-center">
