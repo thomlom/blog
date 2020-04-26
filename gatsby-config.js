@@ -18,14 +18,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: "UA-164524126-1",
-        anonymize: true,
-        respectDNT: true,
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/assets`,
@@ -53,6 +45,12 @@ module.exports = {
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-fathom",
+      options: {
+        siteId: "LLYRMZQI",
       },
     },
     `gatsby-transformer-sharp`,
