@@ -96,7 +96,7 @@ import React from "react"
 class Counter extends React.Component {
   state = { count: 0 }
   // highlight-next-line
-  setCount = count => this.setState({ count })
+  setCount = (count) => this.setState({ count })
   render() {
     return (
       <div>
@@ -121,8 +121,8 @@ import React, { useState } from "react"
 // highlight-start
 const Counter = () => {
   const [count, setCount] = useState(0)
-  const increment = () => setCount(count => count + 1)
-  const decrement = () => setCount(count => count - 1)
+  const increment = () => setCount((count) => count + 1)
+  const decrement = () => setCount((count) => count - 1)
   return (
     <div>
       <button onClick={decrement}>-</button>
@@ -154,23 +154,15 @@ describe("<Counter />", () => {
   it("properly increments and decrements the counter", () => {
     const setValue = jest.fn()
     const useStateSpy = jest.spyOn(React, "useState")
-    useStateSpy.mockImplementation(initialValue => [initialValue, setValue])
+    useStateSpy.mockImplementation((initialValue) => [initialValue, setValue])
     const wrapper = shallow(<Counter />)
 
-    wrapper
-      .find("button")
-      .last()
-      .props()
-      .onClick()
+    wrapper.find("button").last().props().onClick()
     expect(setValue).toHaveBeenCalledWith(1)
     // We can't make any assumptions here on the real count displayed
     // In fact, the setCount setter is mocked!
 
-    wrapper
-      .find("button")
-      .first()
-      .props()
-      .onClick()
+    wrapper.find("button").first().props().onClick()
     expect(setValue).toHaveBeenCalledWith(-1)
   })
 })
@@ -353,9 +345,9 @@ function Todos({ todos: originalTodos }) {
   const [todos, setTodos] = React.useState(originalTodos || [])
   const [activeFilter, setActiveFilter] = React.useState(filters[0])
 
-  const addTodo = e => {
+  const addTodo = (e) => {
     if (e.key === "Enter" && input.length > 0) {
-      setTodos(todos => [{ name: input, done: false }, ...todos])
+      setTodos((todos) => [{ name: input, done: false }, ...todos])
       setInput("")
     }
   }
@@ -379,16 +371,16 @@ function Todos({ todos: originalTodos }) {
     [todos, activeFilter]
   )
 
-  const toggle = index => {
-    setTodos(todos =>
+  const toggle = (index) => {
+    setTodos((todos) =>
       todos.map((todo, i) =>
         index === i ? { ...todo, done: !todo.done } : todo
       )
     )
   }
 
-  const remove = index => {
-    setTodos(todos => todos.filter((todo, i) => i !== index))
+  const remove = (index) => {
+    setTodos((todos) => todos.filter((todo, i) => i !== index))
   }
 
   return (
@@ -396,7 +388,7 @@ function Todos({ todos: originalTodos }) {
       <h2 className="title">To-dos</h2>
       <input
         className="input"
-        onChange={e => setInput(e.target.value)}
+        onChange={(e) => setInput(e.target.value)}
         onKeyDown={addTodo}
         value={input}
         placeholder="Add something..."
@@ -430,7 +422,7 @@ function Todos({ todos: originalTodos }) {
         )}
       </ul>
       <ul className="list-filters">
-        {filters.map(filter => (
+        {filters.map((filter) => (
           <li
             key={filter}
             className={`filter ${
@@ -606,7 +598,7 @@ function App() {
   const [isPosting, setIsPosting] = React.useState(false)
   const [error, setError] = React.useState("")
 
-  const post = async e => {
+  const post = async (e) => {
     e.preventDefault()
 
     setError("")
@@ -639,12 +631,12 @@ function App() {
         <input
           type="text"
           placeholder="Your title"
-          onChange={e => setFormData({ title: e.target.value })}
+          onChange={(e) => setFormData({ title: e.target.value })}
         />
         <textarea
           type="text"
           placeholder="Your post"
-          onChange={e => setFormData({ content: e.target.value })}
+          onChange={(e) => setFormData({ content: e.target.value })}
           rows={5}
         />
         <button className="btn" type="submit" disabled={isPosting}>
@@ -652,7 +644,7 @@ function App() {
         </button>
       </form>
       <div>
-        {posts.map(post => (
+        {posts.map((post) => (
           <div className="post" key={post.id}>
             <h2>{post.title}</h2>
             <p>{post.content}</p>
@@ -669,7 +661,7 @@ export default App
 ```javascript:title=api.js
 let nextId = 0
 
-export const addPost = post => {
+export const addPost = (post) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (Math.random() > 0.1) {
@@ -705,7 +697,7 @@ jest.mock("./api")
 
 describe("Posts", () => {
   test("adds a post", async () => {
-    addPostMock.mockImplementation(post => {
+    addPostMock.mockImplementation((post) => {
       return Promise.resolve({ status: 200, data: { ...post, id: 1 } })
     })
     const { getByPlaceholderText, getByText, debug } = render(<Posts />)
@@ -732,7 +724,7 @@ Then, we have to fire the corresponding events and make sure the post have been 
 
 ```jsx
 test("adds a post", () => {
-  addPostMock.mockImplementation(post => {
+  addPostMock.mockImplementation((post) => {
     return Promise.resolve({ status: 200, data: { ...post, id: 1 } })
   })
   const { getByPlaceholderText, getByText, queryByText } = render(<Posts />)
@@ -762,7 +754,7 @@ Simply put, `debug` is a utility function returned by `render` that prints out a
 
 ```jsx
 test("adds a post", () => {
-  addPostMock.mockImplementation(post => {
+  addPostMock.mockImplementation((post) => {
     return Promise.resolve({ status: 200, data: { ...post, id: 1 } })
   })
   const { getByPlaceholderText, getByText, queryByText, debug } = render(
@@ -814,7 +806,7 @@ Do you know why? Because posting a post is **asynchronous** and we're trying to 
 
 ```jsx
 test("adds a post", () => {
-  addPostMock.mockImplementation(post => {
+  addPostMock.mockImplementation((post) => {
     return Promise.resolve({ status: 200, data: { ...post, id: 1 } })
   })
   const { getByPlaceholderText, getByText } = render(<Posts />)

@@ -22,7 +22,7 @@ const BlogPostTemplate = ({
   return (
     <Layout location={location}>
       <SEO
-        title={post.frontmatter.title}
+        title={post.frontmatter.seoTitle || post.frontmatter.title}
         description={post.excerpt}
         coverURL={siteUrl + post.frontmatter.cover.publicURL}
       />
@@ -44,7 +44,7 @@ const BlogPostTemplate = ({
             className="rounded mt-4"
           />
         ) : null}
-        <section className="post">
+        <section className="mt-8">
           <MDXRenderer>{post.body}</MDXRenderer>
           <p className="mb-5 text-gray-700 dark:text-gray-200">
             If you found this post useful, feel free to{" "}
@@ -103,6 +103,7 @@ export const pageQuery = graphql`
       body
       frontmatter {
         title
+        seoTitle
         date(formatString: "MMMM DD, YYYY")
         tags
         next

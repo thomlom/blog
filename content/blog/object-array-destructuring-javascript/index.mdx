@@ -1,5 +1,6 @@
 ---
 title: Object and array destructuring in JavaScript
+seoTitle: How to destructure arrays and objects in JavaScript
 date: "2020-03-30"
 cover: "./cover.jpg"
 tags: [javascript]
@@ -101,7 +102,7 @@ const PrivateRoute: React.FC<Props> = ({ component: Component, ...rest }) => {
     <Route
       // Pass all the props to Route except `component`
       {...rest}
-      render={props =>
+      render={(props) =>
         // if the user is authenticated, render the component otherwise redirect him to the signin screen
         isAuthenticated ? <Component {...props} /> : <Redirect to="/signin" />
       }
