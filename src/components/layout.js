@@ -2,11 +2,12 @@ import React from "react"
 import { Link } from "gatsby"
 import { MDXProvider } from "@mdx-js/react"
 
-import Recall from "./recall"
 import postComponents from "./postComponents"
 import Newsletter from "./newsletter"
+import Recall from "./recall"
+import Info from "./info"
 
-const shortcodes = { Newsletter, Recall }
+const shortcodes = { Info, Newsletter, Recall }
 
 const links = [
   { to: "/all-posts", name: "All posts" },

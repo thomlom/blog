@@ -15,33 +15,6 @@ import GitHubDark from "../icons/github_dark.png"
 
 const marginBetweenSections = "mt-6 sm:mt-10"
 
-const PostSection = ({ title, posts }) => (
-  <div className={marginBetweenSections}>
-    <h4 className="text-lg sm:text-xl text-gray-900 dark:text-gray-100 uppercase tracking-wide font-extrabold">
-      {title}
-    </h4>
-    <div className="sm:mt-1 h-1 gradient-right rounded w-full -p-4"></div>
-    {posts.map(({ node }) => {
-      const title = node.frontmatter.title || node.fields.slug
-      return (
-        <article key={node.fields.slug} className="mt-3 mb-6">
-          <header>
-            <h3 className="inline-block font-bold hover:underline leading-tight text-lg sm:text-xl text-gray-900 dark:text-gray-200 ">
-              <TransitionLink to={node.fields.slug}>{title}</TransitionLink>
-            </h3>
-            <div className="mt-1">
-              <PostInfos
-                date={node.frontmatter.date}
-                tags={node.frontmatter.tags}
-              />
-            </div>
-          </header>
-        </article>
-      )
-    })}
-  </div>
-)
-
 const Bio = ({ photo }) => {
   const { value: isDarkMode } = useDarkMode()
 
@@ -91,6 +64,53 @@ const Bio = ({ photo }) => {
   )
 }
 
+const PostSection = ({ title, posts }) => (
+  <div className={marginBetweenSections}>
+    <h4 className="text-xl sm:text-2xl text-gray-900 dark:text-gray-100 font-extrabold">
+      {title}
+    </h4>
+    <div className="sm:mt-1 h-1 gradient-right rounded w-full -p-4"></div>
+    {posts.map(({ node }) => {
+      const title = node.frontmatter.title || node.fields.slug
+      return (
+        <article key={node.fields.slug} className="mt-3 mb-6">
+          <header>
+            <h3 className="inline-block font-bold hover:underline leading-tight text-lg sm:text-xl text-gray-900 dark:text-gray-200 ">
+              <TransitionLink to={node.fields.slug}>{title}</TransitionLink>
+            </h3>
+            <div className="mt-1">
+              <PostInfos
+                date={node.frontmatter.date}
+                tags={node.frontmatter.tags}
+              />
+            </div>
+          </header>
+        </article>
+      )
+    })}
+  </div>
+)
+
+const FeaturedPost = ({
+  post: {
+    node: { fields, frontmatter },
+  },
+}) => (
+  <TransitionLink to={fields.slug}>
+    <div className={`${marginBetweenSections} p-4 gradient rounded shadow-xl`}>
+      <h4 className="text-lg sm:text-xl font-extrabold text-gray-100">
+        Featured post{" "}
+        <span role="img" aria-label="Star">
+          ⭐
+        </span>
+      </h4>
+      <h2 className="text-gray-100 text-xl sm:text-2xl leading-tight font-bold mt-1">
+        {frontmatter.title}
+      </h2>
+    </div>
+  </TransitionLink>
+)
+
 const BlogIndex = ({
   data: {
     site: {
@@ -101,6 +121,14 @@ const BlogIndex = ({
   },
 }) => {
   const posts = allMdx.edges
+
+  const featuredPost = posts.find(
+    ({
+      node: {
+        frontmatter: { featured },
+      },
+    }) => featured
+  )
   const latestPosts = posts.slice(0, 5)
   const popularPosts = posts.filter(
     ({
@@ -114,6 +142,7 @@ const BlogIndex = ({
     <Layout>
       <SEO title="Blog" description={description} />
       <Bio photo={photo} />
+      {featuredPost && <FeaturedPost post={featuredPost} />}
       <PostSection title="Latest posts 🚀" posts={latestPosts} />
       <PostSection title="Popular posts 😍" posts={popularPosts} />
       <div className={marginBetweenSections}>
@@ -153,6 +182,7 @@ export const pageQuery = graphql`
             title
             tags
             popular
+            featured
           }
         }
       }
