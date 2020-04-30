@@ -9,6 +9,8 @@ import Newsletter from "../components/newsletter"
 import PostInfos from "../components/postInfos"
 import SEO from "../components/seo"
 
+import trackGoal from "../utils/trackGoal"
+
 const BlogPostTemplate = ({
   pageContext: { slug, next },
   data: {
@@ -65,7 +67,11 @@ const BlogPostTemplate = ({
 
       {next && (
         <>
-          <TransitionLink paintDrip to={next.fields.slug}>
+          <TransitionLink
+            paintDrip
+            to={next.fields.slug}
+            onClick={() => trackGoal({ id: "INBZQJFJ" })}
+          >
             <div className="p-4 border shadow-md rounded bg-gray-200 dark:bg-gray-800 dark:border-none dark:shadow-lg">
               <span className="uppercase text-sm text-gray-700 dark:text-gray-300 tracking-wide flex items-center">
                 <span role="img" aria-label="Eyes" className="mr-1 text-xl">

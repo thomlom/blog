@@ -13,7 +13,6 @@
     "date-fns": "^2.12.0",
     "gatsby": "^2.20.31",
     "gatsby-image": "^2.3.5",
-    "gatsby-plugin-fathom": "^1.2.0",
     "gatsby-plugin-feed": "^2.4.4",
     "gatsby-plugin-manifest": "^2.3.7",
     "gatsby-plugin-mdx": "^1.1.11",

@@ -7,13 +7,18 @@ import Newsletter from "./newsletter"
 import Recall from "./recall"
 import Info from "./info"
 
+import trackGoal from "../utils/trackGoal"
+
 const shortcodes = { Info, Newsletter, Recall }
 
-const links = [
-  { to: "/all-posts", name: "All posts" },
-  { to: "https://buttondown.email/thomlom", name: "Newsletter" },
-  { to: "/about", name: "About" },
-]
+const allPosts = { to: "/all-posts", name: "All posts" }
+const newsletter = {
+  to: "https://buttondown.email/thomlom",
+  name: "Newsletter",
+}
+const about = { to: "/about", name: "About" }
+
+const links = [allPosts, newsletter, about]
 
 const CustomLink = ({ to, name }) => {
   const linkClassNames =
@@ -28,6 +33,9 @@ const CustomLink = ({ to, name }) => {
         className={linkClassNames}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() =>
+          name === newsletter.name && trackGoal({ id: "5NIV3EYN" })
+        }
       >
         <p>{name}</p>
       </a>

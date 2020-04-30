@@ -9,6 +9,8 @@ import PostInfos from "../components/postInfos"
 import SEO from "../components/seo"
 import TransitionLink from "../components/transitionLink"
 
+import trackGoal from "../utils/trackGoal"
+
 import Twitter from "../icons/twitter.png"
 import GitHubLight from "../icons/github_light.png"
 import GitHubDark from "../icons/github_dark.png"
@@ -31,6 +33,7 @@ const Bio = ({ photo }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="p-2"
+            onClick={() => trackGoal({ id: "EOOE1BO9" })}
           >
             <img src={Twitter} alt="Twitter logo" className="h-8 w-8" />
           </a>
@@ -39,6 +42,7 @@ const Bio = ({ photo }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="p-2"
+            onClick={() => trackGoal({ id: "8PWDIENQ" })}
           >
             <img
               src={isDarkMode ? GitHubLight : GitHubDark}
@@ -96,7 +100,10 @@ const FeaturedPost = ({
     node: { fields, frontmatter },
   },
 }) => (
-  <TransitionLink to={fields.slug}>
+  <TransitionLink
+    to={fields.slug}
+    onClick={() => trackGoal({ id: "SC29TUTW" })}
+  >
     <div className={`${marginBetweenSections} p-4 gradient rounded shadow-xl`}>
       <h4 className="text-lg sm:text-xl font-extrabold text-gray-100">
         Featured post{" "}

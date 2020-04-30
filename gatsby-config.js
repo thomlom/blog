@@ -47,12 +47,6 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: "gatsby-plugin-fathom",
-      options: {
-        siteId: "LLYRMZQI",
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-transition-link`,
