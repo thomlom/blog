@@ -40,13 +40,20 @@ const BlogPostTemplate = ({
             />
           </div>
         </header>
-        {post.frontmatter.cover ? (
-          <Image
-            sizes={post.frontmatter.cover.childImageSharp.sizes}
-            className="rounded mt-4"
-          />
-        ) : null}
-        <section className="mt-8">
+        {post.frontmatter.cover && (
+          <>
+            <Image
+              sizes={post.frontmatter.cover.childImageSharp.sizes}
+              className="rounded mt-4"
+            />
+            {post.frontmatter.coverCredit && (
+              <p className="mt-2 text-gray-600 text-center">
+                {post.frontmatter.coverCredit}
+              </p>
+            )}
+          </>
+        )}
+        <section className="mt-6">
           <MDXRenderer>{post.body}</MDXRenderer>
           <p className="mb-5 text-gray-700 dark:text-gray-200">
             If you found this post useful, feel free to{" "}
@@ -121,6 +128,7 @@ export const pageQuery = graphql`
             }
           }
         }
+        coverCredit
       }
     }
   }
