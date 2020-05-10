@@ -53,20 +53,6 @@ const BlogPostTemplate = ({
         )}
         <section className="mt-6">
           <MDXRenderer>{post.body}</MDXRenderer>
-          <p className="mb-5 text-gray-700 dark:text-gray-200">
-            If you found this post useful, feel free to{" "}
-            <a
-              className="inline-block underline font-semibold"
-              style={{ color: "#1DA1F2" }}
-              href={`https://twitter.com/intent/tweet?text="${
-                post.frontmatter.title
-              }" by @thomas_lombart ${siteUrl + slug}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              share it on Twitter.
-            </a>
-          </p>
         </section>
       </article>
 

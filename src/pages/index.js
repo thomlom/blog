@@ -9,44 +9,16 @@ import PostInfos from "../components/postInfos"
 import SEO from "../components/seo"
 import TransitionLink from "../components/transitionLink"
 
-import Twitter from "../icons/twitter.png"
-import GitHubLight from "../icons/github_light.png"
-import GitHubDark from "../icons/github_dark.png"
-
 const marginBetweenSections = "mt-6 sm:mt-10"
 
 const Bio = ({ photo }) => {
-  const { value: isDarkMode } = useDarkMode()
-
   return (
     <div className="bg-gray-200 rounded p-3 sm:p-5 flex flex-col sm:flex-row items-center justify-between dark:bg-gray-800">
-      <div className="flex flex-col justify-center items-center">
+      <div>
         <Img
           fixed={photo.childImageSharp.fixed}
           className="rounded-full shadow-lg"
         />
-        <div className="flex space-x-4 mt-2">
-          <a
-            href="https://twitter.com/thomas_lombart"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2"
-          >
-            <img src={Twitter} alt="Twitter logo" className="h-8 w-8" />
-          </a>
-          <a
-            href="https://github.com/thomlom"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2"
-          >
-            <img
-              src={isDarkMode ? GitHubLight : GitHubDark}
-              alt="GitHub logo"
-              className="h-8 w-8"
-            />
-          </a>
-        </div>
       </div>
       <div className="mt-4 sm:ml-8 sm:mt-0">
         <h2 className="text-xl sm:text-2xl text-gray-800 dark:text-gray-200 font-extrabold leading-tight">
