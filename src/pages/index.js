@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import useDarkMode from "use-dark-mode"
 
 import Layout from "../components/layout"
 import Newsletter from "../components/newsletter"
