@@ -7,8 +7,6 @@ import Newsletter from "./newsletter"
 import Recall from "./recall"
 import Info from "./info"
 
-import trackGoal from "../utils/trackGoal"
-
 const shortcodes = { Info, Newsletter, Recall }
 
 const allPosts = { to: "/all-posts", name: "All posts" }
@@ -33,9 +31,6 @@ const CustomLink = ({ to, name }) => {
         className={linkClassNames}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() =>
-          name === newsletter.name && trackGoal({ id: "5NIV3EYN" })
-        }
       >
         <p>{name}</p>
       </a>

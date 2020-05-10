@@ -55,10 +55,6 @@ const SEO = ({ description, lang, meta, title, coverURL }) => {
           content: `summary`,
         },
         {
-          name: `twitter:creator`,
-          content: `@thomas_lombart`,
-        },
-        {
           name: `twitter:title`,
           content: title,
         },
