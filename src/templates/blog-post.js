@@ -42,7 +42,7 @@ const BlogPostTemplate = ({
           <>
             <Image
               sizes={post.frontmatter.cover.childImageSharp.sizes}
-              className="rounded mt-4"
+              className="rounded-lg mt-4"
             />
             {post.frontmatter.coverCredit && (
               <p className="mt-2 text-gray-600 text-center">
@@ -59,7 +59,7 @@ const BlogPostTemplate = ({
       {next && (
         <>
           <TransitionLink paintDrip to={next.fields.slug}>
-            <div className="p-4 border shadow-md rounded bg-gray-200 dark:bg-gray-800 dark:border-none dark:shadow-lg">
+            <div className="p-4 border shadow-md rounded-lg bg-gray-200 dark:bg-gray-800 dark:border-none dark:shadow-lg">
               <span className="uppercase text-sm text-gray-700 dark:text-gray-300 tracking-wide flex items-center">
                 <span role="img" aria-label="Eyes" className="mr-1 text-xl">
                   👀

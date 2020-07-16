@@ -3,7 +3,7 @@ import React from "react"
 const Recall = ({ question, answer }) => {
   const [isRevealed, setIsRevealed] = React.useState(false)
   return (
-    <div className="p-4 rounded bg-orange-200">
+    <div className="p-4 rounded-lg bg-orange-200">
       <p className="text-lg uppercase text-orange-900 font-bold tracking-wide">
         Recall
       </p>
@@ -20,7 +20,7 @@ const Recall = ({ question, answer }) => {
       ) : (
         <button
           onClick={() => setIsRevealed(true)}
-          className="mt-2 bg-orange-800 text-orange-100 px-4 py-2 rounded uppercase tracking-wide text-sm font-semibold"
+          className="mt-2 bg-orange-800 text-orange-100 px-4 py-2 rounded-lg uppercase tracking-wide text-sm font-semibold"
         >
           Reveal
         </button>

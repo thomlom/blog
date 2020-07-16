@@ -22,7 +22,7 @@ const BlogIndex = ({
   return (
     <Layout location={location}>
       <SEO title="All posts" description={description} />
-      <div className="bg-gray-200 p-4 mb-6 rounded dark:bg-gray-800 shadow">
+      <div className="bg-gray-200 p-4 mb-6 rounded-lg dark:bg-gray-800 shadow">
         <label className="block text-lg text-gray-800 dark:text-gray-200 font-semibold">
           Search a post
           <input

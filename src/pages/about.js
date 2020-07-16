@@ -20,10 +20,10 @@ const NotFoundPage = ({ data: { photo } }) => {
         className="rounded-lg shadow-xl"
       />
       <h2 className="text-xl sm:text-3xl text-gray-800 dark:text-gray-200 font-extrabold leading-tight mt-6">
-        Hello, I'm Thomas Lombart.
+        Hey, I'm Thomas Lombart.
       </h2>
       <p className={textClassNames}>
-        I'm a french front-end engineer. I currently work for{" "}
+        I’m a front-end engineer from France. I currently work at{" "}
         <a
           href="https://www.backmarket.com"
           className={linkClassNames}
@@ -32,23 +32,22 @@ const NotFoundPage = ({ data: { photo } }) => {
         >
           Back Market
         </a>
-        .
+        , a marketplace for refurbished products.
       </p>
       <p className={textClassNames}>
-        I help developers level-up their front-end skills through high-quality
-        posts on JavaScript, modern frameworks, design, and more.
+        Aside from my full-time job, I help developers level-up their career
+        through posts on JavaScript, Vue and more. I like to spend time on open
+        source software as well.
       </p>
       <p className={textClassNames}>
-        I love productivity and minimalism. I'm the guy who focuses on what
-        matters. I care about ecology and privacy.
-      </p>
-      <p className={textClassNames}>
-        On my spare time, I train, travel, hike, watch good movies and listen to
-        their soundtracks (obviously, I find Hans Zimmer's music awesome).
+        To get a better glimpse of who I am, here is a non-exhaustive list of
+        words that define me. Techie. Web development. Writing. Open-source.
+        Minimalism. Simple. Ecology. No waste. Privacy. Work out. Hiking.
+        Travel. Music. Piano. Movies soundtracks.
       </p>
       <p className={textClassNames}>
         If you want to say hi or have questions, feel free to reach out{" "}
-        <a className={linkClassNames} href="mailto:t.lombart97@gmail.com">
+        <a className={linkClassNames} href="mailto:lombart.thomas@icloud.com">
           by mail
         </a>
         . I usually answer within one business day.

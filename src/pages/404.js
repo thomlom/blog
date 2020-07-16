@@ -18,7 +18,7 @@ const NotFoundPage = ({ data }) => {
             Oops... Nothing found here!
           </p>
           <Link to="/">
-            <button className="mt-2 bg-gray-300 px-4 py-2 w-full text-gray-900 font-semibold text-xl rounded">
+            <button className="mt-2 bg-gray-300 px-4 py-2 w-full text-gray-900 font-semibold text-xl rounded-lg">
               No big deal! take me back home{" "}
               <span role="img" aria-labelledby="OK Hand">
                 👌

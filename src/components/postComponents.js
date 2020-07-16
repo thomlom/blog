@@ -123,7 +123,7 @@ const CodeBlock = ({
 
         return (
           <pre
-            className={`rounded py-4 my-2 overflow-x-auto ${className}`}
+            className={`rounded-lg py-4 my-2 overflow-x-auto ${className}`}
             style={style}
           >
             {augmentedTokens.map(({ isHighlight, line }, i) => {
@@ -156,9 +156,9 @@ const CodeBlock = ({
 }
 
 const textClassNames =
-  "text-gray-700 dark:text-gray-300 text-base leading-relaxed my-6"
+  "my-4 sm:my-5 text-gray-700 dark:text-gray-300 text-base leading-relaxed"
 const titleClassNames =
-  "mt-6 text-gray-800 dark:text-gray-200 font-extrabold leading-tight"
+  "mb-2 sm:mb-4 text-gray-800 dark:text-gray-200 font-extrabold leading-tight"
 
 // eslint-disable
 export default {
@@ -172,18 +172,29 @@ export default {
   li: (props) => <li className="my-2 pl-1" {...props} />,
   h1: (props) => (
     // eslint-disable-next-line
-    <h1 className={`${titleClassNames} text4xl mt-12`} {...props} />
+    <h1
+      className={`${titleClassNames} text-3xl sm:text-4xl mt-10 sm:mt-12`}
+      {...props}
+    />
   ),
   h2: (props) => (
     // eslint-disable-next-line
-    <h2 className={`${titleClassNames} text-3xl mt-10`} {...props} />
+    <h2
+      className={`${titleClassNames} text-2xl sm:text-3xl mt-8 sm:mt-10`}
+      {...props}
+    />
   ),
   h3: (props) => (
     // eslint-disable-next-line
-    <h3 className={`${titleClassNames} text-2xl mt-8`} {...props} />
+    <h3
+      className={`${titleClassNames} text-xl sm:text-2xl mt-6 sm:mt-8`}
+      {...props}
+    />
   ),
-  // eslint-disable-next-line
-  h4: (props) => <h1 className={`${titleClassNames} text-xl`} {...props} />,
+  h4: (props) => (
+    // eslint-disable-next-line
+    <h1 className={`${titleClassNames} text-xl mt-5 sm:mt-7`} {...props} />
+  ),
   a: (props) => (
     // eslint-disable-next-line
     <a
@@ -201,7 +212,7 @@ export default {
   inlineCode: (props) => (
     <code
       {...props}
-      className="bg-gray-200 text-gray-800 border rounded border-gray-300 dark:bg-gray-900 dark:text-gray-400 dark:border-gray-800"
+      className="bg-gray-200 text-gray-800 border rounded-lg border-gray-300 dark:bg-gray-900 dark:text-gray-400 dark:border-gray-800"
       style={{ padding: "1.75px 3.5px" }}
     />
   ),

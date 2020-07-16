@@ -12,23 +12,23 @@ const marginBetweenSections = "mt-6 sm:mt-10"
 
 const Bio = ({ photo }) => {
   return (
-    <div className="bg-gray-200 rounded p-3 sm:p-5 flex flex-col sm:flex-row items-center justify-between dark:bg-gray-800">
-      <div>
+    <div className="gradient shadow-lg rounded-lg p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between">
+      <div className="hidden sm:block">
         <Img
           fixed={photo.childImageSharp.fixed}
-          className="rounded-full shadow-lg"
+          className="rounded-full border-2 border-gray-100 hidden"
         />
       </div>
-      <div className="mt-4 sm:ml-8 sm:mt-0">
-        <h2 className="text-xl sm:text-2xl text-gray-800 dark:text-gray-200 font-extrabold leading-tight">
-          Hello, I'm Thomas Lombart, a front-end engineer.{" "}
+      <div className="sm:ml-8 sm:mt-0">
+        <h2 className="text-xl sm:text-2xl text-white font-extrabold leading-tight">
+          Hey, I'm Thomas Lombart.{" "}
           <span role="img" aria-label="Waving hand">
             👋
           </span>
         </h2>
-        <h3 className="text-lg text-gray-700 dark:text-gray-400 font-semibold leading-snug mt-2">
-          I help developers level-up their front-end skills through high-quality
-          posts on modern JavaScript, design and more!
+        <h3 className="text-lg text-white font-semibold leading-snug mt-2">
+          I'm a front-end engineer. I'm here to help you level-up your career
+          through posts on JavaScript, Vue and more!
         </h3>
       </div>
     </div>
@@ -40,11 +40,14 @@ const PostSection = ({ title, posts }) => (
     <h4 className="text-xl sm:text-2xl text-gray-900 dark:text-gray-100 font-extrabold">
       {title}
     </h4>
-    <div className="sm:mt-1 h-1 gradient-right rounded w-full -p-4"></div>
+    <div
+      className="bg-gray-800 dark:bg-gray-100 rounded w-full"
+      style={{ height: "3px" }}
+    ></div>
     {posts.map(({ node }) => {
       const title = node.frontmatter.title || node.fields.slug
       return (
-        <article key={node.fields.slug} className="mt-3 mb-6">
+        <article key={node.fields.slug} className="my-4 sm:my-5">
           <header>
             <h3 className="inline-block font-bold hover:underline leading-tight text-lg sm:text-xl text-gray-900 dark:text-gray-200 ">
               <TransitionLink to={node.fields.slug}>{title}</TransitionLink>
@@ -114,8 +117,8 @@ const BlogIndex = ({
       <SEO title="Blog" description={description} />
       <Bio photo={photo} />
       {featuredPost && <FeaturedPost post={featuredPost} />}
-      <PostSection title="Latest posts 🚀" posts={latestPosts} />
-      <PostSection title="Popular posts 😍" posts={popularPosts} />
+      <PostSection title="Latest 🚀" posts={latestPosts} />
+      <PostSection title="Popular 😍" posts={popularPosts} />
       <div className={marginBetweenSections}>
         <Newsletter />
       </div>
@@ -153,7 +156,6 @@ export const pageQuery = graphql`
             title
             tags
             popular
-            featured
           }
         }
       }

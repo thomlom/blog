@@ -8,8 +8,8 @@ html {
 }
 
 :root {
-  --gradient-start: #fd6585;
-  --gradient-end: #0d25b9;
+  --gradient-start: #17cdcd;
+  --gradient-end: #17195f;
 }
 
 .gatsby-code-title {
@@ -19,11 +19,6 @@ html {
 @media (prefers-color-scheme: dark) {
   .gatsby-code-title {
     @apply font-mono text-gray-400 text-sm;
-  }
-
-  :root {
-    --gradient-start: #f27900;
-    --gradient-end: #d91698;
   }
 }
 
