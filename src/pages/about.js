@@ -35,15 +35,15 @@ const NotFoundPage = ({ data: { photo } }) => {
         , a marketplace for refurbished products.
       </p>
       <p className={textClassNames}>
-        Aside from my full-time job, I help developers level-up their career
+        Aside from my full-time job, I help developers level-up their careers
         through posts on JavaScript, Vue and more. I like to spend time on open
         source software as well.
       </p>
       <p className={textClassNames}>
-        To get a better glimpse of who I am, here is a non-exhaustive list of
-        words that define me. Techie. Web development. Writing. Open-source.
-        Minimalism. Simple. Ecology. No waste. Privacy. Work out. Hiking.
-        Travel. Music. Piano. Movies soundtracks.
+        To get a better glimpse of who I am, here are words that define me:
+        Techie. Web development. Writing. Open-source. Minimalism. Simple.
+        Ecology. No waste. Privacy. Work out. Hiking. Travel. Music. Piano.
+        Movies soundtracks.
       </p>
       <p className={textClassNames}>
         If you want to say hi or have questions, feel free to reach out{" "}
