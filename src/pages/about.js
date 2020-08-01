@@ -46,11 +46,10 @@ const NotFoundPage = ({ data: { photo } }) => {
         Movies soundtracks.
       </p>
       <p className={textClassNames}>
-        If you want to say hi or have questions, feel free to reach out{" "}
+        If you want to say hi or have any questions, feel free to reach out{" "}
         <a className={linkClassNames} href="mailto:lombart.thomas@icloud.com">
-          by mail
+          by mail.
         </a>
-        . I usually answer within one business day.
       </p>
     </Layout>
   )
