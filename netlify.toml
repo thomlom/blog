@@ -1,2 +1,7 @@
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
+
+[[redirects]]
+  from = "/make-colors-great-again"
+  to = "/how-to-suck-less-at-colors"
+  status = 301
