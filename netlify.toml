@@ -5,3 +5,8 @@
   from = "/make-colors-great-again"
   to = "/how-to-suck-less-at-colors"
   status = 301
+
+[[redirects]]
+  from = "/test-react-testing-library"
+  to = "/beginner-guide-testing-react-apps"
+  status = 301
