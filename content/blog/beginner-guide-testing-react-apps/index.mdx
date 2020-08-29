@@ -540,7 +540,7 @@ You can install it with the following command:
 npm install --save-dev @testing-library/jest-dom
 ```
 
-Then, you have to import the package **once** to extend the Jest matchers.
+Then, you have to import the package **once** to extend the Jest matchers:
 
 ```js:title=setupTest.js
 import "@testing-library/jest-dom/extend-expect"
@@ -570,7 +570,7 @@ In this part, we will use a straightforward posts app whose features are the fol
 - See the newly created post in a list of posts
 - See an error if something has gone wrong while creating the post.
 
-Here are the code and the associated app:
+Here is the code:
 
 ```jsx:title=Posts.js
 import React from "react"
@@ -672,7 +672,7 @@ Let's test the post creation feature. To do so, we need to:
 3. Fill in the content of the post
 4. Click the Post button
 
-Let's first query the corresponding elements.
+Let's first query the corresponding elements:
 
 ```jsx
 import React from "react"
