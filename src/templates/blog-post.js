@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Image from "gatsby-image"
+import Img from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import TransitionLink from "../components/transitionLink"
@@ -10,7 +10,7 @@ import PostInfos from "../components/postInfos"
 import SEO from "../components/seo"
 
 const BlogPostTemplate = ({
-  pageContext: { slug, next },
+  pageContext: { next },
   data: {
     mdx: post,
     site: {
@@ -19,6 +19,25 @@ const BlogPostTemplate = ({
   },
   location,
 }) => {
+  const utterancesRef = React.useRef()
+  const [hasLoadedUtterances, setHasLoadedUtterances] = React.useState(false)
+
+  React.useEffect(() => {
+    const utterancesScript = document.createElement("script")
+    utterancesScript.async = true
+    utterancesScript.src = "https://utteranc.es/client.js"
+    utterancesScript.setAttribute("repo", "thomlom/comments")
+    utterancesScript.setAttribute("issue-term", "pathname")
+    utterancesScript.setAttribute("id", "utterances")
+    utterancesScript.setAttribute("theme", "preferred-color-scheme")
+    utterancesScript.setAttribute("crossorigin", "anonymous")
+
+    if (utterancesRef) {
+      utterancesRef.current.appendChild(utterancesScript)
+      setHasLoadedUtterances(true)
+    }
+  }, [])
+
   return (
     <Layout location={location}>
       <SEO
@@ -40,8 +59,8 @@ const BlogPostTemplate = ({
         </header>
         {post.frontmatter.cover && (
           <>
-            <Image
-              sizes={post.frontmatter.cover.childImageSharp.sizes}
+            <Img
+              fluid={post.frontmatter.cover.childImageSharp.fluid}
               className="rounded-lg mt-4"
             />
             {post.frontmatter.coverCredit && (
@@ -71,9 +90,20 @@ const BlogPostTemplate = ({
               </p>
             </div>
           </TransitionLink>
-          <hr className="border-gray-400 dark:border-gray-700 mt-5" />
         </>
       )}
+      {hasLoadedUtterances ? (
+        <>
+          <hr className="border-gray-400 dark:border-gray-700 mt-5" />
+          <h2 className="my-4 mb-2 text-gray-800 dark:text-gray-200 font-bold leading-tight">
+            Questions? Thoughts? Leave your comments below.{" "}
+            <span role="img" aria-label="backhand index pointing down">
+              👇
+            </span>
+          </h2>
+        </>
+      ) : null}
+      <div ref={utterancesRef}></div>
       <div className="mt-5">
         <Newsletter />
       </div>
@@ -103,8 +133,8 @@ export const pageQuery = graphql`
         cover {
           publicURL
           childImageSharp {
-            sizes {
-              ...GatsbyImageSharpSizes
+            fluid {
+              ...GatsbyImageSharpFluid
             }
           }
         }

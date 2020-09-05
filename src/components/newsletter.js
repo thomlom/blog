@@ -18,7 +18,7 @@ const Newsletter = ({ inPost }) => (
     <p className="hidden sm:block my-1 text-white font-semibold text-sm sm:text-base">
       You'll get updates when I release new content and more! Ready to take your
       front-end skills to the next level?{" "}
-      <span role="img" aria-label="Roeckt">
+      <span role="img" aria-label="Rocket">
         🚀
       </span>
     </p>
