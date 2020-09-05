@@ -1,5 +1,5 @@
 ---
-title: Taking a break
+title: Taking a Break
 date: "2020-08-01"
 cover: "./cover.jpg"
 coverCredit: Photo by Tevin Trinh on Unsplash

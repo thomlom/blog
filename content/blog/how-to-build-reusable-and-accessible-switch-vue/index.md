@@ -1,5 +1,5 @@
 ---
-title: How to build a reusable and accessible toggle switch with Vue
+title: How to Build a Reusable and Accessible Toggle Switch with Vue
 date: "2020-08-24"
 cover: "./cover.jpg"
 tags: [vue]

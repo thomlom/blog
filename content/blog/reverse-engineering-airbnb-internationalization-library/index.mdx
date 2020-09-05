@@ -1,5 +1,5 @@
 ---
-title: Reverse-engineering Airbnb's internationalization library
+title: Reverse-Engineering Airbnb’s Internationalization Library
 date: "2019-04-29"
 cover: "./cover.jpeg"
 tags: [javascript]
@@ -175,7 +175,7 @@ The `currentLocale` is set to a given locale or `en` and a mysterious `tokenRege
 Then, when we'll call `t` with a given key, Polyglot will search its associated value in the internal `phrases` object. Once found, it will apply to the phrase some transformations (interpolation and pluralization) and return it:
 
 ```javascript
-Polyglot.prototype.t = function(key, options) {
+Polyglot.prototype.t = function (key, options) {
   var phrase, result
   var opts = options == null ? {} : options
   if (typeof this.phrases[key] === "string") {
@@ -210,10 +210,10 @@ var forEach = require("for-each")
 
 // ...
 
-Polyglot.prototype.extend = function(morePhrases, prefix) {
+Polyglot.prototype.extend = function (morePhrases, prefix) {
   forEach(
     morePhrases,
-    function(phrase, key) {
+    function (phrase, key) {
       var prefixedKey = prefix ? prefix + "." + key : key
       if (typeof phrase === "object") {
         this.extend(phrase, prefixedKey)
@@ -298,7 +298,7 @@ function transformPhrase(phrase, substitutions, locale, tokenRegex) {
       ? { smart_count: substitutions }
       : substitutions
 
-  result = replace.call(result, interpolationRegex, function(
+  result = replace.call(result, interpolationRegex, function (
     expression,
     argument
   ) {
@@ -329,7 +329,7 @@ Beforehand, we assign to `options` the value of `substitutions`. The `typeof` ch
 Then, we actually replace the phrase using the regular expression. As the `replace` function is cached, we need to use the `call` method to specify on which string we want to invoke the `replace` function, that is to say, `result`. If using `call` confuses you, it's the same as:
 
 ```javascript
-result = result.replace(interpolationRegex, function(expression, argument) {
+result = result.replace(interpolationRegex, function (expression, argument) {
   if (!has(options, argument) || options[argument] == null) {
     return expression
   }
@@ -441,7 +441,7 @@ We are going to detail this step by step.
 First, here is an extract of all the rules and their corresponding locales:
 
 ```javascript
-var russianPluralGroups = function(n) {
+var russianPluralGroups = function (n) {
   var lastTwo = n % 100
   var end = lastTwo % 10
   if (lastTwo !== 11 && end === 1) {
@@ -454,7 +454,7 @@ var russianPluralGroups = function(n) {
 }
 
 var pluralTypes = {
-  arabic: function(n) {
+  arabic: function (n) {
     // http://www.arabeyes.org/Plural_Forms
     if (n < 3) {
       return n
@@ -464,14 +464,14 @@ var pluralTypes = {
     return lastTwo >= 11 ? 4 : 5
   },
   bosnian_serbian: russianPluralGroups,
-  chinese: function() {
+  chinese: function () {
     return 0
   },
   croatian: russianPluralGroups,
-  french: function(n) {
+  french: function (n) {
     return n > 1 ? 1 : 0
   },
-  german: function(n) {
+  german: function (n) {
     return n !== 1 ? 1 : 0
   },
   // ...
@@ -591,8 +591,8 @@ Nevertheless, we need to know beforehand to which language rule our locale refer
 ```javascript
 function langToTypeMap(mapping) {
   var ret = {}
-  forEach(mapping, function(langs, type) {
-    forEach(langs, function(lang) {
+  forEach(mapping, function (langs, type) {
+    forEach(langs, function (lang) {
       ret[lang] = type
     })
   })
@@ -695,13 +695,13 @@ Are you still with me? Great. The next methods are pretty easy to understand, th
 `unset` is quite similar to `extend` code-wise. It takes a parameter that can either be a string or an object. If it's a string, delete the key from the internal `phrases` object. If it's an object, iterate over the keys of the object passed and remove them if the associated value if it's not an object. Otherwise, apply the unset function on the associated object value:
 
 ```javascript
-Polyglot.prototype.unset = function(morePhrases, prefix) {
+Polyglot.prototype.unset = function (morePhrases, prefix) {
   if (typeof morePhrases === "string") {
     delete this.phrases[morePhrases]
   } else {
     forEach(
       morePhrases,
-      function(phrase, key) {
+      function (phrase, key) {
         var prefixedKey = prefix ? prefix + "." + key : key
         if (typeof phrase === "object") {
           this.unset(phrase, prefixedKey)
@@ -720,7 +720,7 @@ Polyglot.prototype.unset = function(morePhrases, prefix) {
 As you have an internal `phrases` object that contains all your keys and phrases, `clear` is fairly simple. Just empty the object:
 
 ```javascript
-Polyglot.prototype.clear = function() {
+Polyglot.prototype.clear = function () {
   this.phrases = {}
 }
 ```
@@ -730,7 +730,7 @@ Polyglot.prototype.clear = function() {
 `replace` allows you to replace your current set of phrases by another one. So you just need to **clear** the current `phrases` and **extend** it with the other set:
 
 ```javascript
-Polyglot.prototype.replace = function(newPhrases) {
+Polyglot.prototype.replace = function (newPhrases) {
   this.clear()
   this.extend(newPhrases)
 }
@@ -741,7 +741,7 @@ Polyglot.prototype.replace = function(newPhrases) {
 As we already require an `has` package that checks for a key in an object, we just have to apply the `has` function on the internal `phrases` with a given key:
 
 ```javascript
-Polyglot.prototype.has = function(key) {
+Polyglot.prototype.has = function (key) {
   return has(this.phrases, key)
 }
 ```
@@ -754,7 +754,7 @@ The `locale` method has two behaviors:
 - Otherwise return the current locale.
 
 ```javascript
-Polyglot.prototype.locale = function(newLocale) {
+Polyglot.prototype.locale = function (newLocale) {
   if (newLocale) this.currentLocale = newLocale
   return this.currentLocale
 }

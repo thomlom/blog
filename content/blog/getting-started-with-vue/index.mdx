@@ -1,5 +1,5 @@
 ---
-title: Getting started with Vue
+title: Getting Started with Vue
 date: "2020-03-16"
 cover: "./cover.jpg"
 next: "/how-to-create-an-app-with-vue/"
@@ -65,9 +65,7 @@ I bet you can guess what is the purpose of `v-if` just with the name. It’s abo
 ```html
 <div id="app">
   <p>Hello World</p>
-  <p v-if="admin">
-    You can see this sentence because you're an admin
-  </p>
+  <p v-if="admin">You can see this sentence because you're an admin</p>
 </div>
 ```
 
@@ -175,9 +173,7 @@ You can use it with the following syntax: `v-for="item in list"`. Here, `list` r
 <div id="app">
   <p>Things I want to buy:</p>
   <ul>
-    <li v-for="thing in things">
-      {{ thing }}
-    </li>
+    <li v-for="thing in things">{{ thing }}</li>
   </ul>
 </div>
 ```
@@ -197,9 +193,7 @@ You can also provide a second argument to `v-for`:
 - For an object, the second argument will be the key of the object’s current element
 
 ```html
-<li v-for="(thing, index) in things">
-  {{ thing }}
-</li>
+<li v-for="(thing, index) in things">{{ thing }}</li>
 ```
 
 <Newsletter inPost />

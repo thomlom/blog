@@ -1,5 +1,5 @@
 ---
-title: Create a Discord bot under 15 minutes
+title: Create a Discord Bot under 15 Minutes
 date: "2018-12-26"
 cover: "./cover.jpg"
 next: "/what-you-should-know-about-js-arrays/"
@@ -56,7 +56,7 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
-client.on("message", msg => {
+client.on("message", (msg) => {
   if (msg.content === "ping") {
     msg.reply("Pong!")
   }
@@ -103,7 +103,7 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
-client.on("message", msg => {
+client.on("message", (msg) => {
   if (msg.content === "ping") {
     msg.reply("Pong!")
   }
@@ -218,7 +218,7 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
-client.on("message", msg => {
+client.on("message", (msg) => {
   if (msg.content === "ping") {
     msg.reply("Pong!")
   }
@@ -241,14 +241,14 @@ require("dotenv").config()
 
 // ...
 
-client.on("message", msg => {
+client.on("message", (msg) => {
   if (msg.content === "ping") {
     msg.reply("Pong!")
   }
 })
 
 // highlight-start
-client.on("guildMemberAdd", member => {
+client.on("guildMemberAdd", (member) => {
   member.send(
     `Welcome on the server! Please be aware that we won't tolerate troll, spam or harassment. Have fun 😀`
   )
@@ -281,7 +281,7 @@ require("dotenv").config()
 
 // ...
 
-client.on("message", message => {
+client.on("message", (message) => {
   // highlight-start
   if (message.content.startsWith("!kick")) {
     const member = message.mentions.members.first()
@@ -299,7 +299,7 @@ client.on("message", message => {
     return member
       .kick()
       .then(() => message.reply(`${member.user.tag} was kicked.`))
-      .catch(error => message.reply(`Sorry, an error occured.`))
+      .catch((error) => message.reply(`Sorry, an error occured.`))
     // highlight-end
   }
 })
@@ -378,7 +378,7 @@ const client = new Discord.Client()
 
 fs.readdir("./events/", (err, files) => {
   // highlight-start
-  files.forEach(file => {
+  files.forEach((file) => {
     const eventHandler = require(`./events/${file}`)
   })
   // highlight-end
@@ -394,11 +394,11 @@ const fs = require("fs")
 const client = new Discord.Client()
 
 fs.readdir("./events/", (err, files) => {
-  files.forEach(file => {
+  files.forEach((file) => {
     const eventHandler = require(`./events/${file}`)
     // highlight-start
     const eventName = file.split(".")[0]
-    client.on(eventName, arg => eventHandler(client, arg))
+    client.on(eventName, (arg) => eventHandler(client, arg))
     // highlight-end
   })
 })
@@ -407,7 +407,7 @@ fs.readdir("./events/", (err, files) => {
 5. Update each event handler file with the associated function and of course don't forget to export the function.
 
 ```javascript:title=ready.js
-module.exports = client => {
+module.exports = (client) => {
   console.log(`Logged in as ${client.user.tag}!`)
 }
 ```
@@ -430,7 +430,7 @@ module.exports = (client, message) => {
     return member
       .kick()
       .then(() => message.reply(`${member.user.tag} was kicked.`))
-      .catch(error => message.reply(`Sorry, an error occured.`))
+      .catch((error) => message.reply(`Sorry, an error occured.`))
   }
 }
 ```
@@ -451,7 +451,7 @@ require("dotenv").config()
 // ...
 
 fs.readdir("./events/", (err, files) => {
-  files.forEach(file => {
+  files.forEach((file) => {
     const eventHandler = require(`./events/${file}`)
     const eventName = file.split(".")[0]
     // highlight-next-line
@@ -470,7 +470,7 @@ Bare with me, we're nearly finished with the bot. Look at `message.js`, only one
 2. Create a `kick.js` file and move all the code of `message.js` that is inside the if statement:
 
 ```javascript:title=kick.js
-module.exports = message => {
+module.exports = (message) => {
   const member = message.mentions.members.first()
 
   if (!member) {
@@ -484,7 +484,7 @@ module.exports = message => {
   return member
     .kick()
     .then(() => message.reply(`${member.user.tag} was kicked.`))
-    .catch(error => message.reply(`Sorry, an error occured.`))
+    .catch((error) => message.reply(`Sorry, an error occured.`))
 }
 ```
 

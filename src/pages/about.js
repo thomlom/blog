@@ -35,19 +35,18 @@ const NotFoundPage = ({ data: { photo } }) => {
         , a marketplace for refurbished products.
       </p>
       <p className={textClassNames}>
-        Aside from my full-time job, I help developers level-up their careers
-        through posts on JavaScript, Vue and more. I like to spend time on open
+        Besides my full-time job, I help developers level-up their careers
+        through posts on JavaScript, Vue, and more. I like to spend time on open
         source software as well.
       </p>
       <p className={textClassNames}>
-        To get a better glimpse of who I am, here are words that define me:
-        Techie. Web development. Writing. Open-source. Minimalism. Simple.
-        Ecology. No waste. Privacy. Work out. Hiking. Travel. Music. Piano.
-        Movies soundtracks.
+        Here is a non-exhaustive list of words to get a better glimpse of who I
+        am: Techie. Web development. Writing. Open-source. Minimalist.
+        Ecologist. Hiking. Travel. Music. Piano.
       </p>
       <p className={textClassNames}>
         If you want to say hi or have any questions, feel free to reach out{" "}
-        <a className={linkClassNames} href="mailto:lombart.thomas@icloud.com">
+        <a className={linkClassNames} href="mailto:t.lombart@hey.com">
           by mail.
         </a>
       </p>

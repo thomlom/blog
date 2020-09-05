@@ -1,5 +1,5 @@
 ---
-title: What you should know about JavaScript arrays
+title: What You Should Know About JavaScript Arrays
 date: "2019-03-10"
 cover: "./cover.jpeg"
 tags: [javascript]
@@ -27,7 +27,7 @@ It takes one parameter: a function that is called on every element of the array.
 ```javascript
 const numbers = [1, 2, 3, 4]
 
-const numbersPlusOne = numbers.map(n => n + 1) // Adds one to every element
+const numbersPlusOne = numbers.map((n) => n + 1) // Adds one to every element
 console.log(numbersPlusOne) // [2, 3, 4, 5]
 ```
 
@@ -40,7 +40,7 @@ const allActivities = [
   // etc.
 ]
 
-const allCoordinates = allActivities.map(activity => activity.coordinates)
+const allCoordinates = allActivities.map((activity) => activity.coordinates)
 console.log(allCoordinates) // [[50.123, 3.291], [1.238, 4.292]]
 ```
 
@@ -61,7 +61,7 @@ For example, you can keep just the odd numbers in an array:
 
 ```javascript
 const numbers = [1, 2, 3, 4, 5, 6]
-const oddNumbers = numbers.filter(n => n % 2 !== 0)
+const oddNumbers = numbers.filter((n) => n % 2 !== 0)
 console.log(oddNumbers) // [1, 3, 5]
 ```
 
@@ -75,7 +75,7 @@ const participants = [
 ]
 
 function removeParticipant(participants, id) {
-  return participants.filter(participant => participant.id !== id)
+  return participants.filter((participant) => participant.id !== id)
 }
 
 console.log(removeParticipant(participants, "a3f47")) //  [{ id: 'fek28', username: 'mary' }, { id: 'n3j44', username: 'sam' }];
@@ -113,7 +113,7 @@ const map = (arr, fn) => {
   }, [])
 }
 
-console.log(map([1, 2, 3, 4], n => n + 1)) // [2, 3, 4, 5]
+console.log(map([1, 2, 3, 4], (n) => n + 1)) // [2, 3, 4, 5]
 
 const filter = (arr, fn) => {
   return arr.reduce((filteredArr, element) => {
@@ -121,7 +121,7 @@ const filter = (arr, fn) => {
   }, [])
 }
 
-console.log(filter([1, 2, 3, 4, 5, 6], n => n % 2 === 0)) // [1, 3, 5]
+console.log(filter([1, 2, 3, 4, 5, 6], (n) => n % 2 === 0)) // [1, 3, 5]
 ```
 
 Basically, we gave `reduce` an initial value of `[]`: our accumulator. For `map`, we ran a function whose result is added at then end of the accumulator thanks to the **spread operator** (we'll see it just after, don't worry.). For `filter`, it's nearly the same except that we ran the filter function on the element. If it returns true, we return the **previous** array, otherwise we add the element to the end of the array.
@@ -246,7 +246,7 @@ const users = [
   { id: "932j", name: "gary" },
 ]
 
-const user = users.find(user => user.id === "6gbe")
+const user = users.find((user) => user.id === "6gbe")
 console.log(user) // { id: '6gbe', name: 'mary' }
 ```
 
@@ -263,7 +263,7 @@ const users = [
   { id: "932j", name: "gary" },
 ]
 
-const user = users.findIndex(user => user.id === "6gbe")
+const user = users.findIndex((user) => user.id === "6gbe")
 console.log(user) // 1
 ```
 
@@ -320,7 +320,7 @@ const users = [
   },
 ]
 
-const hasDeletePermission = users.some(user =>
+const hasDeletePermission = users.some((user) =>
   user.permissions.includes("delete")
 )
 console.log(hasDeletePermission) // true
@@ -346,7 +346,7 @@ const users = [
   },
 ]
 
-const hasAllReadPermission = users.every(user =>
+const hasAllReadPermission = users.every((user) =>
   user.permissions.includes("read")
 )
 console.log(hasAllReadPermission) // false
@@ -383,7 +383,7 @@ const sentences = [
   "I can't find any original phrases",
 ]
 
-const allWords = sentences.flatMap(sentence => sentence.split(" "))
+const allWords = sentences.flatMap((sentence) => sentence.split(" "))
 console.log(allWords) // ["This", "is", "a", "sentence", "This", "is", "another", "sentence", "I", "can't", "find", "any", "original", "phrases"]
 ```
 
@@ -424,8 +424,8 @@ const potentialParticipants = [
 ]
 
 const participantsFormatted = potentialParticipants
-  .filter(user => user.age > 18)
-  .map(user => user.name)
+  .filter((user) => user.age > 18)
+  .map((user) => user.name)
   .join(", ")
 
 console.log(participantsFormatted) // gary, emma
@@ -445,8 +445,8 @@ Have you seen that we used `Array` instead of an array instance? That's why `fro
 Then you can have fun with these nodes and for example registering an event listener on each one of them with `forEach`:
 
 ```javascript
-todoItems.forEach(item => {
-  item.addEventListener("click", function() {
+todoItems.forEach((item) => {
+  item.addEventListener("click", function () {
     alert(`You clicked on ${item.innerHTML}`)
   })
 })
@@ -595,7 +595,7 @@ console.log(todos) // ['Write an article', 'Proofreading', 'Publish the article'
 If you need to build an array based on another just like `itemsIncremented`, chances are that there is a method made for it like our good friends `map`, `filter` or `reduce`. In fact we can use `map` to do the same:
 
 ```javascript
-const itemsIncremented = todoItems.map(x => x + 1)
+const itemsIncremented = todoItems.map((x) => x + 1)
 ```
 
 And if you want to use `push` when you need to add a new element, the spread operator got your back:
