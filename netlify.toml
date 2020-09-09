@@ -7,3 +7,8 @@
   from = "/test-react-testing-library"
   to = "/beginner-guide-testing-react-apps"
   status = 301
+
+[[redirects]]
+  from = "/reusable-and-accessible-switch-vue/"
+  to = "/how-to-build-reusable-and-accessible-switch-vue/"
+  status = 301
