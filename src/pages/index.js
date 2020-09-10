@@ -1,18 +1,15 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import Newsletter from "../components/newsletter"
-import PostInfos from "../components/postInfos"
+import Post from "../components/post"
 import SEO from "../components/seo"
-import TransitionLink from "../components/transitionLink"
-
-const marginBetweenSections = "mt-6 sm:mt-10"
 
 const Bio = ({ photo }) => {
   return (
-    <div className="gradient shadow-lg rounded-lg p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between">
+    <div className="bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 shadow-lg rounded-lg p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between">
       <div className="hidden sm:block">
         <Img
           fixed={photo.childImageSharp.fixed}
@@ -35,56 +32,6 @@ const Bio = ({ photo }) => {
   )
 }
 
-const PostSection = ({ title, posts }) => (
-  <div className={marginBetweenSections}>
-    <h4 className="text-xl sm:text-2xl text-gray-900 dark:text-gray-100 font-extrabold">
-      {title}
-    </h4>
-    <div
-      className="bg-gray-800 dark:bg-gray-100 rounded w-full"
-      style={{ height: "3px" }}
-    ></div>
-    {posts.map(({ node }) => {
-      const title = node.frontmatter.title || node.fields.slug
-      return (
-        <article key={node.fields.slug} className="my-4 sm:my-5">
-          <header>
-            <h3 className="inline-block font-bold hover:underline leading-tight text-lg sm:text-xl text-gray-900 dark:text-gray-200 ">
-              <TransitionLink to={node.fields.slug}>{title}</TransitionLink>
-            </h3>
-            <div className="mt-1">
-              <PostInfos
-                date={node.frontmatter.date}
-                tags={node.frontmatter.tags}
-              />
-            </div>
-          </header>
-        </article>
-      )
-    })}
-  </div>
-)
-
-const FeaturedPost = ({
-  post: {
-    node: { fields, frontmatter },
-  },
-}) => (
-  <TransitionLink to={fields.slug}>
-    <div className={`${marginBetweenSections} p-4 gradient rounded shadow-xl`}>
-      <h4 className="text-lg sm:text-xl font-extrabold text-gray-100">
-        Featured post{" "}
-        <span role="img" aria-label="Star">
-          ⭐
-        </span>
-      </h4>
-      <h2 className="text-gray-100 text-xl sm:text-2xl leading-tight font-bold mt-1">
-        {frontmatter.title}
-      </h2>
-    </div>
-  </TransitionLink>
-)
-
 const BlogIndex = ({
   data: {
     site: {
@@ -94,32 +41,31 @@ const BlogIndex = ({
     allMdx,
   },
 }) => {
-  const posts = allMdx.edges
-
-  const featuredPost = posts.find(
-    ({
-      node: {
-        frontmatter: { featured },
-      },
-    }) => featured
-  )
-  const latestPosts = posts.slice(0, 5)
-  const popularPosts = posts.filter(
-    ({
-      node: {
-        frontmatter: { popular },
-      },
-    }) => popular
-  )
+  const posts = allMdx.edges.slice(0, 4)
 
   return (
     <Layout>
       <SEO title="Blog" description={description} />
-      <Bio photo={photo} />
-      {featuredPost && <FeaturedPost post={featuredPost} />}
-      <PostSection title="Latest 🚀" posts={latestPosts} />
-      <PostSection title="Popular 😍" posts={popularPosts} />
-      <div className={marginBetweenSections}>
+      <div className="space-y-4 sm:space-y-8">
+        <Bio photo={photo} />
+        <div className="p-4 sm:p-8 bg-gray-200 dark:bg-gray-800 rounded-lg">
+          <h4 className="mb-4 uppercase text-lg tracking-wide text-gray-800 dark:text-gray-100 font-extrabold">
+            <span role="img" aria-label="hand holding a pen">
+              ✍
+            </span>{" "}
+            Blog
+          </h4>
+          <div className="space-y-8">
+            {posts.map(({ node }) => (
+              <Post key={node.fields.slug} node={node} />
+            ))}
+            <Link to="/all-posts" className="block">
+              <button className="w-full p-3 sm:p-4 bg-gray-800 dark:bg-gray-300 sm:text-lg text-gray-100 dark:text-gray-800 rounded-lg shadow font-bold">
+                See all posts
+              </button>
+            </Link>
+          </div>
+        </div>
         <Newsletter />
       </div>
     </Layout>
@@ -155,7 +101,6 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             tags
-            popular
           }
         }
       }

@@ -7,11 +7,6 @@ html {
   font-family: "Inter", "sans-serif";
 }
 
-:root {
-  --gradient-start: #17cdcd;
-  --gradient-end: #17195f;
-}
-
 .gatsby-code-title {
   @apply font-mono text-gray-800 text-sm;
 }
@@ -20,21 +15,5 @@ html {
   .gatsby-code-title {
     @apply font-mono text-gray-400 text-sm;
   }
-}
-
-.gradient-right {
-  background: linear-gradient(
-    to right,
-    var(--gradient-start),
-    var(--gradient-end)
-  );
-}
-
-.gradient {
-  background: linear-gradient(
-    to bottom right,
-    var(--gradient-start),
-    var(--gradient-end)
-  );
 }
 /* purgecss end ignore */
