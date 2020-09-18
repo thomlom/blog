@@ -1,5 +1,6 @@
 ---
-title: How to Build a Reusable and Accessible Toggle Switch with Vue
+title: How to Build a Reusable and Accessible Toggle Switch with Vue 3
+description: Building custom components such as a Toggle Switch is no easy task. Learn how you can build a reusable, accessible and responsive toggle switch with Vue 3.
 date: "2020-08-24"
 cover: "./cover.jpg"
 tags: [vue]

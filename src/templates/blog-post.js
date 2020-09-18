@@ -38,11 +38,13 @@ const BlogPostTemplate = ({
     }
   }, [])
 
+  console.log(post.frontmatter)
+
   return (
     <Layout location={location}>
       <SEO
         title={post.frontmatter.seoTitle || post.frontmatter.title}
-        description={post.excerpt}
+        description={post.frontmatter.description || post.excerpt}
         coverURL={siteUrl + post.frontmatter.cover.publicURL}
       />
       <article className="max-w-full sm:max-w-2xl mx-auto">
@@ -127,6 +129,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         seoTitle
+        description
         date(formatString: "MMMM DD, YYYY")
         tags
         next

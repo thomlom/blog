@@ -38,12 +38,9 @@ const Post = ({ node: { fields, frontmatter, excerpt } }) => (
       </div>
     </header>
     <section>
-      <p
-        dangerouslySetInnerHTML={{
-          __html: excerpt,
-        }}
-        className="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-400 leading-relaxed"
-      />
+      <p className="mt-3 text-sm sm:text-base text-gray-700 dark:text-gray-400 leading-relaxed">
+        {frontmatter.description ? frontmatter.description : excerpt}
+      </p>
     </section>
     <TransitionLink to={fields.slug}>
       <p className="inline-block mt-3 text-base sm:text-lg font-bold text-gray-800 hover:text-gray-900 hover:underline dark:text-gray-300 dark:hover:text-gray-200">
