@@ -202,10 +202,9 @@ export default {
       {...props}
     />
   ),
-  hr: (props) => <hr className="border border-blue-500" {...props} />,
   blockquote: (props) => (
     <blockquote
-      className="pl-4 border-l-4 border-blue-500 italic break-word"
+      className="pl-4 border-l-4 border-gray-400 italic break-word"
       {...props}
     />
   ),

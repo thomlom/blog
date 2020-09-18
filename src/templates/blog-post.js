@@ -5,7 +5,6 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import TransitionLink from "../components/transitionLink"
 import Layout from "../components/layout"
-import Newsletter from "../components/newsletter"
 import PostInfos from "../components/postInfos"
 import SEO from "../components/seo"
 
@@ -19,27 +18,6 @@ const BlogPostTemplate = ({
   },
   location,
 }) => {
-  const utterancesRef = React.useRef()
-  const [hasLoadedUtterances, setHasLoadedUtterances] = React.useState(false)
-
-  React.useEffect(() => {
-    const utterancesScript = document.createElement("script")
-    utterancesScript.async = true
-    utterancesScript.src = "https://utteranc.es/client.js"
-    utterancesScript.setAttribute("repo", "thomlom/comments")
-    utterancesScript.setAttribute("issue-term", "pathname")
-    utterancesScript.setAttribute("id", "utterances")
-    utterancesScript.setAttribute("theme", "preferred-color-scheme")
-    utterancesScript.setAttribute("crossorigin", "anonymous")
-
-    if (utterancesRef) {
-      utterancesRef.current.appendChild(utterancesScript)
-      setHasLoadedUtterances(true)
-    }
-  }, [])
-
-  console.log(post.frontmatter)
-
   return (
     <Layout location={location}>
       <SEO
@@ -47,7 +25,7 @@ const BlogPostTemplate = ({
         description={post.frontmatter.description || post.excerpt}
         coverURL={siteUrl + post.frontmatter.cover.publicURL}
       />
-      <article className="max-w-full sm:max-w-2xl mx-auto">
+      <article className="max-w-full sm:max-w-2xl">
         <header>
           <h1 className="font-extrabold text-2xl sm:text-3xl leading-tight text-gray-800 dark:text-gray-200">
             {post.frontmatter.title}
@@ -75,40 +53,22 @@ const BlogPostTemplate = ({
         <section className="mt-6">
           <MDXRenderer>{post.body}</MDXRenderer>
         </section>
-      </article>
-
-      {next && (
-        <>
+        {next && (
           <TransitionLink paintDrip to={next.fields.slug}>
-            <div className="p-4 border shadow-md rounded-lg bg-gray-200 dark:bg-gray-800 dark:border-none dark:shadow-lg">
-              <span className="uppercase text-sm text-gray-700 dark:text-gray-300 tracking-wide flex items-center">
+            <div className="p-4 border shadow-lg rounded-lg bg-gray-200 dark:bg-gray-800 dark:border-none my-2">
+              <span className="uppercase text-sm text-gray-700 dark:text-gray-300 tracking-wide flex items-center font-semibold">
                 <span role="img" aria-label="Eyes" className="mr-1 text-xl">
                   👀
                 </span>
                 This post may also interest you
               </span>
-              <p className="text-gray-800 dark:text-gray-200 text-2xl font-bold mt-1 leading-tight">
+              <p className="text-gray-800 dark:text-gray-200 text-2xl font-bold mt-1 leading-tight underline">
                 {next.frontmatter.title}
               </p>
             </div>
           </TransitionLink>
-        </>
-      )}
-      {hasLoadedUtterances ? (
-        <>
-          <hr className="border-gray-400 dark:border-gray-700 mt-5" />
-          <h2 className="my-4 mb-2 text-gray-800 dark:text-gray-200 font-bold leading-tight">
-            Questions? Thoughts? Leave your comments below.{" "}
-            <span role="img" aria-label="backhand index pointing down">
-              👇
-            </span>
-          </h2>
-        </>
-      ) : null}
-      <div ref={utterancesRef}></div>
-      <div className="mt-5">
-        <Newsletter />
-      </div>
+        )}
+      </article>
     </Layout>
   )
 }

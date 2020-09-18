@@ -3,7 +3,7 @@ title: Getting Started with Vue
 description: Vue is a progressive framework that allows you to build great user interfaces through reactivity, components, directives and more! Discover in this post the basics of Vue.
 date: "2020-03-16"
 cover: "./cover.jpg"
-next: "/how-to-create-an-app-with-vue/"
+next: /how-to-create-an-app-with-vue/
 tags: [vue]
 ---
 
@@ -42,7 +42,7 @@ And the magic happened. Vue, behind the scenes did a lot of stuff and made your 
 
 ## Bind attributes
 
-Vue can bind the attributes of your elements to your data properties. Binding means keeping your attributes up-to-date with your properties. You can do so using the directive `v-bind:ATTRIBUTE` or with the shorthand `:ATTRIBUTE`. Let's see an example of that:
+Vue can **bind the attributes** of your elements to your data properties. Binding means keeping your attributes **up-to-date** with your properties. You can do so using the directive `v-bind:ATTRIBUTE` or with the shorthand `:ATTRIBUTE`. Let's see an example of that:
 
 ```html
 <div id="app">
@@ -61,7 +61,7 @@ new Vue({
 
 ## Conditional rendering: v-if
 
-I bet you can guess what is the purpose of `v-if` just with the name. It’s about conditional rendering: render elements based on a condition. As an example, you may want to render elements only if the user is an admin:
+I bet you can guess what is the purpose of `v-if` just with the name. It’s about conditional rendering: **render elements based on a condition.** As an example, you may want to render elements only if the user is an admin:
 
 ```html
 <div id="app">
@@ -85,7 +85,7 @@ Vue provides another conditional directive: `v-else`. For instance, have you not
 
 ## Events with v-on
 
-That's a directive you will often use. Indeed, it allows you to attach event listeners to elements. These events when triggered will invoke methods of your Vue instance. You can use them by writing `v-on:event="method"` or the shorthand `@event="method"`.
+That's a directive you will often use. Indeed, it allows you to **attach event listeners to elements.** These events when triggered will invoke methods of your Vue instance. You can use them by writing `v-on:event="method"` or the shorthand `@event="method"`.
 
 If you come from a React background, this is similar to `onClick`, `onChange`, etc. There are similar events for Vue: `@click`, `@keyup`, `@input`, etc.
 
@@ -158,7 +158,7 @@ What really happens is that whenever you change the `input`, an event is dispatc
 
 ## Loops with v-for
 
-When you're building an app, there's always a time when you want to render lists:
+When you're building an app, there's always a time when you want to **render lists:**
 
 - Chat messages
 - Search results
@@ -213,7 +213,7 @@ You can create a new component with `Vue.component`. The first parameter of that
 
 ## Props
 
-That’s where components are really interesting. When you compose components across your app, you will have parent components and child components. Therefore, it’s essential to have communication between both of them components. One way of doing it is via `props`. They are used to communicate from the parent to the child.
+That’s where components are really interesting. When you compose components across your app, you will have **parent components and child components.** Therefore, it’s essential to have **communication** between both of them components. One way of doing it is via `props`. They are used to communicate from the parent to the child.
 
 Here is how to use props:
 
@@ -255,7 +255,7 @@ Notes:
 
 ## Custom events
 
-We know how to communicate from parent to child components. Let's see the other way round. We can do it by using custom events. Just like props, we have to define one thing on the parent and one thing on the child:
+We know how to communicate from parent to child components. Let's see the other way round. We can do it by using **custom events.** Just like props, we have to define one thing on the parent and one thing on the child:
 
 - On the child, you have to use the `$emit` function. This function takes two parameters: the event name and the data you want to send to the parent (it can be an object, a string, an array, etc.)
 - On the parent's template, use `v-on` (or `@`) to listen to the event your child will emit.
@@ -355,6 +355,8 @@ Here it is! You know have a basic app built with Vue. It's just the beginning bu
 
 What you learned above corresponds to Vue 2's API. Maybe you heard about Vue 3 and you're wondering whether what you're learning is worth it or not. Don't worry, Vue 3's API is going to be **backward compatible** with Vue 2!
 
-So far, Vue 3 is expected to be released on Q2 2020. Its biggest feature will be the [Composition API](https://vue-composition-api-rfc.netlify.com/#summary) which will help you to make your code more composable and your components more modular (by allowing to organize them by features). If you heard about React hooks, the motivation is the same here!
+So far, Vue 3 is expected to be released on Q4 2020. Its biggest feature will be the [Composition API](https://vue-composition-api-rfc.netlify.com/#summary) which will help you to make your code more composable and your components more modular (by allowing to organize them by features). If you heard about React hooks, the motivation is the same here!
 
 I hope this article gave you the will to delve further into Vue! Stay tuned for more Vue articles 😎
+
+<Comments description="What do you think of Vue? Which feature do you love the most? Share them in the comments below!" />

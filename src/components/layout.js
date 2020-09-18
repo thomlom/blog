@@ -6,8 +6,9 @@ import postComponents from "./postComponents"
 import Newsletter from "./newsletter"
 import Recall from "./recall"
 import Info from "./info"
+import Comments from "./comments"
 
-const shortcodes = { Info, Newsletter, Recall }
+const shortcodes = { Info, Newsletter, Recall, Comments }
 
 const allPosts = { to: "/all-posts", name: "All posts" }
 const newsletter = {
