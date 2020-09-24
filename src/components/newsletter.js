@@ -1,6 +1,6 @@
 import React from "react"
 
-const Newsletter = ({ inPost }) => (
+const Newsletter = () => (
   <form
     action="https://buttondown.email/api/emails/embed-subscribe/thomlom"
     method="post"
@@ -10,16 +10,15 @@ const Newsletter = ({ inPost }) => (
     }
     className="bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 flex w-full flex flex-col shadow-lg rounded-lg p-2 px-4 md:px-20"
   >
-    <p className="mt-2 mb-1 leading-tight text-lg sm:text-xl text-white font-extrabold">
-      {inPost
-        ? "Pssst... You can join the newsletter and read an exclusive post!"
-        : "Join the newsletter and read an exclusive post!"}
+    <p className="mt-2 mb-1 leading-tight text-lg sm:text-2xl text-white font-extrabold">
+      Interested in learning Vue?
     </p>
     <p className="hidden sm:block my-1 text-white font-semibold text-sm sm:text-base">
-      You'll get updates when I release new content and more! Ready to take your
-      front-end skills to the next level?{" "}
-      <span role="img" aria-label="Rocket">
-        🚀
+      My upcoming content will heavily focus on Vue and its ecosystem: Vue 3,
+      Nuxt and more. Subscribe to the newsletter if you want to get early
+      previews!{" "}
+      <span role="img" aria-label="Eyes looking to the left">
+        👀
       </span>
     </p>
     <label htmlFor="bd-email" className="flex flex-col mt-2">

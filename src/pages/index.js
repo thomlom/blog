@@ -9,23 +9,20 @@ import SEO from "../components/seo"
 
 const Bio = ({ photo }) => {
   return (
-    <div className="bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 shadow-lg rounded-lg p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between">
-      <div className="hidden sm:block">
+    <div className="rounded-lg flex flex-col sm:flex-row sm:items-center">
+      <div>
         <Img
           fixed={photo.childImageSharp.fixed}
-          className="rounded-full border-2 border-gray-100 hidden"
+          className="rounded-lg shadow"
         />
       </div>
-      <div className="sm:ml-8 sm:mt-0">
-        <h2 className="text-xl sm:text-2xl text-white font-extrabold leading-tight">
-          Hey, I'm Thomas Lombart.{" "}
-          <span role="img" aria-label="Waving hand">
-            👋
-          </span>
+      <div className="mt-4 sm:ml-8 sm:mt-0">
+        <h2 className="text-2xl sm:text-3xl text-gray-900 dark:text-gray-100 font-bold leading-tight">
+          Hey, I'm Thomas Lombart.
         </h2>
-        <h3 className="text-lg text-white font-semibold leading-snug mt-2">
-          I'm a front-end engineer. I'm here to help you level-up your career
-          through posts on JavaScript, Vue and more!
+        <h3 className="text-lg sm:text-2xl text-gray-800 dark:text-gray-200 font-semibold leading-snug mt-2">
+          I'm a front-end engineer specializing in Vue. I create helpful content
+          for web developers.
         </h3>
       </div>
     </div>
@@ -41,29 +38,54 @@ const BlogIndex = ({
     allMdx,
   },
 }) => {
-  const posts = allMdx.edges.slice(0, 4)
+  const posts = allMdx.edges
+    .filter(({ node }) => !node.frontmatter.unpublished)
+    .slice(0, 4)
 
   return (
     <Layout>
       <SEO title="Blog" description={description} />
-      <div className="space-y-4 sm:space-y-8">
+      <div className="mt-2 space-y-6 sm:space-y-10">
         <Bio photo={photo} />
-        <div className="p-4 sm:p-8 bg-gray-200 dark:bg-gray-800 rounded-lg">
-          <h4 className="mb-4 uppercase text-lg tracking-wide text-gray-800 dark:text-gray-100 font-extrabold">
+        <div className="bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow rounded-lg p-3 sm:p-6">
+          <p className="font-bold uppercase tracking-wider">
+            What's in this blog?
+          </p>
+          <p className="mt-2 sm:text-lg">
+            You'll find a lot of articles covering JavaScript and, lately, the
+            Vue ecosystem. I sometimes write on design and productivity as well.
+          </p>
+          <p className="mt-1 sm:text-lg">
+            Feel free to browse{" "}
+            <Link to="/all-posts" className="underline font-semibold">
+              all my posts
+            </Link>
+            , learn more{" "}
+            <Link to="/about" className="underline font-semibold">
+              about me
+            </Link>{" "}
+            or{" "}
+            <a
+              href="mailto:t.lombart97@gmail.com"
+              className="underline font-semibold"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              get in touch!
+            </a>
+          </p>
+        </div>
+        <div>
+          <h4 className="rounded bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 mb-4 uppercase text-lg sm:text-xl tracking-wide font-bold inline-block py-1 px-3 text-white">
             <span role="img" aria-label="hand holding a pen">
               ✍
             </span>{" "}
-            Blog
+            Latest posts
           </h4>
           <div className="space-y-8">
             {posts.map(({ node }) => (
               <Post key={node.fields.slug} node={node} />
             ))}
-            <Link to="/all-posts" className="block">
-              <button className="w-full p-3 sm:p-4 bg-gray-800 dark:bg-gray-300 sm:text-lg text-gray-100 dark:text-gray-800 rounded-lg shadow font-bold">
-                See all posts
-              </button>
-            </Link>
           </div>
         </div>
         <Newsletter />
@@ -85,7 +107,7 @@ export const pageQuery = graphql`
     photo: file(absolutePath: { regex: "/photo.jpeg/" }) {
       publicURL
       childImageSharp {
-        fixed(width: 125) {
+        fixed(width: 175) {
           ...GatsbyImageSharpFixed
         }
       }
@@ -102,6 +124,7 @@ export const pageQuery = graphql`
             title
             description
             tags
+            unpublished
           }
         }
       }

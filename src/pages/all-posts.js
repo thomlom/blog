@@ -15,7 +15,7 @@ const BlogIndex = ({
   },
   location,
 }) => {
-  const posts = allMdx.edges
+  const posts = allMdx.edges.filter(({ node }) => !node.frontmatter.unpublished)
   const [search, setSearch] = React.useState("")
 
   return (
@@ -89,6 +89,7 @@ export const pageQuery = graphql`
             title
             description
             tags
+            unpublished
           }
         }
       }

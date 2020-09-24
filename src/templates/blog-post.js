@@ -25,7 +25,7 @@ const BlogPostTemplate = ({
         description={post.frontmatter.description || post.excerpt}
         coverURL={siteUrl + post.frontmatter.cover.publicURL}
       />
-      <article className="max-w-full sm:max-w-2xl">
+      <article className="max-w-full sm:max-w-3xl">
         <header>
           <h1 className="font-extrabold text-2xl sm:text-3xl leading-tight text-gray-800 dark:text-gray-200">
             {post.frontmatter.title}

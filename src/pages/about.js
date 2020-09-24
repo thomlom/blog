@@ -45,9 +45,9 @@ const NotFoundPage = ({ data: { photo } }) => {
         Ecologist. Hiking. Travel. Music. Piano.
       </p>
       <p className={textClassNames}>
-        If you want to say hi or have any questions, feel free to reach out{" "}
-        <a className={linkClassNames} href="mailto:t.lombart@hey.com">
-          by mail.
+        If you want to say hi or have any questions, feel free to{" "}
+        <a className={linkClassNames} href="mailto:t.lombart97@gmail.com">
+          get in touch.
         </a>
       </p>
     </Layout>
@@ -58,10 +58,10 @@ export default NotFoundPage
 
 export const pageQuery = graphql`
   query {
-    photo: file(absolutePath: { regex: "/nature.jpg/" }) {
+    photo: file(absolutePath: { regex: "/about.jpg/" }) {
       publicURL
       childImageSharp {
-        fluid(maxWidth: 1000, maxHeight: 500) {
+        fluid(maxHeight: 450) {
           ...GatsbyImageSharpFluid
         }
       }
