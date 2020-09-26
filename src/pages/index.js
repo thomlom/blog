@@ -17,19 +17,69 @@ const Bio = ({ photo }) => {
         />
       </div>
       <div className="mt-4 sm:ml-8 sm:mt-0">
-        <h2 className="text-2xl sm:text-3xl text-gray-900 dark:text-gray-100 font-bold leading-tight">
+        <h2 className="text-2xl sm:text-3xl text-gray-900 dark:text-gray-100 font-extrabold leading-tight">
           Hey, I'm Thomas Lombart.
         </h2>
         <h3 className="text-lg sm:text-2xl text-gray-800 dark:text-gray-200 font-semibold leading-snug mt-2">
-          I'm a front-end engineer specializing in Vue. I create helpful content
-          for web developers.
+          I'm a senior front-end engineer. I help developers getting more
+          efficient and productive through articles.
         </h3>
       </div>
     </div>
   )
 }
 
+const BlogDescription = () => (
+  <div className="bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow rounded-lg p-3 sm:p-6">
+    <p className="font-extrabold uppercase tracking-wider">
+      What's in this blog?
+    </p>
+    <p className="mt-2 sm:text-lg">
+      My goal is to make you blazingly efficient and super productive. You can
+      expect articles on tools (VS Code, your terminal, etc.) and productivity
+      (time management, reducing meetings, soft skills).
+    </p>
+    <p className="mt-2 sm:text-lg">
+      I used to write technical posts on the JavaScript ecosystem but that's not
+      my focus anymore.
+    </p>
+    <p className="mt-1 sm:text-lg">
+      Feel free to browse{" "}
+      <Link to="/all-posts" className="underline font-semibold">
+        all my posts
+      </Link>
+      , learn more{" "}
+      <Link to="/about" className="underline font-semibold">
+        about me
+      </Link>
+      , or{" "}
+      <a
+        href="mailto:t.lombart97@gmail.com"
+        className="underline font-semibold"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        get in touch!
+      </a>
+    </p>
+  </div>
+)
+
+const LatestPosts = ({ posts }) => (
+  <div>
+    <h4 className="text-center rounded bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 mb-4 uppercase text-lg sm:text-xl tracking-wide font-extrabold p-2 text-white">
+      Latest posts
+    </h4>
+    <div className="mt-6 space-y-8">
+      {posts.map(({ node }) => (
+        <Post key={node.fields.slug} node={node} />
+      ))}
+    </div>
+  </div>
+)
+
 const BlogIndex = ({
+  location,
   data: {
     site: {
       siteMetadata: { description },
@@ -38,56 +88,15 @@ const BlogIndex = ({
     allMdx,
   },
 }) => {
-  const posts = allMdx.edges
-    .filter(({ node }) => !node.frontmatter.unpublished)
-    .slice(0, 4)
+  const posts = allMdx.edges.slice(0, 3)
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title="Blog" description={description} />
       <div className="mt-2 space-y-6 sm:space-y-10">
         <Bio photo={photo} />
-        <div className="bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow rounded-lg p-3 sm:p-6">
-          <p className="font-bold uppercase tracking-wider">
-            What's in this blog?
-          </p>
-          <p className="mt-2 sm:text-lg">
-            You'll find a lot of articles covering JavaScript and, lately, the
-            Vue ecosystem. I sometimes write on design and productivity as well.
-          </p>
-          <p className="mt-1 sm:text-lg">
-            Feel free to browse{" "}
-            <Link to="/all-posts" className="underline font-semibold">
-              all my posts
-            </Link>
-            , learn more{" "}
-            <Link to="/about" className="underline font-semibold">
-              about me
-            </Link>{" "}
-            or{" "}
-            <a
-              href="mailto:t.lombart97@gmail.com"
-              className="underline font-semibold"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              get in touch!
-            </a>
-          </p>
-        </div>
-        <div>
-          <h4 className="rounded bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 mb-4 uppercase text-lg sm:text-xl tracking-wide font-bold inline-block py-1 px-3 text-white">
-            <span role="img" aria-label="hand holding a pen">
-              ✍
-            </span>{" "}
-            Latest posts
-          </h4>
-          <div className="space-y-8">
-            {posts.map(({ node }) => (
-              <Post key={node.fields.slug} node={node} />
-            ))}
-          </div>
-        </div>
+        <BlogDescription />
+        <LatestPosts posts={posts} />
         <Newsletter />
       </div>
     </Layout>
@@ -124,7 +133,6 @@ export const pageQuery = graphql`
             title
             description
             tags
-            unpublished
           }
         }
       }

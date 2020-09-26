@@ -3,10 +3,10 @@ module.exports = {
     title: `Thomlom`,
     author: {
       name: `Thomas Lombart`,
-      summary: `Hi! I'm Thomas, a front-end engineer.`,
+      summary: `Hey, I'm Thomas Lombart. I'm a senior front-end engineer. I help developers getting more efficient and productive through articles.`,
     },
-    description: `Level up your skills by reading high-quality posts on front-end development and design.`,
-    keywords: [`javascript`, `react`, `vue`, `design`, `thomas lombart`],
+    description: `Become a better developer by reading posts on tools, productivity and ways to level-up your career.`,
+    keywords: [`developer`, `productivity`, `tools`, `career`],
     siteUrl: `https://thomlom.dev`,
   },
   plugins: [

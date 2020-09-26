@@ -5,11 +5,11 @@ import NotFound from "./not_found.svg"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const NotFoundPage = ({ data }) => {
+const NotFoundPage = ({ location, data }) => {
   const siteTitle = data.site.siteMetadata.title
 
   return (
-    <Layout title={siteTitle}>
+    <Layout location={location} title={siteTitle}>
       <SEO title="404: Not Found" />
       <div className="max-w-md mx-auto">
         <img src={NotFound} alt="404 illustration" className="mt-4" />

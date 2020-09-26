@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery } from "gatsby"
 import { MDXProvider } from "@mdx-js/react"
 
 import postComponents from "./postComponents"
@@ -45,19 +45,45 @@ const CustomLink = ({ to, name }) => {
   )
 }
 
-const Layout = ({ children }) => {
+const Layout = ({ location, children }) => {
+  const {
+    site: {
+      siteMetadata: { title },
+    },
+  } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  )
+
+  const rootPath = `${__PATH_PREFIX__}/`
+  const isRootPath = location.pathname === rootPath
+
   const [isOpen, setIsOpen] = React.useState(false)
+
+  const titleClassNames =
+    "text-gray-800 dark:text-gray-200 text-2xl m-0 font-black"
 
   return (
     <MDXProvider components={{ ...shortcodes, ...postComponents }}>
       <div className="p-3 md:px-0 bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
         <header className="max-w-2xl mx-auto w-full flex flex-col sm:flex-row sm:justify-between sm:items-center">
           <div className="flex justify-between items-center">
-            <Link to={"/"}>
-              <h1 className="text-gray-800 dark:text-gray-200 text-2xl m-0 font-black">
-                Thomlom
+            {isRootPath ? (
+              <h1 className={titleClassNames}>
+                <Link to="/">{title}</Link>
               </h1>
-            </Link>
+            ) : (
+              <Link className={titleClassNames} to="/">
+                {title}
+              </Link>
+            )}
             <button
               type="button"
               className="px-2 text-gray-800 dark:text-gray-400 focus:outline-none sm:hidden"

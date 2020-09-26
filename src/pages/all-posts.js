@@ -15,7 +15,7 @@ const BlogIndex = ({
   },
   location,
 }) => {
-  const posts = allMdx.edges.filter(({ node }) => !node.frontmatter.unpublished)
+  const posts = allMdx.edges
   const [search, setSearch] = React.useState("")
 
   return (
@@ -27,7 +27,7 @@ const BlogIndex = ({
           <input
             type="text"
             className="shadow my-2 text-gray-800 placeholder-gray-700 bg-white focus:outline-none focus:shadow-outline rounded py-2 px-4 block w-full appearance-none dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:placeholder-gray-500"
-            placeholder="react, vue"
+            placeholder="vscode, javascript"
             onChange={(e) => setSearch(e.target.value)}
           />
         </label>
@@ -89,7 +89,6 @@ export const pageQuery = graphql`
             title
             description
             tags
-            unpublished
           }
         }
       }

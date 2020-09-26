@@ -5,7 +5,7 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const NotFoundPage = ({ data: { photo } }) => {
+const NotFoundPage = ({ location, data: { photo } }) => {
   const textClassNames =
     "text-lg sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4"
 
@@ -13,7 +13,7 @@ const NotFoundPage = ({ data: { photo } }) => {
     "underline text-gray-800 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200"
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title="About me" />
       <Img
         fluid={photo.childImageSharp.fluid}
@@ -23,7 +23,7 @@ const NotFoundPage = ({ data: { photo } }) => {
         Hey, I'm Thomas Lombart.
       </h2>
       <p className={textClassNames}>
-        I’m a front-end engineer from France. I currently work at{" "}
+        I’m a senior front-end engineer from France. I currently work at{" "}
         <a
           href="https://www.backmarket.com"
           className={linkClassNames}
@@ -35,9 +35,9 @@ const NotFoundPage = ({ data: { photo } }) => {
         , a marketplace for refurbished products.
       </p>
       <p className={textClassNames}>
-        Besides my full-time job, I help developers level-up their careers
-        through posts on JavaScript, Vue, and more. I like to spend time on open
-        source software as well.
+        Besides my full-time job, I write on tools and productivity for
+        developers to get the most of their careers. I like to spend time on
+        open source software as well.
       </p>
       <p className={textClassNames}>
         Here is a non-exhaustive list of words to get a better glimpse of who I
