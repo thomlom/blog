@@ -10,10 +10,10 @@ const Newsletter = () => (
     }
     className="bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 flex w-full flex flex-col shadow-lg rounded-lg p-2 px-4 md:px-20"
   >
-    <p className="mt-2 mb-1 leading-tight text-lg sm:text-3xl text-white font-extrabold">
+    <p className="mt-2 mb-1 leading-tight text-xl sm:text-3xl text-white font-extrabold">
       Join the newsletter
     </p>
-    <p className="hidden sm:block my-1 text-white font-semibold text-sm sm:text-base">
+    <p className="my-1 text-white font-semibold text-sm sm:text-base">
       I write on tools and productivity to get the most of your developer
       career. Subscribe to the newsletter to get my posts right in your inbox.{" "}
       <span role="img" aria-label="Opened mailbox">
