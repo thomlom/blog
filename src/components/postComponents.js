@@ -193,7 +193,7 @@ export default {
   ),
   h4: (props) => (
     // eslint-disable-next-line
-    <h1 className={`${titleClassNames} text-xl mt-5 sm:mt-7`} {...props} />
+    <h4 className={`${titleClassNames} text-xl mt-5 sm:mt-7`} {...props} />
   ),
   a: (props) => (
     // eslint-disable-next-line
