@@ -35,9 +35,9 @@ const BlogDescription = () => (
       What's in this blog?
     </p>
     <p className="mt-2 sm:text-lg">
-      My goal is to make you blazingly efficient and super productive. You can
-      expect articles on tools (VS Code, your terminal, etc.) and productivity
-      (time management, reducing meetings, soft skills).
+      My goal is to make you more efficient and productive. You can expect
+      articles on tools (VS Code, your terminal, etc.) and productivity (time
+      management, reducing meetings, soft skills).
     </p>
     <p className="mt-2 sm:text-lg">
       I used to write technical posts on the JavaScript ecosystem but that's not
