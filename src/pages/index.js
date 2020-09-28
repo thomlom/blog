@@ -39,10 +39,6 @@ const BlogDescription = () => (
       articles on tools (VS Code, your terminal, etc.) and productivity (time
       management, reducing meetings, soft skills).
     </p>
-    <p className="mt-2 sm:text-lg">
-      I used to write technical posts on the JavaScript ecosystem but that's not
-      my focus anymore.
-    </p>
     <p className="mt-1 sm:text-lg">
       Feel free to browse{" "}
       <Link to="/all-posts" className="underline font-semibold">

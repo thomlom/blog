@@ -29,7 +29,7 @@ const tagsColor = {
     backgroundColor: "#C9350E",
     color: "#FFF",
   },
-  vscode: {
+  tools: {
     backgroundColor: "#0072CC",
     color: "#fff",
   },
