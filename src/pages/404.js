@@ -14,7 +14,7 @@ const NotFoundPage = ({ location, data }) => {
       <div className="max-w-md mx-auto">
         <img src={NotFound} alt="404 illustration" className="mt-4" />
         <div className="flex flex-col items-center">
-          <p className="text-center text-gray-800 dark:text-gray-200 font-semibold text-3xl mt-4 sm:mt-6">
+          <p className="text-center text-gray-200 font-semibold text-3xl mt-4 sm:mt-6">
             Oops... Nothing found here!
           </p>
           <Link to="/">

@@ -27,7 +27,7 @@ const BlogPostTemplate = ({
       />
       <article className="max-w-full sm:max-w-3xl">
         <header>
-          <h1 className="font-extrabold text-2xl sm:text-3xl leading-tight text-gray-800 dark:text-gray-200">
+          <h1 className="font-extrabold text-2xl sm:text-3xl leading-tight text-gray-200">
             {post.frontmatter.title}
           </h1>
           <div className="mt-2">
@@ -55,14 +55,14 @@ const BlogPostTemplate = ({
         </section>
         {next && (
           <TransitionLink paintDrip to={next.fields.slug}>
-            <div className="p-4 border shadow-lg rounded-lg bg-gray-200 dark:bg-gray-800 dark:border-none my-2">
-              <span className="uppercase text-sm text-gray-700 dark:text-gray-300 tracking-wide flex items-center font-semibold">
+            <div className="p-4 border shadow-lg rounded-lg bg-gray-800 border-none my-2">
+              <span className="uppercase text-sm text-gray-300 tracking-wide flex items-center font-semibold">
                 <span role="img" aria-label="Eyes" className="mr-1 text-xl">
                   👀
                 </span>
                 This post may also interest you
               </span>
-              <p className="text-gray-800 dark:text-gray-200 text-2xl font-bold mt-1 leading-tight underline">
+              <p className="text-gray-200 text-2xl font-bold mt-1 leading-tight underline">
                 {next.frontmatter.title}
               </p>
             </div>

@@ -38,7 +38,7 @@ const Newsletter = ({ title, description }) => {
       <input
         type="submit"
         value="Subscribe"
-        className="bg-gray-200 text-gray-900 rounded-lg w-full mt-3 font-bold px-3 py-2 cursor-pointer shadow dark:bg-gray-200 dark:text-gray-900 "
+        className="bg-gray-200 text-gray-900 rounded-lg w-full mt-3 font-bold px-3 py-2 cursor-pointer shadow"
       />
       <div className="flex flex-col sm:flex-row justify-between my-2">
         <p className="text-gray-100 text-xs">

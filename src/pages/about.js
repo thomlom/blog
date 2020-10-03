@@ -7,10 +7,9 @@ import SEO from "../components/seo"
 
 const About = ({ location, data: { photo, site } }) => {
   const textClassNames =
-    "text-lg sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-sem ibold leading-snug mt-4"
+    "text-lg sm:text-2xl text-gray-500 mt-2 font-semibold leading-snug mt-4"
 
-  const linkClassNames =
-    "underline text-gray-800 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200"
+  const linkClassNames = "underline text-gray-300 hover:text-gray-200"
 
   return (
     <Layout location={location}>
@@ -19,7 +18,7 @@ const About = ({ location, data: { photo, site } }) => {
         fluid={photo.childImageSharp.fluid}
         className="rounded-lg shadow-xl"
       />
-      <h2 className="text-xl sm:text-3xl text-gray-800 dark:text-gray-200 font-extrabold leading-tight mt-6">
+      <h2 className="text-xl sm:text-3xl text-gray-200 font-extrabold leading-tight mt-6">
         Hey, I'm Thomas Lombart.
       </h2>
       <p className={textClassNames}>

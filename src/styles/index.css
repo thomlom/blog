@@ -8,12 +8,6 @@ html {
 }
 
 .gatsby-code-title {
-  @apply font-mono text-gray-800 text-sm;
-}
-
-@media (prefers-color-scheme: dark) {
-  .gatsby-code-title {
-    @apply font-mono text-gray-400 text-sm;
-  }
+  @apply font-mono text-gray-400 text-sm;
 }
 /* purgecss end ignore */

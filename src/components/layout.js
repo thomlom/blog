@@ -21,7 +21,7 @@ const links = [allPosts, newsletter, about]
 
 const CustomLink = ({ to, name }) => {
   const linkClassNames =
-    "py-3 sm:py-1 sm:px-3 sm:first:ml-0 sm:mt-0 font-semibold text-lg text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
+    "py-3 sm:py-1 sm:px-3 sm:first:ml-0 sm:mt-0 font-semibold text-lg text-gray-300 hover:text-gray-100"
 
   const isExternal = to.startsWith("http")
 
@@ -67,12 +67,11 @@ const Layout = ({ location, children }) => {
 
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const titleClassNames =
-    "text-gray-800 dark:text-gray-200 text-2xl m-0 font-black"
+  const titleClassNames = "text-gray-200 text-2xl m-0 font-black"
 
   return (
     <MDXProvider components={{ ...shortcodes, ...postComponents }}>
-      <div className="p-3 md:px-0 bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col">
+      <div className="p-3 md:px-0 bg-gray-900 min-h-screen flex flex-col">
         <header className="max-w-2xl mx-auto w-full flex flex-col sm:flex-row sm:justify-between sm:items-center">
           <div className="flex justify-between items-center">
             {isRootPath ? (
@@ -86,7 +85,7 @@ const Layout = ({ location, children }) => {
             )}
             <button
               type="button"
-              className="px-2 text-gray-800 dark:text-gray-400 focus:outline-none sm:hidden"
+              className="px-2 text-gray-400 focus:outline-none sm:hidden"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               onClick={() => setIsOpen(!isOpen)}
             >
@@ -122,7 +121,7 @@ const Layout = ({ location, children }) => {
         </header>
         <main className="max-w-2xl my-5 mx-auto w-full flex-1">{children}</main>
         <footer className="my-2">
-          <p className="font-medium text-center text-sm text-gray-700 dark:text-gray-300 ">
+          <p className="font-medium text-center text-sm text-gray-300 ">
             © {new Date().getFullYear()} Thomas Lombart
           </p>
         </footer>

@@ -11,7 +11,7 @@ const Comments = ({ description, defaultDescription = false }) => {
     utterancesScript.setAttribute("repo", "thomlom/comments")
     utterancesScript.setAttribute("issue-term", "pathname")
     utterancesScript.setAttribute("id", "utterances")
-    utterancesScript.setAttribute("theme", "preferred-color-scheme")
+    utterancesScript.setAttribute("theme", "github-dark")
     utterancesScript.setAttribute("crossorigin", "anonymous")
 
     if (utterancesRef) {
@@ -25,7 +25,7 @@ const Comments = ({ description, defaultDescription = false }) => {
       {hasLoadedUtterances && (
         <>
           <hr className="my-4 " />
-          <h2 className="mb-1 text-gray-800 dark:text-gray-200 font-semibold leading-relaxed">
+          <h2 className="mb-1 text-gray-200 font-semibold leading-relaxed">
             {description ||
               "Questions? Thoughts? Leave your comments below. 👇"}
           </h2>

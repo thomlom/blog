@@ -21,12 +21,12 @@ const BlogIndex = ({
   return (
     <Layout location={location}>
       <SEO title="All posts" description={description} />
-      <div className="bg-gray-200 p-4 mb-6 rounded-lg dark:bg-gray-800 shadow">
-        <label className="block text-lg text-gray-900 dark:text-gray-100 font-bold">
+      <div className="bg-gray-800 p-4 mb-6 rounded-lg shadow">
+        <label className="block text-lg text-gray-100 font-bold">
           Search a post
           <input
             type="text"
-            className="shadow my-2 text-gray-800 placeholder-gray-700 bg-white focus:outline-none focus:shadow-outline rounded py-2 px-4 block w-full appearance-none dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:placeholder-gray-500"
+            className="bg-gray-900 text-gray-200 border-gray-700 placeholder-gray-500 shadow my-2 bg-white focus:outline-none focus:shadow-outline rounded py-2 px-4 block w-full appearance-none "
             placeholder="tools, javascript"
             onChange={(e) => setSearch(e.target.value)}
           />

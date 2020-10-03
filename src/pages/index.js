@@ -17,10 +17,10 @@ const Bio = ({ photo }) => {
         />
       </div>
       <div className="mt-4 sm:ml-8 sm:mt-0">
-        <h2 className="text-2xl sm:text-3xl text-gray-900 dark:text-gray-100 font-extrabold leading-tight">
+        <h2 className="text-2xl sm:text-3xl text-gray-100 font-extrabold leading-tight">
           Hey, I'm Thomas Lombart.
         </h2>
-        <h3 className="text-lg sm:text-2xl text-gray-800 dark:text-gray-200 font-semibold leading-snug mt-2">
+        <h3 className="text-lg sm:text-2xl text-gray-200 font-semibold leading-snug mt-2">
           I'm a senior front-end engineer. I help developers getting more
           efficient and productive through articles.
         </h3>
@@ -30,7 +30,7 @@ const Bio = ({ photo }) => {
 }
 
 const BlogDescription = () => (
-  <div className="bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 shadow rounded-lg p-3 sm:p-6">
+  <div className="bg-gray-800 text-gray-200 shadow rounded-lg p-3 sm:p-6">
     <p className="font-extrabold uppercase tracking-wider">
       What's in this blog?
     </p>
