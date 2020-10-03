@@ -1,0 +1,310 @@
+---
+title: Supercharge Your Workflow With GitHub CLI
+description: Managing a repository takes time. Creating pull requests, finding issues, reviewing code. Hopefully, GitHub released their official CLI! Learn in this post how to leverage its power.
+date: "2020-10-03"
+cover: "./cover.jpg"
+tags: [tools]
+---
+
+What if I told you it's possible to manage your GitHub repository within the CLI? No more pointing and clicking on a user interface, just commands. That would mean a faster work with less context-switching, right? Brace yourself. GitHub's official command line is right here for you.
+
+Triaging issues, creating or checking out pull requests, releasing packages, forking repos, even creating gists can now be done from your terminal. And we all know its power and how fast it can be. Using GitHub CLI has been a real win for your workflow. Want to learn more? It all happens down here. 👇
+
+## Getting started
+
+First things first, installing GitHub CLI. If you're a macOS user, run `brew install gh`. If you're a Windows user, you can install it via [scoop](https://vuejs.org/) or [Chocolatey](https://chocolatey.org/). As for Linux, you have great installation instructions here: [Installing gh on Linux](https://github.com/cli/cli/blob/trunk/docs/install_linux.md).
+
+It's installed? Good. As said previously, GitHub CLI aims at managing your workflow directly from the terminal. But it needs to have access to your account for that:
+
+```sh
+gh auth login
+```
+
+You'll be prompted to configure your preferred Git protocol, pick whatever suits you here. If you choose SSH, make sure you [added a SSH key to your account](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh).
+
+Finally, set your preferred editor. In my case, I mostly work with VS Code. Thus, I ran:
+
+```sh
+gh config set editor "code --wait"
+```
+
+<Note>
+  The `--wait` option is essential here. Indeed, when you are prompted to enter
+  a longer message (such as a pull request's body), the CLI needs to have a
+  signal you're done, such as closing a VS Code window.
+</Note>
+
+You're now good to go!
+
+## Commands
+
+What can GitHub CLI do for you? Good question. As with most CLIs, you have a dedicated help command for that:
+
+```sh
+➜ gh help
+Work seamlessly with GitHub from the command line.
+
+USAGE
+  gh <command> <subcommand> [flags]
+
+CORE COMMANDS
+  gist:       Create gists
+  issue:      Manage issues
+  pr:         Manage pull requests
+  release:    Manage GitHub releases
+  repo:       Create, clone, fork, and view repositories
+
+ADDITIONAL COMMANDS
+  alias:      Create command shortcuts
+  api:        Make an authenticated GitHub API request
+  auth:       Login, logout, and refresh your authentication
+  completion: Generate shell completion scripts
+  config:     Manage configuration for gh
+  help:       Help about any command
+
+FLAGS
+  --help      Show help for command
+  --version   Show gh version
+
+EXAMPLES
+  $ gh issue create
+  $ gh repo clone cli/cli
+  $ gh pr checkout 321
+
+ENVIRONMENT VARIABLES
+  See 'gh help environment' for the list of supported environment variables.
+
+LEARN MORE
+  Use 'gh <command> <subcommand> --help' for more information about a command.
+  Read the manual at https://cli.github.com/manual
+
+FEEDBACK
+  Open an issue using 'gh issue create -R cli/cli'
+```
+
+That's quite helpful. Most of the time, you'll use core commands. To know what you can do with each of them, provide a `--help` option. Here's an example with the `issue` command:
+
+```sh
+➜ gh issue --help
+Work with GitHub issues
+
+USAGE
+  gh issue <command> [flags]
+
+CORE COMMANDS
+  close:      Close issue
+  create:     Create a new issue
+  list:       List and filter issues in this repository
+  reopen:     Reopen issue
+  status:     Show status of relevant issues
+  view:       View an issue
+
+FLAGS
+  -R, --repo OWNER/REPO   Select another repository using the OWNER/REPO format
+
+INHERITED FLAGS
+  --help   Show help for command
+
+ARGUMENTS
+  An issue can be supplied as argument in any of the following formats:
+  - by number, e.g. "123"; or
+  - by URL, e.g. "https://github.com/OWNER/REPO/issues/123".
+
+EXAMPLES
+  $ gh issue list
+  $ gh issue create --label bug
+  $ gh issue view --web
+
+LEARN MORE
+  Use 'gh <command> <subcommand> --help' for more information about a command.
+  Read the manual at https://cli.github.com/manual
+```
+
+Now, I don't want to explain to you each command. You can find on the official GitHub CLI website a [well-explained manual of all these commands](https://cli.github.com/manual/). What I'm going to show you instead are examples of how this CLI can improve your workflow in your everyday developer's life.
+
+<Recall
+  question="Which core commands can you use with GitHub CLI?"
+  answer="As of now, there are five core commands: gist, issue, pr, release, and repo. There are additional commands as well, such as alias or auth, but you'll likely use them less."
+></Recall>{" "}
+
+## Examples
+
+### Create a PR
+
+Let's say you work on a brand new feature for your company or open-source project. You finished the work and want to create a PR on GitHub. Usually, you would have gone to [github.com](https://github.com) to open the PR, right? Well now, you can do exactly the same with `gh pr create`:
+
+```sh
+➜ gh pr create
+? Where should we push the 'feat/signup' branch? company/repo
+
+Creating pull request for feat/signup into master in company/repo
+
+? Title feat(signup): Add signup screen
+? Body <Received>
+? What's next?  [Use arrows to move, type to filter]
+> Submit
+  Continue in browser
+  Add metadata
+  Cancel
+```
+
+As you can see, this command is interactive. I provided the title, the body in VS Code, and then submitted the PR in a snap!
+
+If you were to provide some metadata such as the reviewers, assignees, or labels, you could also do it by selecting `Add metadata`:
+
+```
+? What's next? Add metadata
+? What would you like to add?  [Use arrows to move, space to select, <right> to all, <left> to none, type to filter]
+  [ ]  Reviewers
+> [x]  Assignees
+  [ ]  Labels
+  [ ]  Projects
+  [ ]  Milestone
+```
+
+### See relevant pull requests
+
+It's common for a developer to have many tasks at once: your review is requested on a piece of code, you fix a bug while waiting for a review on one of your feature PRs. In that case, you may want to know the statuses to know your next actions:
+
+```sh
+> gh pr status
+
+Relevant pull requests in company/repo
+
+Current branch
+  #234  fix(homepage): Avatar is not shown if account created with Google [fix/avatar]
+  - Checks pending - Review required
+
+Created by you
+  #234  fix(homepage): Avatar is not shown if account created with Google [fix/avatar]
+  - Checks pending - Review required
+  #224  feat(signup): Add signup screen [feat/signup]
+  ✓ Checks passing - Review required
+
+Requesting a code review from you
+  #231  docs(onboarding): Add docs on how to deploy on production [docs/onboarding]
+  ✓ Checks passing
+```
+
+If this case, we're working on a fix (`Current branch`). I have a PR allowing a user to signup that passes the checks but has no reviews yet. Finally, someone has requested a code review on some documentation. How convenient is this?
+
+If I were to review the docs PR, I could simply type `gh pr view 231`, and it would display the PR on the terminal. Depending on the PR size, it may be readable or not. But don't worry, you have the `--web` option for that:
+
+```sh
+gh pr view 231 --web
+```
+
+### Waiting for Travis
+
+Let's say your PR is already opened and you got some review comments. You worked through your comments, pushed your code and wanted to know if you can merge the PR. Maybe you've set up Travis CI, and you're waiting for the build to pass:
+
+```sh
+> gh pr checks
+
+➜ gh pr checks
+All checks were successful
+0 failing, 1 successful, and 0 pending checks
+
+✓  Travis CI - Pull Request  5m26s  https://travis-ci.com/github/comp...
+```
+
+(Let's be honest, one of our favorite tasks is to wait for Travis, isn't it? 😄)
+
+If everything's OK, you can also merge the PR right from your terminal:
+
+```sh
+gh pr merge
+```
+
+### Testing a colleague's changes
+
+Developers, when reviewing code, tend to focus on the code only. It's indeed faster, but perhaps it's worth it to check out the changes live. It allows you to have a better vision of what the code really implies and its value.
+
+Now, you can check out your colleague's branch with GitHub CLI. Use the `pr checkout` along with the pull request's number and you're good to go:
+
+```sh
+gh pr checkout 6838
+```
+
+As a front-end developer, I often use it to make sure the UI changes properly work.
+
+By the way, GitHub also suggests you to use in the pull request:
+
+![A screenshot of GitHub's button open with](./github-open.png)
+
+### Your next issue
+
+You're maintaining an open-source project, and you want to know what's the next thing you can work on. Then, you can browse your issues with the `issue` command:
+
+```
+> gh issue list
+
+Showing 15 of 15 open issues in testing-library/eslint-plugin-testing-library
+
+#227  [await-async-utils] false p...  (bug)                           about 23 days ago
+#222  [await-async-query] Support...  (help wanted)                   about 1 month ago
+#219  feature request: no-await-f...                                  about 1 month ago
+#202  Support eslint fix command ...  (enhancement)                   about 2 months ago
+#198  Move custom render function...  (BREAKING CHANGE)               about 18 days ago
+#187  Autogenerate configs from r...                                  about 3 months ago
+:
+```
+
+Maybe you don't have much time and you want to fix a bug. Then, filter them with the `--label` option:
+
+```sh
+> gh issue list --label bug
+
+Showing 2 of 2 issues in testing-library/eslint-plugin-testing-library that match your search
+
+#227  [await-async-utils] false positive pr...  (bug)  about 23 days ago
+#141  Lint RenderResult when returned from ...  (bug)  about 2 months ago
+```
+
+There are lot of other filtering options. Don't hesitate to run `gh issue list --help` to know more!
+
+<Newsletter />
+
+### Quick approval
+
+Someone at your company spotted a bug in production and needs to ship a quick fix. Now, you can be a blazing fast colleague and approve the PR in minutes (if not seconds) by:
+
+1. Visualizing the changes with `gh pr diff`
+2. Approving the pull request with `gh pr review --approve`
+
+### Contributing to an open-source project
+
+At the time of writing, it's the 2020 edition of Hacktoberfest. Maybe you want to make a contribution to open-source. Usually, that includes forking a repo:
+
+```sh
+➜ gh repo fork organization/repo
+- Forking organization/repo...
+✓ Created fork user/organization/repo
+? Would you like to clone the fork? Yes
+Cloning into 'repo'...
+...
+✓ Cloned fork
+```
+
+Some maintainers label issues as `good first issue` for the newcomers. Then, you can search through them from the CLI:
+
+```sh
+gh issue list --label "good first issue"
+```
+
+<Note>
+  Considering contributing to a project? Please don't spam them with meaningless
+  contributions such as adding "Amazing project" next to a title or similar.
+  Open source maintainers are working hard. It's not useful spamming their
+  beloved repos. ❤️
+</Note>
+
+## Using both GitHub and GitHub CLI
+
+As you can see, GitHub CLI is powerful. It leverages the power of the CLI to make your workflow better. You can approve a pull request from your CLI, find an issue on which you can work, quickly see if a build pass, and much more.
+
+It doesn't mean you should use only GitHub CLI as of now. Both the UI and the CLI are powerful. Use what suits your needs best. In my case, I like to use the CLI for quick actions such as an approval, merging a request, or knowing if checks have passed.
+
+However, when it comes to reviewing code or finding issues, I still like to use GitHub's UI, which allows me to better glance at the information.
+
+<Comments description="What do you think of GitHub CLI? Which commands will you use from now on? Share your thoughts in the comments." />
