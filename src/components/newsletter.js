@@ -1,12 +1,10 @@
 import React from "react"
 
-const Newsletter = ({ title, description }) => {
+const Newsletter = ({ title, description, tag }) => {
   const newsletterTitle = title || "Join the newsletter"
   const newsletterDescription =
     description ||
-    `I write on tools and productivity to get the most of your developer
-        career. Subscribe to the newsletter to get my posts right in your inbox.
-        📬`
+    `I write on tools and productivity to get the most of your developer career. Subscribe to the newsletter to get my articles right in your inbox. 📬`
 
   return (
     <form
@@ -40,6 +38,7 @@ const Newsletter = ({ title, description }) => {
         value="Subscribe"
         className="bg-gray-200 text-gray-900 rounded-lg w-full mt-3 font-bold px-3 py-2 cursor-pointer shadow"
       />
+      {tag ? <input type="hidden" name="tag" value={tag} /> : null}
       <div className="flex flex-col sm:flex-row justify-between my-2">
         <p className="text-gray-100 text-xs">
           No spams. Unsubscribe at any time.
