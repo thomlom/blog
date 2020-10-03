@@ -5,7 +5,7 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const NotFoundPage = ({ location, data: { photo } }) => {
+const About = ({ location, data: { photo, site } }) => {
   const textClassNames =
     "text-lg sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4"
 
@@ -14,7 +14,7 @@ const NotFoundPage = ({ location, data: { photo } }) => {
 
   return (
     <Layout location={location}>
-      <SEO title="About me" />
+      <SEO title="About me" description={site.siteMetadata.author.summary} />
       <Img
         fluid={photo.childImageSharp.fluid}
         className="rounded-lg shadow-xl"
@@ -54,10 +54,17 @@ const NotFoundPage = ({ location, data: { photo } }) => {
   )
 }
 
-export default NotFoundPage
+export default About
 
 export const pageQuery = graphql`
   query {
+    site {
+      siteMetadata {
+        author {
+          summary
+        }
+      }
+    }
     photo: file(absolutePath: { regex: "/about.jpg/" }) {
       publicURL
       childImageSharp {
