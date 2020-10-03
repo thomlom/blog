@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 
 const About = ({ location, data: { photo, site } }) => {
   const textClassNames =
-    "text-lg sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-semibold leading-snug mt-4"
+    "text-lg sm:text-2xl text-gray-600 dark:text-gray-500 mt-2 font-sem ibold leading-snug mt-4"
 
   const linkClassNames =
     "underline text-gray-800 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200"
@@ -41,14 +41,19 @@ const About = ({ location, data: { photo, site } }) => {
       </p>
       <p className={textClassNames}>
         Here is a non-exhaustive list of words to get a better glimpse of who I
-        am: Techie. Web development. Writing. Open-source. Minimalist.
-        Ecologist. Hiking. Travel. Music. Piano.
+        am: Techie. Web development. Writing. Open-source. Minimalist. Hiking.
+        Travel. Music. Piano.
       </p>
       <p className={textClassNames}>
-        If you want to say hi or have any questions, feel free to{" "}
+        If you want to say hi or have any questions, please reach out by{" "}
         <a className={linkClassNames} href="mailto:t.lombart97@gmail.com">
-          get in touch.
+          mail
+        </a>{" "}
+        or via{" "}
+        <a className={linkClassNames} href="https://twitter.com/thomas_lombart">
+          Twitter
         </a>
+        .
       </p>
     </Layout>
   )

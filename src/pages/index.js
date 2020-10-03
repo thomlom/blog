@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
@@ -35,28 +35,10 @@ const BlogDescription = () => (
       What's in this blog?
     </p>
     <p className="mt-2 sm:text-lg">
-      My goal is to make you more efficient and productive. You can expect
-      articles on tools (VS Code, your terminal, etc.) and productivity (time
-      management, reducing meetings, soft skills).
-    </p>
-    <p className="mt-1 sm:text-lg">
-      Feel free to browse{" "}
-      <Link to="/all-posts" className="underline font-semibold">
-        all my posts
-      </Link>
-      , learn more{" "}
-      <Link to="/about" className="underline font-semibold">
-        about me
-      </Link>
-      , or{" "}
-      <a
-        href="mailto:t.lombart97@gmail.com"
-        className="underline font-semibold"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        get in touch!
-      </a>
+      My goal is to give you the keys to becoming a better developer. You can
+      expect articles on tools (VS Code, CLIs), productivity (time management,
+      reducing meetings), and career (resources, bits of advice). I sometimes
+      write technical articles on front-end development.
     </p>
   </div>
 )
