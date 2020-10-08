@@ -39,9 +39,9 @@ const About = ({ location, data: { photo, site } }) => {
         open source software as well.
       </p>
       <p className={textClassNames}>
-        Here is a non-exhaustive list of words to get a better glimpse of who I
-        am: Techie. Web development. Writing. Open-source. Minimalist. Hiking.
-        Travel. Music. Piano.
+        Here is a list of words to get a better glimpse of who I am: Techie. Web
+        development. Writing. Open-source. Minimalist. Hiking. Travel. Music.
+        Piano.
       </p>
       <p className={textClassNames}>
         If you want to say hi or have any questions, please reach out by{" "}

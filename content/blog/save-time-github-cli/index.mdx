@@ -1,6 +1,6 @@
 ---
-title: Supercharge Your Workflow With GitHub CLI
-description: Managing a repository takes time. Creating pull requests, finding issues, reviewing code. Hopefully, GitHub released their official CLI! Learn in this post how to leverage its power.
+title: How to Save Time With GitHub CLI
+description: Managing a repository takes time. Creating pull requests, finding issues, reviewing code. Hopefully, GitHub released their official CLI. Learn in this post how to leverage its power.
 date: "2020-10-03"
 cover: "./cover.jpg"
 tags: [tools]
@@ -8,7 +8,7 @@ tags: [tools]
 
 What if I told you it's possible to manage your GitHub repository within the CLI? No more pointing and clicking on a user interface, just commands. That would mean a faster work with less context-switching, right? Brace yourself. GitHub's official command line is right here for you.
 
-Triaging issues, creating or checking out pull requests, releasing packages, forking repos, even creating gists can now be done from your terminal. And we all know its power and how fast it can be. Using GitHub CLI has been a real win for your workflow. Want to learn more? It all happens down here. 👇
+Triaging issues, creating or checking out pull requests, releasing packages, forking repos, even creating gists can now be done from your terminal. And we all know its power and how fast it can be. Using GitHub CLI has been a real win for my workflow. Want to learn more? It all happens down here. 👇
 
 ## Getting started
 
@@ -28,13 +28,9 @@ Finally, set your preferred editor. In my case, I mostly work with VS Code. Thus
 gh config set editor "code --wait"
 ```
 
-<Note>
-  The `--wait` option is essential here. Indeed, when you are prompted to enter
-  a longer message (such as a pull request's body), the CLI needs to have a
-  signal you're done, such as closing a VS Code window.
-</Note>
+Note: The `--wait` option is essential here. Indeed, when you are prompted to enter a longer message (such as a pull request's body), the CLI needs to have a signal you're done, such as closing a VS Code window.
 
-You're now good to go!
+You're now good to go.
 
 ## Commands
 
@@ -112,11 +108,6 @@ EXAMPLES
 
 Now, I don't want to explain to you each command. You can find on the official GitHub CLI website a [well-explained manual of all these commands](https://cli.github.com/manual/). What I'm going to show you instead are examples of how this CLI can improve your workflow in your everyday developer's life.
 
-<Recall
-  question="Which core commands can you use with GitHub CLI?"
-  answer="As of now, there are five core commands: gist, issue, pr, release, and repo. There are additional commands as well, such as alias or auth, but you'll likely use them less."
-></Recall>{" "}
-
 ## Examples
 
 ### Create a PR
@@ -138,7 +129,7 @@ Creating pull request for feat/signup into master in company/repo
   Cancel
 ```
 
-As you can see, this command is interactive. I provided the title, the body in VS Code, and then submitted the PR in a snap!
+As you can see, this command is interactive. I provided the title, the body in VS Code, and then submitted the PR in a snap.
 
 If you were to provide some metadata such as the reviewers, assignees, or labels, you could also do it by selecting `Add metadata`:
 
@@ -176,13 +167,15 @@ Requesting a code review from you
   ✓ Checks passing
 ```
 
-If this case, we're working on a fix (`Current branch`). I have a PR allowing a user to signup that passes the checks but has no reviews yet. Finally, someone has requested a code review on some documentation. How convenient is this?
+How convenient this command is. I know at a glance what's going on with your PRs:
 
-If I were to review the docs PR, I could simply type `gh pr view 231`, and it would display the PR on the terminal. Depending on the PR size, it may be readable or not. But don't worry, you have the `--web` option for that:
+- **Current branch**: I'm working on a fix
+- **Created by you**: My fix has some checks pending and I didn't get any reviews yet. I also have another opened PR that passes the checks, but I haven't received any reviews as well.
+- **Requesting a code review from you**: A PR on documentation has passed the checks and I need to give my review.
 
-```sh
-gh pr view 231 --web
-```
+If I were to review the docs PR, I could simply type `gh pr view 231`, and view the PR on the terminal or on the web using the `--web` option.
+
+<Newsletter tag="tools" />
 
 ### Waiting for Travis
 
@@ -198,7 +191,7 @@ All checks were successful
 ✓  Travis CI - Pull Request  5m26s  https://travis-ci.com/github/comp...
 ```
 
-(Let's be honest, one of our favorite tasks is to wait for Travis, isn't it? 😄)
+(Let's be honest, one of our favorite tasks, as developers, is to wait for Travis, isn't it? 😄)
 
 If everything's OK, you can also merge the PR right from your terminal:
 
@@ -218,7 +211,7 @@ gh pr checkout 6838
 
 As a front-end developer, I often use it to make sure the UI changes properly work.
 
-By the way, GitHub also suggests you to use in the pull request:
+Note that you can find an example of this command on GitHub directly:
 
 ![A screenshot of GitHub's button open with](./github-open.png)
 
@@ -251,20 +244,16 @@ Showing 2 of 2 issues in testing-library/eslint-plugin-testing-library that matc
 #141  Lint RenderResult when returned from ...  (bug)  about 2 months ago
 ```
 
-There are lot of other filtering options. Don't hesitate to run `gh issue list --help` to know more!
-
-<Newsletter
-  title="Get efficient with your tools"
-  description="Do you like this article on GitHub CLI? Lucky you, it happens that I write a lot on tools and productivity for developers. Subscribe to the newsletter to get my latest articles."
-  tag="tools"
-/>
+There are lot of other filtering options. Don't hesitate to run `gh issue list --help` to know more.
 
 ### Quick approval
 
-Someone at your company spotted a bug in production and needs to ship a quick fix. Now, you can be a blazing fast colleague and approve the PR in minutes (if not seconds) by:
+Someone at your company spotted a bug in production and needs to quickly ship a small fix. Let's say its PR is the number #211. You can approve it in just two commands:
 
-1. Visualizing the changes with `gh pr diff`
-2. Approving the pull request with `gh pr review --approve`
+1. Visualize the changes: `gh pr diff 211`
+2. Approve the PR `gh pr review 211 --approve`
+
+Your colleague gets a fast approval and you don't fully interrupt your workflow. I call that a win-win.
 
 ### Contributing to an open-source project
 
@@ -286,19 +275,12 @@ Some maintainers label issues as `good first issue` for the newcomers. Then, you
 gh issue list --label "good first issue"
 ```
 
-<Note>
-  Considering contributing to a project? Please don't spam them with meaningless
-  contributions such as adding "Amazing project" next to a title or similar.
-  Open source maintainers are working hard. It's not useful spamming their
-  beloved repos. ❤️
-</Note>
+Note: if you're considering contributing to a project? Please **don't spam them** with meaningless contributions such as adding "Amazing project" next to a title or similar. Open source maintainers are working hard on their beloved repos. ❤️
 
 ## Using both GitHub and GitHub CLI
 
-As you can see, GitHub CLI is powerful. It leverages the power of the CLI to make your workflow better. You can approve a pull request from your CLI, find an issue on which you can work, quickly see if a build pass, and much more.
+As you can see, GitHub CLI is powerful and can improve your workflow. It has already become a tool I'm using every day. Approving a pull request, finding an issue on which I can work, quickly see if a build pass, it's a real time-saver, and it has become a tool I'm using every day.
 
-It doesn't mean you should use only GitHub CLI as of now. Both the UI and the CLI are powerful. Use what suits your needs best. In my case, I like to use the CLI for quick actions such as an approval, merging a request, or knowing if checks have passed.
-
-However, when it comes to reviewing code or finding issues, I still like to use GitHub's UI, which allows me to better glance at the information.
+It doesn't mean you should use only GitHub CLI as of now. Don't forget the UI. For example, I still find it useful to do a complete review or browsing issues. Use what suits your needs best.
 
 <Comments description="What do you think of GitHub CLI? Which commands will you use from now on? Share your thoughts in the comments." />
