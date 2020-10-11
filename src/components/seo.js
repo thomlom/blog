@@ -21,7 +21,7 @@ const SEO = ({ description, lang, meta, title, coverURL }) => {
 
   const metaDescription = description || siteMetadata.description
 
-  const pageTitle = `${title} | ${siteMetadata.title}`
+  const pageTitle = siteMetadata.title || `${title} | ${siteMetadata.title}`
 
   return (
     <Helmet

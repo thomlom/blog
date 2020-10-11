@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Newsletter from "../components/newsletter"
 import Post from "../components/post"
 import SEO from "../components/seo"
 
@@ -61,7 +60,6 @@ const BlogIndex = ({
           .map(({ node }) => (
             <Post key={node.fields.slug} node={node} />
           ))}
-        <Newsletter />
       </div>
     </Layout>
   )

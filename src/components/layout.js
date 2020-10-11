@@ -3,21 +3,16 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import { MDXProvider } from "@mdx-js/react"
 
 import postComponents from "./postComponents"
-import Newsletter from "./newsletter"
 import Recall from "./recall"
 import Note from "./note"
 import Comments from "./comments"
 
-const shortcodes = { Note, Newsletter, Recall, Comments }
+const shortcodes = { Note, Recall, Comments }
 
-const allPosts = { to: "/all-posts", name: "All posts" }
-const newsletter = {
-  to: "https://buttondown.email/thomlom",
-  name: "Newsletter",
-}
+const allPosts = { to: "/all-posts", name: "Blog" }
 const about = { to: "/about", name: "About" }
 
-const links = [allPosts, newsletter, about]
+const links = [allPosts, about]
 
 const CustomLink = ({ to, name }) => {
   const linkClassNames =
