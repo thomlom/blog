@@ -21,7 +21,7 @@ const Bio = ({ photo }) => {
           Hey, I'm Thomas Lombart.
         </h2>
         <h3 className="text-xl sm:text-2xl text-gray-200 font-semibold leading-snug mt-2">
-          I'm a front-end engineer from France. I love building and designing
+          I'm a front-end engineer from France. I love designing and building
           great apps.
         </h3>
       </div>
