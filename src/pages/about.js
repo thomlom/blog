@@ -22,7 +22,7 @@ const About = ({ location, data: { photo, site } }) => {
         Hey, I'm Thomas Lombart.
       </h2>
       <p className={textClassNames}>
-        I’m a senior front-end engineer from France. I currently work at{" "}
+        I’m a front-end engineer from France. I currently work at{" "}
         <a
           href="https://www.backmarket.com"
           className={linkClassNames}
