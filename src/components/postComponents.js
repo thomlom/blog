@@ -1,7 +1,7 @@
-import React from "react"
-import Highlight, { defaultProps } from "prism-react-renderer"
+import React from "react";
+import Highlight, { defaultProps } from "prism-react-renderer";
 
-import { getAumgentedTokens } from "./utils"
+import { getAumgentedTokens } from "./utils";
 
 /**
  * Night Owl theme by Sarah Drasner
@@ -98,14 +98,14 @@ const theme = {
       },
     },
   ],
-}
+};
 
 const CodeBlock = ({
   children: {
     props: { children, className },
   },
 }) => {
-  const matches = className && className.match(/language-(?<lang>.*)/)
+  const matches = className && className.match(/language-(?<lang>.*)/);
 
   return (
     <Highlight
@@ -119,11 +119,11 @@ const CodeBlock = ({
       theme={theme}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => {
-        const augmentedTokens = getAumgentedTokens(tokens)
+        const augmentedTokens = getAumgentedTokens(tokens);
 
         return (
           <pre
-            className={`rounded-lg py-4 my-2 overflow-x-auto ${className}`}
+            className={`rounded-lg py-4 my-2 overflow-x-auto border border-gray-800 ${className}`}
             style={style}
           >
             {augmentedTokens.map(({ isHighlight, line }, i) => {
@@ -131,12 +131,12 @@ const CodeBlock = ({
                 line,
                 key: i,
                 className: "px-4",
-              })
+              });
 
               const getTokens = () =>
                 line.map((token, key) => (
                   <span {...getTokenProps({ token, key })} />
-                ))
+                ));
 
               return isHighlight ? (
                 <div key={i} style={{ backgroundColor: "#7497a633" }}>
@@ -146,18 +146,18 @@ const CodeBlock = ({
                 <div {...lineProps} className="px-4">
                   {getTokens()}
                 </div>
-              )
+              );
             })}
           </pre>
-        )
+        );
       }}
     </Highlight>
-  )
-}
+  );
+};
 
-const textClassNames = "my-4 sm:my-5 text-gray-300 text-base leading-relaxed"
+const textClassNames = "my-4 sm:my-5 text-gray-300 text-base leading-relaxed";
 const titleClassNames =
-  "mb-2 sm:mb-4 text-gray-200 font-extrabold leading-tight"
+  "mb-2 sm:mb-4 text-gray-200 font-extrabold leading-tight";
 
 // eslint-disable
 export default {
@@ -216,4 +216,4 @@ export default {
   ),
   code: CodeBlock,
   pre: CodeBlock,
-}
+};

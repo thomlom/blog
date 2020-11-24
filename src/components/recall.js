@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 const Recall = ({ question, answer }) => {
-  const [isRevealed, setIsRevealed] = React.useState(false)
+  const [isRevealed, setIsRevealed] = React.useState(false);
   return (
     <div className="p-4 rounded-lg bg-orange-200">
       <p className="text-lg uppercase text-orange-800 font-bold tracking-wide">
@@ -26,7 +26,7 @@ const Recall = ({ question, answer }) => {
         </button>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Recall
+export default Recall;

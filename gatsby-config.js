@@ -1,12 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Thomlom`,
-    author: {
-      name: `Thomas Lombart`,
-      summary: `Hey, I'm Thomas Lombart. I'm a senior front-end engineer. I help developers getting more efficient and productive through articles.`,
-    },
-    description: `Become a better developer by reading posts on tools, productivity and ways to level-up your career.`,
-    keywords: [`developer`, `productivity`, `tools`, `career`],
+    title: `Thomas Lombart`,
+    description: `Front-end engineer specializing in JavaScript technologies. Writes on web development and productivity. Open-source contributor and mentor.`,
+    keywords: [`developer`, `javascript`, `react`, `vue`, `mentor`],
     siteUrl: `https://thomlom.dev`,
   },
   plugins: [
@@ -75,8 +71,8 @@ module.exports = {
                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   custom_elements: [{ "content:encoded": edge.node.body }],
-                })
-              })
+                });
+              });
             },
             query: `
               {
@@ -119,4 +115,4 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-offline`,
   ],
-}
+};

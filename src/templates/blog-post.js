@@ -1,12 +1,11 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import React from "react";
+import { graphql } from "gatsby";
+import Img from "gatsby-image";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 
-import TransitionLink from "../components/transitionLink"
-import Layout from "../components/layout"
-import PostInfos from "../components/postInfos"
-import SEO from "../components/seo"
+import TransitionLink from "../components/transitionLink";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 const BlogPostTemplate = ({
   pageContext: { next },
@@ -18,62 +17,75 @@ const BlogPostTemplate = ({
   },
   location,
 }) => {
+  const { body } = post;
+  const {
+    cover,
+    coverCredit,
+    title,
+    seoTitle,
+    description,
+    date,
+    tags,
+    next: nextLink,
+  } = post.frontmatter;
+
+  const tagsString = tags.join(", ");
+
   return (
-    <Layout location={location}>
+    <Layout location={location} inBlog>
       <SEO
-        title={post.frontmatter.seoTitle || post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-        coverURL={siteUrl + post.frontmatter.cover.publicURL}
+        title={seoTitle || title}
+        description={description || post.excerpt}
+        coverURL={siteUrl + cover.publicURL}
       />
-      <article className="max-w-full sm:max-w-3xl">
+      <article className="max-w-full sm:max-w-2xl sm:mx-auto">
         <header>
           <h1 className="font-extrabold text-2xl sm:text-3xl leading-tight text-gray-200">
-            {post.frontmatter.title}
+            {title}
           </h1>
-          <div className="mt-2">
-            <PostInfos
-              date={post.frontmatter.date}
-              tags={post.frontmatter.tags}
-            />
+          <div className="mt-2 flex justify-between text-sm text-gray-300 uppercase font-semibold">
+            <span>{tagsString}</span>
+            <span>{date}</span>
           </div>
         </header>
-        {post.frontmatter.cover && (
+        {cover && (
           <>
             <Img
-              fluid={post.frontmatter.cover.childImageSharp.fluid}
+              fluid={cover.childImageSharp.fluid}
               className="rounded-lg mt-4"
             />
-            {post.frontmatter.coverCredit && (
-              <p className="mt-2 text-gray-600 text-center">
-                {post.frontmatter.coverCredit}
-              </p>
-            )}
+            {coverCredit ? (
+              <p className="mt-2 text-gray-300 text-center">{coverCredit}</p>
+            ) : null}
           </>
         )}
         <section className="mt-6">
-          <MDXRenderer>{post.body}</MDXRenderer>
+          <MDXRenderer>{body}</MDXRenderer>
         </section>
-        {next && (
-          <TransitionLink paintDrip to={next.fields.slug}>
-            <div className="p-4 border shadow-lg rounded-lg bg-gray-800 border-none my-2">
-              <span className="uppercase text-sm text-gray-300 tracking-wide flex items-center font-semibold">
-                <span role="img" aria-label="Eyes" className="mr-1 text-xl">
-                  👀
+        {nextLink ? (
+          <>
+            <hr className="mb-4" />
+            <TransitionLink paintDrip to={next.fields.slug}>
+              <div className="p-4 border shadow-lg rounded-lg bg-gray-800 border-none my-2">
+                <span className="uppercase text-sm text-gray-300 tracking-wide flex items-center font-semibold">
+                  <span role="img" aria-label="Eyes" className="mr-1 text-xl">
+                    👀
+                  </span>
+                  This post may also interest you
                 </span>
-                This post may also interest you
-              </span>
-              <p className="text-gray-200 text-2xl font-bold mt-1 leading-tight underline">
-                {next.frontmatter.title}
-              </p>
-            </div>
-          </TransitionLink>
-        )}
+                <p className="text-gray-200 text-2xl font-bold mt-1 leading-tight underline">
+                  {next.frontmatter.title}
+                </p>
+              </div>
+            </TransitionLink>
+          </>
+        ) : null}
       </article>
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -90,7 +102,7 @@ export const pageQuery = graphql`
         title
         seoTitle
         description
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMM DD, YYYY")
         tags
         next
         cover {
@@ -105,4 +117,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
