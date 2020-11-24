@@ -94,7 +94,7 @@ module.exports = {
               }
             `,
             output: "/rss.xml",
-            title: "Thomlom's Blog RSS Feed",
+            title: "Thomas Lombart's Blog RSS Feed",
           },
         ],
       },
@@ -102,8 +102,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Thomlom`,
-        short_name: `Thomlom`,
+        name: `Thomas Lombart`,
+        short_name: `Thomas Lombart`,
         start_url: `/`,
         background_color: `#8888fc`,
         theme_color: `#3525e6`,
