@@ -75,10 +75,10 @@ const BlockCta = ({ link, src, children }) => (
     href={link}
     target="_blank"
     rel="noopener noreferrer"
-    className="px-3 py-2 flex justify-center items-center gap-3 bg-gray-100 rounded-lg"
+    className="px-3 py-2 flex justify-center items-center bg-gray-100 rounded-lg"
   >
     <img src={src} className="h-8 w-8" alt="" />
-    <span className="text-gray-900 font-bold">{children}</span>
+    <span className="text-gray-900 font-bold ml-3">{children}</span>
   </a>
 );
 
@@ -132,12 +132,12 @@ const OpenSource = () => (
 const About = ({ photo }) => (
   <Block>
     <SectionHeading>About me</SectionHeading>
-    <div className="flex flex-col sm:flex-row gap-6 sm:gap-10">
+    <div className="flex flex-col sm:flex-row">
       <Image
         fixed={photo.childImageSharp.fixed}
         className="rounded-full border-2 border-gray-200 p-2"
       />
-      <p className="flex-1 flex flex-col space-y-3 text-gray-200">
+      <p className="flex-1 flex flex-col space-y-3 text-gray-200 mt-4 sm:ml-10 sm:mt-0">
         <span>
           My name is Thomas Lombart. I live in France. I have a degree in
           computer science but{" "}
