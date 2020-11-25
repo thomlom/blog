@@ -139,9 +139,9 @@ const About = ({ photo }) => (
       />
       <p className="flex-1 flex flex-col space-y-3 text-gray-200 mt-4 sm:ml-10 sm:mt-0">
         <span>
-          My name is Thomas Lombart. I live in France. I have a degree in
-          computer science but{" "}
-          <TextBold>I learnt web development by myself.</TextBold>
+          My name is Thomas Lombart. I live in France.{" "}
+          <TextBold>I learned web development by myself</TextBold> though I have
+          a degree in computer science.
         </span>
         <span>
           I currently work remotely for{" "}
@@ -149,19 +149,17 @@ const About = ({ photo }) => (
             Back Market
           </InlineLink>
           , a marketplace for refurbished products. I’ve also worked, in the
-          past, for Decathlon and Mindbaz. I learned along the way{" "}
-          <TextBold>
-            how to build accessible, performant, beautiful and well-tested web
-            applications.
-          </TextBold>
+          past, for Decathlon, and Mindbaz. I learned along the way how to build{" "}
+          <TextBold>accessible, performant, beautiful and well-tested</TextBold>{" "}
+          web applications with JavaScript technologies such as{" "}
+          <TextBold>React or Vue.</TextBold>
         </span>
         <span>
           I acquired{" "}
           <TextBold>strong communication and writing skills</TextBold> over the
           years. I’m{" "}
           <TextBold>
-            self-driven, product-oriented and I always want to give the best of
-            myself.
+            self-driven, product-oriented, and always give the best of myself.
           </TextBold>
         </span>
       </p>
