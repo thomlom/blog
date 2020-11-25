@@ -7,8 +7,9 @@ import postComponents from "./postComponents";
 import Recall from "./recall";
 import Note from "./note";
 import Comments from "./comments";
+import MentorBanner from "./mentorBanner";
 
-const shortcodes = { Note, Recall, Comments };
+const shortcodes = { Note, Recall, Comments, MentorBanner };
 
 const Layout = ({ location, inBlog, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
