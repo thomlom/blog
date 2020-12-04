@@ -3,7 +3,7 @@ import Image from "gatsby-image";
 
 import TransitionLink from "./transitionLink";
 
-const PostPreview = ({ node: { fields, frontmatter, excerpt } }) => {
+const ArticlePreview = ({ node: { fields, frontmatter, excerpt } }) => {
   const { cover, description, tags, title, date } = frontmatter;
   const { slug } = fields;
   const tagsString = tags.join(", ");
@@ -32,4 +32,4 @@ const PostPreview = ({ node: { fields, frontmatter, excerpt } }) => {
   );
 };
 
-export default PostPreview;
+export default ArticlePreview;

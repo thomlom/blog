@@ -3,7 +3,7 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 import { MDXProvider } from "@mdx-js/react";
 
-import postComponents from "./postComponents";
+import articleComponents from "./articleComponents";
 import Recall from "./recall";
 import Note from "./note";
 import Comments from "./comments";
@@ -42,7 +42,7 @@ const Layout = ({ location, inBlog, children }) => {
   );
 
   return (
-    <MDXProvider components={{ ...shortcodes, ...postComponents }}>
+    <MDXProvider components={{ ...shortcodes, ...articleComponents }}>
       <div className="p-4 sm:py-6 bg-gray-900">
         <div
           className={`flex flex-col min-h-screen mx-auto space-y-6 ${

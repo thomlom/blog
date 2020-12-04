@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
-import PostPreview from "../components/postPreview";
+import ArticlePreview from "../components/ArticlePreview";
 import SEO from "../components/seo";
 
 const BlogIndex = ({
@@ -14,15 +14,15 @@ const BlogIndex = ({
   },
   location,
 }) => {
-  const posts = allMdx.edges;
+  const articles = allMdx.edges;
   const [search, setSearch] = React.useState("");
 
   return (
     <Layout location={location}>
-      <SEO title="All posts" description={description} />
+      <SEO title="All articles" description={description} />
       <div className="bg-gray-800 p-4 mb-6 rounded-lg shadow">
         <label className="block text-xl text-gray-100 font-bold">
-          Search a post
+          Search an article
           <input
             type="text"
             className="bg-gray-900 text-gray-200 border-gray-700 placeholder-gray-500 shadow mt-3 focus:ring focus:ring-gray-800 rounded py-2 px-4 block w-full appearance-none "
@@ -32,7 +32,7 @@ const BlogIndex = ({
         </label>
       </div>
       <div className="grid gap-10 grid-cols-1 sm:grid-cols-2">
-        {posts
+        {articles
           .filter(
             ({
               node: {
@@ -58,7 +58,7 @@ const BlogIndex = ({
             }
           )
           .map(({ node }) => (
-            <PostPreview key={node.fields.slug} node={node} />
+            <ArticlePreview key={node.fields.slug} node={node} />
           ))}
       </div>
     </Layout>

@@ -3,7 +3,7 @@ import { graphql, Link } from "gatsby";
 import Image from "gatsby-image";
 
 import Layout from "../components/layout";
-import PostPreview from "../components/postPreview";
+import ArticlePreview from "../components/ArticlePreview";
 import SEO from "../components/seo";
 
 import GitHubIcon from "../icons/github.png";
@@ -51,20 +51,20 @@ const InlineLink = ({ link, children }) => (
   </a>
 );
 
-const LatestPosts = ({ posts }) => (
+const LatestArticles = ({ articles }) => (
   <Block>
     <div className="flex justify-between items-center">
-      <SectionHeading>Blog</SectionHeading>
+      <SectionHeading>Latest articles</SectionHeading>
       <Link
-        to="/all-posts"
+        to="/articles"
         className="text-sm sm:text-base inline-block bg-gray-100 px-3 py-1 rounded-lg font-bold shadow-lg"
       >
-        See all posts
+        See all articles
       </Link>
     </div>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10">
-      {posts.map(({ node }) => (
-        <PostPreview key={node.fields.slug} node={node} />
+      {articles.map(({ node }) => (
+        <ArticlePreview key={node.fields.slug} node={node} />
       ))}
     </div>
   </Block>
@@ -177,14 +177,14 @@ const Home = ({
     allMdx,
   },
 }) => {
-  const posts = allMdx.edges.slice(0, 2);
+  const articles = allMdx.edges.slice(0, 2);
 
   return (
     <Layout location={location}>
       <SEO description={description} />
       <div className="mt-2 space-y-8 sm:space-y-10">
         <Summary />
-        <LatestPosts posts={posts} />
+        <LatestArticles articles={articles} />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10">
           <Mentoring />
           <OpenSource />
