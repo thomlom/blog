@@ -162,7 +162,7 @@ const Home = ({
               time on my hands.
             </span>
             <span>
-              Here's a list of word to get a better glimpse of who I am:
+              Here's a list of words to get a better glimpse of who I am:
               curious, simple, kind, remote work, travel, minimalist, nature,
               hiking, piano, movies scores, privacy.
             </span>
